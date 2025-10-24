@@ -1,26 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Sparkles, Zap, Award } from "lucide-react";
-import take5Card from "@/assets/nfc-card-take5.png";
-import bellavitaCard from "@/assets/nfc-card-bellavita.png";
-import autoecoleCard from "@/assets/nfc-card-autoecolechaumien.png";
-import massawaCard from "@/assets/nfc-card-massawa.png";
-import diamantCard from "@/assets/nfc-card-lediamant.png";
-import biosphereCard from "@/assets/nfc-card-biosphere.png";
-import foodtimeCard from "@/assets/nfc-card-foodtime.png";
-import decathlonCard from "@/assets/nfc-card-decathlon.png";
-import k6Card from "@/assets/nfc-card-k6.png";
+import nfcCardsGrid from "@/assets/nfc-cards-grid.png";
+import nfcCardDetail1 from "@/assets/nfc-card-detail-1.jpg";
+import nfcCardDetail2 from "@/assets/nfc-card-detail-2.jpg";
+import nfcCardDetail3 from "@/assets/nfc-card-detail-3.jpg";
 
 export const NFCGallery = () => {
-  const cards = [
-    { name: "Take 5", image: take5Card },
-    { name: "Bella Vita", image: bellavitaCard },
-    { name: "Auto-école Chaumien", image: autoecoleCard },
-    { name: "Massawa", image: massawaCard },
-    { name: "Le Diamant", image: diamantCard },
-    { name: "Biosphère", image: biosphereCard },
-    { name: "Food Time", image: foodtimeCard },
-    { name: "Decathlon", image: decathlonCard },
-    { name: "K6", image: k6Card }
+  const detailCards = [
+    { image: nfcCardDetail1, name: "Plaque premium avec effet brillant" },
+    { image: nfcCardDetail2, name: "Design élégant noir mat" },
+    { image: nfcCardDetail3, name: "Finition transparente premium" }
   ];
 
   const scrollToForm = () => {
@@ -41,20 +30,29 @@ export const NFCGallery = () => {
           </p>
         </div>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {cards.map((card, index) => (
+        {/* Main Grid Photo */}
+        <div className="mb-12 rounded-3xl overflow-hidden shadow-elegant">
+          <img
+            src={nfcCardsGrid}
+            alt="Collection de plaques NFC personnalisées Take5 pour différents commerces"
+            className="w-full h-auto"
+          />
+        </div>
+
+        {/* Detail Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          {detailCards.map((card, index) => (
             <div
               key={index}
-              className="group relative aspect-[3/2] rounded-2xl overflow-hidden shadow-elegant hover:shadow-primary transition-all duration-300 hover:-translate-y-2 hover:scale-105"
+              className="group relative aspect-square rounded-2xl overflow-hidden shadow-elegant hover:shadow-primary transition-all duration-300 hover:-translate-y-2"
             >
               <img
                 src={card.image}
-                alt={`Carte NFC ${card.name}`}
-                className="w-full h-full object-cover"
+                alt={card.name}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                <p className="text-white font-bold text-xl">{card.name}</p>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                <p className="text-white font-semibold text-lg">{card.name}</p>
               </div>
             </div>
           ))}

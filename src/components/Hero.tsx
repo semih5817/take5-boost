@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import heroProduct from "@/assets/hero-product.jpg";
+import heroProduct from "@/assets/hero-product.png";
 
 export const Hero = () => {
   const scrollToForm = () => {
