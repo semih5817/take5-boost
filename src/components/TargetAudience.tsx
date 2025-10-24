@@ -82,24 +82,24 @@ export const TargetAudience = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 mb-16">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-6 mb-12 md:mb-16">
           {sectors.map((sector, index) => (
             <Card 
               key={index} 
-              className={`p-8 hover:shadow-elegant transition-all duration-300 hover:-translate-y-2 relative ${
+              className={`p-6 md:p-8 hover:shadow-elegant transition-all duration-300 hover:-translate-y-2 relative ${
                 sector.featured ? 'border-4 border-primary bg-gradient-to-br from-primary/5 to-secondary/5' : 'border-2'
               }`}
             >
               {sector.featured && (
-                <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-secondary text-white px-4 py-1">
+                <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-secondary text-white px-3 md:px-4 py-1 text-xs md:text-sm">
                   🔥 POPULAIRE
                 </Badge>
               )}
               
-              <div className="flex items-start gap-4 mb-4">
-                <div className="text-5xl">{sector.emoji}</div>
+              <div className="flex items-start gap-3 md:gap-4 mb-4">
+                <div className="text-4xl md:text-5xl">{sector.emoji}</div>
                 <div className="flex-1">
-                  <h3 className="text-2xl font-bold mb-2">{sector.title}</h3>
+                  <h3 className="text-xl md:text-2xl font-bold mb-2">{sector.title}</h3>
                   <div className="flex flex-wrap gap-2 mb-3">
                     {sector.stats.map((stat, i) => (
                       <Badge key={i} variant="secondary" className="text-xs">
@@ -111,14 +111,14 @@ export const TargetAudience = () => {
                 </div>
               </div>
               
-              <p className="text-muted-foreground mb-6 leading-relaxed">
+              <p className="text-sm md:text-base text-muted-foreground mb-4 md:mb-6 leading-relaxed">
                 {sector.description}
               </p>
               
               <Button 
                 onClick={scrollToForm}
                 variant={sector.featured ? "default" : "outline"}
-                className={sector.featured ? "w-full bg-gradient-to-r from-primary to-secondary hover:shadow-primary" : "w-full"}
+                className={`w-full text-sm md:text-base ${sector.featured ? "bg-gradient-to-r from-primary to-secondary hover:shadow-primary" : ""}`}
               >
                 {sector.cta}
                 <ArrowRight className="ml-2 w-4 h-4" />
@@ -128,28 +128,28 @@ export const TargetAudience = () => {
         </div>
 
         {/* Social Proof Bar */}
-        <div className="bg-gradient-to-r from-primary/10 via-secondary/10 to-indigo/10 rounded-3xl p-8">
-          <div className="grid sm:grid-cols-3 gap-6 text-center">
+        <div className="bg-gradient-to-r from-primary/10 via-secondary/10 to-indigo/10 rounded-2xl md:rounded-3xl p-6 md:p-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 text-center">
             <div>
               <div className="flex items-center justify-center gap-2 mb-2">
-                <Users className="w-6 h-6 text-primary" />
-                <p className="text-3xl font-bold gradient-text">847</p>
+                <Users className="w-5 md:w-6 h-5 md:h-6 text-primary" />
+                <p className="text-2xl md:text-3xl font-bold gradient-text">847</p>
               </div>
-              <p className="text-sm text-muted-foreground">Commerces actifs</p>
+              <p className="text-xs md:text-sm text-muted-foreground">Commerces actifs</p>
             </div>
             <div>
               <div className="flex items-center justify-center gap-2 mb-2">
-                <Star className="w-6 h-6 text-secondary" />
-                <p className="text-3xl font-bold gradient-text">28 459</p>
+                <Star className="w-5 md:w-6 h-5 md:h-6 text-secondary" />
+                <p className="text-2xl md:text-3xl font-bold gradient-text">28 459</p>
               </div>
-              <p className="text-sm text-muted-foreground">Avis collectés ce mois</p>
+              <p className="text-xs md:text-sm text-muted-foreground">Avis collectés ce mois</p>
             </div>
             <div>
               <div className="flex items-center justify-center gap-2 mb-2">
-                <Zap className="w-6 h-6 text-accent" />
-                <p className="text-3xl font-bold gradient-text">4.9/5</p>
+                <Zap className="w-5 md:w-6 h-5 md:h-6 text-accent" />
+                <p className="text-2xl md:text-3xl font-bold gradient-text">4.9/5</p>
               </div>
-              <p className="text-sm text-muted-foreground">Satisfaction clients</p>
+              <p className="text-xs md:text-sm text-muted-foreground">Satisfaction clients</p>
             </div>
           </div>
         </div>
