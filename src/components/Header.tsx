@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Star } from "lucide-react";
+import take5Logo from "@/assets/take5-logo.png";
 
 export const Header = () => {
   const scrollToForm = () => {
@@ -10,11 +10,8 @@ export const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b border-primary/20">
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         <div className="flex items-center justify-between h-14 md:h-20">
-          <div className="flex items-center gap-2">
-            <div className="w-8 md:w-10 h-8 md:h-10 rounded-full bg-primary flex items-center justify-center shadow-glow">
-              <Star className="w-5 md:w-6 h-5 md:h-6 text-white fill-white" />
-            </div>
-            <span className="text-lg md:text-2xl font-bold text-foreground">Take 5</span>
+          <div className="flex items-center gap-3">
+            <img src={take5Logo} alt="Take 5 Logo" className="h-8 md:h-10 w-auto" />
           </div>
           
           <Button 
