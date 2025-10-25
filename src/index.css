@@ -8,52 +8,55 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 220 15% 9%;
+    /* Dark tech theme */
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
     
-    --card: 0 0% 100%;
-    --card-foreground: 220 15% 9%;
+    --card: 222 47% 14%;
+    --card-foreground: 210 40% 98%;
     
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 15% 9%;
+    --popover: 222 47% 14%;
+    --popover-foreground: 210 40% 98%;
     
-    /* Blue primary from Take 5 brand */
-    --primary: 199 89% 48%;
-    --primary-foreground: 0 0% 100%;
+    /* Electric blue primary */
+    --primary: 235 100% 60%;
+    --primary-foreground: 210 40% 98%;
     
     /* Violet accent */
-    --secondary: 258 90% 66%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 280 100% 70%;
+    --secondary-foreground: 210 40% 98%;
     
     /* Cyan accent */
-    --accent: 188 95% 42%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 190 100% 50%;
+    --accent-foreground: 210 40% 98%;
     
     /* Indigo accent */
     --indigo: 239 84% 67%;
     --indigo-foreground: 0 0% 100%;
     
-    --muted: 210 40% 98%;
-    --muted-foreground: 220 9% 46%;
+    --muted: 222 47% 20%;
+    --muted-foreground: 215 20% 65%;
     
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 210 40% 98%;
     
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 199 89% 48%;
+    --border: 222 47% 20%;
+    --input: 222 47% 20%;
+    --ring: 235 100% 60%;
     
     --radius: 1rem;
     
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(199 89% 48%), hsl(258 90% 66%));
-    --gradient-secondary: linear-gradient(135deg, hsl(188 95% 42%), hsl(239 84% 67%));
-    --gradient-hero: linear-gradient(135deg, hsl(199 89% 48%) 0%, hsl(258 90% 66%) 100%);
+    /* Tech gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(235 100% 60%), hsl(280 100% 70%));
+    --gradient-secondary: linear-gradient(135deg, hsl(190 100% 50%), hsl(239 84% 67%));
+    --gradient-hero: linear-gradient(135deg, hsl(235 100% 60%) 0%, hsl(280 100% 70%) 100%);
+    --gradient-tech: linear-gradient(135deg, hsl(235 100% 60%), hsl(190 100% 50%));
     
-    /* Shadows */
-    --shadow-primary: 0 10px 40px -10px hsl(199 89% 48% / 0.3);
-    --shadow-secondary: 0 10px 40px -10px hsl(258 90% 66% / 0.3);
-    --shadow-elegant: 0 4px 24px -4px hsl(220 15% 9% / 0.08);
+    /* Tech shadows with glow */
+    --shadow-primary: 0 10px 40px -10px hsl(235 100% 60% / 0.6);
+    --shadow-secondary: 0 10px 40px -10px hsl(280 100% 70% / 0.6);
+    --shadow-elegant: 0 20px 60px -15px hsl(235 100% 60% / 0.5);
+    --shadow-glow: 0 0 60px hsl(235 100% 60% / 0.4);
     
     /* Transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -95,6 +98,10 @@ All colors MUST be HSL.
     box-shadow: var(--shadow-elegant);
   }
   
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
@@ -112,12 +119,36 @@ All colors MUST be HSL.
     }
   }
   
-  @keyframes shine {
-    0% {
-      background-position: -200% center;
-    }
-    100% {
-      background-position: 200% center;
-    }
+@keyframes shine {
+  0% {
+    background-position: -200% center;
   }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.tech-grid {
+  background-image: 
+    linear-gradient(hsl(235 100% 60% / 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(235 100% 60% / 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: tech-grid-move 20s linear infinite;
+}
+
+@keyframes tech-grid-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+.highlight-box {
+  background: hsl(235 100% 60%);
+  padding: 0.25rem 0.75rem;
+  display: inline-block;
+  box-shadow: 0 0 30px hsl(235 100% 60% / 0.5);
+}
 }

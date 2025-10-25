@@ -30,13 +30,14 @@ export const Testimonials = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24">
-      <div className="container mx-auto px-4 md:px-6 max-w-7xl">
+    <section className="py-16 md:py-24 relative overflow-hidden">
+      <div className="absolute inset-0 tech-grid opacity-20" />
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="gradient-text">Ils ont transformé</span>
+            <span className="highlight-box text-white">Avis Client</span>
             <br />
-            leur visibilité avec Take 5
+            <span className="text-foreground mt-4 block">Ils ont transformé leur visibilité</span>
           </h2>
         </div>
 
@@ -44,29 +45,31 @@ export const Testimonials = () => {
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index} 
-              className="p-8 hover:shadow-elegant transition-all duration-300 hover:-translate-y-2 border-2"
+              className="p-8 bg-card/50 backdrop-blur-sm hover:shadow-glow transition-all duration-300 hover:-translate-y-2 border-primary/20 hover:border-primary/50"
             >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-2xl font-bold shadow-primary">
-                  {testimonial.avatar}
-                </div>
-                <div>
-                  <p className="font-bold text-lg">{testimonial.name}</p>
-                  <p className="text-sm text-muted-foreground">
-                    {testimonial.business}, {testimonial.location}
-                  </p>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="flex flex-col">
+                  <div className="flex items-center gap-2 mb-1">
+                    <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google" className="h-4" />
+                  </div>
+                  <div className="flex gap-1">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
-
-              <blockquote className="text-muted-foreground italic leading-relaxed">
+              <blockquote className="text-foreground leading-relaxed mb-6">
                 "{testimonial.quote}"
               </blockquote>
+
+              <div className="pt-4 border-t border-border">
+                <p className="font-bold text-foreground">{testimonial.name}</p>
+                <p className="text-sm text-muted-foreground">
+                  {testimonial.business}, {testimonial.location}
+                </p>
+              </div>
             </Card>
           ))}
         </div>
