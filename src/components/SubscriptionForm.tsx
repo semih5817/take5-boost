@@ -1,36 +1,77 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowRight } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+
+// Validation schema with strict rules
+const subscriptionSchema = z.object({
+  businessName: z
+    .string()
+    .trim()
+    .min(1, "Le nom de l'entreprise est requis")
+    .max(100, "Le nom ne peut pas dépasser 100 caractères"),
+  yourName: z
+    .string()
+    .trim()
+    .min(1, "Votre nom est requis")
+    .max(100, "Le nom ne peut pas dépasser 100 caractères"),
+  email: z
+    .string()
+    .trim()
+    .email("Email invalide")
+    .max(255, "L'email ne peut pas dépasser 255 caractères"),
+  whatsapp: z
+    .string()
+    .trim()
+    .regex(
+      /^\+?[1-9]\d{1,14}$/,
+      "Numéro WhatsApp invalide (format international requis, ex: +33612345678)"
+    ),
+  address: z
+    .string()
+    .trim()
+    .max(500, "L'adresse ne peut pas dépasser 500 caractères")
+    .optional()
+    .or(z.literal("")),
+  sector: z
+    .string()
+    .trim()
+    .max(100, "Le secteur ne peut pas dépasser 100 caractères")
+    .optional()
+    .or(z.literal("")),
+});
+
+type SubscriptionFormData = z.infer<typeof subscriptionSchema>;
 
 export const SubscriptionForm = () => {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    businessName: "",
-    yourName: "",
-    email: "",
-    whatsapp: "",
-    address: "",
-    sector: ""
+  
+  const form = useForm<SubscriptionFormData>({
+    resolver: zodResolver(subscriptionSchema),
+    defaultValues: {
+      businessName: "",
+      yourName: "",
+      email: "",
+      whatsapp: "",
+      address: "",
+      sector: "",
+    },
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Basic validation
-    if (!formData.businessName || !formData.yourName || !formData.email || !formData.whatsapp) {
-      toast({
-        title: "Champs requis manquants",
-        description: "Veuillez remplir tous les champs obligatoires",
-        variant: "destructive"
-      });
-      return;
-    }
-
+  const onSubmit = (data: SubscriptionFormData) => {
     // Success toast
     toast({
       title: "🎉 Bienvenue chez Take 5 !",
@@ -38,21 +79,7 @@ export const SubscriptionForm = () => {
     });
 
     // Reset form
-    setFormData({
-      businessName: "",
-      yourName: "",
-      email: "",
-      whatsapp: "",
-      address: "",
-      sector: ""
-    });
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    form.reset();
   };
 
   return (
@@ -70,114 +97,136 @@ export const SubscriptionForm = () => {
         </div>
 
         <Card className="p-8 md:p-10 shadow-elegant">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <Label htmlFor="businessName" className="text-base mb-2 block">
-                  Nom de l'entreprise *
-                </Label>
-                <Input
-                  id="businessName"
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <FormField
+                  control={form.control}
                   name="businessName"
-                  value={formData.businessName}
-                  onChange={handleChange}
-                  placeholder="Restaurant Le Gourmet"
-                  className="h-12"
-                  required
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-base">Nom de l'entreprise *</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Restaurant Le Gourmet"
+                          className="h-12"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
 
-              <div>
-                <Label htmlFor="yourName" className="text-base mb-2 block">
-                  Votre nom *
-                </Label>
-                <Input
-                  id="yourName"
+                <FormField
+                  control={form.control}
                   name="yourName"
-                  value={formData.yourName}
-                  onChange={handleChange}
-                  placeholder="Marc Dubois"
-                  className="h-12"
-                  required
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-base">Votre nom *</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Marc Dubois"
+                          className="h-12"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
               </div>
-            </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <Label htmlFor="email" className="text-base mb-2 block">
-                  Email *
-                </Label>
-                <Input
-                  id="email"
+              <div className="grid md:grid-cols-2 gap-6">
+                <FormField
+                  control={form.control}
                   name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="marc@restaurant.fr"
-                  className="h-12"
-                  required
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-base">Email *</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="email"
+                          placeholder="marc@restaurant.fr"
+                          className="h-12"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-              </div>
 
-              <div>
-                <Label htmlFor="whatsapp" className="text-base mb-2 block">
-                  Numéro WhatsApp *
-                </Label>
-                <Input
-                  id="whatsapp"
+                <FormField
+                  control={form.control}
                   name="whatsapp"
-                  type="tel"
-                  value={formData.whatsapp}
-                  onChange={handleChange}
-                  placeholder="+33 6 12 34 56 78"
-                  className="h-12"
-                  required
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-base">Numéro WhatsApp *</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="tel"
+                          placeholder="+33612345678"
+                          className="h-12"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
               </div>
-            </div>
 
-            <div>
-              <Label htmlFor="address" className="text-base mb-2 block">
-                Adresse de livraison (plaque NFC)
-              </Label>
-              <Textarea
-                id="address"
+              <FormField
+                control={form.control}
                 name="address"
-                value={formData.address}
-                onChange={handleChange}
-                placeholder="123 Rue de la République, 69001 Lyon"
-                className="min-h-24 resize-none"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-base">Adresse de livraison (plaque NFC)</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="123 Rue de la République, 69001 Lyon"
+                        className="min-h-24 resize-none"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
 
-            <div>
-              <Label htmlFor="sector" className="text-base mb-2 block">
-                Secteur d'activité
-              </Label>
-              <Input
-                id="sector"
+              <FormField
+                control={form.control}
                 name="sector"
-                value={formData.sector}
-                onChange={handleChange}
-                placeholder="Restaurant, Coiffure, Plomberie..."
-                className="h-12"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-base">Secteur d'activité</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Restaurant, Coiffure, Plomberie..."
+                        className="h-12"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
 
-            <Button
-              type="submit"
-              size="lg"
-              className="w-full bg-gradient-to-r from-primary to-secondary hover:shadow-primary transition-all duration-300 hover:-translate-y-1 text-lg py-6 h-auto"
-            >
-              S'abonner pour 9,90€/mois
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
+              <Button
+                type="submit"
+                size="lg"
+                className="w-full bg-gradient-to-r from-primary to-secondary hover:shadow-primary transition-all duration-300 hover:-translate-y-1 text-lg py-6 h-auto"
+              >
+                S'abonner pour 9,90€/mois
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
 
-            <p className="text-center text-sm text-muted-foreground">
-              En vous abonnant, vous acceptez nos CGV. Paiement sécurisé par carte bancaire.
-            </p>
-          </form>
+              <p className="text-center text-sm text-muted-foreground">
+                En vous abonnant, vous acceptez nos CGV. Paiement sécurisé par carte bancaire.
+              </p>
+            </form>
+          </Form>
         </Card>
       </div>
     </section>
