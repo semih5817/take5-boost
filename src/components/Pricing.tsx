@@ -44,9 +44,9 @@ export const Pricing = () => {
               <h3 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Pack Take 5 Complet</h3>
               <div className="mb-2">
                 <span className="text-4xl md:text-6xl font-bold gradient-text">9,90€</span>
-                <span className="text-xl md:text-2xl text-muted-foreground">/mois</span>
+                <span className="text-xl md:text-2xl text-muted-foreground"> HT/mois</span>
               </div>
-              <p className="text-xs md:text-sm text-muted-foreground">Engagement 12 mois</p>
+              <p className="text-xs md:text-sm text-muted-foreground">11,88€ TTC • Engagement 12 mois</p>
             </div>
 
             <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">

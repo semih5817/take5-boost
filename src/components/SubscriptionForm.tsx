@@ -111,9 +111,13 @@ export const SubscriptionForm = () => {
     },
   });
 
-  const subscriptionPrice = 9.90;
-  const plaquePrice = 19.90;
-  const totalToday = wantsPlaque ? subscriptionPrice + plaquePrice : subscriptionPrice;
+  const subscriptionPriceHT = 9.90;
+  const plaquePriceHT = 19.90;
+  const TVA_RATE = 0.20;
+  
+  const subtotalHT = wantsPlaque ? subscriptionPriceHT + plaquePriceHT : subscriptionPriceHT;
+  const tvaAmount = subtotalHT * TVA_RATE;
+  const totalTTC = subtotalHT + tvaAmount;
 
   const onSubmit = (data: SubscriptionFormData) => {
     console.log("Form submitted:", data);
@@ -347,18 +351,18 @@ export const SubscriptionForm = () => {
                               {/* Right column: Pricing & Toggle */}
                               <div className="flex flex-col justify-between">
                                 <div className="space-y-4">
-                                  <div className="bg-primary/10 rounded-lg p-4 text-center">
+                                   <div className="bg-primary/10 rounded-lg p-4 text-center">
                                     <div className="text-sm text-muted-foreground line-through">
-                                      29,90€
+                                      29,90€ HT
                                     </div>
                                     <div className="text-3xl font-bold text-primary">
-                                      19,90€
+                                      19,90€ HT
                                     </div>
                                     <div className="text-xs font-semibold text-primary">
                                       ÉCONOMIE 10€
                                     </div>
                                     <div className="text-xs text-muted-foreground mt-1">
-                                      Paiement unique
+                                      23,88€ TTC • Paiement unique
                                     </div>
                                   </div>
 
@@ -497,7 +501,7 @@ export const SubscriptionForm = () => {
                   >
                     {wantsPlaque 
                       ? "S'abonner et commander ma plaque" 
-                      : "S'abonner pour 9,90€/mois"}
+                      : "S'abonner pour 9,90€ HT/mois"}
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
 
@@ -528,7 +532,7 @@ export const SubscriptionForm = () => {
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="font-bold">{subscriptionPrice.toFixed(2)}€</div>
+                    <div className="font-bold">{subscriptionPriceHT.toFixed(2)}€ HT</div>
                     <div className="text-xs text-muted-foreground">/mois</div>
                   </div>
                 </div>
@@ -544,27 +548,38 @@ export const SubscriptionForm = () => {
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="font-bold text-primary">{plaquePrice.toFixed(2)}€</div>
+                      <div className="font-bold text-primary">{plaquePriceHT.toFixed(2)}€ HT</div>
                       <div className="text-xs text-muted-foreground">unique</div>
                     </div>
                   </div>
                 )}
 
-                <div className="space-y-2 py-4">
-                  <div className="flex justify-between text-lg font-bold">
-                    <span>Total aujourd'hui</span>
-                    <span className="text-2xl gradient-text">
-                      {totalToday.toFixed(2)}€
-                    </span>
+                <div className="space-y-2 pt-2">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">Sous-total HT</span>
+                    <span className="font-medium">{subtotalHT.toFixed(2)}€</span>
                   </div>
-                  <div className="text-xs text-muted-foreground text-center">
-                    TVA incluse
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">TVA (20%)</span>
+                    <span className="font-medium">{tvaAmount.toFixed(2)}€</span>
+                  </div>
+                </div>
+
+                <div className="space-y-2 py-4 border-t border-border">
+                  <div className="flex justify-between text-lg font-bold">
+                    <span>Total TTC aujourd'hui</span>
+                    <span className="text-2xl gradient-text">
+                      {totalTTC.toFixed(2)}€
+                    </span>
                   </div>
                 </div>
 
                 <div className="bg-muted/50 rounded-lg p-4 space-y-2">
                   <div className="text-sm font-medium">Ensuite :</div>
-                  <div className="text-lg font-bold">{subscriptionPrice.toFixed(2)}€/mois</div>
+                  <div className="text-lg font-bold">{subscriptionPriceHT.toFixed(2)}€ HT/mois</div>
+                  <div className="text-xs text-muted-foreground">
+                    ({(subscriptionPriceHT * 1.20).toFixed(2)}€ TTC)
+                  </div>
                   <div className="text-xs text-muted-foreground">
                     Prochain prélèvement dans 1 mois
                   </div>
