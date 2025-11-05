@@ -36,7 +36,7 @@ export const Hero = () => {
             
             <div className="text-center sm:text-left">
               <p className="text-2xl md:text-3xl font-bold gradient-text">9,90€/mois</p>
-              <p className="text-xs md:text-sm text-muted-foreground">Engagement 12 mois</p>
+              <p className="text-xs md:text-sm text-muted-foreground">Sans engagement</p>
             </div>
           </div>
 
