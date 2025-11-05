@@ -19,7 +19,8 @@ const WhyTakeFiveSection = () => {
       borderColor: "border-red-600",
       title: "Notification avis négatif",
       description: "Notification WhatsApp instantanée dès qu'un avis ≤3★ est posté. Réagissez avant que l'image ne soit impactée !",
-      highlight: false
+      highlight: false,
+      badge: "NOUVEAU"
     },
     {
       icon: <BarChart3 className="w-8 h-8" />,
@@ -85,6 +86,15 @@ const WhyTakeFiveSection = () => {
                 feature.borderColor
               } rounded-xl p-6 hover:scale-105 transition-all duration-300`}
             >
+              {/* Badge Nouveau */}
+              {feature.badge && (
+                <div className="absolute -top-3 -right-3">
+                  <Badge className="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold px-3 py-1 shadow-lg border-2 border-white/20">
+                    ✨ {feature.badge}
+                  </Badge>
+                </div>
+              )}
+
               {/* Icône */}
               <div
                 className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-xl flex items-center justify-center mb-4 shadow-lg`}

@@ -8,6 +8,9 @@ const WhatsAppReportingSection = () => {
       <div className="container mx-auto max-w-6xl">
         {/* Titre principal */}
         <div className="text-center mb-16">
+          <Badge className="bg-gradient-to-r from-blue-500 to-purple-600 mb-4 px-4 py-2 text-sm text-white font-bold border-2 border-white/20 shadow-lg">
+            ✨ NOUVEAU
+          </Badge>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
               Rapport mensuel

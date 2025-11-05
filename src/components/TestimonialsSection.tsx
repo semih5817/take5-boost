@@ -33,7 +33,8 @@ const TestimonialsSection = () => {
       rating: 5,
       text: "La notification instantanée sur WhatsApp m'a permis de contacter une cliente mécontente en 10 minutes, elle a modifié son avis 1★ en 5★. Sans Take 5, je n'aurais jamais su.",
       highlight: false,
-      image: "💅"
+      image: "💅",
+      badge: "NOUVEAU"
     }
   ];
 
@@ -63,6 +64,15 @@ const TestimonialsSection = () => {
               key={index}
               className="relative bg-slate-800/50 backdrop-blur border-2 border-slate-700 rounded-2xl p-8 hover:scale-105 transition-all duration-300"
             >
+              {/* Badge Nouveau */}
+              {testimonial.badge && (
+                <div className="absolute -top-3 -right-3">
+                  <Badge className="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold px-3 py-1 shadow-lg border-2 border-white/20">
+                    ✨ {testimonial.badge}
+                  </Badge>
+                </div>
+              )}
+
               {/* Quote icon */}
               <Quote className="w-10 h-10 text-slate-600 mb-4" />
 
