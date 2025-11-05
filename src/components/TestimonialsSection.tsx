@@ -31,10 +31,9 @@ const TestimonialsSection = () => {
       name: "Julie Bernard",
       business: "Propriétaire Salon de beauté, Toulouse",
       rating: 5,
-      text: "L'alerte instantanée sur WhatsApp a sauvé mon business ! J'ai pu contacter une cliente mécontente en 10 minutes, elle a modifié son avis 1★ en 5★. Sans Take 5, je n'aurais jamais su.",
-      highlight: true,
-      image: "💅",
-      badge: "Alerte WhatsApp"
+      text: "La notification instantanée sur WhatsApp m'a permis de contacter une cliente mécontente en 10 minutes, elle a modifié son avis 1★ en 5★. Sans Take 5, je n'aurais jamais su.",
+      highlight: false,
+      image: "💅"
     }
   ];
 
@@ -62,19 +61,8 @@ const TestimonialsSection = () => {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className={`relative bg-slate-800/50 backdrop-blur border-2 ${
-                testimonial.highlight ? "border-red-600 shadow-2xl shadow-red-900/50" : "border-slate-700"
-              } rounded-2xl p-8 hover:scale-105 transition-all duration-300`}
+              className="relative bg-slate-800/50 backdrop-blur border-2 border-slate-700 rounded-2xl p-8 hover:scale-105 transition-all duration-300"
             >
-              {/* Badge pour l'alerte */}
-              {testimonial.highlight && (
-                <div className="absolute -top-3 -right-3">
-                  <Badge className="bg-red-600 text-white font-bold px-3 py-1 animate-pulse shadow-lg">
-                    {testimonial.badge}
-                  </Badge>
-                </div>
-              )}
-
               {/* Quote icon */}
               <Quote className="w-10 h-10 text-slate-600 mb-4" />
 
@@ -94,11 +82,7 @@ const TestimonialsSection = () => {
               </div>
 
               {/* Témoignage */}
-              <p
-                className={`text-lg leading-relaxed mb-6 ${
-                  testimonial.highlight ? "text-slate-100 font-medium" : "text-slate-300"
-                }`}
-              >
+              <p className="text-lg leading-relaxed mb-6 text-slate-300">
                 "{testimonial.text}"
               </p>
 
@@ -112,15 +96,6 @@ const TestimonialsSection = () => {
                   <p className="text-sm text-slate-400">{testimonial.business}</p>
                 </div>
               </div>
-
-              {/* Highlight pour l'alerte */}
-              {testimonial.highlight && (
-                <div className="mt-6 pt-6 border-t border-red-600">
-                  <p className="text-red-400 text-sm font-semibold flex items-center gap-2">
-                    🚨 Grâce à l'alerte WhatsApp instantanée
-                  </p>
-                </div>
-              )}
             </div>
           ))}
         </div>

@@ -15,12 +15,11 @@ const WhyTakeFiveSection = () => {
     {
       icon: <Bell className="w-8 h-8" />,
       color: "from-red-600 to-red-700",
-      bgGradient: "from-red-900/30 to-red-800/30",
+      bgGradient: "from-red-900/20 to-red-800/20",
       borderColor: "border-red-600",
-      title: "🚨 Alerte avis négatif",
+      title: "Notification avis négatif",
       description: "Notification WhatsApp instantanée dès qu'un avis ≤3★ est posté. Réagissez avant que l'image ne soit impactée !",
-      highlight: true,
-      badge: "CRITIQUE"
+      highlight: false
     },
     {
       icon: <BarChart3 className="w-8 h-8" />,
@@ -83,56 +82,25 @@ const WhyTakeFiveSection = () => {
             <div
               key={index}
               className={`relative bg-slate-800/50 backdrop-blur border-2 ${
-                feature.highlight ? feature.borderColor : "border-slate-700"
-              } rounded-xl p-6 hover:scale-105 transition-all duration-300 ${
-                feature.highlight ? "shadow-2xl shadow-red-900/50" : ""
-              }`}
+                feature.borderColor
+              } rounded-xl p-6 hover:scale-105 transition-all duration-300`}
             >
-              {/* Badge pour la fonctionnalité critique */}
-              {feature.highlight && (
-                <div className="absolute -top-3 -right-3">
-                  <Badge className="bg-red-600 text-white font-bold px-3 py-1 animate-pulse shadow-lg">
-                    {feature.badge}
-                  </Badge>
-                </div>
-              )}
-
               {/* Icône */}
               <div
-                className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-xl flex items-center justify-center mb-4 shadow-lg ${
-                  feature.highlight ? "animate-pulse" : ""
-                }`}
+                className={`w-16 h-16 bg-gradient-to-br ${feature.color} rounded-xl flex items-center justify-center mb-4 shadow-lg`}
               >
                 {feature.icon}
               </div>
 
               {/* Titre */}
-              <h3
-                className={`text-xl font-bold mb-3 ${
-                  feature.highlight ? "text-red-400" : "text-white"
-                }`}
-              >
+              <h3 className="text-xl font-bold mb-3 text-white">
                 {feature.title}
               </h3>
 
               {/* Description */}
-              <p
-                className={`leading-relaxed ${
-                  feature.highlight ? "text-slate-200 font-medium" : "text-slate-300"
-                }`}
-              >
+              <p className="leading-relaxed text-slate-300">
                 {feature.description}
               </p>
-
-              {/* Ligne décorative pour l'alerte */}
-              {feature.highlight && (
-                <div className="mt-4 pt-4 border-t border-red-600">
-                  <p className="text-red-400 text-sm font-semibold flex items-center gap-2">
-                    <Zap className="w-4 h-4" />
-                    85% des clients retirent leur avis si vous répondez dans les 24h
-                  </p>
-                </div>
-              )}
             </div>
           ))}
         </div>
