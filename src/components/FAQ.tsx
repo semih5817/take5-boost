@@ -12,7 +12,7 @@ export const FAQ = () => {
     },
     {
       question: "Puis-je résilier à tout moment après les 12 mois ?",
-      answer: "Oui, absolument ! L'engagement de 12 mois permet de bénéficier du tarif préférentiel de 9,90€/mois. Après cette période, vous pouvez résilier en 1 clic depuis votre espace client, sans frais ni pénalités."
+      answer: "Oui, absolument ! L'engagement de 12 mois permet de bénéficier du tarif préférentiel de 19,90€/mois. Après cette période, vous pouvez résilier en 1 clic depuis votre espace client, sans frais ni pénalités."
     },
     {
       question: "Comment l'IA répond-elle aux avis ?",

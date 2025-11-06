@@ -501,7 +501,7 @@ export const SubscriptionForm = () => {
                   >
                     {wantsPlaque 
                       ? "S'abonner et commander ma plaque" 
-                      : "S'abonner pour 9,90€ HT/mois"}
+                      : "S'abonner pour 19,90€ HT/mois"}
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
 
