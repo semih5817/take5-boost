@@ -145,9 +145,9 @@ export const SubscriptionForm = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Main Form - 2/3 width */}
-          <div className="lg:col-span-2">
+        <div className="max-w-4xl mx-auto">
+          {/* Main Form - Full width */}
+          <div>
             <Card className="p-8 md:p-10 shadow-elegant">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -510,84 +510,6 @@ export const SubscriptionForm = () => {
                   </p>
                 </form>
               </Form>
-            </Card>
-          </div>
-
-          {/* Récapitulatif Prix - 1/3 width, sticky */}
-          <div className="lg:col-span-1">
-            <Card className="p-6 shadow-elegant sticky top-6">
-              <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                <Package className="w-5 h-5 text-primary" />
-                Récapitulatif
-              </h3>
-
-              <div className="space-y-4">
-                <div className="flex justify-between items-start pb-3 border-b border-border">
-                  <div>
-                    <div className="font-medium">Abonnement mensuel</div>
-                    <div className="text-xs text-muted-foreground mt-1">
-                      <span className="inline-block bg-primary/20 text-primary px-2 py-0.5 rounded text-[10px] font-semibold">
-                        SANS ENGAGEMENT
-                      </span>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="font-bold">{subscriptionPriceHT.toFixed(2)}€ HT</div>
-                    <div className="text-xs text-muted-foreground">/mois</div>
-                  </div>
-                </div>
-
-                {wantsPlaque && (
-                  <div className="flex justify-between items-start pb-3 border-b border-border animate-in fade-in-50 slide-in-from-top-2">
-                    <div>
-                      <div className="font-medium text-primary">Plaque NFC personnalisée</div>
-                      <div className="text-xs text-muted-foreground mt-1">
-                        <span className="inline-block bg-secondary/20 text-secondary px-2 py-0.5 rounded text-[10px] font-semibold">
-                          OFFRE LIMITÉE
-                        </span>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="font-bold text-primary">{plaquePriceHT.toFixed(2)}€ HT</div>
-                      <div className="text-xs text-muted-foreground">unique</div>
-                    </div>
-                  </div>
-                )}
-
-                <div className="space-y-2 pt-2">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Sous-total HT</span>
-                    <span className="font-medium">{subtotalHT.toFixed(2)}€</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">TVA (20%)</span>
-                    <span className="font-medium">{tvaAmount.toFixed(2)}€</span>
-                  </div>
-                </div>
-
-                <div className="space-y-2 py-4 border-t border-border">
-                  <div className="flex justify-between text-lg font-bold">
-                    <span>Total TTC aujourd'hui</span>
-                    <span className="text-2xl gradient-text">
-                      {totalTTC.toFixed(2)}€
-                    </span>
-                  </div>
-                </div>
-
-                <div className="bg-muted/50 rounded-lg p-4 space-y-2">
-                  <div className="text-sm font-medium">Ensuite :</div>
-                  <div className="text-lg font-bold">{subscriptionPriceHT.toFixed(2)}€ HT/mois</div>
-                  <div className="text-xs text-muted-foreground">
-                    ({(subscriptionPriceHT * 1.20).toFixed(2)}€ TTC)
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    Prochain prélèvement dans 1 mois
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    Résiliable à tout moment
-                  </div>
-                </div>
-              </div>
             </Card>
           </div>
         </div>
