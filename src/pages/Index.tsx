@@ -13,7 +13,6 @@ import { NFCGallery } from "@/components/NFCGallery";
 import { TargetAudience } from "@/components/TargetAudience";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import { Testimonials } from "@/components/Testimonials";
-import { Pricing } from "@/components/Pricing";
 import { FAQ } from "@/components/FAQ";
 import { SubscriptionForm } from "@/components/SubscriptionForm";
 import { Footer } from "@/components/Footer";
@@ -36,7 +35,6 @@ const Index = () => {
       <TargetAudience />
       <TestimonialsSection />
       <Testimonials />
-      <Pricing />
       <FAQ />
       <SubscriptionForm />
       <Footer />
