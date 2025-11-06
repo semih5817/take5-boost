@@ -19,6 +19,57 @@ export const Pricing = () => {
     "Mises à jour et améliorations incluses"
   ];
 
+  const pricingPlans = [
+    {
+      name: "Essai Gratuit",
+      badge: "1 MOIS OFFERT",
+      price: "0€",
+      period: "pendant 1 mois",
+      detail: "puis 19,90€/mois",
+      savings: null,
+      isPopular: false,
+    },
+    {
+      name: "Mensuel",
+      badge: "FLEXIBLE",
+      price: "19,90€",
+      period: "/mois",
+      detail: "Sans engagement",
+      savings: null,
+      isPopular: false,
+    },
+    {
+      name: "1 An",
+      badge: "⭐ POPULAIRE",
+      price: "216€",
+      originalPrice: "239€",
+      period: "paiement unique",
+      detail: "18€/mois",
+      savings: "-10%",
+      isPopular: true,
+    },
+    {
+      name: "2 Ans",
+      badge: "MEILLEURE VALEUR",
+      price: "360€",
+      originalPrice: "478€",
+      period: "paiement unique",
+      detail: "15€/mois",
+      savings: "-25%",
+      isPopular: false,
+    },
+    {
+      name: "4 Ans",
+      badge: "ÉCONOMIE MAX",
+      price: "575€",
+      originalPrice: "956€",
+      period: "paiement unique",
+      detail: "12€/mois",
+      savings: "-40%",
+      isPopular: false,
+    },
+  ];
+
   return (
     <section className="py-12 md:py-24 bg-muted/30">
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
@@ -33,61 +84,93 @@ export const Pricing = () => {
           </p>
         </div>
 
-        <div className="max-w-2xl mx-auto">
-          <Card className="p-6 md:p-10 border-4 border-primary shadow-primary relative overflow-hidden">
-            {/* Badge */}
-            <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-destructive to-orange-500 text-white px-4 md:px-6 py-1.5 md:py-2 text-xs md:text-sm animate-pulse">
-              ⚡ OFFRE LIMITÉE
-            </Badge>
-
-            <div className="text-center mb-6 md:mb-8">
-              <h3 className="text-2xl md:text-3xl font-bold mb-3 md:mb-4">Pack Take 5 Complet</h3>
-              <div className="mb-2">
-                <span className="text-4xl md:text-6xl font-bold gradient-text">9,90€</span>
-                <span className="text-xl md:text-2xl text-muted-foreground"> HT/mois</span>
-              </div>
-              <p className="text-xs md:text-sm text-muted-foreground">11,88€ TTC • Engagement 12 mois</p>
-            </div>
-
-            <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
-              {features.map((feature, index) => (
-                <div key={index} className="flex items-start gap-2 md:gap-3">
-                  <div className="w-5 md:w-6 h-5 md:h-6 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink-0">
-                    <Check className="w-3 md:w-4 h-3 md:h-4 text-white" />
-                  </div>
-                  <span className="text-sm md:text-base text-foreground">{feature}</span>
-                </div>
-              ))}
-            </div>
-
-            <Button
-              onClick={scrollToForm}
-              size="lg"
-              className="w-full bg-gradient-to-r from-primary to-secondary hover:shadow-primary transition-all duration-300 hover:-translate-y-1 text-base md:text-lg py-5 md:py-6 h-auto"
+        {/* Grille des offres */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {pricingPlans.map((plan, index) => (
+            <Card
+              key={index}
+              className={`p-6 md:p-8 relative overflow-hidden transition-all duration-300 hover:shadow-xl ${
+                plan.isPopular
+                  ? "border-4 border-primary shadow-primary scale-105"
+                  : "border-2"
+              }`}
             >
-              Je m'abonne maintenant
-              <ArrowRight className="ml-2 w-4 md:w-5 h-4 md:h-5" />
-            </Button>
+              {/* Badge */}
+              <Badge
+                className={`absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1.5 text-xs ${
+                  plan.isPopular
+                    ? "bg-gradient-to-r from-primary to-secondary text-white"
+                    : "bg-muted text-foreground"
+                }`}
+              >
+                {plan.badge}
+              </Badge>
 
-            <p className="text-center text-xs md:text-sm text-muted-foreground mt-4 md:mt-6">
-              Sans engagement après 12 mois • Résiliation en 1 clic
-            </p>
-          </Card>
+              <div className="text-center mb-6 mt-2">
+                <h3 className="text-xl md:text-2xl font-bold mb-4">{plan.name}</h3>
+                
+                {plan.originalPrice && (
+                  <p className="text-xl line-through text-muted-foreground mb-1">
+                    {plan.originalPrice}
+                  </p>
+                )}
+                
+                <div className="mb-2">
+                  <span className="text-4xl md:text-5xl font-bold gradient-text">
+                    {plan.price}
+                  </span>
+                  <span className="text-lg text-muted-foreground"> {plan.period}</span>
+                </div>
+                
+                <p className="text-sm text-muted-foreground">{plan.detail}</p>
+                
+                {plan.savings && (
+                  <Badge className="mt-2 bg-primary/10 text-primary border-primary/30">
+                    {plan.savings}
+                  </Badge>
+                )}
+              </div>
 
-          {/* Trust Elements */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mt-6 md:mt-8 text-center">
-            <div>
-              <p className="text-xl md:text-2xl font-bold gradient-text mb-1">✓</p>
-              <p className="text-xs md:text-sm text-muted-foreground">Satisfait ou remboursé 30 jours</p>
-            </div>
-            <div>
-              <p className="text-xl md:text-2xl font-bold gradient-text mb-1">✓</p>
-              <p className="text-xs md:text-sm text-muted-foreground">Installation en 5 minutes</p>
-            </div>
-            <div>
-              <p className="text-xl md:text-2xl font-bold gradient-text mb-1">✓</p>
-              <p className="text-xs md:text-sm text-muted-foreground">Support 7j/7 inclus</p>
-            </div>
+              <div className="space-y-3 mb-6">
+                {features.map((feature, fIndex) => (
+                  <div key={fIndex} className="flex items-start gap-2">
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink-0">
+                      <Check className="w-3 h-3 text-white" />
+                    </div>
+                    <span className="text-sm text-foreground">{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              <Button
+                onClick={scrollToForm}
+                size="lg"
+                className={`w-full transition-all duration-300 hover:-translate-y-1 ${
+                  plan.isPopular
+                    ? "bg-gradient-to-r from-primary to-secondary hover:shadow-primary"
+                    : ""
+                }`}
+              >
+                Je choisis cette offre
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </Card>
+          ))}
+        </div>
+
+        {/* Trust Elements */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mt-6 md:mt-8 text-center max-w-3xl mx-auto">
+          <div>
+            <p className="text-xl md:text-2xl font-bold gradient-text mb-1">✓</p>
+            <p className="text-xs md:text-sm text-muted-foreground">Satisfait ou remboursé 30 jours</p>
+          </div>
+          <div>
+            <p className="text-xl md:text-2xl font-bold gradient-text mb-1">✓</p>
+            <p className="text-xs md:text-sm text-muted-foreground">Installation en 5 minutes</p>
+          </div>
+          <div>
+            <p className="text-xl md:text-2xl font-bold gradient-text mb-1">✓</p>
+            <p className="text-xs md:text-sm text-muted-foreground">Support 7j/7 inclus</p>
           </div>
         </div>
       </div>
