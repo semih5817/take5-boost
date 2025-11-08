@@ -1,24 +1,26 @@
 import { Header } from "@/components/Header";
-import { Hero } from "@/components/Hero";
+import { HeroSection } from "@/components/home/HeroSection";
 import { UrgencyBanner } from "@/components/UrgencyBanner";
 import { WhatsAppDemo } from "@/components/WhatsAppDemo";
 import { MicroCTA } from "@/components/MicroCTA";
 import { Stats } from "@/components/Stats";
-import { Benefits } from "@/components/Benefits";
-import { AlertNegativeReviews } from "@/components/AlertNegativeReviews";
+import { FeaturesSection } from "@/components/home/FeaturesSection";
+import { AlertSection } from "@/components/home/AlertSection";
 import { CompetitorAlerts } from "@/components/CompetitorAlerts";
 import { AIOpportunities } from "@/components/AIOpportunities";
 import { GamificationSection } from "@/components/GamificationSection";
 import { WhatsAppReports } from "@/components/WhatsAppReports";
 import WhyTakeFiveSection from "@/components/WhyTakeFiveSection";
 import WhatsAppReportingSection from "@/components/WhatsAppReportingSection";
-import { HowItWorks } from "@/components/HowItWorks";
+import { HowItWorksSection } from "@/components/home/HowItWorksSection";
 import { Comparison } from "@/components/Comparison";
 import { NFCGallery } from "@/components/NFCGallery";
 import { TargetAudience } from "@/components/TargetAudience";
-import TestimonialsSection from "@/components/TestimonialsSection";
+import { RoadmapSection } from "@/components/home/RoadmapSection";
+import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { Testimonials } from "@/components/Testimonials";
-import { FAQ } from "@/components/FAQ";
+import { FAQSection } from "@/components/home/FAQSection";
+import { PricingSection } from "@/components/pricing/PricingSection";
 import { SubscriptionForm } from "@/components/SubscriptionForm";
 import { Footer } from "@/components/Footer";
 
@@ -26,26 +28,28 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Header />
-      <Hero />
+      <HeroSection />
       <UrgencyBanner />
-      <AlertNegativeReviews />
+      <AlertSection />
       <WhatsAppDemo />
       <MicroCTA />
       <Stats />
-      <Benefits />
+      <FeaturesSection />
       <CompetitorAlerts />
       <AIOpportunities />
       <GamificationSection />
       <WhatsAppReports />
       <WhyTakeFiveSection />
       <WhatsAppReportingSection />
-      <HowItWorks />
+      <HowItWorksSection />
       <Comparison />
       <NFCGallery />
+      <RoadmapSection />
       <TargetAudience />
       <TestimonialsSection />
       <Testimonials />
-      <FAQ />
+      <FAQSection />
+      <PricingSection />
       <SubscriptionForm />
       <Footer />
     </div>
