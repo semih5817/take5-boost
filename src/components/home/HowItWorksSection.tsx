@@ -1,64 +1,99 @@
-import { Link, Package, Sparkles, MessageSquare } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import { Settings, Zap, Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export const HowItWorksSection = () => {
+  const scrollToForm = () => {
+    document.getElementById('subscription-form')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   const steps = [
     {
-      icon: Link,
+      icon: Settings,
       number: "1",
-      title: "Connexion",
-      description: "Connectez votre fiche Google Business Profile en un clic. Nous gérons toute la configuration technique."
+      title: "Créez votre compte",
+      description:
+        "Inscription en 2 minutes. Connectez votre fiche Google My Business.",
+      color: "from-purple-900/30 to-purple-800/30",
+      borderColor: "border-purple-500",
+      iconBg: "bg-purple-600/20",
+      iconColor: "text-purple-400",
+      numberBg: "bg-purple-600",
     },
     {
-      icon: Package,
+      icon: Zap,
       number: "2",
-      title: "Installation",
-      description: "Recevez votre plaque NFC personnalisée sous 48h. Placez-la à l'accueil pour collecter les avis facilement."
+      title: "Partagez votre QR code",
+      description:
+        "Affichez-le en boutique, sur votre site, vos réseaux sociaux.",
+      color: "from-pink-900/30 to-pink-800/30",
+      borderColor: "border-pink-500",
+      iconBg: "bg-pink-600/20",
+      iconColor: "text-pink-400",
+      numberBg: "bg-pink-600",
     },
     {
-      icon: Sparkles,
+      icon: Star,
       number: "3",
-      title: "Automatisation",
-      description: "Notre IA surveille votre fiche 24/7, répond aux avis et optimise votre visibilité en temps réel."
+      title: "Récoltez des avis 5⭐",
+      description:
+        "L'IA répond automatiquement. Vous montez dans le classement Google.",
+      color: "from-green-900/30 to-green-800/30",
+      borderColor: "border-green-500",
+      iconBg: "bg-green-600/20",
+      iconColor: "text-green-400",
+      numberBg: "bg-green-600",
     },
-    {
-      icon: MessageSquare,
-      number: "4",
-      title: "Reporting",
-      description: "Recevez votre rapport mensuel détaillé sur WhatsApp avec statistiques et recommandations."
-    }
   ];
 
   return (
-    <section className="py-12 md:py-24">
-      <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            <span className="gradient-text">Comment ça marche ?</span>
-          </h2>
-          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-            4 étapes simples pour transformer votre visibilité locale
-          </p>
+    <section className="py-20 px-4 bg-[#0A0E1A]">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-4">
+          3 étapes pour <span className="text-purple-400">dominer Google</span>
+        </h2>
+        <p className="text-xl text-slate-300 text-center mb-16">
+          Configuration en 5 minutes • Résultats en 48h
+        </p>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {steps.map((step, index) => {
+            const Icon = step.icon;
+            return (
+              <div key={index} className="relative">
+                <div
+                  className={`bg-gradient-to-br ${step.color} border ${step.borderColor} rounded-xl p-8`}
+                >
+                  <div
+                    className={`absolute -top-4 -left-4 w-12 h-12 ${step.numberBg} rounded-full flex items-center justify-center text-white font-bold text-xl`}
+                  >
+                    {step.number}
+                  </div>
+                  <div
+                    className={`w-16 h-16 ${step.iconBg} rounded-lg flex items-center justify-center mb-4 mx-auto`}
+                  >
+                    <Icon className={`w-8 h-8 ${step.iconColor}`} />
+                  </div>
+                  <h3 className="text-xl font-bold text-white text-center mb-3">
+                    {step.title}
+                  </h3>
+                  <p className="text-slate-300 text-center text-sm">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {steps.map((step, index) => (
-            <Card 
-              key={index} 
-              className="p-6 md:p-8 text-center hover:shadow-elegant transition-all duration-300 hover:-translate-y-2 border-2 relative"
-            >
-              <div className="w-14 md:w-16 h-14 md:h-16 rounded-full bg-gradient-to-br from-primary to-secondary mx-auto mb-4 md:mb-6 flex items-center justify-center text-2xl md:text-3xl font-bold text-white shadow-primary">
-                {step.number}
-              </div>
-              
-              <div className="w-10 md:w-12 h-10 md:h-12 rounded-xl bg-muted mx-auto mb-3 md:mb-4 flex items-center justify-center">
-                <step.icon className="w-5 md:w-6 h-5 md:h-6 text-primary" />
-              </div>
-              
-              <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3">{step.title}</h3>
-              <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">{step.description}</p>
-            </Card>
-          ))}
+        {/* CTA */}
+        <div className="text-center mt-12">
+          <Button
+            onClick={scrollToForm}
+            size="lg"
+            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 px-10 text-lg transition-all transform hover:scale-105"
+          >
+            Démarrer maintenant
+          </Button>
         </div>
       </div>
     </section>
