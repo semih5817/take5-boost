@@ -259,22 +259,39 @@ export const SubscriptionForm = () => {
                                   </div>
                                 )}
 
-                                <div className="text-center mt-2 space-y-2">
-                                  <h4 className="text-xl font-bold">{offer.name}</h4>
-                                  
-                                  <div>
-                                    <span className="text-3xl font-bold gradient-text">
-                                      {offer.displayPrice}
-                                    </span>
-                                    <span className="text-sm text-muted-foreground ml-1">
-                                      {offer.period}
-                                    </span>
+                                <div className="space-y-4">
+                                  {/* Header */}
+                                  <div className="text-center space-y-2">
+                                    <h4 className="text-xl font-bold">{offer.name}</h4>
+                                    
+                                    <div>
+                                      <span className="text-3xl font-bold gradient-text">
+                                        {offer.displayPrice}
+                                      </span>
+                                      <span className="text-sm text-muted-foreground ml-1">
+                                        {offer.period}
+                                      </span>
+                                    </div>
+                                    
+                                    <p className="text-sm text-muted-foreground">{offer.detail}</p>
                                   </div>
-                                  
-                                  <p className="text-sm text-muted-foreground">{offer.detail}</p>
 
+                                  {/* Ligne séparatrice */}
+                                  <div className="border-t border-border" />
+
+                                  {/* Liste des fonctionnalités */}
+                                  <ul className="space-y-2 text-left">
+                                    {offer.features.map((feature, idx) => (
+                                      <li key={idx} className="flex items-start gap-2 text-sm">
+                                        <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                                        <span className="text-muted-foreground">{feature}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+
+                                  {/* Checkmark de sélection */}
                                   {field.value === offer.id && (
-                                    <div className="flex justify-center mt-3">
+                                    <div className="flex justify-center pt-2">
                                       <CheckCircle2 className="w-6 h-6 text-primary" />
                                     </div>
                                   )}
