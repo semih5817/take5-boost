@@ -1,9 +1,22 @@
 import { Button } from "@/components/ui/button";
-import { Star } from "lucide-react";
+import { Star, LayoutDashboard } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const Header = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isDashboard = location.pathname === '/dashboard';
+  
   const scrollToForm = () => {
     document.getElementById('subscription-form')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleNavigation = () => {
+    if (isDashboard) {
+      navigate('/');
+    } else {
+      navigate('/dashboard');
+    }
   };
 
   return (
@@ -17,13 +30,26 @@ export const Header = () => {
             <span className="text-lg md:text-2xl font-bold text-foreground">Take 5</span>
           </div>
           
-          <Button 
-            onClick={scrollToForm}
-            size="default"
-            className="bg-primary hover:bg-primary/90 shadow-glow hover:shadow-primary transition-all duration-300 hover:-translate-y-1 text-sm md:text-base px-4 md:px-6"
-          >
-            S'abonner
-          </Button>
+          <div className="flex items-center gap-2 md:gap-3">
+            <Button 
+              onClick={handleNavigation}
+              variant="outline"
+              size="default"
+              className="text-sm md:text-base px-3 md:px-4"
+            >
+              <LayoutDashboard className="w-4 h-4 mr-2" />
+              {isDashboard ? 'Accueil' : 'Dashboard'}
+            </Button>
+            {!isDashboard && (
+              <Button 
+                onClick={scrollToForm}
+                size="default"
+                className="bg-primary hover:bg-primary/90 shadow-glow hover:shadow-primary transition-all duration-300 hover:-translate-y-1 text-sm md:text-base px-4 md:px-6"
+              >
+                S'abonner
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </header>
