@@ -103,17 +103,17 @@ const pricingOffers = [
     period: "",
     detail: "Pas de CB requise",
     isPopular: false,
+    hasAnnual: false,
     features: [
       "1 QR Code dynamique",
-      "50 scans par mois",
-      "Campagne SMS / EMAIL",
-      "Alertes avis négatifs WhatsApp (avancées)",
-      "Alertes concurrents (hebdomadaires)",
-      "Opportunités détectées IA (hebdomadaires)",
-      "Missions gamifiées (système complet)",
-      "Rapports WhatsApp (hebdo + mensuels)",
+      "Scans illimités",
       "Centralisation Avis Google",
-      "Réponses IA (100 tokens)"
+      "Réponses IA (100 tokens)",
+      "🚨 Alertes avis négatifs WhatsApp",
+      "📊 Alertes concurrents (hebdo)",
+      "💡 Opportunités IA (hebdo)",
+      "🎯 Missions gamifiées",
+      "📱 Rapports WhatsApp"
     ],
   },
   {
@@ -121,18 +121,40 @@ const pricingOffers = [
     name: "Starter",
     badge: "FLEXIBLE",
     price: 19.90,
-    displayPrice: "39€",
+    displayPrice: "19,90€",
     period: "HT / MOIS",
     detail: "Sans engagement",
     isPopular: false,
+    hasAnnual: true,
+    annualOptions: [
+      {
+        duration: "1 an",
+        pricePerMonth: 14.90,
+        totalPrice: 178.80,
+        savings: 89.90,
+        nfcPlates: 1
+      },
+      {
+        duration: "2 ans",
+        pricePerMonth: 13,
+        totalPrice: 312,
+        savings: 225.40,
+        nfcPlates: 2,
+        badge: "🔥 MEILLEURE OFFRE"
+      },
+      {
+        duration: "4 ans",
+        pricePerMonth: 10,
+        totalPrice: 480,
+        savings: 594.80,
+        nfcPlates: 4,
+        badge: "⚡ -50%"
+      }
+    ],
     features: [
-      "1 QR Code dynamique",
-      "Scans illimités",
-      "Campagne SMS / EMAIL",
-      "Centralisation de vos Avis Google",
-      "Réponses générées par IA (30 Tokens)",
-      "Marque blanche (en option)",
-      "QR Code supplémentaire (en option)"
+      "Tout du pack FREE, en illimité",
+      "Support prioritaire",
+      "Plaque NFC offerte (annuel uniquement)"
     ],
   },
   {
@@ -144,15 +166,43 @@ const pricingOffers = [
     period: "HT / MOIS",
     detail: "Tout inclus",
     isPopular: true,
+    hasAnnual: true,
+    annualOptions: [
+      {
+        duration: "1 an",
+        pricePerMonth: 37,
+        totalPrice: 444,
+        savings: 203.80,
+        nfcPlates: 2,
+        badge: "⭐ POPULAIRE"
+      },
+      {
+        duration: "2 ans",
+        pricePerMonth: 32,
+        totalPrice: 768,
+        savings: 497.70,
+        nfcPlates: 3,
+        badge: "🔥 MEILLEURE OFFRE"
+      },
+      {
+        duration: "4 ans",
+        pricePerMonth: 25,
+        totalPrice: 1200,
+        savings: 1321.60,
+        nfcPlates: 5,
+        nfcPremium: true,
+        badge: "⚡ OFFRE ELITE"
+      }
+    ],
     features: [
-      "1 QR Code dynamique",
-      "Scans illimités",
-      "Campagne SMS / EMAIL",
-      "Centralisation de vos Avis Google",
-      "Réponses générées par IA (100 Tokens)",
-      "Jeux concours 🎮",
-      "Marque blanche (en option)",
-      "QR Code supplémentaire (en option)"
+      "Tout du Starter +",
+      "Réponses IA illimitées",
+      "🎨 Dashboard Analytics (démo)",
+      "Alertes concurrents quotidiennes",
+      "Opportunités IA quotidiennes",
+      "Support prioritaire 24/7",
+      "🎮 Jeux concours 🔜 T1 2026",
+      "📧 Campagnes SMS/Email 🔜 T2 2026"
     ],
   },
 ];
@@ -161,6 +211,8 @@ export const SubscriptionForm = () => {
   const { toast } = useToast();
   const [wantsPlaque, setWantsPlaque] = useState(false);
   const [selectedOffer, setSelectedOffer] = useState("");
+  const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("monthly");
+  const [selectedAnnualOptions, setSelectedAnnualOptions] = useState<Record<string, any>>({});
   
   const form = useForm<SubscriptionFormData>({
     resolver: zodResolver(subscriptionSchema),
@@ -222,7 +274,36 @@ export const SubscriptionForm = () => {
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-10">
                 {/* Section 1: Choix de l'offre */}
                 <div className="space-y-6">
-                  <h3 className="text-2xl font-bold">1. Choisissez votre offre</h3>
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
+                    <h3 className="text-2xl font-bold">1. Choisissez votre offre</h3>
+                    
+                    {/* Toggle Mensuel/Annuel */}
+                    <div className="inline-flex items-center gap-3 bg-muted rounded-full p-1 border">
+                      <button
+                        type="button"
+                        onClick={() => setBillingCycle("monthly")}
+                        className={`px-6 py-2 rounded-full font-semibold transition-all ${
+                          billingCycle === "monthly"
+                            ? "bg-primary text-primary-foreground"
+                            : "text-muted-foreground hover:text-foreground"
+                        }`}
+                      >
+                        Mensuel
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setBillingCycle("annual")}
+                        className={`px-6 py-2 rounded-full font-semibold transition-all flex items-center gap-2 ${
+                          billingCycle === "annual"
+                            ? "bg-primary text-primary-foreground"
+                            : "text-muted-foreground hover:text-foreground"
+                        }`}
+                      >
+                        Annuel
+                        <Badge className="bg-green-600 text-white text-xs">-25%</Badge>
+                      </button>
+                    </div>
+                  </div>
                   
                   <FormField
                     control={form.control}
@@ -264,16 +345,69 @@ export const SubscriptionForm = () => {
                                   <div className="text-center space-y-2">
                                     <h4 className="text-xl font-bold">{offer.name}</h4>
                                     
-                                    <div>
-                                      <span className="text-3xl font-bold gradient-text">
-                                        {offer.displayPrice}
-                                      </span>
-                                      <span className="text-sm text-muted-foreground ml-1">
-                                        {offer.period}
-                                      </span>
-                                    </div>
-                                    
-                                    <p className="text-sm text-muted-foreground">{offer.detail}</p>
+                                    {/* Affichage prix mensuel */}
+                                    {(billingCycle === "monthly" || !offer.hasAnnual) && (
+                                      <>
+                                        <div>
+                                          <span className="text-3xl font-bold gradient-text">
+                                            {offer.displayPrice}
+                                          </span>
+                                          <span className="text-sm text-muted-foreground ml-1">
+                                            {offer.period}
+                                          </span>
+                                        </div>
+                                        <p className="text-sm text-muted-foreground">{offer.detail}</p>
+                                      </>
+                                    )}
+
+                                    {/* Sélecteur annuel */}
+                                    {billingCycle === "annual" && offer.hasAnnual && offer.annualOptions && (
+                                      <div className="space-y-2">
+                                        {offer.annualOptions.map((option: any, idx: number) => (
+                                          <button
+                                            key={idx}
+                                            type="button"
+                                            onClick={(e) => {
+                                              e.stopPropagation();
+                                              setSelectedAnnualOptions({
+                                                ...selectedAnnualOptions,
+                                                [offer.id]: option
+                                              });
+                                            }}
+                                            className={`w-full text-left p-3 rounded-lg border transition-all ${
+                                              selectedAnnualOptions[offer.id] === option || (!selectedAnnualOptions[offer.id] && idx === 0)
+                                                ? "border-primary bg-primary/10"
+                                                : "border-border hover:border-primary/50"
+                                            }`}
+                                          >
+                                            <div className="flex justify-between items-center">
+                                              <div>
+                                                <div className="font-bold text-lg">
+                                                  {option.pricePerMonth}€/mois
+                                                </div>
+                                                <div className="text-sm text-muted-foreground">{option.duration}</div>
+                                              </div>
+                                              {option.badge && (
+                                                <Badge className="bg-red-600 text-white text-xs">
+                                                  {option.badge}
+                                                </Badge>
+                                              )}
+                                            </div>
+                                            {option.savings && (
+                                              <div className="mt-2 text-sm text-green-600 font-semibold">
+                                                💰 Économisez {option.savings}€
+                                              </div>
+                                            )}
+                                            {option.nfcPlates > 0 && (
+                                              <div className="mt-1 text-sm text-primary">
+                                                🎁 {option.nfcPlates} plaque{option.nfcPlates > 1 ? 's' : ''} NFC offerte{option.nfcPlates > 1 ? 's' : ''}
+                                                {option.nfcPremium && ' (dont 1 Premium)'}
+                                              </div>
+                                            )}
+                                          </button>
+                                        ))}
+                                      </div>
+                                    )}
                                   </div>
 
                                   {/* Ligne séparatrice */}
