@@ -343,9 +343,14 @@ export const PricingSection = () => {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
               plan tarifaire
             </span>
+            <br />
+            et rejoignez Take 5
           </h2>
-          <p className="text-xl text-slate-300 mb-8">
+          <p className="text-xl text-slate-300 mb-4">
             50% moins cher que nos concurrents • Essai gratuit 1 mois
+          </p>
+          <p className="text-lg text-slate-400 mb-8">
+            Sélectionnez votre formule
           </p>
 
           {/* Toggle Mensuel/Annuel */}
