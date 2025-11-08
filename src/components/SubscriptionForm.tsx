@@ -155,7 +155,7 @@ const pricingOffers = [
       { text: "1 QR Code dynamique", included: true },
       { text: "Scans illimités", included: true },
       { text: "Centralisation Avis Google", included: true },
-      { text: "Réponses IA (30 tokens)", included: true },
+      { text: "Réponses IA (100 tokens)", included: true },
       { text: "🚨 Alertes avis négatifs WhatsApp", included: true },
       { text: "📊 Alertes concurrents (hebdo)", included: true },
       { text: "💡 Opportunités IA (hebdo)", included: true },
@@ -491,7 +491,7 @@ export const SubscriptionForm = () => {
                                     Ajouter la plaque NFC Google personnalisée
                                   </FormLabel>
                                   <FormDescription className="mt-2">
-                                    Collectez facilement des avis en magasin. Livraison sous 48h.
+                                    Collectez facilement des avis en magasin.
                                   </FormDescription>
                                   <div className="flex flex-wrap gap-2 mt-3">
                                     <div className="flex items-center gap-2 text-sm">
