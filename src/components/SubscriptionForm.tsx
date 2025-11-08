@@ -95,68 +95,65 @@ const SECTORS = [
 
 const pricingOffers = [
   {
-    id: "free-trial",
-    name: "Essai Gratuit",
+    id: "free",
+    name: "Free",
     badge: "1 MOIS OFFERT",
     price: 0,
-    displayPrice: "0€",
-    period: "pendant 1 mois",
+    displayPrice: "Free",
+    period: "",
     detail: "Pas de CB requise",
     isPopular: false,
-    totalSavings: null,
+    features: [
+      "1 QR Code dynamique",
+      "50 scans par mois",
+      "Campagne SMS / EMAIL",
+      "Alertes avis négatifs WhatsApp (avancées)",
+      "Alertes concurrents (hebdomadaires)",
+      "Opportunités détectées IA (hebdomadaires)",
+      "Missions gamifiées (système complet)",
+      "Rapports WhatsApp (hebdo + mensuels)",
+      "Centralisation Avis Google",
+      "Réponses IA (100 tokens)"
+    ],
   },
   {
-    id: "monthly",
-    name: "Mensuel Pro",
-    badge: "SANS ENGAGEMENT",
-    price: 69,
-    displayPrice: "69€",
-    period: "/mois",
+    id: "starter",
+    name: "Starter",
+    badge: "FLEXIBLE",
+    price: 19.90,
+    displayPrice: "39€",
+    period: "HT / MOIS",
     detail: "Sans engagement",
     isPopular: false,
-    totalSavings: null,
+    features: [
+      "1 QR Code dynamique",
+      "Scans illimités",
+      "Campagne SMS / EMAIL",
+      "Centralisation de vos Avis Google",
+      "Réponses générées par IA (30 Tokens)",
+      "Marque blanche (en option)",
+      "QR Code supplémentaire (en option)"
+    ],
   },
   {
-    id: "yearly",
-    name: "Annuel Pro",
-    badge: "⭐ PLUS POPULAIRE",
-    price: 624,
-    originalPrice: "828€",
-    displayPrice: "624€",
-    period: "paiement unique",
-    detail: "52€/mois - Économisez 204€",
-    savings: "25% d'économie",
+    id: "pro",
+    name: "Pro",
+    badge: "⭐ RECOMMANDÉ",
+    price: 49,
+    displayPrice: "119€",
+    period: "HT / MOIS",
+    detail: "Tout inclus",
     isPopular: true,
-    totalSavings: "233,90€",
-    nfcIncluded: 1,
-  },
-  {
-    id: "2-years",
-    name: "Biennal Pro",
-    badge: "🔥 MEILLEURE OFFRE",
-    price: 1080,
-    originalPrice: "1 656€",
-    displayPrice: "1 080€",
-    period: "paiement unique",
-    detail: "45€/mois - Économisez 576€",
-    savings: "35% d'économie",
-    isPopular: false,
-    totalSavings: "635,80€",
-    nfcIncluded: 2,
-  },
-  {
-    id: "4-years",
-    name: "Quadriennal Elite",
-    badge: "⚡ OFFRE EXCEPTIONNELLE",
-    price: 1680,
-    originalPrice: "3 312€",
-    displayPrice: "1 680€",
-    period: "paiement unique",
-    detail: "35€/mois - Économisez 1 632€",
-    savings: "50% d'économie",
-    isPopular: false,
-    totalSavings: "1 801,60€",
-    nfcIncluded: 5,
+    features: [
+      "1 QR Code dynamique",
+      "Scans illimités",
+      "Campagne SMS / EMAIL",
+      "Centralisation de vos Avis Google",
+      "Réponses générées par IA (100 Tokens)",
+      "Jeux concours 🎮",
+      "Marque blanche (en option)",
+      "QR Code supplémentaire (en option)"
+    ],
   },
 ];
 
@@ -264,12 +261,6 @@ export const SubscriptionForm = () => {
                                 <div className="text-center mt-2 space-y-2">
                                   <h4 className="text-xl font-bold">{offer.name}</h4>
                                   
-                                  {offer.originalPrice && (
-                                    <p className="text-sm line-through text-muted-foreground">
-                                      {offer.originalPrice}
-                                    </p>
-                                  )}
-                                  
                                   <div>
                                     <span className="text-3xl font-bold gradient-text">
                                       {offer.displayPrice}
@@ -280,12 +271,6 @@ export const SubscriptionForm = () => {
                                   </div>
                                   
                                   <p className="text-sm text-muted-foreground">{offer.detail}</p>
-                                  
-                                  {offer.savings && (
-                                    <Badge className="bg-primary/10 text-primary border-primary/30">
-                                      {offer.savings}
-                                    </Badge>
-                                  )}
 
                                   {field.value === offer.id && (
                                     <div className="flex justify-center mt-3">
