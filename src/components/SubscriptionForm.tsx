@@ -140,7 +140,7 @@ const pricingOffers = [
     name: "Pro",
     badge: "⭐ RECOMMANDÉ",
     price: 49,
-    displayPrice: "119€",
+    displayPrice: "49€",
     period: "HT / MOIS",
     detail: "Tout inclus",
     isPopular: true,
