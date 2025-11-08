@@ -4,7 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowRight, Lock, CreditCard, Package, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Lock, CreditCard, Package, CheckCircle2, X } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -105,15 +105,15 @@ const pricingOffers = [
     isPopular: false,
     hasAnnual: false,
     features: [
-      "1 QR Code dynamique",
-      "Scans illimités",
-      "Centralisation Avis Google",
-      "Réponses IA (100 tokens)",
-      "🚨 Alertes avis négatifs WhatsApp",
-      "📊 Alertes concurrents (hebdo)",
-      "💡 Opportunités IA (hebdo)",
-      "🎯 Missions gamifiées",
-      "📱 Rapports WhatsApp"
+      { text: "1 QR Code dynamique", included: true },
+      { text: "Scans illimités", included: true },
+      { text: "Centralisation Avis Google", included: true },
+      { text: "Réponses IA (100 tokens)", included: true },
+      { text: "🚨 Alertes avis négatifs WhatsApp", included: true },
+      { text: "📊 Alertes concurrents (hebdo)", included: true },
+      { text: "💡 Opportunités IA (hebdo)", included: true },
+      { text: "🎯 Missions gamifiées", included: true },
+      { text: "📱 Rapports WhatsApp", included: true }
     ],
   },
   {
@@ -152,9 +152,24 @@ const pricingOffers = [
       }
     ],
     features: [
-      "Tout du pack FREE, en illimité",
-      "Support prioritaire",
-      "Plaque NFC offerte (annuel uniquement)"
+      { text: "1 QR Code dynamique", included: true },
+      { text: "Scans illimités", included: true },
+      { text: "Centralisation Avis Google", included: true },
+      { text: "Réponses IA (30 tokens)", included: true },
+      { text: "🚨 Alertes avis négatifs WhatsApp", included: true },
+      { text: "📊 Alertes concurrents (hebdo)", included: true },
+      { text: "💡 Opportunités IA (hebdo)", included: true },
+      { text: "🎯 Missions gamifiées", included: true },
+      { text: "📱 Rapports WhatsApp", included: true },
+      { text: "Support prioritaire", included: true },
+      { text: "Plaque NFC offerte (annuel)", included: true },
+      { text: "Réponses IA illimitées", included: false },
+      { text: "🎨 Dashboard Analytics", included: false },
+      { text: "Alertes concurrents quotidiennes", included: false },
+      { text: "Opportunités IA quotidiennes", included: false },
+      { text: "Support prioritaire 24/7", included: false },
+      { text: "🎮 Jeux concours", included: false },
+      { text: "📧 Campagnes SMS/Email", included: false }
     ],
   },
   {
@@ -195,14 +210,19 @@ const pricingOffers = [
       }
     ],
     features: [
-      "Tout du Starter +",
-      "Réponses IA illimitées",
-      "🎨 Dashboard Analytics (démo)",
-      "Alertes concurrents quotidiennes",
-      "Opportunités IA quotidiennes",
-      "Support prioritaire 24/7",
-      "🎮 Jeux concours 🔜 T1 2026",
-      "📧 Campagnes SMS/Email 🔜 T2 2026"
+      { text: "1 QR Code dynamique", included: true },
+      { text: "Scans illimités", included: true },
+      { text: "Centralisation Avis Google", included: true },
+      { text: "Réponses IA illimitées", included: true },
+      { text: "🚨 Alertes avis négatifs WhatsApp", included: true },
+      { text: "📊 Alertes concurrents quotidiennes", included: true },
+      { text: "💡 Opportunités IA quotidiennes", included: true },
+      { text: "🎯 Missions gamifiées", included: true },
+      { text: "📱 Rapports WhatsApp", included: true },
+      { text: "🎨 Dashboard Analytics (démo)", included: true },
+      { text: "Support prioritaire 24/7", included: true },
+      { text: "🎮 Jeux concours 🔜 T1 2026", included: true },
+      { text: "📧 Campagnes SMS/Email 🔜 T2 2026", included: true }
     ],
   },
 ];
@@ -415,12 +435,23 @@ export const SubscriptionForm = () => {
 
                                   {/* Liste des fonctionnalités */}
                                   <ul className="space-y-2 text-left">
-                                    {offer.features.map((feature, idx) => (
-                                      <li key={idx} className="flex items-start gap-2 text-sm">
-                                        <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                                        <span className="text-muted-foreground">{feature}</span>
-                                      </li>
-                                    ))}
+                                    {offer.features.map((feature: any, idx: number) => {
+                                      const isIncluded = typeof feature === 'string' ? true : feature.included;
+                                      const featureText = typeof feature === 'string' ? feature : feature.text;
+                                      
+                                      return (
+                                        <li key={idx} className="flex items-start gap-2 text-sm">
+                                          {isIncluded ? (
+                                            <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                                          ) : (
+                                            <X className="w-4 h-4 text-destructive mt-0.5 flex-shrink-0" />
+                                          )}
+                                          <span className={isIncluded ? "text-muted-foreground" : "text-destructive line-through"}>
+                                            {featureText}
+                                          </span>
+                                        </li>
+                                      );
+                                    })}
                                   </ul>
 
                                   {/* Checkmark de sélection */}
