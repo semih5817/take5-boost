@@ -6,8 +6,9 @@ import { MainFeaturesSection } from "@/components/home/MainFeaturesSection";
 import { HowItWorksSection } from "@/components/home/HowItWorksSection";
 import { PricingSection } from "@/components/pricing/PricingSection";
 import { RoadmapSection } from "@/components/home/RoadmapSection";
-import { TestimonialsSection } from "@/components/home/TestimonialsSection";
+import { TestimonialsNewSection } from "@/components/home/TestimonialsNewSection";
 import { FAQSection } from "@/components/home/FAQSection";
+import { FinalCTASection } from "@/components/home/FinalCTASection";
 import { SubscriptionForm } from "@/components/SubscriptionForm";
 import { Footer } from "@/components/Footer";
 
@@ -22,8 +23,9 @@ const Index = () => {
       <HowItWorksSection />
       <PricingSection />
       <RoadmapSection />
-      <TestimonialsSection />
+      <TestimonialsNewSection />
       <FAQSection />
+      <FinalCTASection />
       <SubscriptionForm />
       <Footer />
     </div>

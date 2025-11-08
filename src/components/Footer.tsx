@@ -1,104 +1,122 @@
-import { Star } from "lucide-react";
-
 export const Footer = () => {
-  const scrollToForm = () => {
-    document.getElementById('subscription-form')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
-    <footer className="py-16 bg-foreground text-background">
-      <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-        <div className="grid md:grid-cols-3 gap-12 mb-12">
-          {/* Logo & Description */}
+    <footer className="bg-[#0A0E1A] border-t border-slate-800 py-12 px-4">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-4 gap-8 mb-8">
+          {/* Colonne 1 */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-primary">
-                <Star className="w-6 h-6 text-white fill-white" />
-              </div>
-              <span className="text-2xl font-bold">Take 5</span>
-            </div>
-            <p className="text-background/80 leading-relaxed">
-              La solution SaaS qui automatise et optimise votre fiche Google Business Profile avec IA, NFC et reporting WhatsApp.
+            <div className="text-2xl font-bold text-white mb-4">Take 5</div>
+            <p className="text-slate-400 text-sm mb-4">
+              La plateforme #1 pour gérer vos avis Google avec l'IA
             </p>
+            <div className="flex gap-3">
+              <a
+                href="#"
+                className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-purple-600 transition-all"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
+              </a>
+              <a
+                href="#"
+                className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-purple-600 transition-all"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
+                </svg>
+              </a>
+            </div>
           </div>
 
-          {/* Links */}
+          {/* Colonne 2 */}
           <div>
-            <h4 className="font-bold text-lg mb-4">Liens rapides</h4>
-            <ul className="space-y-2">
+            <h4 className="text-white font-bold mb-4">Produit</h4>
+            <ul className="space-y-2 text-sm">
               <li>
-                <button 
-                  onClick={scrollToForm}
-                  className="text-background/80 hover:text-background transition-colors"
+                <a href="#" className="text-slate-400 hover:text-purple-400 transition-all">
+                  Fonctionnalités
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-slate-400 hover:text-purple-400 transition-all">
+                  Tarifs
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-slate-400 hover:text-purple-400 transition-all">
+                  Roadmap
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/dashboard"
+                  className="text-slate-400 hover:text-purple-400 transition-all"
                 >
-                  S'abonner
-                </button>
-              </li>
-              <li>
-                <a href="mailto:contact@take5.fr" className="text-background/80 hover:text-background transition-colors">
-                  Contact
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-background/80 hover:text-background transition-colors">
-                  CGV
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-background/80 hover:text-background transition-colors">
-                  Politique de confidentialité
+                  Dashboard (démo)
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Spydercom Branding */}
+          {/* Colonne 3 */}
           <div>
-            <p className="text-sm text-background/60 mb-3">Propulsé par</p>
-            <a 
-              href="https://spydercom.fr" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 p-4 bg-background/10 rounded-xl hover:bg-background/20 transition-all duration-300 hover:-translate-y-1 group"
-            >
-              {/* Spider Logo SVG */}
-              <svg 
-                width="40" 
-                height="40" 
-                viewBox="0 0 40 40" 
-                fill="none" 
-                xmlns="http://www.w3.org/2000/svg"
-                className="flex-shrink-0"
-              >
-                <defs>
-                  <linearGradient id="spiderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#0EA5E9" />
-                    <stop offset="100%" stopColor="#8B5CF6" />
-                  </linearGradient>
-                </defs>
-                {/* Spider body */}
-                <circle cx="20" cy="20" r="6" fill="url(#spiderGradient)" />
-                {/* Spider legs */}
-                <path d="M14 14 L6 6 M26 14 L34 6 M14 26 L6 34 M26 26 L34 34" 
-                      stroke="url(#spiderGradient)" strokeWidth="2" strokeLinecap="round" />
-                <path d="M10 20 L2 20 M30 20 L38 20 M20 10 L20 2 M20 30 L20 38" 
-                      stroke="url(#spiderGradient)" strokeWidth="2" strokeLinecap="round" />
-              </svg>
-              
-              <div>
-                <p className="font-bold text-lg bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  SPYDERCOM
-                </p>
-                <p className="text-xs text-background/60">Digital Solutions</p>
-              </div>
-            </a>
+            <h4 className="text-white font-bold mb-4">Entreprise</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a href="#" className="text-slate-400 hover:text-purple-400 transition-all">
+                  À propos
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-slate-400 hover:text-purple-400 transition-all">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-slate-400 hover:text-purple-400 transition-all">
+                  Nous contacter
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-slate-400 hover:text-purple-400 transition-all">
+                  Devenir partenaire
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Colonne 4 */}
+          <div>
+            <h4 className="text-white font-bold mb-4">Support</h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a href="#" className="text-slate-400 hover:text-purple-400 transition-all">
+                  Centre d'aide
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-slate-400 hover:text-purple-400 transition-all">
+                  Documentation
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-slate-400 hover:text-purple-400 transition-all">
+                  CGV
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-slate-400 hover:text-purple-400 transition-all">
+                  Confidentialité
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-background/20 text-center">
-          <p className="text-background/60 text-sm">
-            © 2025 Take 5. Tous droits réservés.
-          </p>
+        <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-slate-500 text-sm">© 2025 Take 5. Tous droits réservés.</p>
+          <p className="text-slate-500 text-sm">Fait avec 💜 en France</p>
         </div>
       </div>
     </footer>
