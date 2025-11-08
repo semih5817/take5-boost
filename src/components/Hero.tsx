@@ -14,14 +14,14 @@ export const Hero = () => {
       <div className="container mx-auto px-4 md:px-6 max-w-7xl relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight">
-            Boostez votre{" "}
-            <span className="highlight-box text-white">présence locale</span>
+            Devenez le commerce{" "}
+            <span className="highlight-box text-white">#1 sur Google</span>
             <br />
-            avec une gestion efficace de votre fiche Google
+            dans votre ville
           </h1>
           
           <p className="text-base md:text-xl text-muted-foreground mb-6 md:mb-8 max-w-2xl mx-auto">
-            Boostez votre visibilité locale avec Take 5 : IA qui répond aux avis, plaque NFC pour collecter facilement, et reporting mensuel automatique sur WhatsApp.
+            Take 5 collecte et gère vos avis Google automatiquement. IA incluse.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center mb-8 md:mb-12">
@@ -30,12 +30,12 @@ export const Hero = () => {
               size="lg"
               className="bg-primary hover:bg-primary/90 shadow-glow transition-all duration-300 hover:-translate-y-1 hover:shadow-primary text-base md:text-lg px-6 md:px-8 py-5 md:py-6 h-auto w-full sm:w-auto"
             >
-              Commencer maintenant
+              Essayer 1 mois gratuitement
               <ArrowRight className="ml-2 w-4 md:w-5 h-4 md:h-5" />
             </Button>
             
             <div className="text-center sm:text-left">
-              <p className="text-2xl md:text-3xl font-bold gradient-text">19,90€/mois</p>
+              <p className="text-2xl md:text-3xl font-bold gradient-text">69€/mois</p>
               <p className="text-xs md:text-sm text-muted-foreground">Sans engagement</p>
             </div>
           </div>

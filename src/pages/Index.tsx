@@ -5,6 +5,11 @@ import { WhatsAppDemo } from "@/components/WhatsAppDemo";
 import { MicroCTA } from "@/components/MicroCTA";
 import { Stats } from "@/components/Stats";
 import { Benefits } from "@/components/Benefits";
+import { AlertNegativeReviews } from "@/components/AlertNegativeReviews";
+import { CompetitorAlerts } from "@/components/CompetitorAlerts";
+import { AIOpportunities } from "@/components/AIOpportunities";
+import { GamificationSection } from "@/components/GamificationSection";
+import { WhatsAppReports } from "@/components/WhatsAppReports";
 import WhyTakeFiveSection from "@/components/WhyTakeFiveSection";
 import WhatsAppReportingSection from "@/components/WhatsAppReportingSection";
 import { HowItWorks } from "@/components/HowItWorks";
@@ -23,10 +28,15 @@ const Index = () => {
       <Header />
       <Hero />
       <UrgencyBanner />
+      <AlertNegativeReviews />
       <WhatsAppDemo />
       <MicroCTA />
       <Stats />
       <Benefits />
+      <CompetitorAlerts />
+      <AIOpportunities />
+      <GamificationSection />
+      <WhatsAppReports />
       <WhyTakeFiveSection />
       <WhatsAppReportingSection />
       <HowItWorks />
