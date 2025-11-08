@@ -205,13 +205,14 @@ export const SubscriptionForm = () => {
     <section id="subscription-form" className="py-16 md:py-24 bg-gradient-to-br from-primary/5 to-secondary/5">
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            <span className="gradient-text">Choisissez votre offre</span>
-            <br />
-            et rejoignez Take 5
+          <h2 className="text-4xl md:text-6xl font-bold mb-4">
+            Choisissez votre <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">plan tarifaire</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Sélectionnez votre formule et complétez vos informations
+          <p className="text-xl text-muted-foreground mb-8">
+            50% moins cher que nos concurrents • Essai gratuit 1 mois
+          </p>
+          <p className="text-lg text-muted-foreground/80">
+            Sélectionnez votre formule et rejoignez Take 5
           </p>
         </div>
 
