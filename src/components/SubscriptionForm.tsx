@@ -163,11 +163,7 @@ const pricingOffers = [
       { text: "📱 Rapports WhatsApp", included: true },
       { text: "Support prioritaire", included: true },
       { text: "Plaque NFC offerte (annuel)", included: true },
-      { text: "Réponses IA illimitées", included: false },
       { text: "🎨 Dashboard Analytics", included: false },
-      { text: "Alertes concurrents quotidiennes", included: false },
-      { text: "Opportunités IA quotidiennes", included: false },
-      { text: "Support prioritaire 24/7", included: false },
       { text: "🎮 Jeux concours", included: false },
       { text: "📧 Campagnes SMS/Email", included: false }
     ],
@@ -446,7 +442,7 @@ export const SubscriptionForm = () => {
                                           ) : (
                                             <X className="w-4 h-4 text-destructive mt-0.5 flex-shrink-0" />
                                           )}
-                                          <span className={isIncluded ? "text-muted-foreground" : "text-destructive line-through"}>
+                                          <span className="text-muted-foreground">
                                             {featureText}
                                           </span>
                                         </li>
