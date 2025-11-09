@@ -217,8 +217,8 @@ const pricingOffers = [
       { text: "📱 Rapports WhatsApp", included: true },
       { text: "🎨 Dashboard Analytics (démo)", included: true },
       { text: "Support prioritaire 24/7", included: true },
-      { text: "🎮 Jeux concours 🔜 T1 2026", included: true },
-      { text: "📧 Campagnes SMS/Email 🔜 T2 2026", included: true }
+      { text: "🎮 Jeux concours (à venir)", included: true },
+      { text: "📧 Campagnes SMS/Email (à venir)", included: true }
     ],
   },
 ];
