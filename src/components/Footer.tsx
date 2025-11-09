@@ -1,3 +1,5 @@
+import spydercomLogo from "@/assets/spydercom-logo.png";
+
 export const Footer = () => {
   return (
     <footer className="bg-[#0A0E1A] border-t border-slate-800 py-12 px-4">
@@ -116,17 +118,21 @@ export const Footer = () => {
 
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-slate-500 text-sm">© 2025 Take 5. Tous droits réservés.</p>
-          <p className="text-slate-500 text-sm">
-            Propulsé par{" "}
-            <a 
-              href="https://spidercom.fr" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-purple-400 hover:text-purple-300 transition-colors"
-            >
-              Spider Com
-            </a>
-          </p>
+          
+          <a 
+            href="https://spydercom.fr" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex flex-col items-center gap-1 hover:opacity-80 transition-opacity"
+          >
+            <span className="text-slate-500 text-xs">Propulsé par</span>
+            <img 
+              src={spydercomLogo} 
+              alt="Spydercom Digital Solutions" 
+              className="h-12 w-auto"
+            />
+          </a>
+
           <p className="text-slate-500 text-sm">Fait avec 💜 en France</p>
         </div>
       </div>
