@@ -33,7 +33,7 @@ interface BadgeItem {
 }
 
 export const DashboardPreview = () => {
-  const [activeTab, setActiveTab] = useState<TabType>('campaigns');
+  const [activeTab, setActiveTab] = useState<TabType>('overview');
 
   const userData: UserData = {
     name: "Café Le Gourmet",
@@ -166,6 +166,7 @@ export const DashboardPreview = () => {
   );
 
   const tabs = [
+    { id: 'overview' as TabType, label: '📊 Vue d\'ensemble' },
     { id: 'campaigns' as TabType, label: '🎡 Jeu-Concours' },
     { id: 'sms' as TabType, label: '📱 SMS Marketing' },
     { id: 'pride' as TabType, label: '🏆 Moments de Fierté' },
@@ -237,6 +238,156 @@ export const DashboardPreview = () => {
       </div>
 
       <div className="p-6">
+        {/* Vue d'ensemble */}
+        {activeTab === 'overview' && (
+          <>
+            {/* Alerte conversion */}
+            <Card className="mb-6 p-6 border-2 border-purple-500 bg-gradient-to-r from-purple-900/30 to-pink-900/30">
+              <div className="flex items-start gap-4">
+                <Trophy size={48} className="text-yellow-400 flex-shrink-0" />
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold mb-2 text-white">
+                    🎉 Bravo ! Vous avez progressé de +22 points en 30 jours !
+                  </h3>
+                  <p className="text-slate-300 mb-4">
+                    Vous avez gagné <strong>+15 avis</strong>, votre note a augmenté de <strong>+0.3⭐</strong>, 
+                    et votre visibilité a explosé de <strong>+127%</strong> !
+                  </p>
+                  <div className="flex gap-3 flex-wrap">
+                    <Button className="bg-green-500 hover:bg-green-600">
+                      <CheckCircle size={20} className="mr-2" />
+                      Continuer pour 19,90€/mois
+                    </Button>
+                    <Button className="bg-slate-700 hover:bg-slate-600">
+                      Répondre au questionnaire (2 min)
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            </Card>
+
+            {/* Stats Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              <StatCard 
+                icon={Users} 
+                title="Scans QR/NFC" 
+                value={statsData.totalScans} 
+                subtitle="Ce mois-ci" 
+              />
+              <StatCard 
+                icon={Play} 
+                title="Participants au jeu" 
+                value={statsData.totalPlays} 
+                subtitle={`Taux: ${statsData.conversionRate}%`} 
+              />
+              <StatCard 
+                icon={Star} 
+                title="Avis Google" 
+                value={`+${statsData.googleReviews}`} 
+                subtitle="Collectés via jeu" 
+              />
+              <StatCard 
+                icon={Phone} 
+                title="Numéros SMS" 
+                value={statsData.smsCollected} 
+                subtitle="Base qualifiée" 
+              />
+              <StatCard 
+                icon={Trophy} 
+                title="Lots offerts" 
+                value="892" 
+                subtitle="Toutes campagnes" 
+              />
+              <StatCard 
+                icon={Target} 
+                title="Score Take 5" 
+                value={userData.score} 
+                subtitle={`Niveau ${userData.level}`} 
+              />
+            </div>
+
+            {/* Charts */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+              <Card className="p-6 bg-slate-800/50 border-slate-700">
+                <h3 className="text-lg font-bold mb-4 text-white">📈 Activité hebdomadaire</h3>
+                <ResponsiveContainer width="100%" height={300}>
+                  <LineChart data={weeklyData}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgb(71, 85, 105)" />
+                    <XAxis dataKey="jour" stroke="rgb(148, 163, 184)" />
+                    <YAxis stroke="rgb(148, 163, 184)" />
+                    <Tooltip 
+                      contentStyle={{ 
+                        backgroundColor: 'rgb(30, 41, 59)', 
+                        border: '1px solid rgb(71, 85, 105)', 
+                        borderRadius: '8px' 
+                      }} 
+                    />
+                    <Legend />
+                    <Line type="monotone" dataKey="scans" stroke="rgb(168, 85, 247)" strokeWidth={3} name="Scans" />
+                    <Line type="monotone" dataKey="avis" stroke="rgb(236, 72, 153)" strokeWidth={3} name="Avis" />
+                    <Line type="monotone" dataKey="sms" stroke="rgb(59, 130, 246)" strokeWidth={3} name="SMS" />
+                  </LineChart>
+                </ResponsiveContainer>
+              </Card>
+
+              <Card className="p-6 bg-slate-800/50 border-slate-700">
+                <h3 className="text-lg font-bold mb-4 text-white">🎁 Distribution des lots</h3>
+                <ResponsiveContainer width="100%" height={300}>
+                  <PieChart>
+                    <Pie 
+                      data={rewardsData} 
+                      cx="50%" 
+                      cy="50%" 
+                      labelLine={false} 
+                      label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`} 
+                      outerRadius={100} 
+                      fill="#8884d8" 
+                      dataKey="value"
+                    >
+                      {rewardsData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.color} />
+                      ))}
+                    </Pie>
+                    <Tooltip 
+                      contentStyle={{ 
+                        backgroundColor: 'rgb(30, 41, 59)', 
+                        border: '1px solid rgb(71, 85, 105)', 
+                        borderRadius: '8px' 
+                      }} 
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+              </Card>
+            </div>
+
+            {/* ROI */}
+            <Card className="p-6 border border-green-500/30 bg-gradient-to-r from-green-500/10 to-purple-500/10">
+              <div className="flex items-center gap-3 mb-4">
+                <TrendingUp className="text-green-400" size={32} />
+                <h3 className="text-xl font-bold text-white">💰 Impact & ROI</h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="text-center">
+                  <p className="text-4xl font-bold text-green-400">+127%</p>
+                  <p className="text-sm text-slate-400 mt-1">Avis Google vs mois précédent</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-4xl font-bold text-yellow-400">4.8★</p>
+                  <p className="text-sm text-slate-400 mt-1">Note moyenne actuelle</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-4xl font-bold text-purple-400">756</p>
+                  <p className="text-sm text-slate-400 mt-1">Contacts SMS qualifiés</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-4xl font-bold text-pink-400">71.5%</p>
+                  <p className="text-sm text-slate-400 mt-1">Taux de conversion scan→jeu</p>
+                </div>
+              </div>
+            </Card>
+          </>
+        )}
+
         {/* Jeu-Concours */}
         {activeTab === 'campaigns' && (
           <>
