@@ -114,8 +114,19 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-slate-500 text-sm">© 2025 Take 5. Tous droits réservés.</p>
+          <p className="text-slate-500 text-sm">
+            Propulsé par{" "}
+            <a 
+              href="https://spidercom.fr" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-purple-400 hover:text-purple-300 transition-colors"
+            >
+              Spider Com
+            </a>
+          </p>
           <p className="text-slate-500 text-sm">Fait avec 💜 en France</p>
         </div>
       </div>
