@@ -11,25 +11,21 @@ import { FAQSection } from "@/components/home/FAQSection";
 import { FinalCTASection } from "@/components/home/FinalCTASection";
 import { SubscriptionForm } from "@/components/SubscriptionForm";
 import { Footer } from "@/components/Footer";
-
 const Index = () => {
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Header />
       <HeroSection />
       <WhatsAppReportingSection />
       <ProblemSolutionSection />
       <MainFeaturesSection />
       <HowItWorksSection />
-      <PricingSection />
+      
       <RoadmapSection />
       <TestimonialsNewSection />
       <FinalCTASection />
       <SubscriptionForm />
       <FAQSection />
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
