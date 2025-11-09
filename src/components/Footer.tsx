@@ -125,7 +125,7 @@ export const Footer = () => {
           >
             <span className="text-sm">Propulsé par</span>
             <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 group-hover:from-blue-300 group-hover:via-purple-300 group-hover:to-pink-300 transition-all duration-300">
-              Spydercom
+              Spidercom
             </span>
             <svg 
               className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" 
