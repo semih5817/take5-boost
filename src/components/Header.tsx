@@ -1,22 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { Star, LayoutDashboard } from "lucide-react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { Star } from "lucide-react";
 
 export const Header = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const isDashboard = location.pathname === '/dashboard';
-  
   const scrollToForm = () => {
     document.getElementById('subscription-form')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const handleNavigation = () => {
-    if (isDashboard) {
-      navigate('/');
-    } else {
-      navigate('/dashboard');
-    }
   };
 
   return (
@@ -32,23 +19,12 @@ export const Header = () => {
           
           <div className="flex items-center gap-2 md:gap-3">
             <Button 
-              onClick={handleNavigation}
-              variant="outline"
+              onClick={scrollToForm}
               size="default"
-              className="text-sm md:text-base px-3 md:px-4"
+              className="bg-primary hover:bg-primary/90 shadow-glow hover:shadow-primary transition-all duration-300 hover:-translate-y-1 text-sm md:text-base px-4 md:px-6"
             >
-              <LayoutDashboard className="w-4 h-4 mr-2" />
-              {isDashboard ? 'Accueil' : 'Dashboard'}
+              S'abonner
             </Button>
-            {!isDashboard && (
-              <Button 
-                onClick={scrollToForm}
-                size="default"
-                className="bg-primary hover:bg-primary/90 shadow-glow hover:shadow-primary transition-all duration-300 hover:-translate-y-1 text-sm md:text-base px-4 md:px-6"
-              >
-                S'abonner
-              </Button>
-            )}
           </div>
         </div>
       </div>
