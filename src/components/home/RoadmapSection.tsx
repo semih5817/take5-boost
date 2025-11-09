@@ -1,5 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { DashboardPreview } from "./DashboardPreview";
 
 export const RoadmapSection = () => {
   const features = [
@@ -68,7 +69,7 @@ export const RoadmapSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
           {features.map((feature, index) => (
             <div
               key={index}
@@ -107,11 +108,24 @@ export const RoadmapSection = () => {
                 } text-white font-semibold py-3 transition-all`}
               >
                 {feature.badge.includes("Aperçu")
-                  ? "Voir la démo maintenant →"
+                  ? "Voir la démo ci-dessous ↓"
                   : "Être notifié du lancement"}
               </Button>
             </div>
           ))}
+        </div>
+
+        {/* Dashboard Preview intégré */}
+        <div className="mt-12">
+          <div className="text-center mb-8">
+            <h3 className="text-3xl font-bold text-white mb-2">
+              📊 Aperçu du <span className="text-purple-400">Dashboard Analytics</span>
+            </h3>
+            <p className="text-slate-300">
+              Découvrez l'interface complète du dashboard (démo interactive)
+            </p>
+          </div>
+          <DashboardPreview />
         </div>
       </div>
     </section>
