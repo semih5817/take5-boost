@@ -8,7 +8,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
-type TabType = 'overview' | 'gamification' | 'campaigns';
+type TabType = 'overview' | 'gamification' | 'campaigns' | 'sms' | 'pride';
 
 interface UserData {
   name: string;
@@ -169,6 +169,8 @@ export const DashboardPreview = () => {
     { id: 'overview' as TabType, label: '📊 Vue d\'ensemble' },
     { id: 'gamification' as TabType, label: '🎮 Gamification' },
     { id: 'campaigns' as TabType, label: '🎡 Jeu-Concours' },
+    { id: 'sms' as TabType, label: '📱 SMS Marketing' },
+    { id: 'pride' as TabType, label: '🏆 Moments de Fierté' },
   ];
 
   return (
@@ -476,6 +478,201 @@ export const DashboardPreview = () => {
                   </div>
                 </Card>
               ))}
+            </div>
+          </>
+        )}
+
+        {/* SMS Marketing */}
+        {activeTab === 'sms' && (
+          <>
+            <h2 className="text-2xl font-bold mb-6 text-white">📱 SMS Marketing</h2>
+            
+            <Card className="p-6 bg-gradient-to-r from-blue-900/30 to-purple-900/30 border-blue-500/30 mb-6">
+              <div className="flex items-center gap-3 mb-4">
+                <Phone className="text-blue-400" size={32} />
+                <div>
+                  <h3 className="text-xl font-bold text-white">Base de contacts SMS</h3>
+                  <p className="text-slate-300">756 numéros qualifiés collectés</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="bg-slate-800/50 rounded-lg p-4">
+                  <p className="text-3xl font-bold text-blue-400">756</p>
+                  <p className="text-sm text-slate-400">Contacts actifs</p>
+                </div>
+                <div className="bg-slate-800/50 rounded-lg p-4">
+                  <p className="text-3xl font-bold text-green-400">92%</p>
+                  <p className="text-sm text-slate-400">Taux d'opt-in</p>
+                </div>
+                <div className="bg-slate-800/50 rounded-lg p-4">
+                  <p className="text-3xl font-bold text-purple-400">68%</p>
+                  <p className="text-sm text-slate-400">Taux d'ouverture</p>
+                </div>
+              </div>
+            </Card>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <Card className="p-6 bg-slate-800/50 border-slate-700">
+                <h3 className="text-lg font-bold mb-4 text-white">📊 Segments</h3>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center p-3 bg-slate-900/50 rounded-lg">
+                    <span className="text-slate-300">Clients fidèles (4+ visites)</span>
+                    <span className="font-bold text-purple-400">234</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 bg-slate-900/50 rounded-lg">
+                    <span className="text-slate-300">Nouveaux clients</span>
+                    <span className="font-bold text-blue-400">312</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 bg-slate-900/50 rounded-lg">
+                    <span className="text-slate-300">Inactifs (90+ jours)</span>
+                    <span className="font-bold text-yellow-400">210</span>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-6 bg-slate-800/50 border-slate-700">
+                <h3 className="text-lg font-bold mb-4 text-white">🚀 Campagnes à venir</h3>
+                <div className="space-y-3">
+                  <div className="p-4 bg-gradient-to-r from-green-900/20 to-green-800/20 border border-green-500/30 rounded-lg">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-bold text-white">Relance fidélité</span>
+                      <Badge className="bg-green-500 text-white">Active</Badge>
+                    </div>
+                    <p className="text-sm text-slate-400">Ciblage: Clients fidèles</p>
+                    <p className="text-sm text-green-400 mt-1">Envoi prévu: Vendredi 15h</p>
+                  </div>
+                  <div className="p-4 bg-slate-900/50 border border-slate-700 rounded-lg">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-bold text-white">Réactivation clients</span>
+                      <Badge className="bg-slate-600 text-white">Brouillon</Badge>
+                    </div>
+                    <p className="text-sm text-slate-400">Ciblage: Inactifs 90j+</p>
+                  </div>
+                </div>
+              </Card>
+            </div>
+
+            <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white">
+              🔜 Disponible avec le pack Pro (T2 2026)
+            </Button>
+          </>
+        )}
+
+        {/* Moments de Fierté */}
+        {activeTab === 'pride' && (
+          <>
+            <h2 className="text-2xl font-bold mb-6 text-white">🏆 Vos Moments de Fierté</h2>
+            
+            <Card className="p-6 bg-gradient-to-r from-yellow-900/30 to-orange-900/30 border-yellow-500/30 mb-6">
+              <div className="flex items-center gap-3">
+                <Trophy className="text-yellow-400" size={48} />
+                <div>
+                  <h3 className="text-2xl font-bold text-white">Félicitations ! 🎉</h3>
+                  <p className="text-slate-300">Vous avez franchi 12 étapes importantes ce mois-ci</p>
+                </div>
+              </div>
+            </Card>
+
+            <div className="grid grid-cols-1 gap-4">
+              <Card className="p-6 bg-slate-800/50 border-slate-700 hover:border-yellow-500/50 transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-orange-400 flex items-center justify-center flex-shrink-0">
+                    <Star size={32} className="text-white" fill="white" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="text-xl font-bold text-white">Note moyenne 4.7⭐ atteinte !</h3>
+                      <span className="text-sm text-slate-400">Il y a 2 jours</span>
+                    </div>
+                    <p className="text-slate-300 mb-3">
+                      Votre note moyenne vient de passer à 4.7/5 ! Vous êtes dans le top 10% des commerces de votre secteur.
+                    </p>
+                    <div className="flex gap-2">
+                      <Badge className="bg-yellow-500/20 text-yellow-400 border border-yellow-500">
+                        +15 points Take 5
+                      </Badge>
+                      <Badge className="bg-purple-500/20 text-purple-400 border border-purple-500">
+                        Badge débloqu: Excellence
+                      </Badge>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-6 bg-slate-800/50 border-slate-700 hover:border-green-500/50 transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-emerald-400 flex items-center justify-center flex-shrink-0">
+                    <TrendingUp size={32} className="text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="text-xl font-bold text-white">100 avis collectés en 1 mois ! 🎯</h3>
+                      <span className="text-sm text-slate-400">Il y a 5 jours</span>
+                    </div>
+                    <p className="text-slate-300 mb-3">
+                      Record battu ! Vous avez collecté 100 avis ce mois-ci, soit +327% vs le mois dernier.
+                    </p>
+                    <div className="flex gap-2">
+                      <Badge className="bg-green-500/20 text-green-400 border border-green-500">
+                        +25 points Take 5
+                      </Badge>
+                      <Badge className="bg-orange-500/20 text-orange-400 border border-orange-500">
+                        Série de 12 jours 🔥
+                      </Badge>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-6 bg-slate-800/50 border-slate-700 hover:border-blue-500/50 transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-cyan-400 flex items-center justify-center flex-shrink-0">
+                    <Users size={32} className="text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="text-xl font-bold text-white">Top 3 dans votre ville ! 🏆</h3>
+                      <span className="text-sm text-slate-400">Il y a 1 semaine</span>
+                    </div>
+                    <p className="text-slate-300 mb-3">
+                      Vous êtes maintenant dans le top 3 des commerces les mieux notés de votre catégorie à Paris 15ème.
+                    </p>
+                    <div className="flex gap-2">
+                      <Badge className="bg-blue-500/20 text-blue-400 border border-blue-500">
+                        +20 points Take 5
+                      </Badge>
+                      <Badge className="bg-pink-500/20 text-pink-400 border border-pink-500">
+                        Visibilité maximale
+                      </Badge>
+                    </div>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-6 bg-slate-800/50 border-slate-700 hover:border-purple-500/50 transition-all">
+                <div className="flex items-start gap-4">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center flex-shrink-0">
+                    <Flame size={32} className="text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="text-xl font-bold text-white">Série de 30 jours ! 🔥</h3>
+                      <span className="text-sm text-slate-400">Aujourd'hui</span>
+                    </div>
+                    <p className="text-slate-300 mb-3">
+                      Incroyable ! Vous avez maintenu une activité continue pendant 30 jours consécutifs.
+                    </p>
+                    <div className="flex gap-2">
+                      <Badge className="bg-purple-500/20 text-purple-400 border border-purple-500">
+                        +30 points Take 5
+                      </Badge>
+                      <Badge className="bg-red-500/20 text-red-400 border border-red-500">
+                        Engagement maximum
+                      </Badge>
+                    </div>
+                  </div>
+                </div>
+              </Card>
             </div>
           </>
         )}
