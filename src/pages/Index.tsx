@@ -24,9 +24,9 @@ const Index = () => {
       <PricingSection />
       <RoadmapSection />
       <TestimonialsNewSection />
-      <FAQSection />
       <FinalCTASection />
       <SubscriptionForm />
+      <FAQSection />
       <Footer />
     </div>
   );
