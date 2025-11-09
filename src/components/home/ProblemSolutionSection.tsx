@@ -1,94 +1,112 @@
-import { X, Check } from "lucide-react";
+import { X, Check, ArrowRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 export const ProblemSolutionSection = () => {
   return (
     <section className="py-20 px-4 bg-[#0A0E1A]">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-4">
-          Les avis Google, c'est{" "}
-          <span className="text-purple-400">90% de vos nouveaux clients</span>
-        </h2>
-        <p className="text-xl text-slate-300 text-center mb-16 max-w-3xl mx-auto">
-          Sans stratégie d'avis, vous laissez vos concurrents vous dépasser
-        </p>
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+              Ce qu'une fiche Google optimisée vous apporte
+            </span>
+          </h2>
+        </div>
 
-        {/* Tableau comparatif */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* AVANT */}
-          <div className="bg-slate-900/50 border border-slate-700 rounded-xl p-8">
-            <h3 className="text-2xl font-bold text-red-400 mb-6 flex items-center gap-3">
-              <span className="text-3xl">❌</span>
-              Avant Take 5
-            </h3>
+        {/* Before/After Comparison */}
+        <div className="grid md:grid-cols-3 gap-6 mb-16">
+          {/* Before */}
+          <div className="bg-slate-900/50 border border-red-500/30 rounded-xl p-8">
+            <div className="flex items-center gap-2 mb-6">
+              <X className="w-6 h-6 text-red-400" />
+              <h3 className="text-2xl font-bold text-white">Avant</h3>
+            </div>
             <ul className="space-y-4">
-              <li className="flex items-start gap-3 text-slate-300">
-                <X className="w-5 h-5 text-red-400 mt-1 flex-shrink-0" />
-                <span>
-                  <strong className="text-white">3 avis en 6 mois</strong> : vos clients
-                  oublient de laisser un avis
-                </span>
-              </li>
-              <li className="flex items-start gap-3 text-slate-300">
-                <X className="w-5 h-5 text-red-400 mt-1 flex-shrink-0" />
-                <span>
-                  <strong className="text-white">Note 3.8/5</strong> : les avis négatifs
-                  plombent votre réputation
-                </span>
-              </li>
-              <li className="flex items-start gap-3 text-slate-300">
-                <X className="w-5 h-5 text-red-400 mt-1 flex-shrink-0" />
-                <span>
-                  <strong className="text-white">Avis négatif non traité</strong> : -85% de
-                  clients en moins
-                </span>
-              </li>
-              <li className="flex items-start gap-3 text-slate-300">
-                <X className="w-5 h-5 text-red-400 mt-1 flex-shrink-0" />
-                <span>
-                  <strong className="text-white">Classement #12 local</strong> : invisible
-                  sur Google Maps
-                </span>
-              </li>
+              {[
+                "2-3 avis par mois",
+                "Note moyenne 3,8/5",
+                "200 vues mensuelles",
+                "Pas de réponses aux avis",
+                "Visibilité faible",
+                "Peu de nouveaux clients"
+              ].map((item, index) => (
+                <li key={index} className="flex items-start gap-2 text-slate-300">
+                  <X className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+                  <span>{item}</span>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* APRÈS */}
-          <div className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 border-2 border-purple-500 rounded-xl p-8">
-            <h3 className="text-2xl font-bold text-green-400 mb-6 flex items-center gap-3">
-              <span className="text-3xl">✅</span>
-              Avec Take 5
-            </h3>
+          {/* Arrow */}
+          <div className="flex items-center justify-center">
+            <div className="text-center">
+              <div className="w-16 h-16 rounded-full bg-blue-600 mx-auto mb-4 flex items-center justify-center shadow-lg">
+                <ArrowRight className="w-8 h-8 text-white" />
+              </div>
+              <p className="font-bold text-lg text-white">Avec Take 5</p>
+            </div>
+          </div>
+
+          {/* After */}
+          <div className="bg-slate-900/50 border border-green-500/30 rounded-xl p-8">
+            <div className="flex items-center gap-2 mb-6">
+              <Check className="w-6 h-6 text-green-400" />
+              <h3 className="text-2xl font-bold text-white">Après</h3>
+            </div>
             <ul className="space-y-4">
-              <li className="flex items-start gap-3 text-slate-300">
-                <Check className="w-5 h-5 text-green-400 mt-1 flex-shrink-0" />
-                <span>
-                  <strong className="text-white">30 avis en 30 jours</strong> : QR code +
-                  alertes automatiques
-                </span>
-              </li>
-              <li className="flex items-start gap-3 text-slate-300">
-                <Check className="w-5 h-5 text-green-400 mt-1 flex-shrink-0" />
-                <span>
-                  <strong className="text-white">Note 4.7/5</strong> : réponses IA
-                  professionnelles
-                </span>
-              </li>
-              <li className="flex items-start gap-3 text-slate-300">
-                <Check className="w-5 h-5 text-green-400 mt-1 flex-shrink-0" />
-                <span>
-                  <strong className="text-white">Réponse en 2 min</strong> : alertes
-                  WhatsApp instantanées
-                </span>
-              </li>
-              <li className="flex items-start gap-3 text-slate-300">
-                <Check className="w-5 h-5 text-green-400 mt-1 flex-shrink-0" />
-                <span>
-                  <strong className="text-white">Classement #2 local</strong> : +300% de
-                  visibilité
-                </span>
-              </li>
+              {[
+                { text: "15-20 avis par mois", badge: "+600%" },
+                { text: "Note moyenne 4,7/5", badge: "+24%" },
+                { text: "2 000+ vues mensuelles", badge: "+900%" },
+                { text: "100% des avis répondus", badge: "Auto" },
+                { text: "Top 3 résultats locaux", badge: "🔥" },
+                { text: "Flux constant de clients", badge: "✨" }
+              ].map((item, index) => (
+                <li key={index} className="flex items-start gap-2">
+                  <Check className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                  <div className="flex-1 flex items-center justify-between gap-2">
+                    <span className="text-white">{item.text}</span>
+                    <Badge className="bg-green-500 text-white text-xs shrink-0 hover:bg-green-600">{item.badge}</Badge>
+                  </div>
+                </li>
+              ))}
             </ul>
           </div>
+        </div>
+
+        {/* Key Benefits */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[
+            {
+              number: "1",
+              title: "Plus de clients",
+              description: "Attirez 3x plus de nouveaux clients grâce à une meilleure visibilité"
+            },
+            {
+              number: "2",
+              title: "Meilleure réputation",
+              description: "Note moyenne qui passe de 3,8 à 4,7+ en quelques mois"
+            },
+            {
+              number: "3",
+              title: "Gain de temps",
+              description: "100% automatisé, vous ne gérez plus rien manuellement"
+            },
+            {
+              number: "4",
+              title: "ROI prouvé",
+              description: "Investissement de 19,90€/mois pour des milliers d'€ de CA supplémentaire"
+            }
+          ].map((benefit, index) => (
+            <div key={index} className="bg-slate-900/50 border border-slate-700 rounded-xl p-6 hover:border-purple-500/50 transition-all duration-300">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 mb-4 flex items-center justify-center text-2xl font-bold text-white shadow-lg">
+                {benefit.number}
+              </div>
+              <h4 className="font-bold text-lg mb-2 text-white">{benefit.title}</h4>
+              <p className="text-sm text-slate-400">{benefit.description}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
