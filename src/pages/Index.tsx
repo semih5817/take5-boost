@@ -4,6 +4,7 @@ import { WhatsAppReportingSection } from "@/components/home/WhatsAppReportingSec
 import { ProblemSolutionSection } from "@/components/home/ProblemSolutionSection";
 import { MainFeaturesSection } from "@/components/home/MainFeaturesSection";
 import { HowItWorksSection } from "@/components/home/HowItWorksSection";
+import { CustomNFCSection } from "@/components/home/CustomNFCSection";
 import { PricingSection } from "@/components/pricing/PricingSection";
 import { RoadmapSection } from "@/components/home/RoadmapSection";
 import { TestimonialsNewSection } from "@/components/home/TestimonialsNewSection";
@@ -19,6 +20,7 @@ const Index = () => {
       <ProblemSolutionSection />
       <MainFeaturesSection />
       <HowItWorksSection />
+      <CustomNFCSection />
       
       <RoadmapSection />
       <TestimonialsNewSection />
