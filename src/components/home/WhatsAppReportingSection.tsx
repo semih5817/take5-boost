@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer } from 'recharts';
 import { TrendingUp, Star, Phone, Globe } from "lucide-react";
+import take5Logo from "@/assets/take5-logo.png";
 
 export const WhatsAppReportingSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -52,14 +53,30 @@ export const WhatsAppReportingSection = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // Auto-scroll entre les sections
+  // Auto-scroll entre les sections avec animation
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  
   useEffect(() => {
     const autoScroll = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % 6);
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentSlide((prev) => (prev + 1) % 6);
+        setIsTransitioning(false);
+      }, 300);
     }, 5000);
 
     return () => clearInterval(autoScroll);
   }, []);
+
+  const handleSlideChange = (index: number) => {
+    if (index !== currentSlide) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentSlide(index);
+        setIsTransitioning(false);
+      }, 300);
+    }
+  };
 
   const slides = [
     // Slide 1: Header & Stats principales
@@ -358,8 +375,8 @@ export const WhatsAppReportingSection = () => {
               <div className="w-full h-full bg-[#0A0E1A] overflow-hidden">
                 {/* WhatsApp Header */}
                 <div className="bg-[#128C7E] px-4 py-3 flex items-center gap-3">
-                  <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-xl">
-                    🎯
+                  <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center p-1.5 overflow-hidden">
+                    <img src={take5Logo} alt="Take 5" className="w-full h-full object-contain" />
                   </div>
                   <div className="flex-1">
                     <div className="text-white font-semibold text-sm">Take 5</div>
@@ -368,14 +385,18 @@ export const WhatsAppReportingSection = () => {
                 </div>
 
                 {/* Message bubble with slides */}
-                <div className="p-4 min-h-[560px] bg-[#0A0E1A]">
+                <div className="p-4 min-h-[560px] bg-[#0A0E1A] overflow-hidden">
                   <div className="bg-[#1A1F35] rounded-2xl rounded-tl-sm p-3 shadow-lg border border-slate-700">
                     <div className="flex items-center justify-between mb-3">
                       <h3 className="text-white font-bold text-sm">{slides[currentSlide].title}</h3>
                       <div className="text-[9px] text-slate-500">10:34</div>
                     </div>
                     
-                    <div className="transition-all duration-500">
+                    <div className={`transition-all duration-300 ${
+                      isTransitioning 
+                        ? 'opacity-0 translate-y-4' 
+                        : 'opacity-100 translate-y-0'
+                    }`}>
                       {slides[currentSlide].content}
                     </div>
                   </div>
@@ -385,7 +406,7 @@ export const WhatsAppReportingSection = () => {
                     {slides.map((_, index) => (
                       <button
                         key={index}
-                        onClick={() => setCurrentSlide(index)}
+                        onClick={() => handleSlideChange(index)}
                         className={`h-1.5 rounded-full transition-all ${
                           index === currentSlide 
                             ? 'w-6 bg-purple-500' 
