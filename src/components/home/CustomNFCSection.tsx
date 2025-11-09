@@ -40,6 +40,8 @@ export const CustomNFCSection = () => {
 
             <ul className="space-y-3 mb-8">
               {[
+                "Plaque en acrylique premium",
+                "Fabriquée en France 🇫🇷",
                 "Gravure laser haute qualité",
                 "Compatible NFC + QR Code",
                 "Résistante à l'eau et aux rayures",
