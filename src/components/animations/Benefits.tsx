@@ -6,43 +6,13 @@ import React from 'react';
  */
 const BenefitCard = ({ icon, title, text }) => (
   <div
-    style={{
-      background: 'white',
-      padding: '22px',
-      borderRadius: '15px',
-      boxShadow: '0 4px 15px rgba(0,0,0,0.06)',
-      textAlign: 'left',
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '10px',
-      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-      cursor: 'pointer'
-    }}
-    onMouseEnter={(e) => {
-      e.currentTarget.style.transform = 'translateY(-3px)';
-      e.currentTarget.style.boxShadow = '0 8px 20px rgba(0,0,0,0.1)';
-    }}
-    onMouseLeave={(e) => {
-      e.currentTarget.style.transform = 'translateY(0)';
-      e.currentTarget.style.boxShadow = '0 4px 15px rgba(0,0,0,0.06)';
-    }}
+    className="bg-card p-6 rounded-xl border border-border hover:shadow-elegant transition-all duration-300 cursor-pointer hover:-translate-y-1"
   >
-    <div style={{ fontSize: '32px' }}>{icon}</div>
-    <h3 style={{ 
-      margin: 0, 
-      fontSize: '17px', 
-      fontWeight: 600, 
-      color: '#111827',
-      lineHeight: 1.3
-    }}>
+    <div className="text-4xl mb-3">{icon}</div>
+    <h3 className="text-lg font-semibold text-foreground mb-2 leading-tight">
       {title}
     </h3>
-    <p style={{ 
-      margin: 0, 
-      fontSize: '14px', 
-      color: '#6b7280', 
-      lineHeight: 1.6 
-    }}>
+    <p className="text-sm text-muted-foreground leading-relaxed">
       {text}
     </p>
   </div>
@@ -53,12 +23,7 @@ const BenefitCard = ({ icon, title, text }) => (
  * Focus : Gain de temps, présence, qualité
  */
 export const MultiPublicationBenefits = () => (
-  <div style={{
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-    gap: '20px',
-    marginTop: '30px'
-  }}>
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
     <BenefitCard
       icon="⏱️"
       title="5 h de gagnées par mois"
@@ -82,12 +47,7 @@ export const MultiPublicationBenefits = () => (
  * Focus : Réputation, sérénité, croissance
  */
 export const AIResponseBenefits = () => (
-  <div style={{
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-    gap: '20px',
-    marginTop: '30px'
-  }}>
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
     <BenefitCard
       icon="⭐"
       title="Image professionnelle"
@@ -111,12 +71,7 @@ export const AIResponseBenefits = () => (
  * Focus : Vente, cohérence, polyvalence
  */
 export const FlyerGeneratorBenefits = () => (
-  <div style={{
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-    gap: '20px',
-    marginTop: '30px'
-  }}>
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-8">
     <BenefitCard
       icon="🎯"
       title="Promos lancées en quelques minutes"
