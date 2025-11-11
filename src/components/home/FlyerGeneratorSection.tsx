@@ -1,16 +1,10 @@
-import { 
-  FlyerGeneratorAnimation
-} from "@/components/animations";
-
+import { FlyerGeneratorAnimation } from "@/components/animations";
 export const FlyerGeneratorSection = () => {
-  return (
-    <section className="py-20 bg-background">
+  return <section className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4">
         {/* Titre en pleine largeur */}
         <div className="mb-12">
-          <p className="text-sm uppercase tracking-wider text-primary font-semibold mb-2">
-            Automatisation n°3 · Générateur de flyers IA
-          </p>
+          
           <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
             Transformez une simple photo en communication professionnelle prête à publier.
           </h2>
@@ -83,6 +77,5 @@ export const FlyerGeneratorSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
