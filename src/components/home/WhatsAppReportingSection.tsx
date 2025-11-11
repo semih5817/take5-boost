@@ -364,7 +364,7 @@ export const WhatsAppReportingSection = () => {
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Phone Mockup avec animation */}
-          <div className="relative flex justify-center">
+          <div className="relative flex justify-center order-1 lg:order-2">
             <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-3xl blur-3xl opacity-20 animate-pulse"></div>
             
             <div className="relative w-[320px] h-[640px] bg-slate-900 rounded-[3rem] border-8 border-slate-800 shadow-2xl overflow-hidden">
@@ -421,7 +421,7 @@ export const WhatsAppReportingSection = () => {
           </div>
 
           {/* Features List */}
-          <div className="space-y-6">
+          <div className="space-y-6 order-2 lg:order-1">
             {/* Feature 1 */}
             <div className="flex items-start gap-4">
               <div className="w-14 h-14 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
