@@ -248,76 +248,13 @@ const FlyerGeneratorAnimation = () => {
             left: '50%',
             top: '50%',
             transform: 'translate(-50%, -50%)',
-            fontSize: '100px',
+            fontSize: '60px',
             animation: 'magicPulse 0.8s ease-in-out'
           }}>
             ✨
           </div>
         </>
       )}
-
-      <div style={{
-        position: 'absolute',
-        left: '50%',
-        top: '50%',
-        transform: `translate(-50%, -50%) scale(${step >= 3 ? 0.85 : 0.3}) perspective(1000px) rotateY(${step >= 3 ? '0deg' : '180deg'})`,
-        transition: 'all 1s cubic-bezier(0.34, 1.56, 0.64, 1)',
-        opacity: step >= 3 ? 1 : 0,
-        zIndex: step >= 3 ? 10 : 0
-      }}>
-        <div style={{
-          width: '280px',
-          height: '280px',
-          borderRadius: '20px',
-          boxShadow: '0 30px 80px rgba(0,0,0,0.4)',
-          overflow: 'hidden',
-          position: 'relative',
-          background: 'white'
-        }}>
-          <img 
-            src={pizzaFlyer}
-            alt="Flyer Pizza Truffe"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              display: step >= 3 ? 'block' : 'none'
-            }}
-          />
-
-          {step === 3 && (
-            <div style={{
-              position: 'absolute',
-              top: 0,
-              left: '-100%',
-              width: '50%',
-              height: '100%',
-              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent)',
-              animation: 'shine 1s ease-out'
-            }}></div>
-          )}
-
-          {step >= 3 && step < 4 && (
-            <div style={{
-              position: 'absolute',
-              top: '-15px',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              background: '#27ae60',
-              color: 'white',
-              padding: '8px 20px',
-              borderRadius: '20px',
-              fontSize: '12px',
-              fontWeight: 'bold',
-              boxShadow: '0 4px 12px rgba(39, 174, 96, 0.4)',
-              animation: 'popIn 0.5s ease-out',
-              whiteSpace: 'nowrap'
-            }}>
-              ✨ Généré par IA
-            </div>
-          )}
-        </div>
-      </div>
 
       <div style={{
         position: 'absolute',
