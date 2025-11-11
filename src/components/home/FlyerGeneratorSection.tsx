@@ -6,15 +6,20 @@ export const FlyerGeneratorSection = () => {
   return (
     <section className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1fr] gap-10 items-center">
-          {/* Texte à gauche */}
+        {/* Titre en pleine largeur */}
+        <div className="mb-12">
+          <p className="text-sm uppercase tracking-wider text-primary font-semibold mb-2">
+            Automatisation n°3 · Générateur de flyers IA
+          </p>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
+            Transformez une simple photo en communication professionnelle prête à publier.
+          </h2>
+        </div>
+
+        {/* Contenu en grille : arguments à gauche, animation à droite */}
+        <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1fr] gap-10 items-start">
+          {/* Arguments marketing à gauche */}
           <div>
-            <p className="text-sm uppercase tracking-wider text-primary font-semibold mb-2">
-              Automatisation n°3 · Générateur de flyers IA
-            </p>
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 leading-tight">
-              Transformez une simple photo en communication professionnelle prête à publier.
-            </h2>
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
               Plus besoin de graphiste, d'outils complexes ou de perdre du temps à formater vos publications.
               TakeFive transforme instantanément votre photo en un visuel crédible, harmonieux et cohérent avec votre marque — directement depuis WhatsApp.
