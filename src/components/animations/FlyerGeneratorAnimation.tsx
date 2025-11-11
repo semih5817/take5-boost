@@ -5,15 +5,14 @@ import pizzaFlyer from '@/assets/pizza-truffe-flyer.png';
 const FlyerGeneratorAnimation = () => {
   const [step, setStep] = useState(0);
   const [counter, setCounter] = useState(0);
-  const [sparkles, setSparkles] = useState<Array<{ id: number; x: number; y: number }>>([]);
   
   useEffect(() => {
     const timers = [
       setTimeout(() => setStep(1), 1500),
       setTimeout(() => setStep(2), 3000),
-      setTimeout(() => setStep(3), 4000),
-      setTimeout(() => setStep(4), 5500),
-      setTimeout(() => setStep(0), 8500),
+      setTimeout(() => setStep(3), 3500),
+      setTimeout(() => setStep(4), 4200),
+      setTimeout(() => setStep(0), 7500),
     ];
     
     return () => timers.forEach(clearTimeout);
@@ -29,26 +28,6 @@ const FlyerGeneratorAnimation = () => {
       setCounter(0);
     }
   }, [step, counter]);
-
-  useEffect(() => {
-    if (step === 2) {
-      const interval = setInterval(() => {
-        const newSparkle = {
-          id: Math.random(),
-          x: Math.random() * 100,
-          y: Math.random() * 100,
-        };
-        setSparkles(prev => [...prev, newSparkle]);
-        setTimeout(() => {
-          setSparkles(prev => prev.filter(s => s.id !== newSparkle.id));
-        }, 800);
-      }, 100);
-      
-      return () => clearInterval(interval);
-    } else {
-      setSparkles([]);
-    }
-  }, [step]);
 
   return (
     <div style={{
@@ -225,36 +204,6 @@ const FlyerGeneratorAnimation = () => {
         </div>
       </div>
 
-      {step === 2 && (
-        <>
-          {sparkles.map(sparkle => (
-            <div
-              key={sparkle.id}
-              style={{
-                position: 'absolute',
-                left: `${sparkle.x}%`,
-                top: `${sparkle.y}%`,
-                width: '8px',
-                height: '8px',
-                background: '#f97316',
-                borderRadius: '50%',
-                animation: 'sparkle 0.8s ease-out',
-                boxShadow: '0 0 10px rgba(249, 115, 22, 0.8)'
-              }}
-            />
-          ))}
-          <div style={{
-            position: 'absolute',
-            left: '50%',
-            top: '50%',
-            transform: 'translate(-50%, -50%)',
-            fontSize: '60px',
-            animation: 'magicPulse 0.8s ease-in-out'
-          }}>
-            ✨
-          </div>
-        </>
-      )}
 
       <div style={{
         position: 'absolute',
@@ -438,30 +387,6 @@ const FlyerGeneratorAnimation = () => {
           }
         }
 
-        @keyframes sparkle {
-          0% {
-            transform: scale(0) rotate(0deg);
-            opacity: 1;
-          }
-          50% {
-            opacity: 1;
-          }
-          100% {
-            transform: scale(1.5) rotate(180deg);
-            opacity: 0;
-          }
-        }
-
-        @keyframes magicPulse {
-          0%, 100% {
-            transform: translate(-50%, -50%) scale(0.5);
-            opacity: 0;
-          }
-          50% {
-            transform: translate(-50%, -50%) scale(1.5);
-            opacity: 1;
-          }
-        }
 
         @keyframes shine {
           0% {
