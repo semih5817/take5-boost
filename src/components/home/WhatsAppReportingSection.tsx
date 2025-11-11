@@ -362,56 +362,56 @@ export const WhatsAppReportingSection = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Features List */}
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
             {/* Feature 1 */}
-            <div className="flex items-start gap-4">
-              <div className="w-14 h-14 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                <TrendingUp className="w-7 h-7 text-white" />
+            <div className="flex items-start gap-3 md:gap-4">
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                <TrendingUp className="w-6 h-6 md:w-7 md:h-7 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white mb-2">Statistiques détaillées</h3>
-                <p className="text-slate-300">
+                <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">Statistiques détaillées</h3>
+                <p className="text-sm md:text-base text-slate-300">
                   Vues, avis, note moyenne et évolution mensuelle en un coup d'œil
                 </p>
               </div>
             </div>
 
             {/* Feature 2 */}
-            <div className="flex items-start gap-4">
-              <div className="w-14 h-14 bg-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                <Star className="w-7 h-7 text-white" />
+            <div className="flex items-start gap-3 md:gap-4">
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                <Star className="w-6 h-6 md:w-7 md:h-7 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white mb-2">Analyse IA automatique</h3>
-                <p className="text-slate-300">
+                <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">Analyse IA automatique</h3>
+                <p className="text-sm md:text-base text-slate-300">
                   Réponses automatiques et traitement des avis en temps réel
                 </p>
               </div>
             </div>
 
             {/* Feature 3 */}
-            <div className="flex items-start gap-4">
-              <div className="w-14 h-14 bg-pink-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                <Phone className="w-7 h-7 text-white" />
+            <div className="flex items-start gap-3 md:gap-4">
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-pink-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                <Phone className="w-6 h-6 md:w-7 md:h-7 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white mb-2">Veille concurrentielle</h3>
-                <p className="text-slate-300">
+                <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">Veille concurrentielle</h3>
+                <p className="text-sm md:text-base text-slate-300">
                   Position locale et alertes sur vos concurrents en temps réel
                 </p>
               </div>
             </div>
 
             {/* Feature 4 */}
-            <div className="flex items-start gap-4">
-              <div className="w-14 h-14 bg-green-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                <Globe className="w-7 h-7 text-white" />
+            <div className="flex items-start gap-3 md:gap-4">
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-green-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                <Globe className="w-6 h-6 md:w-7 md:h-7 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white mb-2">100% sur WhatsApp</h3>
-                <p className="text-slate-300">
+                <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">100% sur WhatsApp</h3>
+                <p className="text-sm md:text-base text-slate-300">
                   Pas d'app à installer, tout arrive directement sur votre téléphone
                 </p>
               </div>
@@ -422,7 +422,7 @@ export const WhatsAppReportingSection = () => {
           <div className="relative flex justify-center">
             <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-3xl blur-3xl opacity-20 animate-pulse"></div>
             
-            <div className="relative w-[320px] h-[640px] bg-slate-900 rounded-[3rem] border-8 border-slate-800 shadow-2xl overflow-hidden">
+            <div className="relative w-[280px] md:w-[300px] lg:w-[320px] h-[560px] md:h-[600px] lg:h-[640px] bg-slate-900 rounded-[3rem] border-8 border-slate-800 shadow-2xl overflow-hidden">
               {/* Notch */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-slate-800 rounded-b-3xl z-10"></div>
               
