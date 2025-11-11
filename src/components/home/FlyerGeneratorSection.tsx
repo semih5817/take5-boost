@@ -116,16 +116,23 @@ export const FlyerGeneratorSection = () => {
           />
 
           <BenefitCard
-            icon="🌍"
+            icon={
+              <div className="flex items-center gap-2">
+                <span>🌍</span>
+                <span className="inline-flex items-center px-2.5 py-1 text-xs font-semibold rounded-full bg-gradient-to-r from-purple-500 to-blue-500 text-white shadow-lg">
+                  À venir
+                </span>
+              </div>
+            }
             title="Publication multi-canaux"
             text="Une seule action, plusieurs réseaux. Aujourd'hui : Instagram & Google. Bientôt : Facebook, TikTok, LinkedIn."
             extra={
-              <div className="flex justify-center items-center gap-3 mt-3">
-                <img src="/logos/instagram.png" alt="Instagram" className="w-7 h-7 object-contain" />
-                <img src="/logos/facebook.svg" alt="Facebook" className="w-7 h-7 object-contain" />
-                <img src="/logos/tiktok.png" alt="TikTok" className="w-7 h-7 object-contain" />
-                <img src="/logos/google.svg" alt="Google Business" className="w-7 h-7 object-contain" />
-                <img src="/logos/linkedin.png" alt="LinkedIn" className="w-7 h-7 object-contain" />
+              <div className="flex justify-center items-center gap-4 mt-3">
+                <img src="/logos/instagram.png" alt="Instagram" className="w-8 h-8 object-contain" />
+                <img src="/logos/facebook.png" alt="Facebook" className="w-8 h-8 object-contain" />
+                <img src="/logos/tiktok.png" alt="TikTok" className="w-8 h-8 object-contain" />
+                <img src="/logos/google.svg" alt="Google Business" className="w-8 h-8 object-contain" />
+                <img src="/logos/linkedin.png" alt="LinkedIn" className="w-8 h-8 object-contain" />
               </div>
             }
           />

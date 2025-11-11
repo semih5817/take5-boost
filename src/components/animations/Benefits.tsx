@@ -8,7 +8,9 @@ const BenefitCard = ({ icon, title, text, extra = null }) => (
   <div
     className="bg-card p-6 rounded-xl border border-border hover:shadow-elegant transition-all duration-300 cursor-pointer hover:-translate-y-1"
   >
-    <div className="text-4xl mb-3">{icon}</div>
+    <div className="text-4xl mb-3">
+      {typeof icon === 'string' ? icon : icon}
+    </div>
     <h3 className="text-lg font-semibold text-foreground mb-2 leading-tight">
       {title}
     </h3>
