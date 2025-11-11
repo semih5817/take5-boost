@@ -19,21 +19,7 @@ export const FlyerGeneratorSection = () => {
               TakeFive transforme instantanément votre photo en un visuel crédible, harmonieux et cohérent avec votre marque — directement depuis WhatsApp.
             </p>
 
-            <div className="bg-card/50 border border-border rounded-lg p-4 mb-6">
-              <p className="text-foreground mb-3 leading-relaxed">
-                Vous prenez la photo d'un plat, d'un produit, d'une chambre ou d'une offre spéciale.
-                Vous écrivez simplement :
-              </p>
-              <div className="bg-background/80 rounded-lg p-3 mb-3 border-l-4 border-primary">
-                <p className="text-foreground italic">
-                  "Publie sur Insta et Google — nouvelle pizza à la truffe, 12,90€, dispo vendredi."
-                </p>
-              </div>
-              <p className="text-foreground leading-relaxed">
-                Et c'est tout.
-                TakeFive conçoit un flyer professionnel avec vos couleurs, votre logo, une mise en page claire, et le publie automatiquement sur vos canaux actifs (Instagram, Google, bientôt Facebook & TikTok).
-              </p>
-            </div>
+            
 
             <div className="mb-6">
               <h3 className="text-xl font-bold text-foreground mb-4">✅ Ce que vous gagnez</h3>
