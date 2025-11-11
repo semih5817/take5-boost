@@ -6,6 +6,7 @@ import { ProblemSolutionSection } from "@/components/home/ProblemSolutionSection
 import { RadarReviewsSection } from "@/components/home/RadarReviewsSection";
 import { MainFeaturesSection } from "@/components/home/MainFeaturesSection";
 import { FlyerGeneratorSection } from "@/components/home/FlyerGeneratorSection";
+import { MultiPublicationSection } from "@/components/home/MultiPublicationSection";
 import { HowItWorksSection } from "@/components/home/HowItWorksSection";
 import { CustomNFCSection } from "@/components/home/CustomNFCSection";
 import { PricingSection } from "@/components/pricing/PricingSection";
@@ -22,6 +23,7 @@ const Index = () => {
       <WaouwMomentsSection />
       <WhatsAppReportingSection />
       <ProblemSolutionSection />
+      <MultiPublicationSection />
       <RadarReviewsSection />
       <MainFeaturesSection />
       <FlyerGeneratorSection />
