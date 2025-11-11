@@ -1,59 +1,87 @@
 import { FlyerGeneratorAnimation } from "@/components/animations";
+
 export const FlyerGeneratorSection = () => {
-  return <section className="py-20 bg-background">
+  return (
+    <section className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4">
-        {/* Titre en pleine largeur */}
-        <div className="mb-12">
-          
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight">
+        {/* Titre et sous-titre en pleine largeur */}
+        <div className="mb-16 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight mb-4">
             Transformez une simple photo en communication professionnelle prête à publier.
           </h2>
+          <p className="text-base md:text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+            Plus besoin de graphiste, d'outils complexes ou de perdre du temps à formater vos publications.
+            TakeFive transforme instantanément votre photo en un visuel crédible, harmonieux et cohérent avec votre marque — directement depuis WhatsApp.
+          </p>
         </div>
 
         {/* Contenu en grille : arguments à gauche, animation à droite */}
         <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1fr] gap-10 items-start">
           {/* Arguments marketing à gauche */}
-          <div>
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Plus besoin de graphiste, d'outils complexes ou de perdre du temps à formater vos publications.
-              TakeFive transforme instantanément votre photo en un visuel crédible, harmonieux et cohérent avec votre marque — directement depuis WhatsApp.
-            </p>
-
-            
-
-            <div className="mb-6">
-              <h3 className="text-xl font-bold text-foreground mb-4">✅ Ce que vous gagnez</h3>
-              <ul className="space-y-3">
-                <li className="text-foreground">
-                  <span className="text-primary font-semibold">⏱️ Temps :</span> tout est fait en moins d'une minute, sans ouvrir Canva ni aucun autre outil.
-                </li>
-                <li className="text-foreground">
-                  <span className="text-primary font-semibold">💰 Argent :</span> plus besoin de payer un graphiste ou une agence pour chaque visuel.
-                </li>
-                <li className="text-foreground">
-                  <span className="text-primary font-semibold">💼 Crédibilité :</span> vos promotions et annonces ont enfin un style professionnel constant.
-                </li>
-                <li className="text-foreground">
-                  <span className="text-primary font-semibold">📲 Flexibilité :</span> vous pouvez poster en plein service, depuis votre téléphone.
-                </li>
-                <li className="text-foreground">
-                  <span className="text-primary font-semibold">🤖 Évolutif :</span> chaque image publiée renforce la cohérence de votre communication.
-                </li>
-              </ul>
+          <div className="space-y-4">
+            {/* Temps */}
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-blue-500 flex items-center justify-center text-2xl">
+                ⏱️
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-foreground mb-1">Temps</h3>
+                <p className="text-muted-foreground">
+                  Tout est fait en moins d'une minute, sans ouvrir Canva ni aucun autre outil.
+                </p>
+              </div>
             </div>
 
-            <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
-              <h3 className="text-lg font-bold text-primary mb-2">🚀 Pourquoi c'est différent</h3>
-              <p className="text-foreground leading-relaxed mb-2">
-                TakeFive ne se contente pas de créer des visuels.
-                Il vous libère de la contrainte de communication.
-              </p>
-              <p className="text-foreground leading-relaxed">
-                Chaque publication devient une action automatique, maîtrisée et cohérente — sans effort, sans perte de temps, sans dépendre d'un tiers.
-              </p>
-              <p className="text-primary font-semibold mt-3">
-                C'est la puissance d'un service marketing, dans votre poche.
-              </p>
+            {/* Argent */}
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-green-500 flex items-center justify-center text-2xl">
+                💰
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-foreground mb-1">Argent</h3>
+                <p className="text-muted-foreground">
+                  Plus besoin de payer un graphiste ou une agence pour chaque visuel.
+                </p>
+              </div>
+            </div>
+
+            {/* Crédibilité */}
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-purple-500 flex items-center justify-center text-2xl">
+                💼
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-foreground mb-1">Crédibilité</h3>
+                <p className="text-muted-foreground">
+                  Vos promotions et annonces ont enfin un style professionnel constant.
+                </p>
+              </div>
+            </div>
+
+            {/* Flexibilité */}
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-pink-500 flex items-center justify-center text-2xl">
+                📲
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-foreground mb-1">Flexibilité</h3>
+                <p className="text-muted-foreground">
+                  Vous pouvez poster en plein service, depuis votre téléphone.
+                </p>
+              </div>
+            </div>
+
+            {/* Évolutif */}
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-orange-500 flex items-center justify-center text-2xl">
+                🤖
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-foreground mb-1">Évolutif</h3>
+                <p className="text-muted-foreground">
+                  Chaque image publiée renforce la cohérence de votre communication.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -63,5 +91,6 @@ export const FlyerGeneratorSection = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
