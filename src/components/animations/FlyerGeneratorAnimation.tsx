@@ -8,8 +8,6 @@ const FlyerGeneratorAnimation = () => {
   const [sparkles, setSparkles] = useState<Array<{ id: number; x: number; y: number }>>([]);
   
   useEffect(() => {
-    if (step !== 0) return;
-    
     const timers = [
       setTimeout(() => setStep(1), 1500),
       setTimeout(() => setStep(2), 3000),
@@ -19,7 +17,7 @@ const FlyerGeneratorAnimation = () => {
     ];
     
     return () => timers.forEach(clearTimeout);
-  }, [step]);
+  }, [step === 0]);
 
   useEffect(() => {
     if (step === 4 && counter < 15) {
