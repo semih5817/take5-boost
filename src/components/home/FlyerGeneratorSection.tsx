@@ -121,11 +121,11 @@ export const FlyerGeneratorSection = () => {
             text="Une seule action, plusieurs réseaux. Aujourd'hui : Instagram & Google. Bientôt : Facebook, TikTok, LinkedIn."
             extra={
               <div className="flex justify-center items-center gap-3 mt-3">
-                <img src="/logos/instagram.svg" alt="Instagram" className="w-6 h-6" />
-                <img src="/logos/facebook.svg" alt="Facebook" className="w-6 h-6" />
-                <img src="/logos/tiktok.svg" alt="TikTok" className="w-6 h-6" />
-                <img src="/logos/google.svg" alt="Google Business" className="w-6 h-6" />
-                <img src="/logos/linkedin.svg" alt="LinkedIn" className="w-6 h-6" />
+                <img src="/logos/instagram.png" alt="Instagram" className="w-7 h-7 object-contain" />
+                <img src="/logos/facebook.svg" alt="Facebook" className="w-7 h-7 object-contain" />
+                <img src="/logos/tiktok.png" alt="TikTok" className="w-7 h-7 object-contain" />
+                <img src="/logos/google.svg" alt="Google Business" className="w-7 h-7 object-contain" />
+                <img src="/logos/linkedin.png" alt="LinkedIn" className="w-7 h-7 object-contain" />
               </div>
             }
           />
