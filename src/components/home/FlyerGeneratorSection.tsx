@@ -6,7 +6,7 @@ export const FlyerGeneratorSection = () => {
   return (
     <section className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-10 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1fr] gap-10 items-center">
           {/* Texte à gauche */}
           <div>
             <p className="text-sm uppercase tracking-wider text-primary font-semibold mb-2">
