@@ -23,7 +23,7 @@ export const FlyerGeneratorSection = () => {
         {/* Contenu en grille : arguments à gauche, animation à droite */}
         <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1fr] gap-10 items-start">
           {/* Arguments marketing à gauche */}
-          <div className="space-y-4">
+          <div className="space-y-4 order-2 md:order-1">
             {/* Temps */}
             <div className="flex items-start gap-4">
               <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-blue-500 flex items-center justify-center text-2xl">
@@ -91,7 +91,7 @@ export const FlyerGeneratorSection = () => {
           </div>
 
           {/* Animation à droite */}
-          <div>
+          <div className="order-1 md:order-2">
             <FlyerGeneratorAnimation />
           </div>
         </div>
