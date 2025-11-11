@@ -1,16 +1,10 @@
-import { Button } from "@/components/ui/button";
 import { 
-  FlyerGeneratorAnimation,
-  FlyerGeneratorBenefits
+  FlyerGeneratorAnimation
 } from "@/components/animations";
 
 export const FlyerGeneratorSection = () => {
-  const scrollToForm = () => {
-    document.getElementById('subscription-form')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
-    <section className="py-20 bg-secondary">
+    <section className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-10 items-center">
           {/* Texte à gauche */}
@@ -82,11 +76,6 @@ export const FlyerGeneratorSection = () => {
           <div>
             <FlyerGeneratorAnimation />
           </div>
-        </div>
-
-        {/* Benefits en dessous */}
-        <div className="mt-12">
-          <FlyerGeneratorBenefits />
         </div>
       </div>
     </section>
