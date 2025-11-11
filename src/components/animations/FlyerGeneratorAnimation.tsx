@@ -354,30 +354,33 @@ const FlyerGeneratorAnimation = () => {
               <span style={{ fontWeight: '600' }}>votre_restaurant</span>{' '}
               <span>Nouvelle pizza truffe 🍕 à 12,90€ ! Disponible dès vendredi 🔥 #pizza #truffe</span>
             </div>
-
-            <div style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              background: 'rgba(39, 174, 96, 0.95)',
-              color: 'white',
-              padding: '20px 30px',
-              borderRadius: '15px',
-              fontSize: '16px',
-              fontWeight: 'bold',
-              boxShadow: '0 10px 30px rgba(39, 174, 96, 0.4)',
-              animation: step === 4 ? 'popIn 0.5s ease-out' : 'none',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '8px'
-            }}>
-              <span style={{ fontSize: '32px' }}>✅</span>
-              <span>Publié sur Instagram</span>
-            </div>
           </div>
         </div>
+        
+        {/* Notification Instagram en haut à droite */}
+        {step === 4 && (
+          <div style={{
+            position: 'absolute',
+            top: '-10px',
+            right: '-120px',
+            background: 'linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)',
+            color: 'white',
+            padding: '8px 16px',
+            borderRadius: '25px',
+            fontSize: '13px',
+            fontWeight: 'bold',
+            boxShadow: '0 4px 12px rgba(220, 39, 67, 0.4)',
+            animation: 'slideInRight 0.5s ease-out',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            whiteSpace: 'nowrap',
+            zIndex: 20
+          }}>
+            <span style={{ fontSize: '16px' }}>✓</span>
+            <span>Publié sur Instagram</span>
+          </div>
+        )}
       </div>
 
       {step === 4 && (
@@ -508,6 +511,17 @@ const FlyerGeneratorAnimation = () => {
           }
           40% {
             opacity: 1;
+          }
+        }
+
+        @keyframes slideInRight {
+          from {
+            opacity: 0;
+            transform: translateX(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
           }
         }
       `}</style>
