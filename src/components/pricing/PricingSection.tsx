@@ -155,175 +155,113 @@ const PackCard = ({
 export const PricingSection = () => {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("annual");
   const packs: Record<string, Pack> = {
-    free: {
-      name: "Free",
+    essentiel: {
+      name: "Essentiel",
       icon: "💡",
-      tagline: "Testez toutes les fonctionnalités",
+      tagline: "Pour débuter avec TakeFive",
       monthly: {
-        price: 0,
-        duration: "1 mois",
-        nfcPlates: 0
-      },
-      features: [{
-        text: "1 QR Code dynamique",
-        included: true
-      }, {
-        text: "Scans illimités",
-        included: true
-      }, {
-        text: "Centralisation Avis Google",
-        included: true
-      }, {
-        text: "Réponses IA (100 tokens)",
-        included: true
-      }, {
-        text: "🚨 Alertes avis négatifs WhatsApp",
-        included: true
-      }, {
-        text: "📊 Alertes concurrents (hebdo)",
-        included: true
-      }, {
-        text: "💡 Opportunités IA (hebdo)",
-        included: true
-      }, {
-        text: "🎯 Missions gamifiées",
-        included: true
-      }, {
-        text: "📱 Rapports WhatsApp",
-        included: true
-      }],
-      cta: "Commencer gratuitement",
-      ctaStyle: "bg-slate-700 hover:bg-slate-600"
-    },
-    starter: {
-      name: "Starter",
-      icon: "💼",
-      tagline: "Pour les commerçants qui démarrent",
-      monthly: {
-        price: 19.9,
+        price: 29.9,
         duration: "mois",
         nfcPlates: 0
       },
-      annual: [{
-        duration: "1 an",
-        pricePerMonth: 14.9,
-        totalPrice: 178.8,
-        savings: 89.9,
-        savingsDetail: "60€ abonnement + 29,90€ plaque",
-        nfcPlates: 1
-      }, {
-        duration: "2 ans",
-        pricePerMonth: 13,
-        totalPrice: 312,
-        savings: 225.4,
-        savingsDetail: "165,60€ abonnement + 59,80€ plaques",
-        nfcPlates: 2,
-        badge: "🔥 MEILLEURE OFFRE"
-      }, {
-        duration: "4 ans",
-        pricePerMonth: 10,
-        totalPrice: 480,
-        savings: 594.8,
-        savingsDetail: "475,20€ abonnement + 119,60€ plaques",
-        nfcPlates: 4,
-        badge: "⚡ -50%"
-      }],
       features: [{
-        text: "Tout du pack FREE, en illimité",
+        text: "Radar avis Google",
         included: true
       }, {
-        text: "Support prioritaire",
+        text: "Réponses IA automatiques",
         included: true
       }, {
-        text: "Plaque NFC offerte",
-        included: "annual"
+        text: "Alertes WhatsApp",
+        included: true
+      }, {
+        text: "Dashboard basique",
+        included: true
       }],
-      cta: "Démarrer",
-      ctaStyle: "bg-purple-600 hover:bg-purple-700"
+      cta: "Essayer Gratuitement",
+      ctaStyle: "bg-primary hover:bg-primary/90"
     },
     pro: {
       name: "Pro",
       icon: "🚀",
-      tagline: "Pour dominer votre marché",
-      badge: "⭐ Recommandé",
+      tagline: "Pour développer votre présence",
+      badge: "⭐ RECOMMANDÉ",
       monthly: {
-        price: 49,
+        price: 59.9,
         duration: "mois",
         nfcPlates: 0
       },
-      annual: [{
-        duration: "1 an",
-        pricePerMonth: 37,
-        totalPrice: 444,
-        savings: 203.8,
-        savingsDetail: "144€ abonnement + 59,80€ plaques",
-        nfcPlates: 2,
-        badge: "⭐ POPULAIRE"
-      }, {
-        duration: "2 ans",
-        pricePerMonth: 32,
-        totalPrice: 768,
-        savings: 497.7,
-        savingsDetail: "408€ abonnement + 89,70€ plaques",
-        nfcPlates: 3,
-        badge: "🔥 MEILLEURE OFFRE"
-      }, {
-        duration: "4 ans",
-        pricePerMonth: 25,
-        totalPrice: 1200,
-        savings: 1321.6,
-        savingsDetail: "1 152€ abonnement + 169,60€ plaques premium",
-        nfcPlates: 5,
-        nfcPremium: true,
-        badge: "⚡ OFFRE ELITE"
-      }],
       features: [{
-        text: "Tout du Starter +",
+        text: "Tout Essentiel",
         included: true
       }, {
-        text: "Réponses IA illimitées",
+        text: "Radar multi-plateformes",
         included: true
       }, {
-        text: "🎨 Dashboard Analytics (démo)",
-        included: true,
-        badge: "🎨 Aperçu"
-      }, {
-        text: "Alertes concurrents quotidiennes",
+        text: "Publication WhatsApp",
         included: true
       }, {
-        text: "Opportunités IA quotidiennes",
+        text: "Instagram + Google + Facebook",
         included: true
       }, {
-        text: "Support prioritaire 24/7",
+        text: "Reporting hebdomadaire",
         included: true
-      }, {
-        text: "🎮 Jeux concours",
-        included: false,
-        badge: "🔜 T1 2026"
-      }, {
-        text: "📧 Campagnes SMS/Email",
-        included: false,
-        badge: "🔜 T2 2026"
       }],
-      cta: "Passer au Pro",
-      ctaStyle: "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+      cta: "Essayer Gratuitement",
+      ctaStyle: "bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
+    },
+    premium: {
+      name: "Premium",
+      icon: "👑",
+      tagline: "Pour une communication professionnelle",
+      monthly: {
+        price: 99.9,
+        duration: "mois",
+        nfcPlates: 0
+      },
+      features: [{
+        text: "Tout Pro",
+        included: true
+      }, {
+        text: "Générateur de flyers",
+        included: true
+      }, {
+        text: "Templates personnalisés",
+        included: true
+      }, {
+        text: "Analytics avancés",
+        included: true
+      }, {
+        text: "Support prioritaire",
+        included: true
+      }],
+      cta: "Essayer Gratuitement",
+      ctaStyle: "bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700"
     }
   };
-  return <section className="py-20 px-4 bg-gradient-to-b from-[#1A1F35] to-[#0A0E1A]">
+  return <section className="py-20 px-4 bg-gradient-to-b from-[#1A1F35] to-[#0A0E1A]" id="pricing">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Tarifs Simples et Transparents
+          </h2>
+          <p className="text-xl text-slate-400 mb-8">
+            Choisissez le forfait qui correspond à vos besoins
+          </p>
+        </div>
 
         {/* Grille de packs */}
         <div className="grid lg:grid-cols-3 gap-8">
-          
-          
-          
+          <PackCard pack={packs.essentiel} billing="monthly" />
+          <PackCard pack={packs.pro} billing="monthly" recommended={true} />
+          <PackCard pack={packs.premium} billing="monthly" />
         </div>
 
-        {/* Lien vers tableau comparatif */}
+        {/* Message 30 jours gratuit */}
         <div className="text-center mt-12">
-          
+          <p className="text-xl md:text-2xl text-green-400 font-bold">
+            🎁 30 jours d'essai gratuit sur tous les forfaits - Sans carte bancaire
+          </p>
         </div>
       </div>
     </section>;
