@@ -94,6 +94,48 @@ export const FlyerGeneratorSection = () => {
             <FlyerGeneratorAnimation />
           </div>
         </div>
+
+        {/* 3 cartes de bénéfices */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+          {/* Carte 1 - Pourquoi c'est différent */}
+          <div className="bg-card border border-border rounded-2xl p-6 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20">
+            <div className="text-5xl mb-4">💎</div>
+            <h3 className="text-xl font-bold text-foreground mb-3">
+              Pourquoi c'est différent ?
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              TakeFive ne se contente pas de créer des visuels : il libère le chef d'entreprise de la contrainte de communication.
+              Chaque publication devient une action automatique, maîtrisée et cohérente — sans effort, sans perte de temps, sans dépendre d'un tiers.
+              C'est la puissance d'un service marketing complet, dans votre poche.
+            </p>
+          </div>
+
+          {/* Carte 2 - Gain de temps */}
+          <div className="bg-card border border-border rounded-2xl p-6 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20">
+            <div className="text-5xl mb-4">⏱️</div>
+            <h3 className="text-xl font-bold text-foreground mb-3">
+              Un gain de temps monumental
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Créer un visuel pro prend souvent 30 à 45 minutes entre la photo, la mise en page et la publication.
+              Avec TakeFive, tout est prêt en moins d'une minute, directement depuis WhatsApp.
+              Résultat : plus de temps pour vos clients, moins de stress, et une communication constante.
+            </p>
+          </div>
+
+          {/* Carte 3 - Publication multi-canaux */}
+          <div className="bg-card border border-border rounded-2xl p-6 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20">
+            <div className="text-5xl mb-4">🌍</div>
+            <h3 className="text-xl font-bold text-foreground mb-3">
+              Publication multi-canaux
+            </h3>
+            <p className="text-muted-foreground leading-relaxed">
+              Votre visuel est automatiquement publié sur Instagram et Google Business.
+              Bientôt, il le sera aussi sur Facebook, TikTok, LinkedIn et bien d'autres.
+              TakeFive centralise tout pour vous offrir une présence pro sur chaque réseau.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
