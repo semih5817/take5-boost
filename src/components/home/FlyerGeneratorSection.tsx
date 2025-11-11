@@ -6,8 +6,12 @@ export const FlyerGeneratorSection = () => {
       <div className="max-w-7xl mx-auto px-4">
         {/* Titre et sous-titre en pleine largeur */}
         <div className="mb-16 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground leading-tight mb-4">
-            Transformez une simple photo en communication professionnelle prête à publier.
+          <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
+            <span className="text-foreground">Transformez une </span>
+            <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-purple-600 bg-clip-text text-transparent">
+              simple photo en communication professionnelle
+            </span>
+            <span className="text-foreground"> prête à publier.</span>
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
             Plus besoin de graphiste, d'outils complexes ou de perdre du temps à formater vos publications.
