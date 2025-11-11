@@ -117,7 +117,14 @@ export const FlyerGeneratorSection = () => {
 
           <BenefitCard
             icon="🌍"
-            title="Publication multi-canaux"
+            title={
+              <div className="flex items-center gap-2">
+                <span>Publication multi-canaux</span>
+                <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full font-normal">
+                  À venir
+                </span>
+              </div>
+            }
             text="Une seule action, plusieurs réseaux. Aujourd'hui : Instagram & Google. Bientôt : Facebook, TikTok, LinkedIn."
             extra={
               <div className="flex justify-center items-center gap-3 mt-3">
