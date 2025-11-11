@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { MultiPublicationAnimation } from "@/components/animations";
+import { AIResponseAnimation } from "@/components/animations";
 
 export const WaouwMomentsSection = () => {
   const scrollToForm = () => {
@@ -32,28 +34,9 @@ export const WaouwMomentsSection = () => {
               📱 Publication Multi-Réseaux Instantanée
             </h4>
             
-            {/* Démonstration visuelle 3 écrans */}
-            <div className="space-y-4 mb-6">
-              <div className="p-4 bg-muted rounded-lg">
-                <p className="font-bold mb-2">1️⃣ Smartphone WhatsApp</p>
-                <p className="text-primary italic">
-                  "Publie sur Insta et Google : nouvelle pizza truffe 🍕 12,90€"
-                </p>
-              </div>
-              
-              <div className="p-4 bg-muted rounded-lg">
-                <p className="font-bold mb-2">2️⃣ Post Instagram créé</p>
-                <p className="text-primary">
-                  Photo + légende + hashtags #foodporn #pizza
-                </p>
-              </div>
-              
-              <div className="p-4 bg-muted rounded-lg">
-                <p className="font-bold mb-2">3️⃣ Post Google My Business publié</p>
-                <p className="text-primary">
-                  Visible par tous vos clients locaux
-                </p>
-              </div>
+            {/* Animation intégrée */}
+            <div className="mb-6">
+              <MultiPublicationAnimation />
             </div>
             
             <p className="text-2xl md:text-3xl font-bold text-center text-green-600">
@@ -70,25 +53,9 @@ export const WaouwMomentsSection = () => {
               ⭐ Réponses IA Automatiques
             </h4>
             
-            {/* Démonstration avant/après */}
-            <div className="space-y-4 mb-6">
-              <div className="p-4 bg-red-50 border-l-4 border-red-500 rounded-lg">
-                <p className="font-bold mb-2">AVANT : Avis Google 5 étoiles</p>
-                <p className="text-muted-foreground">
-                  "Excellent restaurant, service rapide et plats délicieux !"
-                </p>
-              </div>
-              
-              <p className="text-center font-bold text-red-500 py-2">
-                ↓ TakeFive IA analyse et répond ↓
-              </p>
-              
-              <div className="p-4 bg-green-50 border-l-4 border-green-600 rounded-lg">
-                <p className="font-bold mb-2">APRÈS : Réponse automatique</p>
-                <p className="text-green-600 font-semibold">
-                  "Merci beaucoup pour votre retour ! Ravis que notre service vous ait plu. Au plaisir de vous revoir bientôt ! 🙏"
-                </p>
-              </div>
+            {/* Animation intégrée */}
+            <div className="mb-6">
+              <AIResponseAnimation />
             </div>
             
             <p className="text-2xl md:text-3xl font-bold text-center text-green-600">

@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card";
+import { FlyerGeneratorAnimation } from "@/components/animations";
 
 export const FlyerGeneratorSection = () => {
   return (
@@ -9,6 +10,11 @@ export const FlyerGeneratorSection = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
           🎨 Générateur de Flyers : Un Visuel Pro en 15 Secondes
         </h2>
+        
+        {/* Animation du générateur */}
+        <div className="mb-12">
+          <FlyerGeneratorAnimation />
+        </div>
         
         {/* Comparaison avant/après en 2 colonnes */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 mb-8">
