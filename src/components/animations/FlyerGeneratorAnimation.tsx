@@ -31,8 +31,6 @@ const FlyerGeneratorAnimation = () => {
   return (
     <div className="flyer-generator-animation" style={{
       padding: '40px 20px',
-      background: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-      borderRadius: '20px',
       position: 'relative',
       minHeight: '550px',
       overflow: 'hidden'

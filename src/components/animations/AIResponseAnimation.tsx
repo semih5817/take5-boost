@@ -63,8 +63,6 @@ const AIResponseAnimation = () => {
   return (
     <div className="ai-response-animation" style={{
       padding: '40px 20px',
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      borderRadius: '20px',
       position: 'relative',
       minHeight: '500px',
       display: 'flex',

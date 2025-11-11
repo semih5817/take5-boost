@@ -3,16 +3,20 @@ import { FlyerGeneratorAnimation } from "@/components/animations";
 
 export const FlyerGeneratorSection = () => {
   return (
-    <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 to-gray-50">
+    <section className="py-12 md:py-20 bg-background">
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         
         {/* Titre */}
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
           🎨 Générateur de Flyers : Un Visuel Pro en 15 Secondes
         </h2>
         
+        <p className="text-lg md:text-xl text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+          Envoyez une photo sur WhatsApp, recevez un flyer professionnel prêt à publier
+        </p>
+        
         {/* Animation du générateur */}
-        <div className="mb-12">
+        <div className="mb-12 bg-card border border-border rounded-lg p-6">
           <FlyerGeneratorAnimation />
         </div>
         
