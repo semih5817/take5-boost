@@ -52,11 +52,11 @@ const FlyerGeneratorAnimation = () => {
 
   return (
     <div style={{
-      padding: '40px 20px',
+      padding: '30px 20px',
       background: 'transparent',
       borderRadius: '20px',
       position: 'relative',
-      minHeight: '550px',
+      minHeight: '420px',
       overflow: 'hidden'
     }}>
       {/* Phone 1 - WhatsApp Input with REAL PHOTO */}
@@ -64,14 +64,14 @@ const FlyerGeneratorAnimation = () => {
         position: 'absolute',
         left: step >= 0 ? '8%' : '-100%',
         top: '50%',
-        transform: `translateY(-50%) perspective(1000px) rotateY(-15deg) ${step >= 2 ? 'scale(0.85) translateX(-50px)' : 'scale(1)'}`,
+        transform: `translateY(-50%) perspective(1000px) rotateY(-15deg) ${step >= 2 ? 'scale(0.75) translateX(-50px)' : 'scale(0.85)'}`,
         transition: 'all 1s cubic-bezier(0.34, 1.56, 0.64, 1)',
         opacity: step >= 2 ? 0.3 : 1,
         filter: step >= 2 ? 'blur(2px)' : 'none'
       }}>
         <div style={{
-          width: '280px',
-          height: '560px',
+          width: '220px',
+          height: '440px',
           background: 'linear-gradient(145deg, #1e1e1e, #2d2d2d)',
           borderRadius: '40px',
           border: '8px solid #000',
@@ -141,8 +141,8 @@ const FlyerGeneratorAnimation = () => {
                   animation: 'slideUp 0.6s ease-out'
                 }}>
                   <div style={{
-                    width: '200px',
-                    height: '200px',
+                    width: '150px',
+                    height: '150px',
                     borderRadius: '10px',
                     overflow: 'hidden',
                     marginBottom: '8px',
@@ -260,14 +260,14 @@ const FlyerGeneratorAnimation = () => {
         position: 'absolute',
         left: '50%',
         top: '50%',
-        transform: `translate(-50%, -50%) scale(${step >= 3 ? 1 : 0.3}) perspective(1000px) rotateY(${step >= 3 ? '0deg' : '180deg'})`,
+        transform: `translate(-50%, -50%) scale(${step >= 3 ? 0.85 : 0.3}) perspective(1000px) rotateY(${step >= 3 ? '0deg' : '180deg'})`,
         transition: 'all 1s cubic-bezier(0.34, 1.56, 0.64, 1)',
         opacity: step >= 3 ? 1 : 0,
         zIndex: step >= 3 ? 10 : 0
       }}>
         <div style={{
-          width: '350px',
-          height: '350px',
+          width: '280px',
+          height: '280px',
           borderRadius: '20px',
           boxShadow: '0 30px 80px rgba(0,0,0,0.4)',
           overflow: 'hidden',
@@ -323,13 +323,13 @@ const FlyerGeneratorAnimation = () => {
         position: 'absolute',
         right: step >= 4 ? '8%' : '120%',
         top: '50%',
-        transform: 'translateY(-50%) perspective(1000px) rotateY(15deg)',
+        transform: 'translateY(-50%) perspective(1000px) rotateY(15deg) scale(0.85)',
         transition: 'all 1s cubic-bezier(0.34, 1.56, 0.64, 1)',
         opacity: step >= 4 ? 1 : 0
       }}>
         <div style={{
-          width: '280px',
-          height: '560px',
+          width: '220px',
+          height: '440px',
           background: 'linear-gradient(145deg, #1e1e1e, #2d2d2d)',
           borderRadius: '40px',
           border: '8px solid #000',
@@ -446,20 +446,20 @@ const FlyerGeneratorAnimation = () => {
       {step === 4 && (
         <div style={{
           position: 'absolute',
-          bottom: '30px',
+          bottom: '20px',
           left: '50%',
           transform: 'translateX(-50%)',
           background: 'rgba(39, 174, 96, 0.95)',
           color: 'white',
-          padding: '15px 40px',
+          padding: '10px 30px',
           borderRadius: '50px',
-          fontSize: '22px',
+          fontSize: '16px',
           fontWeight: 'bold',
           boxShadow: '0 10px 30px rgba(39, 174, 96, 0.4)',
           animation: 'popIn 0.5s ease-out',
           display: 'flex',
           alignItems: 'center',
-          gap: '10px',
+          gap: '8px',
           whiteSpace: 'nowrap'
         }}>
           <span>⚡</span>
