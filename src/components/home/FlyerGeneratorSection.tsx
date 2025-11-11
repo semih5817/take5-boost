@@ -1,4 +1,5 @@
 import { FlyerGeneratorAnimation } from "@/components/animations";
+import BenefitCard from "@/components/animations/Benefits";
 
 export const FlyerGeneratorSection = () => {
   return (
@@ -96,46 +97,39 @@ export const FlyerGeneratorSection = () => {
         </div>
 
         {/* 3 cartes de bénéfices */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-          {/* Carte 1 - Pourquoi c'est différent */}
-          <div className="bg-card border border-border rounded-2xl p-6 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20">
-            <div className="text-5xl mb-4">💎</div>
-            <h3 className="text-xl font-bold text-foreground mb-3">
-              Pourquoi c'est différent ?
-            </h3>
-            <p className="text-muted-foreground leading-relaxed">
-              TakeFive ne se contente pas de créer des visuels : il libère le chef d'entreprise de la contrainte de communication.
-              Chaque publication devient une action automatique, maîtrisée et cohérente — sans effort, sans perte de temps, sans dépendre d'un tiers.
-              C'est la puissance d'un service marketing complet, dans votre poche.
-            </p>
-          </div>
+        <section className="grid gap-6 md:grid-cols-3 mt-16">
+          <BenefitCard
+            icon="💎"
+            title="Pourquoi c'est différent ?"
+            text="TakeFive ne crée pas juste des visuels — il automatise votre communication. Une photo, un message, et tout part partout. Simple, cohérent, sans effort."
+          />
 
-          {/* Carte 2 - Gain de temps */}
-          <div className="bg-card border border-border rounded-2xl p-6 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20">
-            <div className="text-5xl mb-4">⏱️</div>
-            <h3 className="text-xl font-bold text-foreground mb-3">
-              Un gain de temps monumental
-            </h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Créer un visuel pro prend souvent 30 à 45 minutes entre la photo, la mise en page et la publication.
-              Avec TakeFive, tout est prêt en moins d'une minute, directement depuis WhatsApp.
-              Résultat : plus de temps pour vos clients, moins de stress, et une communication constante.
-            </p>
-          </div>
+          <BenefitCard
+            icon="⏱️"
+            title="Gain de temps monumental"
+            text="Créez en 30 secondes ce qui prenait 45 minutes. Fini les allers-retours, fichiers, logiciels. Plus de clients, moins de gestion."
+            extra={
+              <p className="text-base font-bold text-green-500 mt-2 text-center">
+                45 min ➜ 30 sec 🚀
+              </p>
+            }
+          />
 
-          {/* Carte 3 - Publication multi-canaux */}
-          <div className="bg-card border border-border rounded-2xl p-6 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-primary/20">
-            <div className="text-5xl mb-4">🌍</div>
-            <h3 className="text-xl font-bold text-foreground mb-3">
-              Publication multi-canaux
-            </h3>
-            <p className="text-muted-foreground leading-relaxed">
-              Votre visuel est automatiquement publié sur Instagram et Google Business.
-              Bientôt, il le sera aussi sur Facebook, TikTok, LinkedIn et bien d'autres.
-              TakeFive centralise tout pour vous offrir une présence pro sur chaque réseau.
-            </p>
-          </div>
-        </div>
+          <BenefitCard
+            icon="🌍"
+            title="Publication multi-canaux"
+            text="Une seule action, plusieurs réseaux. Aujourd'hui : Instagram & Google. Bientôt : Facebook, TikTok, LinkedIn."
+            extra={
+              <div className="flex justify-center items-center gap-3 mt-3">
+                <img src="/logos/instagram.svg" alt="Instagram" className="w-6 h-6" />
+                <img src="/logos/facebook.svg" alt="Facebook" className="w-6 h-6" />
+                <img src="/logos/tiktok.svg" alt="TikTok" className="w-6 h-6" />
+                <img src="/logos/google.svg" alt="Google Business" className="w-6 h-6" />
+                <img src="/logos/linkedin.svg" alt="LinkedIn" className="w-6 h-6" />
+              </div>
+            }
+          />
+        </section>
       </div>
     </section>
   );

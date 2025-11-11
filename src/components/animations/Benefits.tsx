@@ -4,7 +4,7 @@ import React from 'react';
  * Composant de carte de bénéfice réutilisable
  * Style sobre et professionnel
  */
-const BenefitCard = ({ icon, title, text }) => (
+const BenefitCard = ({ icon, title, text, extra = null }) => (
   <div
     className="bg-card p-6 rounded-xl border border-border hover:shadow-elegant transition-all duration-300 cursor-pointer hover:-translate-y-1"
   >
@@ -15,6 +15,7 @@ const BenefitCard = ({ icon, title, text }) => (
     <p className="text-sm text-muted-foreground leading-relaxed">
       {text}
     </p>
+    {extra && <div className="mt-3">{extra}</div>}
   </div>
 );
 
