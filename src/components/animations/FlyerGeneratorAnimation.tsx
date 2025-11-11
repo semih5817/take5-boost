@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import pizzaPhoto from '@/assets/pizza-truffe-photo.png';
+import pizzaFlyer from '@/assets/pizza-truffe-flyer.png';
 
 const FlyerGeneratorAnimation = () => {
   const [step, setStep] = useState(0);
   const [counter, setCounter] = useState(0);
+  const [sparkles, setSparkles] = useState<Array<{ id: number; x: number; y: number }>>([]);
   
   useEffect(() => {
-    // Animation cycle: 8 seconds total
+    if (step !== 0) return;
+    
     const timers = [
-      setTimeout(() => setStep(1), 1500),  // Show WhatsApp message
-      setTimeout(() => setStep(2), 3000),  // Generate flyer
-      setTimeout(() => setStep(3), 4500),  // Show publication
-      setTimeout(() => setStep(4), 6000),  // Show counter
-      setTimeout(() => setStep(0), 8500),  // Reset
+      setTimeout(() => setStep(1), 1500),
+      setTimeout(() => setStep(2), 3000),
+      setTimeout(() => setStep(3), 4000),
+      setTimeout(() => setStep(4), 5500),
+      setTimeout(() => setStep(0), 8500),
     ];
     
     return () => timers.forEach(clearTimeout);
-  }, [step === 0]);
+  }, [step]);
 
   useEffect(() => {
     if (step === 4 && counter < 15) {
@@ -28,21 +32,44 @@ const FlyerGeneratorAnimation = () => {
     }
   }, [step, counter]);
 
+  useEffect(() => {
+    if (step === 2) {
+      const interval = setInterval(() => {
+        const newSparkle = {
+          id: Math.random(),
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+        };
+        setSparkles(prev => [...prev, newSparkle]);
+        setTimeout(() => {
+          setSparkles(prev => prev.filter(s => s.id !== newSparkle.id));
+        }, 800);
+      }, 100);
+      
+      return () => clearInterval(interval);
+    } else {
+      setSparkles([]);
+    }
+  }, [step]);
+
   return (
-    <div className="flyer-generator-animation" style={{
+    <div style={{
       padding: '40px 20px',
+      background: 'transparent',
+      borderRadius: '20px',
       position: 'relative',
       minHeight: '550px',
       overflow: 'hidden'
     }}>
-      {/* Phone 1 - WhatsApp Input */}
+      {/* Phone 1 - WhatsApp Input with REAL PHOTO */}
       <div style={{
         position: 'absolute',
         left: step >= 0 ? '8%' : '-100%',
         top: '50%',
-        transform: `translateY(-50%) perspective(1000px) rotateY(-15deg) ${step >= 2 ? 'scale(0.85)' : 'scale(1)'}`,
+        transform: `translateY(-50%) perspective(1000px) rotateY(-15deg) ${step >= 2 ? 'scale(0.85) translateX(-50px)' : 'scale(1)'}`,
         transition: 'all 1s cubic-bezier(0.34, 1.56, 0.64, 1)',
-        opacity: step >= 2 ? 0.5 : 1
+        opacity: step >= 2 ? 0.3 : 1,
+        filter: step >= 2 ? 'blur(2px)' : 'none'
       }}>
         <div style={{
           width: '280px',
@@ -54,7 +81,6 @@ const FlyerGeneratorAnimation = () => {
           position: 'relative',
           overflow: 'hidden'
         }}>
-          {/* Notch */}
           <div style={{
             position: 'absolute',
             top: '0',
@@ -67,7 +93,6 @@ const FlyerGeneratorAnimation = () => {
             zIndex: 10
           }}></div>
           
-          {/* Screen */}
           <div style={{
             position: 'absolute',
             top: '40px',
@@ -78,7 +103,6 @@ const FlyerGeneratorAnimation = () => {
             borderRadius: '32px',
             overflow: 'hidden'
           }}>
-            {/* WhatsApp Header */}
             <div style={{
               background: '#075E54',
               padding: '15px',
@@ -102,7 +126,6 @@ const FlyerGeneratorAnimation = () => {
               <span>TakeFive Flyer</span>
             </div>
             
-            {/* Photo Message */}
             <div style={{
               padding: '20px',
               display: 'flex',
@@ -110,28 +133,32 @@ const FlyerGeneratorAnimation = () => {
               alignItems: 'flex-end',
               gap: '12px'
             }}>
-              {/* Photo */}
               {step >= 0 && (
                 <div style={{
                   background: '#DCF8C6',
                   borderRadius: '15px 15px 0 15px',
                   padding: '8px',
-                  maxWidth: '80%',
+                  maxWidth: '85%',
                   boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
                   animation: 'slideUp 0.6s ease-out'
                 }}>
                   <div style={{
-                    width: '180px',
-                    height: '180px',
+                    width: '200px',
+                    height: '200px',
                     borderRadius: '10px',
-                    background: 'linear-gradient(135deg, #ff9a56 0%, #ff6a88 100%)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '80px',
-                    marginBottom: '8px'
+                    overflow: 'hidden',
+                    marginBottom: '8px',
+                    background: '#f5f5f5'
                   }}>
-                    🍕
+                    <img 
+                      src={pizzaPhoto}
+                      alt="Pizza truffe"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover'
+                      }}
+                    />
                   </div>
                   <div style={{
                     fontSize: '10px',
@@ -143,13 +170,12 @@ const FlyerGeneratorAnimation = () => {
                 </div>
               )}
               
-              {/* Text Message */}
               {step >= 0 && (
                 <div style={{
                   background: '#DCF8C6',
                   borderRadius: '15px 15px 0 15px',
                   padding: '12px 16px',
-                  maxWidth: '80%',
+                  maxWidth: '85%',
                   boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
                   animation: 'slideUp 0.6s ease-out 0.2s both'
                 }}>
@@ -173,7 +199,6 @@ const FlyerGeneratorAnimation = () => {
               )}
             </div>
             
-            {/* Processing indicator */}
             {step >= 1 && step < 2 && (
               <div style={{
                 padding: '20px',
@@ -193,7 +218,7 @@ const FlyerGeneratorAnimation = () => {
                     alignItems: 'center'
                   }}>
                     <div className="dot-pulse"></div>
-                    <span style={{ fontSize: '14px', color: '#666' }}>Création du flyer...</span>
+                    <span style={{ fontSize: '14px', color: '#666' }}>Génération en cours...</span>
                   </div>
                 </div>
               </div>
@@ -202,125 +227,79 @@ const FlyerGeneratorAnimation = () => {
         </div>
       </div>
 
-      {/* Generated Flyer */}
+      {step === 2 && (
+        <>
+          {sparkles.map(sparkle => (
+            <div
+              key={sparkle.id}
+              style={{
+                position: 'absolute',
+                left: `${sparkle.x}%`,
+                top: `${sparkle.y}%`,
+                width: '8px',
+                height: '8px',
+                background: '#f97316',
+                borderRadius: '50%',
+                animation: 'sparkle 0.8s ease-out',
+                boxShadow: '0 0 10px rgba(249, 115, 22, 0.8)'
+              }}
+            />
+          ))}
+          <div style={{
+            position: 'absolute',
+            left: '50%',
+            top: '50%',
+            transform: 'translate(-50%, -50%)',
+            fontSize: '100px',
+            animation: 'magicPulse 0.8s ease-in-out'
+          }}>
+            ✨
+          </div>
+        </>
+      )}
+
       <div style={{
         position: 'absolute',
         left: '50%',
         top: '50%',
-        transform: `translate(-50%, -50%) scale(${step >= 2 ? 1 : 0}) perspective(1000px) rotateY(${step >= 3 ? '0deg' : '90deg'})`,
-        transition: 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)',
-        opacity: step >= 2 ? 1 : 0,
-        zIndex: step >= 2 ? 5 : 0
+        transform: `translate(-50%, -50%) scale(${step >= 3 ? 1 : 0.3}) perspective(1000px) rotateY(${step >= 3 ? '0deg' : '180deg'})`,
+        transition: 'all 1s cubic-bezier(0.34, 1.56, 0.64, 1)',
+        opacity: step >= 3 ? 1 : 0,
+        zIndex: step >= 3 ? 10 : 0
       }}>
         <div style={{
-          width: '300px',
-          height: '300px',
-          background: 'white',
+          width: '350px',
+          height: '350px',
           borderRadius: '20px',
-          boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
+          boxShadow: '0 30px 80px rgba(0,0,0,0.4)',
           overflow: 'hidden',
-          position: 'relative'
+          position: 'relative',
+          background: 'white'
         }}>
-          {/* Flyer Content */}
-          <div style={{
-            width: '100%',
-            height: '100%',
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            padding: '20px',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            color: 'white',
-            position: 'relative'
-          }}>
-            {/* Logo */}
+          <img 
+            src={pizzaFlyer}
+            alt="Flyer Pizza Truffe"
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              display: step >= 3 ? 'block' : 'none'
+            }}
+          />
+
+          {step === 3 && (
             <div style={{
               position: 'absolute',
-              top: '15px',
-              right: '15px',
-              width: '50px',
-              height: '50px',
-              borderRadius: '50%',
-              background: 'white',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '24px',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
-            }}>
-              🍕
-            </div>
+              top: 0,
+              left: '-100%',
+              width: '50%',
+              height: '100%',
+              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent)',
+              animation: 'shine 1s ease-out'
+            }}></div>
+          )}
 
-            {/* Main Content */}
-            <div style={{
-              marginTop: '80px'
-            }}>
-              <h2 style={{
-                margin: '0 0 12px 0',
-                fontSize: '28px',
-                fontWeight: 'bold',
-                lineHeight: '1.2',
-                textShadow: '0 2px 8px rgba(0,0,0,0.2)'
-              }}>
-                NOUVELLE<br/>
-                PIZZA TRUFFE
-              </h2>
-              
-              <div style={{
-                background: 'rgba(255, 255, 255, 0.2)',
-                backdropFilter: 'blur(10px)',
-                borderRadius: '12px',
-                padding: '12px 16px',
-                marginBottom: '12px'
-              }}>
-                <div style={{
-                  fontSize: '36px',
-                  fontWeight: 'bold',
-                  marginBottom: '4px'
-                }}>
-                  12,90€
-                </div>
-                <div style={{
-                  fontSize: '14px',
-                  opacity: 0.9
-                }}>
-                  Disponible dès vendredi
-                </div>
-              </div>
-            </div>
-
-            {/* QR Code */}
-            <div style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'flex-end'
-            }}>
-              <div style={{
-                fontSize: '11px',
-                opacity: 0.9,
-                maxWidth: '150px'
-              }}>
-                Scannez pour réserver ou commander en ligne
-              </div>
-              <div style={{
-                width: '60px',
-                height: '60px',
-                background: 'white',
-                borderRadius: '8px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '10px',
-                color: '#333',
-                fontWeight: 'bold'
-              }}>
-                QR
-              </div>
-            </div>
-          </div>
-
-          {/* AI Badge */}
-          {step >= 2 && step < 3 && (
+          {step >= 3 && step < 4 && (
             <div style={{
               position: 'absolute',
               top: '-15px',
@@ -342,14 +321,13 @@ const FlyerGeneratorAnimation = () => {
         </div>
       </div>
 
-      {/* Phone 2 - Social Media Publication */}
       <div style={{
         position: 'absolute',
-        right: step >= 3 ? '8%' : '120%',
+        right: step >= 4 ? '8%' : '120%',
         top: '50%',
         transform: 'translateY(-50%) perspective(1000px) rotateY(15deg)',
         transition: 'all 1s cubic-bezier(0.34, 1.56, 0.64, 1)',
-        opacity: step >= 3 ? 1 : 0
+        opacity: step >= 4 ? 1 : 0
       }}>
         <div style={{
           width: '280px',
@@ -361,7 +339,6 @@ const FlyerGeneratorAnimation = () => {
           position: 'relative',
           overflow: 'hidden'
         }}>
-          {/* Notch */}
           <div style={{
             position: 'absolute',
             top: '0',
@@ -374,7 +351,6 @@ const FlyerGeneratorAnimation = () => {
             zIndex: 10
           }}></div>
           
-          {/* Screen - Instagram Post */}
           <div style={{
             position: 'absolute',
             top: '40px',
@@ -385,7 +361,6 @@ const FlyerGeneratorAnimation = () => {
             borderRadius: '32px',
             overflow: 'hidden'
           }}>
-            {/* Instagram Header */}
             <div style={{
               padding: '12px 16px',
               borderBottom: '1px solid #dbdbdb',
@@ -409,32 +384,23 @@ const FlyerGeneratorAnimation = () => {
               <div style={{ fontSize: '24px' }}>⋮</div>
             </div>
             
-            {/* Posted Flyer */}
             <div style={{
               width: '100%',
               aspectRatio: '1',
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
               position: 'relative',
-              backgroundImage: 'url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iIzY2N2VlYSIvPjwvc3ZnPg==)',
-              backgroundSize: 'cover',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
+              overflow: 'hidden'
             }}>
-              <div style={{
-                textAlign: 'center',
-                color: 'white',
-                fontSize: '20px',
-                fontWeight: 'bold',
-                textShadow: '0 2px 8px rgba(0,0,0,0.3)'
-              }}>
-                🍕<br/>
-                PIZZA TRUFFE<br/>
-                12,90€
-              </div>
+              <img 
+                src={pizzaFlyer}
+                alt="Flyer publié"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover'
+                }}
+              />
             </div>
             
-            {/* Instagram Actions */}
             <div style={{
               padding: '12px 16px',
               display: 'flex',
@@ -446,16 +412,14 @@ const FlyerGeneratorAnimation = () => {
               <span>📤</span>
             </div>
             
-            {/* Caption */}
             <div style={{
               padding: '0 16px 12px',
               fontSize: '13px'
             }}>
               <span style={{ fontWeight: '600' }}>votre_restaurant</span>{' '}
-              <span>Nouvelle pizza truffe 🍕 à 12,90€ ! #pizza #truffe</span>
+              <span>Nouvelle pizza truffe 🍕 à 12,90€ ! Disponible dès vendredi 🔥 #pizza #truffe</span>
             </div>
 
-            {/* Published Badge */}
             <div style={{
               position: 'absolute',
               top: '50%',
@@ -468,7 +432,7 @@ const FlyerGeneratorAnimation = () => {
               fontSize: '16px',
               fontWeight: 'bold',
               boxShadow: '0 10px 30px rgba(39, 174, 96, 0.4)',
-              animation: step === 3 ? 'popIn 0.5s ease-out' : 'none',
+              animation: step === 4 ? 'popIn 0.5s ease-out' : 'none',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
@@ -481,7 +445,6 @@ const FlyerGeneratorAnimation = () => {
         </div>
       </div>
 
-      {/* Time Counter */}
       {step === 4 && (
         <div style={{
           position: 'absolute',
@@ -537,6 +500,40 @@ const FlyerGeneratorAnimation = () => {
           }
         }
 
+        @keyframes sparkle {
+          0% {
+            transform: scale(0) rotate(0deg);
+            opacity: 1;
+          }
+          50% {
+            opacity: 1;
+          }
+          100% {
+            transform: scale(1.5) rotate(180deg);
+            opacity: 0;
+          }
+        }
+
+        @keyframes magicPulse {
+          0%, 100% {
+            transform: translate(-50%, -50%) scale(0.5);
+            opacity: 0;
+          }
+          50% {
+            transform: translate(-50%, -50%) scale(1.5);
+            opacity: 1;
+          }
+        }
+
+        @keyframes shine {
+          0% {
+            left: -100%;
+          }
+          100% {
+            left: 200%;
+          }
+        }
+
         .dot-pulse {
           position: relative;
           width: 8px;
@@ -579,111 +576,6 @@ const FlyerGeneratorAnimation = () => {
           }
         }
       `}</style>
-    </div>
-  );
-};
-
-// Benefits Component
-export const FlyerGeneratorBenefits = () => {
-  return (
-    <div style={{
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-      gap: '20px',
-      marginTop: '30px'
-    }}>
-      <div style={{
-        background: 'white',
-        padding: '25px',
-        borderRadius: '15px',
-        boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
-        textAlign: 'center',
-        transition: 'transform 0.3s ease',
-        cursor: 'pointer'
-      }}
-      onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
-      onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-      >
-        <div style={{ fontSize: '48px', marginBottom: '15px' }}>⚡</div>
-        <h3 style={{
-          margin: '0 0 10px 0',
-          fontSize: '18px',
-          fontWeight: '600',
-          color: '#2c3e50'
-        }}>
-          Design pro instantané
-        </h3>
-        <p style={{
-          margin: 0,
-          fontSize: '14px',
-          color: '#7f8c8d',
-          lineHeight: '1.6'
-        }}>
-          De 20 minutes sur Canva à 15 secondes. L'IA crée un flyer professionnel
-        </p>
-      </div>
-
-      <div style={{
-        background: 'white',
-        padding: '25px',
-        borderRadius: '15px',
-        boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
-        textAlign: 'center',
-        transition: 'transform 0.3s ease',
-        cursor: 'pointer'
-      }}
-      onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
-      onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-      >
-        <div style={{ fontSize: '48px', marginBottom: '15px' }}>🎨</div>
-        <h3 style={{
-          margin: '0 0 10px 0',
-          fontSize: '18px',
-          fontWeight: '600',
-          color: '#2c3e50'
-        }}>
-          Respect charte graphique
-        </h3>
-        <p style={{
-          margin: 0,
-          fontSize: '14px',
-          color: '#7f8c8d',
-          lineHeight: '1.6'
-        }}>
-          Votre logo, couleurs et style appliqués automatiquement
-        </p>
-      </div>
-
-      <div style={{
-        background: 'white',
-        padding: '25px',
-        borderRadius: '15px',
-        boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
-        textAlign: 'center',
-        transition: 'transform 0.3s ease',
-        cursor: 'pointer'
-      }}
-      onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-5px)'}
-      onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-      >
-        <div style={{ fontSize: '48px', marginBottom: '15px' }}>📱</div>
-        <h3 style={{
-          margin: '0 0 10px 0',
-          fontSize: '18px',
-          fontWeight: '600',
-          color: '#2c3e50'
-        }}>
-          Publication directe
-        </h3>
-        <p style={{
-          margin: 0,
-          fontSize: '14px',
-          color: '#7f8c8d',
-          lineHeight: '1.6'
-        }}>
-          Flyer créé et publié sur Instagram/Facebook en un seul message
-        </p>
-      </div>
     </div>
   );
 };
