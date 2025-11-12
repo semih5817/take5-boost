@@ -2,33 +2,20 @@ import { useState, useEffect } from 'react';
 import { Section } from '@/components/ui/section';
 import { ContestAnimation } from '@/components/animations/ContestAnimation';
 import { Badge } from '@/components/ui/badge';
-
 export const ContestSection = () => {
   const [step, setStep] = useState(0);
-
   useEffect(() => {
-    const timers = [
-      setTimeout(() => setStep(1), 1500),
-      setTimeout(() => setStep(2), 3000),
-      setTimeout(() => setStep(3), 5000),
-      setTimeout(() => setStep(4), 7000),
-      setTimeout(() => setStep(5), 9000),
-      setTimeout(() => setStep(0), 11500),
-    ];
+    const timers = [setTimeout(() => setStep(1), 1500), setTimeout(() => setStep(2), 3000), setTimeout(() => setStep(3), 5000), setTimeout(() => setStep(4), 7000), setTimeout(() => setStep(5), 9000), setTimeout(() => setStep(0), 11500)];
     return () => timers.forEach(clearTimeout);
   }, [step === 0]);
-
-  return (
-    <Section className="relative overflow-hidden">
+  return <Section className="relative overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-card to-background opacity-50" />
       
       <div className="relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
-          <p className="text-sm uppercase tracking-wider text-secondary font-semibold mb-2">
-            Module n°2 · Fidélisation Client
-          </p>
+          
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="gradient-text">🎁 Lancez un Concours en 5 Minutes</span>
           </h2>
@@ -95,6 +82,5 @@ export const ContestSection = () => {
           </Badge>
         </div>
       </div>
-    </Section>
-  );
+    </Section>;
 };
