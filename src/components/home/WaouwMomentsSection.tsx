@@ -63,31 +63,7 @@ export const WaouwMomentsSection = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-10 items-center">
             {/* Texte à gauche */}
-            <div>
-              <p className="text-sm uppercase tracking-wider text-primary font-semibold mb-2">
-                Automatisation n°2 · Réponses aux avis
-              </p>
-              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 leading-tight">
-                Tous vos avis reçoivent une réponse professionnelle, sans y penser.
-              </h2>
-              
-
-              <ul className="space-y-2 mb-6">
-                <li className="text-foreground">
-                  ✅ <strong>0 avis laissé sans réponse</strong> → image sérieuse et rassurante.
-                </li>
-                <li className="text-foreground">
-                  ✅ <strong>Ton cohérent</strong> avec votre marque, même si plusieurs personnes répondent.
-                </li>
-                <li className="text-foreground">
-                  ✅ <strong>Rattrapage des clients mécontents</strong> grâce à des réponses calmes et structurées.
-                </li>
-              </ul>
-
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Résultat : une réputation maîtrisée et plus d'avis positifs sans y passer vos soirées.
-              </p>
-            </div>
+            
 
             {/* Animation à droite */}
             <div>
@@ -97,7 +73,7 @@ export const WaouwMomentsSection = () => {
 
           {/* Benefits en dessous */}
           <div className="mt-12">
-            <AIResponseBenefits />
+            
           </div>
         </div>
       </section>
