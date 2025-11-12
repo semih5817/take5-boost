@@ -7,6 +7,8 @@ import { RadarReviewsSection } from "@/components/home/RadarReviewsSection";
 import { MainFeaturesSection } from "@/components/home/MainFeaturesSection";
 import { FlyerGeneratorSection } from "@/components/home/FlyerGeneratorSection";
 import { MultiPublicationSection } from "@/components/home/MultiPublicationSection";
+import { ContestSection } from "@/components/home/ContestSection";
+import { MissionsSection } from "@/components/home/MissionsSection";
 import { HowItWorksSection } from "@/components/home/HowItWorksSection";
 import { CustomNFCSection } from "@/components/home/CustomNFCSection";
 import { RoadmapSection } from "@/components/home/RoadmapSection";
@@ -23,6 +25,8 @@ const Index = () => {
       <WhatsAppReportingSection />
       <ProblemSolutionSection />
       <MultiPublicationSection />
+      <ContestSection />
+      <MissionsSection />
       <RadarReviewsSection />
       <MainFeaturesSection />
       <FlyerGeneratorSection />
