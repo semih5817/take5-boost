@@ -20,7 +20,7 @@ const Index = () => {
   return <div className="min-h-screen">
       <Header />
       <HeroSection />
-      <WaouwMomentsSection />
+      
       <WhatsAppReportingSection />
       <ProblemSolutionSection />
       <MultiPublicationSection />
