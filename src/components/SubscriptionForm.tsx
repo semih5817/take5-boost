@@ -126,8 +126,8 @@ const pricingOffers = [
     id: "starter",
     name: "Starter",
     badge: "FLEXIBLE",
-    price: 19.90,
-    displayPrice: "19,90€",
+    price: 29.90,
+    displayPrice: "29,90€",
     period: "HT / MOIS",
     detail: "Sans engagement",
     isPopular: false,
@@ -185,8 +185,8 @@ const pricingOffers = [
     id: "intermediaire",
     name: "Intermédiaire",
     badge: "ÉQUILIBRÉ",
-    price: 39,
-    displayPrice: "39€",
+    price: 59.90,
+    displayPrice: "59,90€",
     period: "HT / MOIS",
     detail: "Milieu de gamme",
     isPopular: false,
@@ -239,8 +239,8 @@ const pricingOffers = [
     id: "pro-plus",
     name: "Pro Plus",
     badge: "⭐ RECOMMANDÉ",
-    price: 59,
-    displayPrice: "59€",
+    price: 99.90,
+    displayPrice: "99,90€",
     period: "HT / MOIS",
     detail: "Tout inclus",
     isPopular: true,
@@ -314,7 +314,7 @@ export const SubscriptionForm = () => {
     },
   });
 
-  const plaquePriceHT = 29.90;
+  const plaquePriceHT = 39.90;
   const TVA_RATE = 0.20;
   
   const currentOffer = pricingOffers.find(o => o.id === selectedOffer);
