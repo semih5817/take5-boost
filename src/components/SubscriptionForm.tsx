@@ -107,9 +107,10 @@ const pricingOffers = [
     features: [
       { text: "1 QR Code dynamique", included: true },
       { text: "Scans illimités", included: true },
-      { text: "Centralisation Avis Google", included: true },
-      { text: "Réponses IA (100 tokens)", included: true },
-      { text: "🚨 Alertes avis négatifs WhatsApp", included: true },
+      { text: "Radar avis Google", included: true },
+      { text: "Réponses IA automatiques (100 tokens)", included: true },
+      { text: "Alertes WhatsApp", included: true },
+      { text: "Dashboard basique", included: true },
       { text: "📊 Alertes concurrents (hebdo)", included: true },
       { text: "💡 Opportunités IA (hebdo)", included: true },
       { text: "🎯 Missions gamifiées", included: true },
@@ -154,9 +155,13 @@ const pricingOffers = [
     features: [
       { text: "1 QR Code dynamique", included: true },
       { text: "Scans illimités", included: true },
-      { text: "Centralisation Avis Google", included: true },
-      { text: "Réponses IA (100 tokens)", included: true },
-      { text: "🚨 Alertes avis négatifs WhatsApp", included: true },
+      { text: "Radar avis Google", included: true },
+      { text: "Réponses IA automatiques", included: true },
+      { text: "Alertes WhatsApp", included: true },
+      { text: "Dashboard basique", included: true },
+      { text: "Radar multi-plateformes (Google, Facebook, Trustpilot, Yelp)", included: true },
+      { text: "Publication WhatsApp (Instagram + Google + Facebook)", included: true },
+      { text: "Reporting hebdomadaire", included: true },
       { text: "📊 Alertes concurrents (hebdo)", included: true },
       { text: "💡 Opportunités IA (hebdo)", included: true },
       { text: "🎯 Missions gamifiées", included: true },
@@ -164,6 +169,9 @@ const pricingOffers = [
       { text: "Support prioritaire", included: true },
       { text: "Plaque NFC offerte (annuel)", included: true },
       { text: "🎨 Dashboard Analytics", included: false },
+      { text: "Générateur de flyers", included: false },
+      { text: "Templates personnalisés", included: false },
+      { text: "Analytics avancés", included: false },
       { text: "🎮 Jeux concours", included: false },
       { text: "📧 Campagnes SMS/Email", included: false }
     ],
@@ -206,16 +214,19 @@ const pricingOffers = [
       }
     ],
     features: [
-      { text: "1 QR Code dynamique", included: true },
-      { text: "Scans illimités", included: true },
-      { text: "Centralisation Avis Google", included: true },
+      { text: "Tout Starter", included: true },
+      { text: "Radar multi-plateformes (Google, Facebook, Trustpilot, Yelp)", included: true },
+      { text: "Publication WhatsApp (Instagram + Google + Facebook)", included: true },
+      { text: "Reporting hebdomadaire", included: true },
+      { text: "Générateur de flyers", included: true },
+      { text: "Templates personnalisés", included: true },
+      { text: "Analytics avancés", included: true },
       { text: "Réponses IA illimitées", included: true },
-      { text: "🚨 Alertes avis négatifs WhatsApp", included: true },
       { text: "📊 Alertes concurrents quotidiennes", included: true },
       { text: "💡 Opportunités IA quotidiennes", included: true },
       { text: "🎯 Missions gamifiées", included: true },
       { text: "📱 Rapports WhatsApp", included: true },
-      { text: "🎨 Dashboard Analytics (démo)", included: true },
+      { text: "🎨 Dashboard Analytics avancé", included: true },
       { text: "Support prioritaire 24/7", included: true },
       { text: "🎮 Jeux concours (à venir)", included: true },
       { text: "📧 Campagnes SMS/Email (à venir)", included: true }
@@ -276,9 +287,6 @@ export const SubscriptionForm = () => {
           <h2 className="text-4xl md:text-6xl font-bold mb-4">
             Choisissez votre <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">plan tarifaire</span>
           </h2>
-          <p className="text-xl text-muted-foreground mb-8">
-            50% moins cher que nos concurrents • Essai gratuit 1 mois
-          </p>
           <p className="text-lg text-muted-foreground/80">
             Sélectionnez votre formule et rejoignez Take 5
           </p>

@@ -9,7 +9,6 @@ import { FlyerGeneratorSection } from "@/components/home/FlyerGeneratorSection";
 import { MultiPublicationSection } from "@/components/home/MultiPublicationSection";
 import { HowItWorksSection } from "@/components/home/HowItWorksSection";
 import { CustomNFCSection } from "@/components/home/CustomNFCSection";
-import { PricingSection } from "@/components/pricing/PricingSection";
 import { RoadmapSection } from "@/components/home/RoadmapSection";
 import { TestimonialsNewSection } from "@/components/home/TestimonialsNewSection";
 import { FAQSection } from "@/components/home/FAQSection";
@@ -29,7 +28,6 @@ const Index = () => {
       <FlyerGeneratorSection />
       <HowItWorksSection />
       <CustomNFCSection />
-      <PricingSection />
       <RoadmapSection />
       <TestimonialsNewSection />
       <FinalCTASection />
