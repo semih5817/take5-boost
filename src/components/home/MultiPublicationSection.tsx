@@ -1,4 +1,6 @@
 import { MultiPublicationAnimation } from "@/components/animations";
+import { TrendingUp, Star, Clock } from "lucide-react";
+
 export const MultiPublicationSection = () => {
   return <section className="py-20 bg-gradient-to-b from-background to-muted/20">
       <div className="max-w-7xl mx-auto px-4">
@@ -23,8 +25,8 @@ export const MultiPublicationSection = () => {
 
             <div className="space-y-4 bg-card/50 backdrop-blur-sm rounded-2xl p-6 border border-border/50">
               <div className="flex items-start gap-3">
-                <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-                  ✓
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-500 flex items-center justify-center text-white">
+                  <TrendingUp className="w-6 h-6" />
                 </div>
                 <div>
                   <p className="text-foreground font-semibold">0 onglet à ouvrir</p>
@@ -32,8 +34,8 @@ export const MultiPublicationSection = () => {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
-                  ✓
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-purple-500 flex items-center justify-center text-white">
+                  <Star className="w-6 h-6" />
                 </div>
                 <div>
                   <p className="text-foreground font-semibold">Publication cohérente</p>
@@ -41,8 +43,8 @@ export const MultiPublicationSection = () => {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center text-accent">
-                  ✓
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-pink-500 flex items-center justify-center text-white">
+                  <Clock className="w-6 h-6" />
                 </div>
                 <div>
                   <p className="text-foreground font-semibold">5 h gagnées par mois</p>
