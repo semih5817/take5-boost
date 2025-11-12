@@ -70,11 +70,7 @@ export const WaouwMomentsSection = () => {
               <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4 leading-tight">
                 Tous vos avis reçoivent une réponse professionnelle, sans y penser.
               </h2>
-              <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                TakeFive surveille vos avis 24h/24 (Google, Facebook…) et prépare une réponse
-                personnalisée dans le bon ton.  
-                Vous validez en un clic les cas sensibles.
-              </p>
+              
 
               <ul className="space-y-2 mb-6">
                 <li className="text-foreground">
