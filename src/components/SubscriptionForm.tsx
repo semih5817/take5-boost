@@ -101,20 +101,25 @@ const pricingOffers = [
     price: 0,
     displayPrice: "Free",
     period: "",
-    detail: "Pas de CB requise",
+    detail: "Toutes les fonctionnalités",
     isPopular: false,
     hasAnnual: false,
     features: [
+      { text: "Toutes les fonctionnalités Pro Plus", included: true },
       { text: "1 QR Code dynamique", included: true },
       { text: "Scans illimités", included: true },
-      { text: "Radar avis Google", included: true },
-      { text: "Réponses IA automatiques (100 tokens)", included: true },
-      { text: "Alertes WhatsApp", included: true },
-      { text: "Dashboard basique", included: true },
-      { text: "📊 Alertes concurrents (hebdo)", included: true },
-      { text: "💡 Opportunités IA (hebdo)", included: true },
+      { text: "Radar multi-plateformes (Google, Facebook, Trustpilot, Yelp)", included: true },
+      { text: "Réponses IA illimitées", included: true },
+      { text: "Publication WhatsApp (Instagram + Google + Facebook)", included: true },
+      { text: "Générateur de flyers", included: true },
+      { text: "Templates personnalisés", included: true },
+      { text: "Analytics avancés", included: true },
+      { text: "Alertes WhatsApp instantanées", included: true },
+      { text: "Dashboard Analytics avancé", included: true },
+      { text: "Reporting hebdomadaire", included: true },
       { text: "🎯 Missions gamifiées", included: true },
-      { text: "📱 Rapports WhatsApp", included: true }
+      { text: "📱 Rapports WhatsApp", included: true },
+      { text: "Support prioritaire 24/7", included: true }
     ],
   },
   {
@@ -159,15 +164,15 @@ const pricingOffers = [
       { text: "Réponses IA automatiques", included: true },
       { text: "Alertes WhatsApp", included: true },
       { text: "Dashboard basique", included: true },
-      { text: "Radar multi-plateformes (Google, Facebook, Trustpilot, Yelp)", included: true },
-      { text: "Publication WhatsApp (Instagram + Google + Facebook)", included: true },
-      { text: "Reporting hebdomadaire", included: true },
       { text: "📊 Alertes concurrents (hebdo)", included: true },
       { text: "💡 Opportunités IA (hebdo)", included: true },
       { text: "🎯 Missions gamifiées", included: true },
       { text: "📱 Rapports WhatsApp", included: true },
       { text: "Support prioritaire", included: true },
       { text: "Plaque NFC offerte (annuel)", included: true },
+      { text: "Radar multi-plateformes", included: false },
+      { text: "Publication WhatsApp", included: false },
+      { text: "Reporting hebdomadaire", included: false },
       { text: "🎨 Dashboard Analytics", included: false },
       { text: "Générateur de flyers", included: false },
       { text: "Templates personnalisés", included: false },
@@ -177,40 +182,38 @@ const pricingOffers = [
     ],
   },
   {
-    id: "pro",
-    name: "Pro",
-    badge: "⭐ RECOMMANDÉ",
-    price: 49,
-    displayPrice: "49€",
+    id: "intermediaire",
+    name: "Intermédiaire",
+    badge: "ÉQUILIBRÉ",
+    price: 39,
+    displayPrice: "39€",
     period: "HT / MOIS",
-    detail: "Tout inclus",
-    isPopular: true,
+    detail: "Milieu de gamme",
+    isPopular: false,
     hasAnnual: true,
     annualOptions: [
       {
         duration: "1 an",
-        pricePerMonth: 37,
-        totalPrice: 444,
-        savings: 203.80,
-        nfcPlates: 2,
-        badge: "⭐ POPULAIRE"
+        pricePerMonth: 29,
+        totalPrice: 348,
+        savings: 144,
+        nfcPlates: 1
       },
       {
         duration: "2 ans",
-        pricePerMonth: 32,
-        totalPrice: 768,
-        savings: 497.70,
-        nfcPlates: 3,
+        pricePerMonth: 25,
+        totalPrice: 600,
+        savings: 360,
+        nfcPlates: 2,
         badge: "🔥 MEILLEURE OFFRE"
       },
       {
         duration: "4 ans",
-        pricePerMonth: 25,
-        totalPrice: 1200,
-        savings: 1321.60,
-        nfcPlates: 5,
-        nfcPremium: true,
-        badge: "⚡ OFFRE ELITE"
+        pricePerMonth: 20,
+        totalPrice: 960,
+        savings: 912,
+        nfcPlates: 4,
+        badge: "⚡ -50%"
       }
     ],
     features: [
@@ -218,7 +221,60 @@ const pricingOffers = [
       { text: "Radar multi-plateformes (Google, Facebook, Trustpilot, Yelp)", included: true },
       { text: "Publication WhatsApp (Instagram + Google + Facebook)", included: true },
       { text: "Reporting hebdomadaire", included: true },
-      { text: "Générateur de flyers", included: true },
+      { text: "Réponses IA illimitées", included: true },
+      { text: "📊 Alertes concurrents quotidiennes", included: true },
+      { text: "💡 Opportunités IA quotidiennes", included: true },
+      { text: "🎯 Missions gamifiées", included: true },
+      { text: "📱 Rapports WhatsApp", included: true },
+      { text: "Dashboard Analytics", included: true },
+      { text: "Support prioritaire", included: true },
+      { text: "Plaque NFC offerte (annuel)", included: true },
+      { text: "Générateur de flyers", included: false },
+      { text: "Templates personnalisés", included: false },
+      { text: "Analytics avancés", included: false },
+      { text: "Support 24/7", included: false }
+    ],
+  },
+  {
+    id: "pro-plus",
+    name: "Pro Plus",
+    badge: "⭐ RECOMMANDÉ",
+    price: 59,
+    displayPrice: "59€",
+    period: "HT / MOIS",
+    detail: "Tout inclus",
+    isPopular: true,
+    hasAnnual: true,
+    annualOptions: [
+      {
+        duration: "1 an",
+        pricePerMonth: 45,
+        totalPrice: 540,
+        savings: 228,
+        nfcPlates: 2,
+        badge: "⭐ POPULAIRE"
+      },
+      {
+        duration: "2 ans",
+        pricePerMonth: 39,
+        totalPrice: 936,
+        savings: 576,
+        nfcPlates: 3,
+        badge: "🔥 MEILLEURE OFFRE"
+      },
+      {
+        duration: "4 ans",
+        pricePerMonth: 30,
+        totalPrice: 1440,
+        savings: 1536,
+        nfcPlates: 5,
+        nfcPremium: true,
+        badge: "⚡ OFFRE ELITE"
+      }
+    ],
+    features: [
+      { text: "Tout Intermédiaire", included: true },
+      { text: "Générateur de flyers IA", included: true },
       { text: "Templates personnalisés", included: true },
       { text: "Analytics avancés", included: true },
       { text: "Réponses IA illimitées", included: true },
@@ -335,7 +391,7 @@ export const SubscriptionForm = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
                             {pricingOffers.map((offer) => (
                               <div
                                 key={offer.id}
