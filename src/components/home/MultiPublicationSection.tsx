@@ -1,15 +1,11 @@
 import { MultiPublicationAnimation } from "@/components/animations";
-
 export const MultiPublicationSection = () => {
-  return (
-    <section className="py-20 bg-gradient-to-b from-background to-muted/20">
+  return <section className="py-20 bg-gradient-to-b from-background to-muted/20">
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Texte à gauche */}
           <div className="space-y-6">
-            <p className="text-sm uppercase tracking-wider text-primary font-semibold">
-              🚀 Automatisation n°1 · Publication multi-réseaux
-            </p>
+            
             <h2 className="text-4xl md:text-5xl font-bold leading-tight">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent">
                 Un seul message WhatsApp.
@@ -62,6 +58,5 @@ export const MultiPublicationSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
