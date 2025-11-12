@@ -5,7 +5,29 @@ import take5Logo from '@/assets/take5-logo.png';
 
 export const MultiPublicationAnimation = () => {
   const [step, setStep] = useState(0);
+  const [swipeIndex, setSwipeIndex] = useState(0);
   const [counter, setCounter] = useState(0);
+
+  const posts = [
+    {
+      platform: 'Instagram',
+      icon: '📷',
+      color: 'linear-gradient(45deg, #f09433, #dc2743, #bc1888)',
+      caption: 'Nouveau Tasty Crousty à 9,90€ — dispo samedi ! #streetfood #nancy #bonplan'
+    },
+    {
+      platform: 'Google',
+      icon: 'G',
+      color: '#4285F4',
+      caption: 'Promo week-end : Tasty Crousty à 9,90€. Passez nous voir samedi !'
+    },
+    {
+      platform: 'Facebook',
+      icon: 'f',
+      color: '#1877F2',
+      caption: 'On lance le Tasty Crousty ce samedi, 9,90€ seulement. À très vite !'
+    }
+  ];
 
   useEffect(() => {
     const timers = [
@@ -13,14 +35,27 @@ export const MultiPublicationAnimation = () => {
       setTimeout(() => setStep(2), 3000),  // Photo apparaît
       setTimeout(() => setStep(3), 4500),  // Transformation
       setTimeout(() => setStep(4), 6000),  // Flyer généré
-      setTimeout(() => setStep(5), 7500),  // Publications
-      setTimeout(() => setStep(0), 10000), // Reset
+      setTimeout(() => setStep(5), 7500),  // Publications (swipe commence)
+      setTimeout(() => setStep(0), 12000), // Reset
     ];
     return () => timers.forEach(clearTimeout);
   }, [step === 0]);
 
+  // Swipe entre les 3 posts
   useEffect(() => {
-    if (step === 5 && counter < 30) {
+    if (step === 5) {
+      const interval = setInterval(() => {
+        setSwipeIndex(prev => (prev + 1) % 3);
+      }, 1500);
+      return () => clearInterval(interval);
+    } else {
+      setSwipeIndex(0);
+    }
+  }, [step]);
+
+  // Compteur
+  useEffect(() => {
+    if (step === 5 && counter < 27) {
       const timer = setTimeout(() => setCounter(prev => prev + 1), 100);
       return () => clearTimeout(timer);
     } else if (step === 0) {
@@ -135,7 +170,7 @@ export const MultiPublicationAnimation = () => {
         </div>
       </div>
 
-      {/* Phone 2 - Multi-Platform Publication */}
+      {/* Phone 2 - Swipe entre posts */}
       <div
         className="absolute transition-all duration-1000 ease-out"
         style={{
@@ -145,67 +180,72 @@ export const MultiPublicationAnimation = () => {
           opacity: step >= 5 ? 1 : 0
         }}
       >
-        <div className="w-[280px] h-[560px] bg-gradient-to-b from-slate-800 to-slate-900 rounded-[40px] border-8 border-black shadow-2xl relative overflow-hidden">
+        <div className="w-[300px] h-[600px] bg-gradient-to-b from-slate-800 to-slate-900 rounded-[40px] border-8 border-black shadow-2xl relative overflow-hidden">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150px] h-[30px] bg-black rounded-b-3xl z-10" />
           
-          <div className="absolute top-10 left-2 right-2 bottom-2 bg-slate-50 rounded-[32px] overflow-hidden p-5">
-            {/* Header */}
-            <div className="text-center mb-5">
-              <h3 className="text-lg font-bold text-gray-900 mb-2">
-                📤 Publications envoyées
-              </h3>
-              <p className="text-sm text-gray-600">
-                Votre flyer a été publié sur :
+          <div className="absolute top-10 left-2 right-2 bottom-2 bg-slate-50 rounded-[32px] overflow-hidden">
+            {/* Post Header */}
+            <div className="p-3 border-b border-gray-200 bg-white flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div 
+                  className="w-9 h-9 rounded-lg flex items-center justify-center text-white text-lg font-bold"
+                  style={{ background: posts[swipeIndex].color }}
+                >
+                  {posts[swipeIndex].icon}
+                </div>
+                <div>
+                  <div className="font-semibold text-sm text-gray-900">
+                    {posts[swipeIndex].platform}
+                  </div>
+                  <div className="text-xs text-green-600">
+                    ✓ Publié
+                  </div>
+                </div>
+              </div>
+              <div className="text-xl text-gray-400">⋮</div>
+            </div>
+            
+            {/* Flyer Image */}
+            <div className="w-full aspect-square relative overflow-hidden">
+              <img 
+                src={tastyCrustyFlyer}
+                alt="Post"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            
+            {/* Caption */}
+            <div className="p-4 bg-white">
+              <div className="flex gap-4 mb-3 text-xl">
+                <span>❤️</span>
+                <span>💬</span>
+                <span>📤</span>
+              </div>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                <strong>votre_restaurant</strong> {posts[swipeIndex].caption}
               </p>
             </div>
 
-            {/* Platform Cards */}
-            <div className="space-y-3">
-              {/* Instagram */}
-              <div className="bg-white rounded-xl p-3 flex items-center gap-3 shadow-sm animate-in slide-in-from-right-4 duration-500">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 via-pink-500 to-orange-500 flex items-center justify-center text-white text-xl">
-                  📷
-                </div>
-                <div className="flex-1">
-                  <div className="text-sm font-semibold text-gray-900">Instagram</div>
-                  <div className="text-xs text-green-600">✓ Publié</div>
-                </div>
-              </div>
-
-              {/* Google Business */}
-              <div className="bg-white rounded-xl p-3 flex items-center gap-3 shadow-sm animate-in slide-in-from-right-4 duration-500 delay-100">
-                <div className="w-10 h-10 rounded-xl bg-blue-500 flex items-center justify-center text-white font-bold">
-                  G
-                </div>
-                <div className="flex-1">
-                  <div className="text-sm font-semibold text-gray-900">Google Business</div>
-                  <div className="text-xs text-green-600">✓ Publié</div>
-                </div>
-              </div>
-
-              {/* Facebook */}
-              <div className="bg-white rounded-xl p-3 flex items-center gap-3 shadow-sm animate-in slide-in-from-right-4 duration-500 delay-200">
-                <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold">
-                  f
-                </div>
-                <div className="flex-1">
-                  <div className="text-sm font-semibold text-gray-900">Facebook</div>
-                  <div className="text-xs text-green-600">✓ Publié</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Success Badge */}
-            <div className="mt-5 bg-green-500 text-white p-3 rounded-xl text-center text-sm font-bold shadow-lg">
-              ✅ 3 publications réussies
+            {/* Swipe Indicators */}
+            <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
+              {[0, 1, 2].map(i => (
+                <div 
+                  key={i}
+                  className="h-2 rounded-full transition-all duration-300"
+                  style={{
+                    width: swipeIndex === i ? '24px' : '8px',
+                    backgroundColor: swipeIndex === i ? '#10b981' : '#d1d5db'
+                  }}
+                />
+              ))}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Time Counter */}
+      {/* Time Counter - EN BAS DROITE */}
       {step === 5 && (
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-green-500 text-white px-10 py-4 rounded-full text-xl font-bold shadow-lg animate-in zoom-in duration-500 flex items-center gap-2">
+        <div className="absolute bottom-8 right-10 bg-green-500 text-white px-6 py-3 rounded-full text-base font-bold shadow-lg animate-in zoom-in duration-500 flex items-center gap-2">
           <span>⚡</span>
           <span>Publié en {counter} secondes</span>
         </div>
