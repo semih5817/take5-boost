@@ -1,18 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { 
-  MultiPublicationAnimation, 
-  AIResponseAnimation,
-  MultiPublicationBenefits,
-  AIResponseBenefits
-} from "@/components/animations";
-
+import { MultiPublicationAnimation, AIResponseAnimation, MultiPublicationBenefits, AIResponseBenefits } from "@/components/animations";
 export const WaouwMomentsSection = () => {
   const scrollToForm = () => {
-    document.getElementById('subscription-form')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('subscription-form')?.scrollIntoView({
+      behavior: 'smooth'
+    });
   };
-
-  return (
-    <>
+  return <>
       {/* BLOC 1 – Publication Multi-Réseaux */}
       <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4">
@@ -101,7 +95,7 @@ export const WaouwMomentsSection = () => {
 
             {/* Animation à droite */}
             <div>
-              <AIResponseAnimation />
+              
             </div>
           </div>
 
@@ -111,6 +105,5 @@ export const WaouwMomentsSection = () => {
           </div>
         </div>
       </section>
-    </>
-  );
+    </>;
 };
