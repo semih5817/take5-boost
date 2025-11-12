@@ -163,7 +163,7 @@ const pricingOffers = [
       { text: "Radar avis Google", included: true },
       { text: "Réponses IA automatiques", included: true },
       { text: "Alertes WhatsApp", included: true },
-      { text: "Dashboard basique", included: true },
+      { text: "Dashboard basique (à venir)", included: true },
       { text: "📊 Alertes concurrents (hebdo)", included: true },
       { text: "💡 Opportunités IA (hebdo)", included: true },
       { text: "🎯 Missions gamifiées", included: true },
@@ -197,14 +197,14 @@ const pricingOffers = [
         pricePerMonth: 29,
         totalPrice: 348,
         savings: 144,
-        nfcPlates: 1
+        nfcPlates: 2
       },
       {
         duration: "2 ans",
         pricePerMonth: 25,
         totalPrice: 600,
         savings: 360,
-        nfcPlates: 2,
+        nfcPlates: 3,
         badge: "🔥 MEILLEURE OFFRE"
       },
       {
@@ -212,7 +212,7 @@ const pricingOffers = [
         pricePerMonth: 20,
         totalPrice: 960,
         savings: 912,
-        nfcPlates: 4,
+        nfcPlates: 5,
         badge: "⚡ -50%"
       }
     ],
@@ -226,7 +226,7 @@ const pricingOffers = [
       { text: "💡 Opportunités IA quotidiennes", included: true },
       { text: "🎯 Missions gamifiées", included: true },
       { text: "📱 Rapports WhatsApp", included: true },
-      { text: "Dashboard Analytics", included: true },
+      { text: "Dashboard Analytics (à venir)", included: true },
       { text: "Support prioritaire", included: true },
       { text: "Plaque NFC offerte (annuel)", included: true },
       { text: "Générateur de flyers", included: false },
@@ -251,7 +251,7 @@ const pricingOffers = [
         pricePerMonth: 45,
         totalPrice: 540,
         savings: 228,
-        nfcPlates: 2,
+        nfcPlates: 3,
         badge: "⭐ POPULAIRE"
       },
       {
@@ -259,7 +259,7 @@ const pricingOffers = [
         pricePerMonth: 39,
         totalPrice: 936,
         savings: 576,
-        nfcPlates: 3,
+        nfcPlates: 5,
         badge: "🔥 MEILLEURE OFFRE"
       },
       {
@@ -267,7 +267,7 @@ const pricingOffers = [
         pricePerMonth: 30,
         totalPrice: 1440,
         savings: 1536,
-        nfcPlates: 5,
+        nfcPlates: 6,
         nfcPremium: true,
         badge: "⚡ OFFRE ELITE"
       }
@@ -282,7 +282,7 @@ const pricingOffers = [
       { text: "💡 Opportunités IA quotidiennes", included: true },
       { text: "🎯 Missions gamifiées", included: true },
       { text: "📱 Rapports WhatsApp", included: true },
-      { text: "🎨 Dashboard Analytics avancé", included: true },
+      { text: "🎨 Dashboard Analytics avancé (à venir)", included: true },
       { text: "Support prioritaire 24/7", included: true },
       { text: "🎮 Jeux concours (à venir)", included: true },
       { text: "📧 Campagnes SMS/Email (à venir)", included: true }
