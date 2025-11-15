@@ -93,9 +93,8 @@ export const ContestAnimation = ({ step }: ContestAnimationProps) => {
                   <img 
                     src={contestWheelFlyer}
                     alt="Roue de la chance"
-                    className="w-full h-full object-contain transition-transform duration-[2000ms] ease-out"
+                    className="w-full h-full object-contain"
                     style={{ 
-                      transform: `rotate(${wheelRotation}deg)`,
                       maxWidth: '100%',
                       maxHeight: '100%'
                     }}
