@@ -38,14 +38,19 @@ export const ContestAnimation = ({ step }: ContestAnimationProps) => {
               </div>
             )}
 
-            {/* Step 1: QR scan */}
+            {/* Step 1: QR scan - Show contest flyer */}
             {step === 1 && (
-              <div className="h-full flex flex-col items-center justify-center p-6 animate-fade-in">
-                <div className="w-48 h-48 bg-primary/20 border-2 border-primary rounded-2xl flex items-center justify-center mb-4 animate-pulse">
-                  <div className="text-6xl">✓</div>
+              <div className="h-full flex flex-col items-center justify-center p-4 animate-fade-in relative">
+                <img 
+                  src={contestWheelFlyer}
+                  alt="Concours"
+                  className="w-full max-w-[320px] h-auto rounded-2xl shadow-xl"
+                />
+                <div className="absolute top-8 right-8 bg-primary text-primary-foreground px-4 py-2 rounded-full font-bold text-sm shadow-lg animate-pulse">
+                  ✓ QR Code scanné
                 </div>
-                <p className="text-foreground text-center font-semibold text-lg">
-                  QR Code scanné !
+                <p className="text-foreground text-center font-semibold text-lg mt-4">
+                  Tentez votre chance !
                 </p>
               </div>
             )}
@@ -83,15 +88,19 @@ export const ContestAnimation = ({ step }: ContestAnimationProps) => {
 
             {/* Step 3: Wheel spinning */}
             {step === 3 && (
-              <div className="h-full flex flex-col items-center justify-center p-4 animate-fade-in">
-                <img 
-                  src={contestWheelFlyer}
-                  alt="Roue de la chance"
-                  className="w-full max-w-[280px] h-auto transition-transform duration-[2000ms] ease-out"
-                  style={{ 
-                    transform: `rotate(${wheelRotation}deg)`,
-                  }}
-                />
+              <div className="h-full flex flex-col items-center justify-center p-6 animate-fade-in">
+                <div className="relative w-full flex items-center justify-center" style={{ height: '70%' }}>
+                  <img 
+                    src={contestWheelFlyer}
+                    alt="Roue de la chance"
+                    className="w-full h-full object-contain transition-transform duration-[2000ms] ease-out"
+                    style={{ 
+                      transform: `rotate(${wheelRotation}deg)`,
+                      maxWidth: '100%',
+                      maxHeight: '100%'
+                    }}
+                  />
+                </div>
                 <p className="text-foreground text-center font-semibold text-lg mt-4">
                   La roue tourne...
                 </p>
