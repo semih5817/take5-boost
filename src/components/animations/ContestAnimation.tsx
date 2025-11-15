@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import contestWheelFlyer from '@/assets/contest-wheel-flyer.png';
 
 interface ContestAnimationProps {
   step: number;
@@ -82,15 +83,16 @@ export const ContestAnimation = ({ step }: ContestAnimationProps) => {
 
             {/* Step 3: Wheel spinning */}
             {step === 3 && (
-              <div className="h-full flex flex-col items-center justify-center p-6 animate-fade-in">
-                <div 
-                  className="w-56 h-56 rounded-full border-8 border-primary shadow-glow transition-transform duration-[2000ms] ease-out"
+              <div className="h-full flex flex-col items-center justify-center p-4 animate-fade-in">
+                <img 
+                  src={contestWheelFlyer}
+                  alt="Roue de la chance"
+                  className="w-full max-w-[280px] h-auto transition-transform duration-[2000ms] ease-out"
                   style={{ 
                     transform: `rotate(${wheelRotation}deg)`,
-                    background: 'conic-gradient(from 0deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--accent)), hsl(var(--primary)))'
                   }}
                 />
-                <p className="text-foreground text-center font-semibold text-lg mt-6">
+                <p className="text-foreground text-center font-semibold text-lg mt-4">
                   La roue tourne...
                 </p>
               </div>

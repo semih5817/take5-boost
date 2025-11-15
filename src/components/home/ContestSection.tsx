@@ -28,12 +28,12 @@ export const ContestSection = () => {
         {/* Content Grid */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-12">
           {/* Animation */}
-          <div className="order-2 lg:order-1">
+          <div className="order-1 lg:order-1">
             <ContestAnimation step={step} />
           </div>
 
           {/* Feature Cards */}
-          <div className="order-1 lg:order-2 space-y-6">
+          <div className="order-2 lg:order-2 space-y-6">
             <div className="bg-card border border-border rounded-2xl p-6 hover:border-primary/50 transition-all hover-lift">
               <div className="w-14 h-14 bg-secondary/20 rounded-xl flex items-center justify-center text-3xl mb-4 shadow-secondary">
                 🎰
