@@ -350,15 +350,14 @@ export const WhatsAppReportingSection = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-              Rapport mensuel
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-4" id="whatsapp-solution">
+            Tout se passe sur{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400">
+              WhatsApp
             </span>
-            <br />
-            automatique sur WhatsApp
           </h2>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-            Chaque mois, recevez un rapport complet de votre performance Google Business sans lever le petit doigt
+            Gère ta visibilité en quelques secondes, sans quitter WhatsApp
           </p>
         </div>
 

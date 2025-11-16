@@ -11,21 +11,19 @@ export const HeroSection = () => {
     <section className="relative min-h-screen bg-gradient-to-b from-[#0A0E1A] to-[#1A1F35] flex items-center justify-center px-4">
       <div className="max-w-6xl mx-auto text-center">
         {/* Titre principal */}
-        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in">
-          Devenez le commerce{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-            #1 sur Google
-          </span>{" "}
-          dans votre ville
+        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in leading-tight">
+          Ton assistant IA qui gère ta visibilité{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+            depuis WhatsApp
+          </span>
         </h1>
 
         {/* Sous-titre */}
         <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto animate-fade-in">
-          Take 5 collecte et gère vos avis Google automatiquement.
+          Réponds aux avis, publie sur tous tes réseaux, génère du contenu —
           <br />
-          <span className="text-purple-400 font-semibold">
-            IA incluse • Alertes WhatsApp • 19,90€/mois
-          </span>
+          tout se passe par message.{" "}
+          <strong className="text-white">Aussi simple qu'envoyer un texto.</strong>
         </p>
 
         {/* CTAs */}
@@ -33,9 +31,9 @@ export const HeroSection = () => {
           <Button
             onClick={scrollToForm}
             size="lg"
-            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 px-8 text-lg transition-all transform hover:scale-105 shadow-lg shadow-purple-500/50"
+            className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-4 px-8 text-lg transition-all transform hover:scale-105 shadow-2xl"
           >
-            Essayer gratuitement 1 mois
+            Essayer gratuitement pendant 7 jours
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
           <Button
@@ -49,7 +47,7 @@ export const HeroSection = () => {
 
         {/* Sous-texte */}
         <p className="text-slate-400 text-sm mb-8 animate-fade-in">
-          ✓ Aucune carte bancaire requise • ✓ Annulation en 1 clic • ✓ 500+ commerces nous font confiance
+          ✓ Sans carte bancaire • ✓ Configuration en 2 minutes • ✓ Annulation en 1 clic
         </p>
 
         {/* Badge avis */}
@@ -59,8 +57,8 @@ export const HeroSection = () => {
               <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
             ))}
           </div>
-          <span className="text-white font-semibold">4.9/5</span>
-          <span className="text-slate-400">• 127 avis Google</span>
+          <span className="text-white font-semibold">4.8/5</span>
+          <span className="text-slate-400">• 237 commerces nous font confiance</span>
         </div>
       </div>
     </section>

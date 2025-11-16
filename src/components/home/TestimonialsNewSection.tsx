@@ -3,36 +3,36 @@ import { Star } from "lucide-react";
 export const TestimonialsNewSection = () => {
   const testimonials = [
     {
-      name: "Marie Chevalier",
-      business: "Café Le Gourmet • Paris",
-      initials: "MC",
-      rating: 5,
-      text: 'Avant Take 5, j\'avais 8 avis en 2 ans. Maintenant j\'en ai 42 en 3 mois. Les alertes WhatsApp sont géniales, je réponds aux avis négatifs en 2 minutes.',
-      stats: {
-        reviews: "+34 avis",
-        rating: "3.9 → 4.7⭐",
-      },
-    },
-    {
-      name: "Jean Dupont",
-      business: "La Bella Vita • Lyon",
-      initials: "JD",
-      rating: 5,
-      text: "Le système d'alertes concurrents m'a fait découvrir un nouveau restaurant qui me piquait des clients. J'ai pu réagir à temps et renforcer ma communication.",
-      stats: {
-        reviews: "+28 avis",
-        rating: "4.3 → 4.8⭐",
-      },
-    },
-    {
-      name: "Sophie Martin",
-      business: "Optique Vision • Marseille",
+      name: "Sarah M.",
+      business: "Pizzeria La Bella • Lyon",
       initials: "SM",
       rating: 5,
-      text: "J'étais sceptique au début. Mais 19,90€/mois pour être #1 sur Google, c'est le meilleur investissement que j'ai fait. Mon CA a augmenté de 30%.",
+      text: 'Avant TakeFive, je perdais 4h par semaine à répondre aux avis et à poster sur Instagram. Maintenant, tout se fait en 30 secondes depuis WhatsApp. C\'est magique.',
       stats: {
-        reviews: "+51 avis",
-        rating: "4.1 → 4.9⭐",
+        reviews: "+47 avis en 3 mois",
+        rating: "4.2 → 4.8⭐",
+      },
+    },
+    {
+      name: "Julien D.",
+      business: "Café Le Central • Paris",
+      initials: "JD",
+      rating: 5,
+      text: "Je reçois une alerte WhatsApp dès qu'un concurrent me dépasse. Ça m'a permis de réagir vite et de reprendre ma place de n°1 dans ma rue. Génial !",
+      stats: {
+        reviews: "+38 avis",
+        rating: "4.0 → 4.6⭐",
+      },
+    },
+    {
+      name: "Marie L.",
+      business: "Salon Beauté & Vous • Marseille",
+      initials: "ML",
+      rating: 5,
+      text: "Publier sur Insta + Google + Facebook en même temps depuis WhatsApp ? Je gagne 2h par semaine, et ma visibilité a explosé. Best décision 2024.",
+      stats: {
+        reviews: "+62 avis",
+        rating: "3.9 → 4.7⭐",
       },
     },
   ];
@@ -41,10 +41,13 @@ export const TestimonialsNewSection = () => {
     <section className="py-20 px-4 bg-gradient-to-b from-[#0A0E1A] to-[#1A1F35]">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-4">
-          Ce que disent nos <span className="text-purple-400">clients</span>
+          Rejoins les 237 restaurants et commerces{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+            qui automatisent leur visibilité
+          </span>
         </h2>
         <p className="text-xl text-slate-300 text-center mb-16">
-          500+ commerces nous font confiance
+          Ils ont retrouvé du temps, amélioré leur note Google, et explosé leur visibilité locale
         </p>
 
         <div className="grid md:grid-cols-3 gap-8">
