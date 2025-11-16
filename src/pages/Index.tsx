@@ -2,7 +2,7 @@ import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/home/HeroSection";
 import { WaouwMomentsSection } from "@/components/home/WaouwMomentsSection";
 import { WhatsAppReportingSection } from "@/components/home/WhatsAppReportingSection";
-import { ProblemSolutionSection } from "@/components/home/ProblemSolutionSection";
+import { PainPointsSection } from "@/components/home/PainPointsSection";
 import { RadarReviewsSection } from "@/components/home/RadarReviewsSection";
 import { MainFeaturesSection } from "@/components/home/MainFeaturesSection";
 import { FlyerGeneratorSection } from "@/components/home/FlyerGeneratorSection";
@@ -21,9 +21,8 @@ const Index = () => {
   return <div className="min-h-screen">
       <Header />
       <HeroSection />
-      
+      <PainPointsSection />
       <WhatsAppReportingSection />
-      <ProblemSolutionSection />
       <MultiPublicationSection />
       <ContestSection />
       <MissionsSection />

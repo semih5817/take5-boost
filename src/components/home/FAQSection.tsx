@@ -6,43 +6,50 @@ export const FAQSection = () => {
 
   const faqs = [
     {
-      question: "Comment fonctionne l'essai gratuit ?",
+      question: "C'est quoi TakeFive exactement ?",
       answer:
-        "L'essai gratuit dure 1 mois complet et inclut TOUTES les fonctionnalités du pack Pro (100 tokens IA, alertes, rapports, etc.). Aucune carte bancaire n'est requise. Vous pouvez annuler à tout moment en 1 clic.",
+        "TakeFive, c'est ton community manager IA qui gère ta visibilité en ligne DEPUIS WHATSAPP. Tu réponds aux avis, tu publies du contenu, tu suis tes stats — tout en envoyant un simple message. Plus besoin de 10 interfaces différentes.",
     },
     {
-      question: "L'IA publie-t-elle mes réponses automatiquement ?",
+      question: "Comment ça marche concrètement ?",
+      answer:
+        "Tu reçois des alertes WhatsApp dès qu'il se passe quelque chose (nouvel avis, concurrent qui te dépasse...). Tu réponds en 2 mots, et l'IA fait le reste. Tu peux aussi publier sur Insta + Google + Facebook d'un coup en envoyant une photo depuis WhatsApp. C'est aussi simple qu'envoyer un texto.",
+    },
+    {
+      question: "L'IA répond-elle automatiquement aux avis ?",
       answer: (
         <>
-          <strong className="text-green-400">Pour les avis positifs (4-5⭐)</strong> : Oui, l'IA
-          publie automatiquement une réponse de remerciement professionnelle.
+          <strong className="text-green-400">Avis positifs (4-5⭐)</strong> : Oui, l'IA publie automatiquement une réponse de remerciement pro.
           <br />
           <br />
-          <strong className="text-red-400">Pour les avis négatifs (1-3⭐)</strong> : Non ! L'IA
-          génère une proposition de réponse, mais VOUS décidez de la publier ou de la modifier.
-          Vous gardez le contrôle total.
+          <strong className="text-red-400">Avis négatifs (1-3⭐)</strong> : Non ! Tu reçois une alerte + une proposition de réponse. TU décides si tu la publies ou la modifies. Tu gardes 100% du contrôle.
         </>
       ),
     },
     {
       question: "Que se passe-t-il si je reçois un avis négatif ?",
       answer:
-        "Vous recevez une alerte WhatsApp instantanée avec l'avis + une proposition de réponse générée par l'IA. Vous pouvez la publier en 1 clic ou la modifier selon vos besoins. En moyenne, nos clients répondent en moins de 2 minutes.",
+        "Tu reçois une alerte WhatsApp instantanée avec l'avis + une proposition de réponse générée par l'IA. Tu peux la publier en 1 clic ou la modifier. Temps moyen de réponse de nos clients : moins de 2 minutes.",
     },
     {
-      question: "Les alertes concurrents, c'est légal ?",
-      answer:
-        "Oui, 100% légal ! Nous surveillons uniquement les informations publiques disponibles sur Google My Business (nombre d'avis, note moyenne, etc.). Aucune donnée privée n'est collectée.",
+      question: "Combien ça coûte ?",
+      answer: (
+        <>
+          On a 4 formules :
+          <ul className="list-disc ml-6 mt-2 space-y-1">
+            <li><strong>Gratuit</strong> : pour tester les fonctionnalités (avec limitations)</li>
+            <li><strong>Starter (14,90€/mois)</strong> : essentiel pour les petits commerces</li>
+            <li><strong>Pro (29,90€/mois)</strong> : pour dominer localement</li>
+            <li><strong>Pro Plus (45€/mois)</strong> : tout inclus + fonctionnalités avancées</li>
+          </ul>
+          <p className="mt-2">Essai gratuit de 7 jours sur toutes les formules. Sans carte bancaire.</p>
+        </>
+      ),
     },
     {
-      question: "Puis-je changer de pack en cours d'année ?",
+      question: "Je peux annuler quand je veux ?",
       answer:
-        "Oui ! Vous pouvez upgrader à tout moment (de Starter vers Pro par exemple). Le montant déjà payé est déduit au prorata. Pour un downgrade, cela sera effectif à la fin de votre période d'engagement.",
-    },
-    {
-      question: "Que contient le rapport WhatsApp mensuel ?",
-      answer:
-        "Le rapport mensuel inclut : vos stats complètes (vues fiche, avis collectés, évolution note), actions clients (appels, itinéraires, clics site), détail de vos derniers avis, réponses IA publiées, avis négatifs traités (temps moyen), et des recommandations personnalisées pour améliorer votre visibilité.",
+        "Oui, à tout moment. Sans frais, sans justification. On ne retient personne en otage. Si TakeFive ne te convient pas, tu annules en 2 clics. (Mais honnêtement, une fois que tu as goûté à la simplicité WhatsApp, tu ne pourras plus revenir en arrière.)",
     },
   ];
 
@@ -50,10 +57,10 @@ export const FAQSection = () => {
     <section className="py-20 px-4 bg-[#1A1F35]">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-4">
-          Questions <span className="text-purple-400">fréquentes</span>
+          Questions <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">fréquentes</span>
         </h2>
         <p className="text-xl text-slate-300 text-center mb-12">
-          Tout ce que vous devez savoir sur Take 5
+          Tout ce que tu dois savoir sur TakeFive
         </p>
 
         <div className="space-y-4">
