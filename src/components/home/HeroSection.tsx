@@ -13,7 +13,7 @@ export const HeroSection = () => {
         {/* Titre principal */}
         <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in leading-tight">
           Ton assistant IA qui gère ta visibilité{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
             depuis WhatsApp
           </span>
         </h1>
@@ -31,7 +31,7 @@ export const HeroSection = () => {
           <Button
             onClick={scrollToForm}
             size="lg"
-            className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-4 px-8 text-lg transition-all transform hover:scale-105 shadow-2xl"
+            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-4 px-8 text-lg transition-all transform hover:scale-105 shadow-2xl"
           >
             Essayer gratuitement pendant 7 jours
             <ArrowRight className="ml-2 w-5 h-5" />
