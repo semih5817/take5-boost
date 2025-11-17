@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Check, X, Minus } from "lucide-react";
+import { Check } from "lucide-react";
 interface PricingOption {
   duration: string;
   pricePerMonth: number;
@@ -117,29 +117,26 @@ const PackCard = ({
 
       {/* Features */}
       <ul className="space-y-3 mb-8">
-        {pack.features.map((feature, idx) => (
-          <li key={idx} className="flex items-start gap-2">
-            {feature.included === true ? (
+        {pack.features
+          .filter(feature => {
+            // Ne montrer que les features incluses
+            if (feature.included === true) return true;
+            if (feature.included === "annual" && billing === "annual") return true;
+            return false;
+          })
+          .map((feature, idx) => (
+            <li key={idx} className="flex items-start gap-2">
               <Check className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-            ) : feature.included === "annual" ? (
-              billing === "annual" ? (
-                <Check className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-              ) : (
-                <Minus className="w-5 h-5 text-slate-500 flex-shrink-0 mt-0.5" />
-              )
-            ) : (
-              <X className="w-5 h-5 text-slate-500 flex-shrink-0 mt-0.5" />
-            )}
-            <span className={`text-sm ${feature.included === false ? "text-slate-500" : "text-slate-300"}`}>
-              {feature.text}
-              {feature.badge && (
-                <Badge className="ml-2 text-xs bg-purple-600 text-white">
-                  {feature.badge}
-                </Badge>
-              )}
-            </span>
-          </li>
-        ))}
+              <span className="text-sm text-slate-300">
+                {feature.text}
+                {feature.badge && (
+                  <Badge className="ml-2 text-xs bg-purple-600 text-white">
+                    {feature.badge}
+                  </Badge>
+                )}
+              </span>
+            </li>
+          ))}
       </ul>
 
       {/* CTA */}
