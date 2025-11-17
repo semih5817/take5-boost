@@ -4,7 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowRight, Lock, CreditCard, Package, CheckCircle2, X } from "lucide-react";
+import { ArrowRight, Lock, CreditCard, Package, CheckCircle2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -424,23 +424,23 @@ export const SubscriptionForm = () => {
 
                                   {/* Liste des fonctionnalités */}
                                   <ul className="space-y-2 text-left">
-                                    {offer.features.map((feature: any, idx: number) => {
-                                      const isIncluded = typeof feature === 'string' ? true : feature.included;
-                                      const featureText = typeof feature === 'string' ? feature : feature.text;
-                                      
-                                      return (
-                                        <li key={idx} className="flex items-start gap-2 text-sm">
-                                          {isIncluded ? (
+                                    {offer.features
+                                      .filter((feature: any) => {
+                                        const isIncluded = typeof feature === 'string' ? true : feature.included;
+                                        return isIncluded;
+                                      })
+                                      .map((feature: any, idx: number) => {
+                                        const featureText = typeof feature === 'string' ? feature : feature.text;
+                                        
+                                        return (
+                                          <li key={idx} className="flex items-start gap-2 text-sm">
                                             <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                                          ) : (
-                                            <X className="w-4 h-4 text-destructive mt-0.5 flex-shrink-0" />
-                                          )}
-                                          <span className="text-muted-foreground">
-                                            {featureText}
-                                          </span>
-                                        </li>
-                                      );
-                                    })}
+                                            <span className="text-muted-foreground">
+                                              {featureText}
+                                            </span>
+                                          </li>
+                                        );
+                                      })}
                                   </ul>
 
                                   {/* Checkmark de sélection */}
