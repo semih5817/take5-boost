@@ -12,18 +12,18 @@ export const HeroSection = () => {
       <div className="max-w-6xl mx-auto text-center">
         {/* Titre principal */}
         <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in leading-tight">
-          Ton assistant IA qui gère ta visibilité{" "}
+          Devenez le commerce{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-            depuis WhatsApp
+            #1 sur Google
           </span>
+          {" "}dans votre ville
         </h1>
 
         {/* Sous-titre */}
         <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto animate-fade-in">
-          Réponds aux avis, publie sur tous tes réseaux, génère du contenu —
+          Take 5 collecte et gère vos avis Google automatiquement.
           <br />
-          tout se passe par message.{" "}
-          <strong className="text-white">Aussi simple qu'envoyer un texto.</strong>
+          <strong className="text-purple-300">IA incluse • Alertes WhatsApp • 19,90€/mois</strong>
         </p>
 
         {/* CTAs */}
@@ -33,7 +33,7 @@ export const HeroSection = () => {
             size="lg"
             className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-4 px-8 text-lg transition-all transform hover:scale-105 shadow-2xl"
           >
-            Essayer gratuitement pendant 7 jours
+            Essayer gratuitement 1 mois
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
           <Button
@@ -47,7 +47,7 @@ export const HeroSection = () => {
 
         {/* Sous-texte */}
         <p className="text-slate-400 text-sm mb-8 animate-fade-in">
-          ✓ Sans carte bancaire • ✓ Configuration en 2 minutes • ✓ Annulation en 1 clic
+          ✓ Aucune carte bancaire requise • ✓ Annulation en 1 clic • ✓ 500+ commerces nous font confiance
         </p>
 
         {/* Badge avis */}
@@ -58,7 +58,7 @@ export const HeroSection = () => {
             ))}
           </div>
           <span className="text-white font-semibold">4.8/5</span>
-          <span className="text-slate-400">• 237 commerces nous font confiance</span>
+          <span className="text-slate-400">• 500+ commerces nous font confiance</span>
         </div>
       </div>
     </section>
