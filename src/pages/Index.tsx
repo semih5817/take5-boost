@@ -2,39 +2,41 @@ import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/home/HeroSection";
 import { WaouwMomentsSection } from "@/components/home/WaouwMomentsSection";
 import { WhatsAppReportingSection } from "@/components/home/WhatsAppReportingSection";
+import { GamificationSection } from "@/components/home/GamificationSection";
+import { CompetitiveAnalysisSection } from "@/components/home/CompetitiveAnalysisSection";
 import { RadarReviewsSection } from "@/components/home/RadarReviewsSection";
-import { MainFeaturesSection } from "@/components/home/MainFeaturesSection";
-import { FlyerGeneratorSection } from "@/components/home/FlyerGeneratorSection";
-import { MultiPublicationSection } from "@/components/home/MultiPublicationSection";
 import { ContestSection } from "@/components/home/ContestSection";
-import { MissionsSection } from "@/components/home/MissionsSection";
-import { HowItWorksSection } from "@/components/home/HowItWorksSection";
+import { AllInOneSection } from "@/components/home/AllInOneSection";
+import { SeoLocalAiSection } from "@/components/home/SeoLocalAiSection";
 import { CustomNFCSection } from "@/components/home/CustomNFCSection";
-import { RoadmapSection } from "@/components/home/RoadmapSection";
+import { UpcomingProjectsSection } from "@/components/home/UpcomingProjectsSection";
 import { TestimonialsNewSection } from "@/components/home/TestimonialsNewSection";
 import { FAQSection } from "@/components/home/FAQSection";
 import { FinalCTASection } from "@/components/home/FinalCTASection";
 import { SubscriptionForm } from "@/components/SubscriptionForm";
 import { Footer } from "@/components/Footer";
+
 const Index = () => {
-  return <div className="min-h-screen">
+  return (
+    <div className="min-h-screen">
       <Header />
       <HeroSection />
       <WhatsAppReportingSection />
-      <MultiPublicationSection />
-      <ContestSection />
-      <MissionsSection />
+      <GamificationSection />
+      <CompetitiveAnalysisSection />
       <RadarReviewsSection />
-      <MainFeaturesSection />
-      <FlyerGeneratorSection />
-      <HowItWorksSection />
+      <ContestSection />
+      <AllInOneSection />
+      <SeoLocalAiSection />
       <CustomNFCSection />
-      <RoadmapSection />
+      <UpcomingProjectsSection />
       <TestimonialsNewSection />
       <FinalCTASection />
       <SubscriptionForm />
       <FAQSection />
       <Footer />
-    </div>;
+    </div>
+  );
 };
+
 export default Index;
