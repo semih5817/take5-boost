@@ -1,9 +1,9 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { FlyerGeneratorSection } from "@/components/home/FlyerGeneratorSection";
+import { MissionsSection } from "@/components/home/MissionsSection";
 import { Link } from "react-router-dom";
 
-const GenerateurFlyers = () => {
+const Concours5Minutes = () => {
   return (
     <div className="min-h-screen">
       <Header />
@@ -16,18 +16,18 @@ const GenerateurFlyers = () => {
             <span className="mx-2">/</span>
             <Link to="/#projets" className="hover:text-purple-400">Projets</Link>
             <span className="mx-2">/</span>
-            <span className="text-white">Générateur de Flyers IA</span>
+            <span className="text-white">Jeux Concours en 5 Minutes</span>
           </nav>
           <h1 className="text-4xl lg:text-5xl font-bold text-white">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-              Générateur de Flyers IA
+              Jeux Concours en 5 Minutes
             </span>
           </h1>
         </div>
       </header>
 
       {/* Section complète récupérée */}
-      <FlyerGeneratorSection />
+      <MissionsSection />
 
       {/* Maillage interne - Autres projets */}
       <section className="py-16 px-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
@@ -37,6 +37,20 @@ const GenerateurFlyers = () => {
           </h2>
           <div className="grid md:grid-cols-3 gap-6">
             
+            {/* Mini-carte Générateur Flyers */}
+            <Link 
+              to="/projets/generateur-flyers"
+              className="bg-gradient-to-br from-[#1e2a4a] to-[#2d1b4e] rounded-xl border border-purple-500/20 p-6 hover:border-purple-500/40 transition-all hover:scale-105"
+            >
+              <div className="text-4xl mb-3">🎨</div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                Générateur de Flyers IA
+              </h3>
+              <p className="text-gray-400 text-sm">
+                Créez des visuels pros en moins d'une minute
+              </p>
+            </Link>
+
             {/* Mini-carte Publication Multiplateforme */}
             <Link 
               to="/projets/publication-multiplateforme"
@@ -48,20 +62,6 @@ const GenerateurFlyers = () => {
               </h3>
               <p className="text-gray-400 text-sm">
                 Un seul message, toutes vos plateformes à jour
-              </p>
-            </Link>
-
-            {/* Mini-carte Concours */}
-            <Link 
-              to="/projets/concours-5-minutes"
-              className="bg-gradient-to-br from-[#1e2a4a] to-[#2d1b4e] rounded-xl border border-purple-500/20 p-6 hover:border-purple-500/40 transition-all hover:scale-105"
-            >
-              <div className="text-4xl mb-3">🎁</div>
-              <h3 className="text-xl font-bold text-white mb-2">
-                Jeux Concours
-              </h3>
-              <p className="text-gray-400 text-sm">
-                Collectez des contacts qualifiés en 5 minutes
               </p>
             </Link>
 
@@ -87,4 +87,4 @@ const GenerateurFlyers = () => {
   );
 };
 
-export default GenerateurFlyers;
+export default Concours5Minutes;
