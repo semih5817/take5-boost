@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import GenerateurFlyers from "./pages/GenerateurFlyers";
 import PublicationMultiplateforme from "./pages/PublicationMultiplateforme";
 import CampagnesCiblees from "./pages/CampagnesCiblees";
+import Concours5Minutes from "./pages/Concours5Minutes";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +24,8 @@ const App = () => (
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/projets/generateur-flyers" element={<GenerateurFlyers />} />
           <Route path="/projets/publication-multiplateforme" element={<PublicationMultiplateforme />} />
+          <Route path="/projets/concours-5-minutes" element={<Concours5Minutes />} />
+          <Route path="/projets/campagnes-sms-email" element={<CampagnesCiblees />} />
           <Route path="/projets/campagnes-ciblees" element={<CampagnesCiblees />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

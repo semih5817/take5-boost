@@ -9,7 +9,7 @@ import { ContestSection } from "@/components/home/ContestSection";
 import { AllInOneSection } from "@/components/home/AllInOneSection";
 import { SeoLocalAiSection } from "@/components/home/SeoLocalAiSection";
 import { CustomNFCSection } from "@/components/home/CustomNFCSection";
-import { UpcomingProjectsSection } from "@/components/home/UpcomingProjectsSection";
+import { UpcomingProjectsGrid } from "@/components/home/UpcomingProjectsGrid";
 import { TestimonialsNewSection } from "@/components/home/TestimonialsNewSection";
 import { FAQSection } from "@/components/home/FAQSection";
 import { FinalCTASection } from "@/components/home/FinalCTASection";
@@ -29,7 +29,7 @@ const Index = () => {
       <AllInOneSection />
       <SeoLocalAiSection />
       <CustomNFCSection />
-      <UpcomingProjectsSection />
+      <UpcomingProjectsGrid />
       <TestimonialsNewSection />
       <FinalCTASection />
       <SubscriptionForm />
