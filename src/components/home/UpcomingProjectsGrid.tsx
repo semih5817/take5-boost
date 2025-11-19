@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
+import generatorMockup from "@/assets/generateur-flyers-mockup.png";
+import publicationMockup from "@/assets/publication-multiplateforme-mockup.png";
+import concoursMockup from "@/assets/concours-mockup.png";
+import campaignsMockup from "@/assets/campagnes-sms-email-mockup.png";
 
 export const UpcomingProjectsGrid = () => {
   const projects = [
     {
-      icon: "🎨",
+      image: generatorMockup,
       title: "Générateur de Flyers IA",
       description: "Créez des visuels professionnels pour vos promotions en quelques clics. L'IA génère le design, vous personnalisez, vous téléchargez. Fini les logiciels compliqués.",
       badges: ["Nouveau", "À venir"],
@@ -19,7 +23,7 @@ export const UpcomingProjectsGrid = () => {
       gradient: "from-orange-400 to-pink-400"
     },
     {
-      icon: "📱",
+      image: publicationMockup,
       title: "Publication Multiplateforme",
       description: "Publiez sur Google, Facebook et Instagram depuis une seule interface. Un seul message, toutes vos plateformes à jour automatiquement.",
       badges: ["Nouveau", "À venir"],
@@ -35,7 +39,7 @@ export const UpcomingProjectsGrid = () => {
       gradient: "from-blue-400 to-cyan-400"
     },
     {
-      icon: "🎁",
+      image: concoursMockup,
       title: "Jeux Concours en 5 Minutes",
       description: "QR Code → Roue de la chance → Gain automatique. Collectez des contacts qualifiés et fidélisez vos clients avec un jeu simple et viral.",
       badges: ["Nouveau", "À venir"],
@@ -51,7 +55,7 @@ export const UpcomingProjectsGrid = () => {
       gradient: "from-yellow-400 to-red-400"
     },
     {
-      icon: "📧",
+      image: campaignsMockup,
       title: "Campagnes SMS & Email Ciblées",
       description: "Relancez vos clients automatiquement avec des campagnes ciblées. Promotions, nouveautés, événements… L'outil s'occupe de tout.",
       badges: ["Nouveau", "À venir"],
@@ -119,12 +123,14 @@ export const UpcomingProjectsGrid = () => {
                 ))}
               </div>
 
-              {/* Icône/Image du projet - CENTRÉ */}
+              {/* Image mockup du projet */}
               <div className="flex justify-center mb-6">
-                <div
-                  className={`w-32 h-32 bg-gradient-to-br ${project.gradient} rounded-2xl flex items-center justify-center shadow-lg`}
-                >
-                  <span className="text-6xl">{project.icon}</span>
+                <div className="relative w-48 h-48">
+                  <img 
+                    src={project.image}
+                    alt={`${project.title} - Interface TakeFive`}
+                    className="w-full h-full object-contain drop-shadow-2xl"
+                  />
                 </div>
               </div>
 

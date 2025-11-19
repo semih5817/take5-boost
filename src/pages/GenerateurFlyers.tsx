@@ -1,6 +1,7 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FlyerGeneratorSection } from "@/components/home/FlyerGeneratorSection";
+import { ProjectLeadCapture } from "@/components/ProjectLeadCapture";
 import { Link } from "react-router-dom";
 
 const GenerateurFlyers = () => {
@@ -28,6 +29,9 @@ const GenerateurFlyers = () => {
 
       {/* Section complète récupérée */}
       <FlyerGeneratorSection />
+
+      {/* CTA Lead Capture */}
+      <ProjectLeadCapture projectName="generateur-flyers" />
 
       {/* Maillage interne - Autres projets */}
       <section className="py-16 px-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
