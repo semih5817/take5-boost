@@ -10,6 +10,7 @@ import { AllInOneSection } from "@/components/home/AllInOneSection";
 import { SeoLocalAiSection } from "@/components/home/SeoLocalAiSection";
 import { CustomNFCSection } from "@/components/home/CustomNFCSection";
 import { UpcomingProjectsGrid } from "@/components/home/UpcomingProjectsGrid";
+import { LeadCaptureSection } from "@/components/LeadCaptureSection";
 import { TestimonialsNewSection } from "@/components/home/TestimonialsNewSection";
 import { FAQSection } from "@/components/home/FAQSection";
 import { FinalCTASection } from "@/components/home/FinalCTASection";
@@ -30,6 +31,7 @@ const Index = () => {
       <SeoLocalAiSection />
       <CustomNFCSection />
       <UpcomingProjectsGrid />
+      <LeadCaptureSection />
       <TestimonialsNewSection />
       <FinalCTASection />
       <SubscriptionForm />

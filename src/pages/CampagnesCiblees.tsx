@@ -1,6 +1,7 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CampaignsSection } from "@/components/home/CampaignsSection";
+import { ProjectLeadCapture } from "@/components/ProjectLeadCapture";
 import { Link } from "react-router-dom";
 
 const CampagnesCiblees = () => {
@@ -28,6 +29,9 @@ const CampagnesCiblees = () => {
 
       {/* Nouvelle section créée */}
       <CampaignsSection />
+
+      {/* CTA Lead Capture */}
+      <ProjectLeadCapture projectName="campagnes-sms-email" />
 
       {/* Maillage interne - Autres projets */}
       <section className="py-16 px-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
