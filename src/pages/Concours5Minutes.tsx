@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { MissionsSection } from "@/components/home/MissionsSection";
@@ -5,27 +6,23 @@ import { ProjectLeadCapture } from "@/components/ProjectLeadCapture";
 import { Link } from "react-router-dom";
 
 const Concours5Minutes = () => {
+  // Forcer le scroll en haut au montage de la page
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, []);
+
   return (
     <div className="min-h-screen">
       <Header />
       
-      {/* Header avec breadcrumb */}
-      <header className="bg-gradient-to-br from-[#1a1a2e] via-[#2d1b4e] to-[#1e1539] py-8 px-6">
-        <div className="max-w-7xl mx-auto">
-          <nav className="text-sm text-gray-400 mb-4">
-            <Link to="/" className="hover:text-purple-400">Accueil</Link>
-            <span className="mx-2">/</span>
-            <Link to="/#projets" className="hover:text-purple-400">Projets</Link>
-            <span className="mx-2">/</span>
-            <span className="text-white">Jeux Concours en 5 Minutes</span>
-          </nav>
-          <h1 className="text-4xl lg:text-5xl font-bold text-white">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-              Jeux Concours en 5 Minutes
-            </span>
-          </h1>
-        </div>
-      </header>
+      {/* Breadcrumb discret */}
+      <nav className="fixed top-24 left-6 z-10 text-sm text-gray-400 bg-gray-900/50 backdrop-blur-sm px-4 py-2 rounded-lg">
+        <Link to="/" className="hover:text-purple-400">Accueil</Link>
+        <span className="mx-2">/</span>
+        <Link to="/#projets-avenir" className="hover:text-purple-400">Projets</Link>
+        <span className="mx-2">/</span>
+        <span className="text-white">Jeux Concours</span>
+      </nav>
 
       {/* Section complète récupérée */}
       <MissionsSection />

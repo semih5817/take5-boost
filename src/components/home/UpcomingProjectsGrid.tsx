@@ -20,7 +20,7 @@ export const UpcomingProjectsGrid = () => {
         { icon: "💰", label: "Économie", value: "0€ graphiste" }
       ],
       link: "/projets/generateur-flyers",
-      gradient: "from-orange-400 to-pink-400"
+      bgGradient: "from-orange-400/20 to-pink-400/20"
     },
     {
       image: publicationMockup,
@@ -36,7 +36,7 @@ export const UpcomingProjectsGrid = () => {
         { icon: "📊", label: "Plateformes", value: "5 réseaux" }
       ],
       link: "/projets/publication-multiplateforme",
-      gradient: "from-blue-400 to-cyan-400"
+      bgGradient: "from-blue-400/20 to-cyan-400/20"
     },
     {
       image: concoursMockup,
@@ -52,7 +52,7 @@ export const UpcomingProjectsGrid = () => {
         { icon: "📊", label: "Résultat", value: "Base clients" }
       ],
       link: "/projets/concours-5-minutes",
-      gradient: "from-yellow-400 to-red-400"
+      bgGradient: "from-yellow-400/20 to-red-400/20"
     },
     {
       image: campaignsMockup,
@@ -68,7 +68,7 @@ export const UpcomingProjectsGrid = () => {
         { icon: "🔒", label: "Conformité", value: "RGPD" }
       ],
       link: "/projets/campagnes-sms-email",
-      gradient: "from-green-400 to-teal-400"
+      bgGradient: "from-green-400/20 to-teal-400/20"
     }
   ];
 
@@ -87,76 +87,62 @@ export const UpcomingProjectsGrid = () => {
   };
 
   return (
-    <section className="py-24 px-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+    <section className="py-24 px-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" id="projets-avenir">
       <div className="max-w-7xl mx-auto">
-        {/* Titre de section */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
               🚀 Bientôt disponible
             </span>
           </h2>
-          <p className="text-xl text-gray-300">
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto">
             Nous développons de nouvelles fonctionnalités pour vous aider à aller encore plus loin.
           </p>
         </div>
 
-        {/* Grille de cartes */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {projects.map((project, index) => (
             <Link
               key={index}
               to={project.link}
-              className="relative bg-gradient-to-br from-[#1e2a4a] to-[#2d1b4e] rounded-2xl border border-purple-500/20 p-6 hover:border-purple-500/40 transition-all hover:scale-105 cursor-pointer"
+              className="relative bg-gradient-to-br from-[#1e2a4a] to-[#2d1b4e] rounded-2xl border border-purple-500/20 p-6 hover:border-purple-500/40 transition-all hover:scale-105 hover:rotate-1 hover:shadow-2xl group"
             >
-              {/* Badges en haut */}
               <div className="flex gap-2 mb-4">
                 {project.badges.map((badge, i) => (
                   <span
                     key={i}
-                    className={`px-3 py-1 ${
-                      badge === "Nouveau" ? "bg-red-500" : "bg-purple-500"
-                    } text-white text-xs font-semibold rounded-full uppercase`}
+                    className={`px-3 py-1 ${badge === "Nouveau" ? "bg-red-500" : "bg-purple-500"} text-white text-xs font-semibold rounded-full uppercase`}
                   >
                     {badge}
                   </span>
                 ))}
               </div>
 
-              {/* Image mockup du projet */}
-              <div className="flex justify-center mb-6">
-                <div className="relative w-48 h-48">
-                  <img 
-                    src={project.image}
-                    alt={`${project.title} - Interface TakeFive`}
-                    className="w-full h-full object-contain drop-shadow-2xl"
-                  />
-                </div>
+              <div className={`relative w-full aspect-[16/10] overflow-hidden rounded-2xl mb-6 bg-gradient-to-br ${project.bgGradient}`}>
+                <img 
+                  src={project.image}
+                  alt={`${project.title} - Interface TakeFive`}
+                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                />
+                <div 
+                  className="absolute inset-0"
+                  style={{
+                    background: 'radial-gradient(circle at center, transparent 0%, rgba(30, 27, 75, 0.3) 50%, rgba(30, 27, 75, 0.9) 100%)'
+                  }}
+                />
               </div>
 
-              {/* Tags */}
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.tags.map((tag, i) => (
-                  <span
-                    key={i}
-                    className={`px-3 py-1 ${getTagColorClass(tag.color)} text-xs font-medium rounded-lg`}
-                  >
+                  <span key={i} className={`px-3 py-1 ${getTagColorClass(tag.color)} text-xs font-medium rounded-lg`}>
                     {tag.label}
                   </span>
                 ))}
               </div>
 
-              {/* Titre */}
-              <h3 className="text-2xl font-bold text-white mb-3">
-                {project.title}
-              </h3>
+              <h3 className="text-2xl font-bold text-white mb-3">{project.title}</h3>
+              <p className="text-gray-400 text-sm leading-relaxed mb-6">{project.description}</p>
 
-              {/* Description */}
-              <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                {project.description}
-              </p>
-
-              {/* Métriques */}
               <div className="flex items-center justify-between mb-6 text-sm">
                 {project.metrics.map((metric, i) => (
                   <div key={i} className="flex items-center gap-2">
@@ -169,7 +155,6 @@ export const UpcomingProjectsGrid = () => {
                 ))}
               </div>
 
-              {/* Bouton CTA */}
               <div className="flex items-center justify-center gap-2 w-full py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold rounded-lg hover:from-cyan-600 hover:to-blue-600 transition-all">
                 Voir le projet
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

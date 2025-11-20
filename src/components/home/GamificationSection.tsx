@@ -1,15 +1,120 @@
+import { useState, useEffect } from 'react';
+import { BarChart3, Target, Trophy, TrendingUp } from 'lucide-react';
+
 export const GamificationSection = () => {
+  const [notifications, setNotifications] = useState<Array<{
+    id: number;
+    icon: string;
+    text: string;
+    color: string;
+  }>>([]);
+  const [nextNotifId, setNextNotifId] = useState(0);
+
+  const notifsList = [
+    { icon: "🎯", text: "Nouveau défi : 5 nouvelles photos cette semaine", color: "from-blue-500 to-cyan-500" },
+    { icon: "⭐", text: "Objectif atteint ! +50 points", color: "from-yellow-500 to-orange-500" },
+    { icon: "💬", text: "2 nouveaux avis à traiter", color: "from-purple-500 to-pink-500" },
+    { icon: "🏆", text: "Badge débloqué : Expert Local", color: "from-green-500 to-teal-500" },
+    { icon: "📊", text: "Ton score : 82/100 (+4 cette semaine)", color: "from-indigo-500 to-purple-500" },
+    { icon: "🎉", text: "Niveau 4 atteint : Champion Local !", color: "from-pink-500 to-red-500" },
+    { icon: "📸", text: "Mission : Ajoutez 3 photos de vos produits", color: "from-cyan-500 to-blue-500" }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const randomNotif = notifsList[Math.floor(Math.random() * notifsList.length)];
+      const newNotif = {
+        id: nextNotifId,
+        ...randomNotif
+      };
+      
+      setNotifications(prev => {
+        const updated = [newNotif, ...prev];
+        return updated.slice(0, 3); // Max 3 notifications visibles
+      });
+      
+      setNextNotifId(prev => prev + 1);
+
+      // Supprimer après 4 secondes
+      setTimeout(() => {
+        setNotifications(prev => prev.filter(n => n.id !== newNotif.id));
+      }, 4000);
+    }, 3000); // Nouvelle notification toutes les 3 secondes
+
+    return () => clearInterval(interval);
+  }, [nextNotifId]);
+
   return (
-    <section className="relative py-24 px-6 overflow-hidden">
-      {/* Fond dégradé */}
+    <section className="relative py-24 px-6 overflow-hidden" id="gamification">
+      {/* Fond dégradé identique à "Tout se passe sur WhatsApp" */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e] via-[#2d1b4e] to-[#1e1539]" />
       <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent" />
       
       <div className="relative max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
-          {/* GAUCHE : Texte + arguments */}
-          <div className="space-y-8">
+          {/* GAUCHE : Téléphone avec animation Ticker */}
+          <div className="relative lg:pr-8 order-2 lg:order-1">
+            {/* Halo qui pulse - RAPIDE (1.5s) et VISIBLE (1.0→1.15) */}
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/40 to-pink-500/40 rounded-full blur-3xl animate-pulse-fast" />
+            
+            {/* Téléphone */}
+            <div className="relative bg-gray-900 rounded-[3rem] p-4 shadow-2xl border-8 border-gray-800 max-w-sm mx-auto">
+              {/* Notch */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-6 bg-gray-800 rounded-b-3xl z-10" />
+              
+              {/* Écran */}
+              <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-[2.5rem] aspect-[9/19] overflow-hidden">
+                
+                {/* Header fixe */}
+                <div className="absolute top-0 left-0 right-0 z-20 p-4 text-center">
+                  <div className="inline-block px-4 py-2 bg-gradient-to-r from-green-500 to-teal-500 rounded-lg">
+                    <span className="text-white text-sm font-semibold">TakeFive Assistant</span>
+                  </div>
+                </div>
+
+                {/* Zone notifications - arrivent par le BAS */}
+                <div className="absolute bottom-4 left-4 right-4 space-y-3">
+                  {notifications.map((notif, index) => (
+                    <div
+                      key={notif.id}
+                      className="slide-up bg-gray-800/95 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-gray-700"
+                      style={{ 
+                        opacity: 1 - (index * 0.2) // Plus anciennes = plus transparentes
+                      }}
+                    >
+                      <div className="flex items-start gap-3">
+                        <div className={`flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br ${notif.color} flex items-center justify-center text-2xl`}>
+                          {notif.icon}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-white text-sm font-medium leading-tight">
+                            {notif.text}
+                          </p>
+                          <p className="text-gray-400 text-xs mt-1">
+                            À l'instant
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Indicateur d'attente si pas de notifs */}
+                {notifications.length === 0 && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="text-4xl mb-2">⏳</div>
+                      <p className="text-gray-500 text-sm">En attente de notifications...</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* DROITE : Texte + arguments avec icônes LINE/STROKE */}
+          <div className="space-y-8 order-1 lg:order-2">
             <div className="space-y-4">
               <h2 className="text-4xl lg:text-5xl font-bold">
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
@@ -25,12 +130,14 @@ export const GamificationSection = () => {
               </p>
             </div>
 
-            {/* Arguments */}
+            {/* Arguments avec icônes LINE/STROKE */}
             <div className="space-y-6">
+              
               {/* Argument 1 */}
               <div className="flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center">
-                  <span className="text-2xl">📊</span>
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center">
+                  {/* Icône LINE/STROKE - Graphique barres */}
+                  <BarChart3 className="w-6 h-6 text-white" strokeWidth={2} />
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-1">
@@ -44,8 +151,9 @@ export const GamificationSection = () => {
 
               {/* Argument 2 */}
               <div className="flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center">
-                  <span className="text-2xl">🎯</span>
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                  {/* Icône LINE/STROKE - Cible */}
+                  <Target className="w-6 h-6 text-white" strokeWidth={2} />
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-1">
@@ -59,8 +167,9 @@ export const GamificationSection = () => {
 
               {/* Argument 3 */}
               <div className="flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center">
-                  <span className="text-2xl">🏆</span>
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center">
+                  {/* Icône LINE/STROKE - Trophée */}
+                  <Trophy className="w-6 h-6 text-white" strokeWidth={2} />
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-1">
@@ -74,46 +183,23 @@ export const GamificationSection = () => {
 
               {/* Argument 4 */}
               <div className="flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center">
-                  <span className="text-2xl">📈</span>
+                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-teal-500 flex items-center justify-center">
+                  {/* Icône LINE/STROKE - Tendance croissante */}
+                  <TrendingUp className="w-6 h-6 text-white" strokeWidth={2} />
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-1">
                     Rapports clairs & motivation
                   </h3>
                   <p className="text-gray-400 text-sm leading-relaxed">
-                    Visualisez vos points forts, vos axes d'amélioration et vos objectifs de la semaine. Suivez l'évolution de votre score dans le temps.
+                    Recevez chaque semaine votre rapport sur WhatsApp : évolution de votre score, missions accomplies, prochains défis. Restez motivé et progressez régulièrement.
                   </p>
                 </div>
               </div>
+
             </div>
           </div>
 
-          {/* DROITE : Mockup */}
-          <div className="relative lg:pl-8">
-            {/* Effet halo */}
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/30 via-pink-500/20 to-blue-500/30 blur-3xl" />
-            
-            {/* Placeholder mockup */}
-            <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 border border-purple-500/20 shadow-2xl">
-              <div className="text-center space-y-4">
-                <div className="text-6xl">🎉</div>
-                <div className="text-xl font-bold text-white">OBJECTIF ATTEINT !</div>
-                <div className="text-gray-300">Tu as obtenu 10 avis cette semaine !</div>
-                <div className="text-3xl font-bold text-yellow-400">+100 points</div>
-                <div className="inline-block px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg text-white font-semibold">
-                  Niveau 3 débloqué : Pro
-                </div>
-                <div className="mt-6 pt-6 border-t border-gray-700">
-                  <div className="text-sm text-gray-400 mb-2">Ton score de santé</div>
-                  <div className="text-4xl font-bold text-white">78/100</div>
-                  <div className="mt-2 w-full bg-gray-700 rounded-full h-2">
-                    <div className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full" style={{ width: '78%' }}></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
