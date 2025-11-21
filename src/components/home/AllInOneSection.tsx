@@ -87,18 +87,26 @@ export const AllInOneSection = () => {
             </p>
           </div>
 
-          {/* Carte 6 */}
-          <div className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-6 hover:border-purple-500/40 transition-all">
-            <div className="w-12 h-12 rounded-xl bg-yellow-500/20 flex items-center justify-center mb-4">
-              <span className="text-2xl">🎁</span>
+          {/* Carte 6 - Projets à venir (remplace Jeux Concours) */}
+          <a href="#bientot-disponible" className="group relative bg-gradient-to-br from-pink-900/40 to-purple-900/40 backdrop-blur-sm rounded-2xl p-8 border border-pink-500/30 hover:border-pink-500/60 transition-all hover:scale-105 overflow-hidden">
+            {/* Badge "Coming Soon" */}
+            <div className="absolute top-4 right-4 px-3 py-1 bg-pink-500/20 border border-pink-500/40 rounded-full">
+              <span className="text-pink-400 text-xs font-semibold uppercase">Bientôt</span>
+            </div>
+
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center mb-4">
+              <span className="text-2xl">🚀</span>
             </div>
             <h3 className="text-xl font-bold text-white mb-2">
-              Jeux Concours & QR Code
+              Projets à venir
             </h3>
             <p className="text-gray-400 text-sm">
-              Roue de la chance, collecte de contacts, SMS automatiques, base client exploitable.
+              Découvrez les fonctionnalités en préparation : générateur de flyers, publication multi-plateforme, jeux concours, campagnes SMS & email. Inscrivez-vous pour être prévenu au lancement.
             </p>
-          </div>
+
+            {/* Effet de brillance au hover */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-pink-500/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
+          </a>
         </div>
       </div>
     </section>

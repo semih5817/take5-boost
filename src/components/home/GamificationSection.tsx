@@ -10,17 +10,38 @@ export const GamificationSection = () => {
   }>>([]);
   const [nextNotifId, setNextNotifId] = useState(0);
 
+  // Liste étendue de notifications (15 exemples variés)
   const notifsList = [
-    { icon: "🎯", text: "Nouveau défi : 5 nouvelles photos cette semaine", color: "from-blue-500 to-cyan-500" },
-    { icon: "⭐", text: "Objectif atteint ! +50 points", color: "from-yellow-500 to-orange-500" },
-    { icon: "💬", text: "2 nouveaux avis à traiter", color: "from-purple-500 to-pink-500" },
+    // Objectifs et défis
+    { icon: "🎯", text: "Nouveau défi : Obtenir 5 nouvelles photos cette semaine", color: "from-blue-500 to-cyan-500" },
+    { icon: "🎯", text: "Mission : Atteindre une note de 4,5★ ce mois-ci", color: "from-blue-600 to-cyan-600" },
+    
+    // Réussites et récompenses
+    { icon: "⭐", text: "Objectif atteint ! Tu as obtenu 10 avis. +100 points", color: "from-yellow-500 to-orange-500" },
+    { icon: "🎉", text: "Bravo ! Mission accomplie : 5 photos ajoutées. +50 points", color: "from-pink-500 to-red-500" },
+    { icon: "✨", text: "Félicitations ! Taux de réponse aux avis : 100%. +75 points", color: "from-purple-500 to-pink-500" },
+    
+    // Avis et interactions
+    { icon: "💬", text: "2 nouveaux avis à traiter rapidement", color: "from-purple-500 to-pink-500" },
+    { icon: "💬", text: "1 avis négatif nécessite une réponse urgente", color: "from-red-500 to-orange-500" },
+    { icon: "⭐", text: "Nouveau avis 5★ reçu ! +20 points", color: "from-yellow-400 to-orange-400" },
+    
+    // Niveaux et badges
     { icon: "🏆", text: "Badge débloqué : Expert Local", color: "from-green-500 to-teal-500" },
-    { icon: "📊", text: "Ton score : 82/100 (+4 cette semaine)", color: "from-indigo-500 to-purple-500" },
-    { icon: "🎉", text: "Niveau 4 atteint : Champion Local !", color: "from-pink-500 to-red-500" },
-    { icon: "📸", text: "Mission : Ajoutez 3 photos de vos produits", color: "from-cyan-500 to-blue-500" }
+    { icon: "🏆", text: "Niveau 4 atteint : Champion Local ! +200 points", color: "from-yellow-500 to-orange-600" },
+    { icon: "🔥", text: "Série de 7 jours consécutifs ! Badge Régularité débloqué", color: "from-orange-500 to-red-500" },
+    
+    // Score et progression
+    { icon: "📊", text: "Ton score de santé : 82/100 (+4 cette semaine)", color: "from-indigo-500 to-purple-500" },
+    { icon: "📈", text: "Progression impressionnante : +12 points ce mois !", color: "from-green-500 to-emerald-500" },
+    
+    // Missions et rappels
+    { icon: "📸", text: "Mission : Ajoute 3 photos de tes produits cette semaine", color: "from-cyan-500 to-blue-500" },
+    { icon: "📝", text: "N'oublie pas : Mets à jour tes horaires pour les vacances", color: "from-indigo-500 to-blue-500" }
   ];
 
   useEffect(() => {
+    // Timing ajusté : nouvelle notification toutes les 5 SECONDES (au lieu de 3)
     const interval = setInterval(() => {
       const randomNotif = notifsList[Math.floor(Math.random() * notifsList.length)];
       const newNotif = {
@@ -35,11 +56,11 @@ export const GamificationSection = () => {
       
       setNextNotifId(prev => prev + 1);
 
-      // Supprimer après 4 secondes
+      // Durée de vie ajustée : 7 SECONDES (au lieu de 4)
       setTimeout(() => {
         setNotifications(prev => prev.filter(n => n.id !== newNotif.id));
-      }, 4000);
-    }, 3000); // Nouvelle notification toutes les 3 secondes
+      }, 7000);
+    }, 5000); // Intervalle passé de 3000ms à 5000ms
 
     return () => clearInterval(interval);
   }, [nextNotifId]);
@@ -80,7 +101,7 @@ export const GamificationSection = () => {
                       key={notif.id}
                       className="slide-up bg-gray-800/95 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-gray-700"
                       style={{ 
-                        opacity: 1 - (index * 0.2) // Plus anciennes = plus transparentes
+                        opacity: 1 - (index * 0.15) // Opacité ajustée pour meilleure visibilité
                       }}
                     >
                       <div className="flex items-start gap-3">
