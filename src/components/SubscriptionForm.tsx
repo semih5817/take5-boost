@@ -253,7 +253,7 @@ export const SubscriptionForm = () => {
   const totalTTC = subtotalHT + tvaAmount;
 
   const onSubmit = (data: SubscriptionFormData) => {
-    console.log("Form submitted:", data);
+    console.log("Subscription submitted for offer:", data.offer);
     
     toast({
       title: "🎉 Bienvenue chez Take 5 !",
