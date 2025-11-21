@@ -1,78 +1,14 @@
 export const ContestSection = () => {
-  return (
-    <section className="relative py-24 px-6 overflow-hidden">
+  return <section className="relative py-24 px-6 overflow-hidden">
       {/* Fond dégradé */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e] via-[#2d1b4e] to-[#1e1539]" />
-      <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent" />
+      
       
       <div className="relative max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
           {/* GAUCHE : Texte + arguments */}
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <h2 className="text-4xl lg:text-5xl font-bold">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-                  🎁 Lancez un Concours
-                </span>
-                <br />
-                <span className="text-white">
-                  en 5 Minutes
-                </span>
-              </h2>
-              <p className="text-lg text-gray-300">
-                QR Code → Roue de la chance → Gain automatique. Collectez des contacts qualifiés et fidélisez vos clients avec un jeu simple et viral.
-              </p>
-            </div>
-
-            {/* Arguments */}
-            <div className="space-y-6">
-              {/* Argument 1 */}
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center">
-                  <span className="text-2xl">🎡</span>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-white mb-1">
-                    Roue de la chance
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    Interface engageante et virale. Chaque client scanne votre QR Code et tente sa chance pour gagner une réduction.
-                  </p>
-                </div>
-              </div>
-
-              {/* Argument 2 */}
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center">
-                  <span className="text-2xl">📨</span>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-white mb-1">
-                    SMS & emails automatiques
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    Collectez téléphones et emails avec consentement RGPD. Le gain est envoyé automatiquement par SMS.
-                  </p>
-                </div>
-              </div>
-
-              {/* Argument 3 */}
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center">
-                  <span className="text-2xl">📊</span>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-white mb-1">
-                    Base client qualifiée & exploitable
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    Relancez vos clients pour vos prochaines promotions via SMS ou WhatsApp. Data stockée et exploitable.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          
 
           {/* DROITE : Mockup roue de la chance */}
           <div className="relative lg:pl-8">
@@ -80,48 +16,9 @@ export const ContestSection = () => {
             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/30 via-pink-500/20 to-blue-500/30 blur-3xl" />
             
             {/* Placeholder mockup - Roue */}
-            <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 border border-purple-500/20 shadow-2xl">
-              <div className="text-center space-y-6">
-                <div className="text-xl font-bold text-white mb-4">
-                  🎰 Tentez votre chance !
-                </div>
-                
-                {/* Roue simplifiée */}
-                <div className="relative w-64 h-64 mx-auto">
-                  <div className="absolute inset-0 rounded-full border-8 border-purple-500/30 bg-gradient-to-br from-purple-500/20 to-pink-500/20">
-                    {/* Segments de la roue */}
-                    {['10%', '15%', '20%', '5%', '25%', '10%'].map((value, i) => (
-                      <div
-                        key={i}
-                        className="absolute top-1/2 left-1/2 text-white text-sm font-bold"
-                        style={{
-                          transform: `rotate(${i * 60}deg) translateY(-80px)`,
-                          transformOrigin: '0 0'
-                        }}
-                      >
-                        {value}
-                      </div>
-                    ))}
-                  </div>
-                  {/* Flèche centrale */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl">
-                    ▼
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  <button className="w-full px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg">
-                    TOURNER LA ROUE
-                  </button>
-                  <div className="text-sm text-gray-400">
-                    Scannez le QR Code sur place
-                  </div>
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
