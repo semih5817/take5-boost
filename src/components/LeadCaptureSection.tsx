@@ -1,4 +1,10 @@
 import { useState } from 'react';
+import { z } from 'zod';
+
+const leadSchema = z.object({
+  email: z.string().trim().email({ message: "Email invalide" }).max(255, { message: "Email trop long" }),
+  phone: z.string().trim().regex(/^(\+?[1-9]\d{1,14}|0[1-9](\s?\d{2}){4})$/, { message: "Numéro de téléphone invalide" }).optional().or(z.literal(''))
+});
 
 export const LeadCaptureSection = () => {
   const [showForm, setShowForm] = useState(false);
@@ -6,15 +12,31 @@ export const LeadCaptureSection = () => {
     email: '',
     phone: ''
   });
+  const [errors, setErrors] = useState<{ email?: string; phone?: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+    
+    const result = leadSchema.safeParse(formData);
+    
+    if (!result.success) {
+      const fieldErrors: { email?: string; phone?: string } = {};
+      result.error.errors.forEach((err) => {
+        if (err.path[0]) {
+          fieldErrors[err.path[0] as 'email' | 'phone'] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
+      return;
+    }
+    
     setIsSubmitting(true);
     
     // TODO: Connecter à Brevo/Google Sheets/Autre
-    console.log('Lead capturé:', formData);
+    // validated data is in result.data
     
     // Simulation envoi
     setTimeout(() => {
@@ -63,8 +85,13 @@ export const LeadCaptureSection = () => {
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                     placeholder="votre@email.com"
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors"
+                    className={`w-full px-4 py-3 bg-gray-800 border rounded-lg text-white placeholder-gray-500 focus:outline-none transition-colors ${
+                      errors.email ? 'border-red-500 focus:border-red-500' : 'border-gray-700 focus:border-purple-500'
+                    }`}
                   />
+                  {errors.email && (
+                    <p className="mt-1 text-sm text-red-400">{errors.email}</p>
+                  )}
                 </div>
 
                 {/* Téléphone (optionnel) */}
@@ -78,8 +105,13 @@ export const LeadCaptureSection = () => {
                     value={formData.phone}
                     onChange={(e) => setFormData({...formData, phone: e.target.value})}
                     placeholder="06 12 34 56 78"
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition-colors"
+                    className={`w-full px-4 py-3 bg-gray-800 border rounded-lg text-white placeholder-gray-500 focus:outline-none transition-colors ${
+                      errors.phone ? 'border-red-500 focus:border-red-500' : 'border-gray-700 focus:border-purple-500'
+                    }`}
                   />
+                  {errors.phone && (
+                    <p className="mt-1 text-sm text-red-400">{errors.phone}</p>
+                  )}
                 </div>
 
                 {/* Bouton de soumission */}
@@ -115,6 +147,7 @@ export const LeadCaptureSection = () => {
                 setSubmitted(false);
                 setShowForm(false);
                 setFormData({email: '', phone: ''});
+                setErrors({});
               }}
               className="text-purple-400 hover:text-purple-300 text-sm underline"
             >
