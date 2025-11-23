@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { CompetitiveAnalysisPhone } from '../animations/CompetitiveAnalysisPhone';
 
 export const CompetitiveAnalysisSection = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -154,95 +155,13 @@ export const CompetitiveAnalysisSection = () => {
 
           </div>
 
-          {/* Droite : Animation carte compétition */}
+          {/* Droite : Animation iPhone concurrence */}
           <div className="relative order-1 lg:order-2">
-            <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 shadow-2xl max-w-lg mx-auto overflow-hidden" style={{ height: '380px' }}>
-              
-              {/* Header */}
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-500 rounded-xl flex items-center justify-center text-2xl">
-                  📊
-                </div>
-                <div className="text-white text-xl font-semibold">Comparaison</div>
-              </div>
-
-              {/* Metrics Grid */}
-              <div className="grid grid-cols-2 gap-4 flex-1">
-                {/* Nombre d'avis */}
-                <div className={`bg-white/5 border-2 rounded-2xl p-5 transition-all duration-500 ${
-                  currentStep === 1 ? 'border-purple-500 bg-purple-500/10 shadow-lg shadow-purple-500/40 scale-105' : 'border-white/10'
-                }`}>
-                  <div className="text-gray-400 text-sm mb-2">Nombre d'avis</div>
-                  <div className="text-white text-3xl font-bold">{Math.round(reviews)}</div>
-                  <div className="text-green-400 text-xs mt-1">Moyenne locale: 89</div>
-                </div>
-
-                {/* Note moyenne */}
-                <div className={`bg-white/5 border-2 rounded-2xl p-5 transition-all duration-500 ${
-                  currentStep === 2 ? 'border-purple-500 bg-purple-500/10 shadow-lg shadow-purple-500/40 scale-105' : 'border-white/10'
-                }`}>
-                  <div className="text-gray-400 text-sm mb-2">Note moyenne</div>
-                  <div className="text-white text-3xl font-bold">
-                    {rating}
-                    <span className={`inline-block ${currentStep === 2 ? 'animate-pulse-star' : ''}`}>★</span>
-                  </div>
-                  <div className="text-orange-400 text-xs mt-1">Moyenne locale: 4.6★</div>
-                </div>
-
-                {/* Posts / mois */}
-                <div className={`bg-white/5 border-2 rounded-2xl p-5 transition-all duration-500 ${
-                  currentStep === 3 ? 'border-purple-500 bg-purple-500/10 shadow-lg shadow-purple-500/40 scale-105' : 'border-white/10'
-                }`}>
-                  <div className="text-gray-400 text-sm mb-2">Posts / mois</div>
-                  <div className="text-white text-3xl font-bold">{Math.round(posts)}</div>
-                  <div className="text-orange-400 text-xs mt-1">Moyenne locale: 6</div>
-                </div>
-
-                {/* Photos récentes */}
-                <div className={`bg-white/5 border-2 rounded-2xl p-5 transition-all duration-500 ${
-                  currentStep === 3 ? 'border-purple-500 bg-purple-500/10 shadow-lg shadow-purple-500/40 scale-105' : 'border-white/10'
-                }`}>
-                  <div className="text-gray-400 text-sm mb-2">Photos récentes</div>
-                  <div className="text-white text-3xl font-bold">{Math.round(photos)}</div>
-                  <div className="text-green-400 text-xs mt-1">Moyenne locale: 5</div>
-                </div>
-              </div>
-
-              {/* Suggestions Banner */}
-              <div className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-purple-600 to-transparent p-6 transition-all duration-600 ${
-                currentStep === 4 ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
-              }`}>
-                <div className="text-white font-semibold mb-3">Pour passer #1 :</div>
-                <div className="space-y-2 text-white/90 text-sm">
-                  <div className="flex items-center gap-2">
-                    <span className="text-yellow-400">→</span>
-                    Ajoutez 5 photos ce mois-ci
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-yellow-400">→</span>
-                    Obtenez 8 nouveaux avis
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-yellow-400">→</span>
-                    Publiez 2 posts cette semaine
-                  </div>
-                </div>
-              </div>
-
-              {/* Dots Navigation */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-                {steps.map((_, idx) => (
-                  <div
-                    key={idx}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      idx === currentStep 
-                        ? 'w-6 bg-purple-500' 
-                        : 'w-2 bg-white/30'
-                    }`}
-                  />
-                ))}
-              </div>
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/30 to-pink-500/30 rounded-full blur-3xl animate-pulse-fast" />
+            <div className="relative">
+              <CompetitiveAnalysisPhone />
             </div>
+          </div>
           </div>
         </div>
       </div>

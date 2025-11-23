@@ -52,47 +52,43 @@ export const AllInOneSection = () => {
           </p>
         </div>
 
-        {/* Grille de fonctionnalités */}
-        <div className="grid gap-4 sm:gap-6 lg:gap-8 max-w-4xl mx-auto">
+        {/* Grille 2x3 de fonctionnalités */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
           {sections.map((section, idx) => (
             <div
               key={idx}
-              className="group relative flex flex-col sm:flex-row gap-4 items-start bg-white/5 backdrop-blur-sm rounded-2xl p-5 sm:p-6 lg:p-8 border border-white/10 hover:border-white/20 transition-all hover:scale-105"
+              className="group relative bg-white/5 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-white/10 hover:border-white/20 transition-all hover:scale-105"
             >
-              <div className={`flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-2xl bg-gradient-to-br ${section.color} flex items-center justify-center shadow-lg`}>
-                <span className="text-xl sm:text-2xl lg:text-3xl">{section.icon}</span>
+              <div className={`w-12 h-12 lg:w-16 lg:h-16 rounded-2xl bg-gradient-to-br ${section.color} flex items-center justify-center shadow-lg mb-4`}>
+                <span className="text-2xl lg:text-3xl">{section.icon}</span>
               </div>
-              <div className="flex-1">
-                <h3 className="text-base sm:text-lg lg:text-xl font-bold text-white mb-2">
-                  {section.title}
-                </h3>
-                <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
-                  {section.description}
-                </p>
-              </div>
+              <h3 className="text-lg lg:text-xl font-bold text-white mb-2">
+                {section.title}
+              </h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                {section.description}
+              </p>
             </div>
           ))}
 
           {/* Carte Projets à venir */}
           <a 
             href="#bientot-disponible" 
-            className="group relative flex flex-col sm:flex-row gap-4 items-start bg-gradient-to-br from-pink-900/40 to-purple-900/40 backdrop-blur-sm rounded-2xl p-5 sm:p-6 lg:p-8 border border-pink-500/30 hover:border-pink-500/60 transition-all hover:scale-105 overflow-hidden"
+            className="group relative bg-gradient-to-br from-pink-900/40 to-purple-900/40 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-pink-500/30 hover:border-pink-500/60 transition-all hover:scale-105 overflow-hidden"
           >
             <div className="absolute top-4 right-4 px-3 py-1 bg-pink-500/20 border border-pink-500/40 rounded-full">
               <span className="text-pink-400 text-xs font-semibold uppercase">Bientôt</span>
             </div>
             
-            <div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-2xl bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center shadow-lg">
-              <span className="text-xl sm:text-2xl lg:text-3xl">🚀</span>
+            <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-2xl bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center shadow-lg mb-4">
+              <span className="text-2xl lg:text-3xl">🚀</span>
             </div>
-            <div className="flex-1">
-              <h3 className="text-base sm:text-lg lg:text-xl font-bold text-white mb-2">
-                Projets à venir
-              </h3>
-              <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
-                Découvrez les fonctionnalités en préparation : générateur de flyers, publication multi-plateforme, jeux concours, campagnes SMS & email.
-              </p>
-            </div>
+            <h3 className="text-lg lg:text-xl font-bold text-white mb-2">
+              Projets à venir
+            </h3>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Découvrez les fonctionnalités en préparation : générateur de flyers, publication multi-plateforme, jeux concours, campagnes SMS & email.
+            </p>
             
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-pink-500/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
           </a>

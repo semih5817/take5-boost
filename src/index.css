@@ -419,6 +419,811 @@ section + section {
   animation: messageAppear 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
+/* Animation pour les indicateurs de frappe */
+@keyframes typingAnimation {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  30% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+/* Animation pour les notifications gamification */
+@keyframes notificationAppear {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Animation pour les slides concurrence */
+@keyframes slideInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ============================================ */
+/* SEO LOCAL WHATSAPP PHONE STYLES */
+/* ============================================ */
+.seo-wa-iphone-container {
+  position: relative;
+  width: 360px;
+  height: 720px;
+  background: #1e293b;
+  border-radius: 50px;
+  padding: 14px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6), inset 0 0 0 2px rgba(255, 255, 255, 0.1);
+  margin: 0 auto;
+}
+
+.seo-wa-iphone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 32px;
+  background: #0f172a;
+  border-radius: 0 0 20px 20px;
+  z-index: 100;
+}
+
+.seo-wa-iphone-camera {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background: #1e293b;
+  border-radius: 50%;
+  border: 2px solid #334155;
+  z-index: 101;
+}
+
+.seo-wa-iphone-screen {
+  width: 100%;
+  height: 100%;
+  background: #0a1628;
+  border-radius: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.seo-wa-whatsapp-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 110px;
+  background: linear-gradient(135deg, #075e54 0%, #128c7e 100%);
+  padding: 50px 16px 16px;
+  z-index: 50;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.seo-wa-header-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.seo-wa-takefive-avatar {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.seo-wa-header-info {
+  flex: 1;
+}
+
+.seo-wa-contact-name {
+  color: white;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.seo-wa-contact-status {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.seo-wa-chat-background {
+  position: absolute;
+  top: 110px;
+  left: 0;
+  right: 0;
+  bottom: 70px;
+  background: #0a1628;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.02) 10px, rgba(255, 255, 255, 0.02) 20px);
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.seo-wa-messages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 20px;
+}
+
+.seo-wa-message {
+  max-width: 75%;
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  animation: messageAppear 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.seo-wa-message.takefive {
+  align-self: flex-start;
+}
+
+.seo-wa-message-bubble {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
+  border-radius: 8px 8px 8px 2px;
+  padding: 10px 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.seo-wa-message-text {
+  color: white;
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.seo-wa-message-time {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 11px;
+  text-align: right;
+  margin-top: 4px;
+}
+
+.seo-wa-message-card {
+  background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.seo-wa-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.seo-wa-card-icon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+.seo-wa-card-title {
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.seo-wa-card-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.seo-wa-card-metric {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+}
+
+.seo-wa-metric-label {
+  color: #94a3b8;
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.seo-wa-metric-value {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.seo-wa-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.seo-wa-ai-platforms {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.seo-wa-ai-tag {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.seo-wa-typing-indicator {
+  display: flex;
+  gap: 4px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%);
+  border-radius: 18px;
+  width: fit-content;
+}
+
+.seo-wa-typing-dot {
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: typingAnimation 1.4s infinite;
+}
+
+.seo-wa-typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.seo-wa-typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.seo-wa-input-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: #1e293b;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.seo-wa-input-field {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 20px;
+  padding: 12px 16px;
+  color: white;
+  font-size: 15px;
+}
+
+.seo-wa-send-button {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #128c7e 0%, #075e54 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+/* ============================================ */
+/* GAMIFICATION PHONE STYLES */
+/* ============================================ */
+.gamif-iphone-container {
+  position: relative;
+  width: 360px;
+  height: 720px;
+  background: #1e293b;
+  border-radius: 50px;
+  padding: 14px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6), inset 0 0 0 2px rgba(255, 255, 255, 0.1);
+  margin: 0 auto;
+}
+
+.gamif-iphone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 32px;
+  background: #0f172a;
+  border-radius: 0 0 20px 20px;
+  z-index: 100;
+}
+
+.gamif-iphone-camera {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background: #1e293b;
+  border-radius: 50%;
+  border: 2px solid #334155;
+  z-index: 101;
+}
+
+.gamif-iphone-screen {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  border-radius: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.gamif-status-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  padding-top: 10px;
+  z-index: 50;
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.gamif-time {
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.gamif-status-icons {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.gamif-status-icon {
+  color: white;
+  font-size: 14px;
+}
+
+.gamif-app-header {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  padding: 20px 24px;
+  background: rgba(139, 92, 246, 0.1);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+  z-index: 40;
+}
+
+.gamif-app-title {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.gamif-app-subtitle {
+  color: #94a3b8;
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+.gamif-notifications-container {
+  position: absolute;
+  top: 140px;
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  overflow-y: auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: opacity 0.5s ease;
+}
+
+.gamif-notification-card {
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 16px;
+  padding: 16px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+  animation: notificationAppear 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.gamif-notification-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.gamif-notification-icon.purple { background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%); }
+.gamif-notification-icon.orange { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+.gamif-notification-icon.green { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+.gamif-notification-icon.pink { background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%); }
+.gamif-notification-icon.blue { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); }
+.gamif-notification-icon.red { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); }
+
+.gamif-notification-content {
+  flex: 1;
+}
+
+.gamif-notification-title {
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.gamif-notification-badge {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: white;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.gamif-notification-text {
+  color: #94a3b8;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+
+.gamif-notification-time {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.gamif-progress-container {
+  margin-top: 8px;
+}
+
+.gamif-progress-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.gamif-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+  border-radius: 3px;
+  transition: width 1s ease;
+}
+
+.gamif-progress-label {
+  display: flex;
+  justify-content: space-between;
+  color: #94a3b8;
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.gamif-scroll-hint {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 12px;
+  animation: bounce 2s infinite;
+  z-index: 60;
+}
+
+/* ============================================ */
+/* COMPETITIVE ANALYSIS PHONE STYLES */
+/* ============================================ */
+.comp-iphone-container {
+  position: relative;
+  width: 360px;
+  height: 720px;
+  background: #1e293b;
+  border-radius: 50px;
+  padding: 14px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6), inset 0 0 0 2px rgba(255, 255, 255, 0.1);
+  margin: 0 auto;
+}
+
+.comp-iphone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 32px;
+  background: #0f172a;
+  border-radius: 0 0 20px 20px;
+  z-index: 100;
+}
+
+.comp-iphone-camera {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background: #1e293b;
+  border-radius: 50%;
+  border: 2px solid #334155;
+  z-index: 101;
+}
+
+.comp-iphone-screen {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+  border-radius: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.comp-status-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  padding-top: 10px;
+  z-index: 50;
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.comp-time {
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.comp-status-icons {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.comp-status-icon {
+  color: white;
+  font-size: 14px;
+}
+
+.comp-app-header {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  padding: 16px 24px;
+  background: rgba(139, 92, 246, 0.1);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+  z-index: 40;
+}
+
+.comp-app-title {
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.comp-app-subtitle {
+  color: #94a3b8;
+  font-size: 13px;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.comp-slides-container {
+  position: absolute;
+  top: 130px;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+  overflow: hidden;
+}
+
+.comp-slides-wrapper {
+  display: flex;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.comp-slide {
+  min-width: 100%;
+  height: 100%;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.comp-metric-card {
+  background: rgba(30, 41, 59, 0.8);
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  border-radius: 20px;
+  padding: 32px;
+  text-align: center;
+  animation: slideInScale 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.comp-metric-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  margin: 0 auto 24px;
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+}
+
+.comp-metric-label {
+  color: #94a3b8;
+  font-size: 14px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.comp-metric-value {
+  color: white;
+  font-size: 56px;
+  font-weight: 900;
+  margin-bottom: 16px;
+}
+
+.comp-metric-comparison {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.comp-comparison-item {
+  text-align: center;
+}
+
+.comp-comparison-label {
+  color: #64748b;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.comp-comparison-value {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.comp-comparison-value.you {
+  color: #10b981;
+}
+
+.comp-comparison-value.competitor {
+  color: #f59e0b;
+}
+
+.comp-action-section {
+  margin-top: auto;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.comp-action-title {
+  color: #a855f7;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.comp-action-item {
+  color: white;
+  font-size: 14px;
+  padding: 8px 0;
+  padding-left: 24px;
+  position: relative;
+}
+
+.comp-action-item:before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #fbbf24;
+  font-weight: 700;
+}
+
+.comp-progress-indicator {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 50;
+}
+
+.comp-progress-dot {
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.comp-progress-dot.active {
+  background: #a855f7;
+  width: 24px;
+  border-radius: 4px;
+}
+
 @media (max-width: 768px) {
   .animate-bounce-subtle {
     animation: none;

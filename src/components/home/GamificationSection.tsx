@@ -1,70 +1,7 @@
-import { useState, useEffect } from 'react';
 import { BarChart3, Target, Trophy, TrendingUp } from 'lucide-react';
+import { GamificationPhone } from '../animations/GamificationPhone';
 
 export const GamificationSection = () => {
-  const [notifications, setNotifications] = useState<Array<{
-    id: number;
-    icon: string;
-    text: string;
-    color: string;
-  }>>([]);
-  const [nextNotifId, setNextNotifId] = useState(0);
-
-  // Liste étendue de notifications (15 exemples variés)
-  const notifsList = [
-    // Objectifs et défis
-    { icon: "🎯", text: "Nouveau défi : Obtenir 5 nouvelles photos cette semaine", color: "from-blue-500 to-cyan-500" },
-    { icon: "🎯", text: "Mission : Atteindre une note de 4,5★ ce mois-ci", color: "from-blue-600 to-cyan-600" },
-    
-    // Réussites et récompenses
-    { icon: "⭐", text: "Objectif atteint ! Tu as obtenu 10 avis. +100 points", color: "from-yellow-500 to-orange-500" },
-    { icon: "🎉", text: "Bravo ! Mission accomplie : 5 photos ajoutées. +50 points", color: "from-pink-500 to-red-500" },
-    { icon: "✨", text: "Félicitations ! Taux de réponse aux avis : 100%. +75 points", color: "from-purple-500 to-pink-500" },
-    
-    // Avis et interactions
-    { icon: "💬", text: "2 nouveaux avis à traiter rapidement", color: "from-purple-500 to-pink-500" },
-    { icon: "💬", text: "1 avis négatif nécessite une réponse urgente", color: "from-red-500 to-orange-500" },
-    { icon: "⭐", text: "Nouveau avis 5★ reçu ! +20 points", color: "from-yellow-400 to-orange-400" },
-    
-    // Niveaux et badges
-    { icon: "🏆", text: "Badge débloqué : Expert Local", color: "from-green-500 to-teal-500" },
-    { icon: "🏆", text: "Niveau 4 atteint : Champion Local ! +200 points", color: "from-yellow-500 to-orange-600" },
-    { icon: "🔥", text: "Série de 7 jours consécutifs ! Badge Régularité débloqué", color: "from-orange-500 to-red-500" },
-    
-    // Score et progression
-    { icon: "📊", text: "Ton score de santé : 82/100 (+4 cette semaine)", color: "from-indigo-500 to-purple-500" },
-    { icon: "📈", text: "Progression impressionnante : +12 points ce mois !", color: "from-green-500 to-emerald-500" },
-    
-    // Missions et rappels
-    { icon: "📸", text: "Mission : Ajoute 3 photos de tes produits cette semaine", color: "from-cyan-500 to-blue-500" },
-    { icon: "📝", text: "N'oublie pas : Mets à jour tes horaires pour les vacances", color: "from-indigo-500 to-blue-500" }
-  ];
-
-  useEffect(() => {
-    // Timing ajusté : nouvelle notification toutes les 5 SECONDES (au lieu de 3)
-    const interval = setInterval(() => {
-      const randomNotif = notifsList[Math.floor(Math.random() * notifsList.length)];
-      const newNotif = {
-        id: nextNotifId,
-        ...randomNotif
-      };
-      
-      setNotifications(prev => {
-        const updated = [newNotif, ...prev];
-        return updated.slice(0, 3); // Max 3 notifications visibles
-      });
-      
-      setNextNotifId(prev => prev + 1);
-
-      // Durée de vie ajustée : 7 SECONDES (au lieu de 4)
-      setTimeout(() => {
-        setNotifications(prev => prev.filter(n => n.id !== newNotif.id));
-      }, 7000);
-    }, 5000); // Intervalle passé de 3000ms à 5000ms
-
-    return () => clearInterval(interval);
-  }, [nextNotifId]);
-
   return (
     <section className="relative py-16 sm:py-24 px-4 sm:px-6 overflow-hidden" id="gamification">
       {/* Fond dégradé identique à "Tout se passe sur WhatsApp" */}
@@ -74,63 +11,13 @@ export const GamificationSection = () => {
       <div className="relative max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
           
-          {/* GAUCHE : Téléphone avec animation Ticker */}
+          {/* GAUCHE : Téléphone avec animation notifications */}
           <div className="relative lg:pr-8 order-2 lg:order-1">
-            {/* Halo qui pulse - RAPIDE (1.5s) et VISIBLE (1.0→1.15) */}
+            {/* Halo qui pulse */}
             <div className="absolute inset-0 bg-gradient-to-r from-purple-500/40 to-pink-500/40 rounded-full blur-3xl animate-pulse-fast" />
             
-            {/* Téléphone */}
-            <div className="relative bg-gray-900 rounded-[3rem] p-3 sm:p-4 shadow-2xl border-4 sm:border-8 border-gray-800 max-w-sm mx-auto">
-              {/* Notch */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 sm:w-40 h-5 sm:h-6 bg-gray-800 rounded-b-3xl z-10" />
-              
-              {/* Écran */}
-              <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-[2.5rem] aspect-[9/19] overflow-hidden">
-                
-                {/* Header fixe */}
-                <div className="absolute top-0 left-0 right-0 z-20 p-4 text-center">
-                  <div className="inline-block px-4 py-2 bg-gradient-to-r from-green-500 to-teal-500 rounded-lg">
-                    <span className="text-white text-sm font-semibold">TakeFive Assistant</span>
-                  </div>
-                </div>
-
-                {/* Zone notifications - arrivent par le BAS */}
-                <div className="absolute bottom-4 left-4 right-4 space-y-3">
-                  {notifications.map((notif, index) => (
-                    <div
-                      key={notif.id}
-                      className="slide-up bg-gray-800/95 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-gray-700"
-                      style={{ 
-                        opacity: 1 - (index * 0.15) // Opacité ajustée pour meilleure visibilité
-                      }}
-                    >
-                      <div className="flex items-start gap-3">
-                        <div className={`flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br ${notif.color} flex items-center justify-center text-2xl`}>
-                          {notif.icon}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-white text-sm font-medium leading-tight">
-                            {notif.text}
-                          </p>
-                          <p className="text-gray-400 text-xs mt-1">
-                            À l'instant
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Indicateur d'attente si pas de notifs */}
-                {notifications.length === 0 && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="text-4xl mb-2">⏳</div>
-                      <p className="text-gray-500 text-sm">En attente de notifications...</p>
-                    </div>
-                  </div>
-                )}
-              </div>
+            <div className="relative">
+              <GamificationPhone />
             </div>
           </div>
 
