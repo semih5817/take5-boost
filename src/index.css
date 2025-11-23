@@ -63,6 +63,16 @@ All colors MUST be HSL.
   }
 }
 
+/* Responsive utility classes */
+@layer utilities {
+  /* Ensure sections stack properly on mobile */
+  @media (max-width: 640px) {
+    section {
+      scroll-margin-top: 4rem;
+    }
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
