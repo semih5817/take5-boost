@@ -66,13 +66,13 @@ export const GamificationSection = () => {
   }, [nextNotifId]);
 
   return (
-    <section className="relative py-24 px-6 overflow-hidden" id="gamification">
+    <section className="relative py-16 sm:py-24 px-4 sm:px-6 overflow-hidden" id="gamification">
       {/* Fond dégradé identique à "Tout se passe sur WhatsApp" */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e] via-[#2d1b4e] to-[#1e1539]" />
       <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent" />
       
       <div className="relative max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">
           
           {/* GAUCHE : Téléphone avec animation Ticker */}
           <div className="relative lg:pr-8 order-2 lg:order-1">
@@ -80,9 +80,9 @@ export const GamificationSection = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-purple-500/40 to-pink-500/40 rounded-full blur-3xl animate-pulse-fast" />
             
             {/* Téléphone */}
-            <div className="relative bg-gray-900 rounded-[3rem] p-4 shadow-2xl border-8 border-gray-800 max-w-sm mx-auto">
+            <div className="relative bg-gray-900 rounded-[3rem] p-3 sm:p-4 shadow-2xl border-4 sm:border-8 border-gray-800 max-w-sm mx-auto">
               {/* Notch */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-6 bg-gray-800 rounded-b-3xl z-10" />
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 sm:w-40 h-5 sm:h-6 bg-gray-800 rounded-b-3xl z-10" />
               
               {/* Écran */}
               <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-[2.5rem] aspect-[9/19] overflow-hidden">

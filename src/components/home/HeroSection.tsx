@@ -7,10 +7,10 @@ export const HeroSection = () => {
       behavior: 'smooth'
     });
   };
-  return <section className="relative min-h-screen bg-gradient-to-b from-[#0A0E1A] to-[#1A1F35] flex items-center justify-center px-4">
+  return <section className="relative min-h-screen bg-gradient-to-b from-[#0A0E1A] to-[#1A1F35] flex items-center justify-center px-4 py-20">
       <div className="max-w-6xl mx-auto text-center">
         {/* Titre principal */}
-        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in leading-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in leading-tight px-4">
           Devenez le commerce{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
             #1 sur Google
@@ -19,9 +19,8 @@ export const HeroSection = () => {
         </h1>
 
         {/* Sous-titre */}
-        <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto animate-fade-in">
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto animate-fade-in px-4">
           Take 5 collecte et gère vos avis Google automatiquement.
-IA incluse • Tout sur WhatsApp • 19,90€/mois
           <br />
           <strong className="text-purple-300">IA incluse • Alertes WhatsApp • 19,90€/mois</strong>
         </p>
