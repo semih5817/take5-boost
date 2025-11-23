@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { SeoLocalWhatsAppPhone } from '../animations/SeoLocalWhatsAppPhone';
 
 export const SeoLocalAiSection = () => {
   const [currentStep, setCurrentStep] = useState(0);
