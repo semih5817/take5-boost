@@ -193,7 +193,7 @@ export const SubscriptionForm = () => {
   };
 
   return (
-    <section id="subscription-form" className="py-16 md:py-24 bg-gradient-to-br from-primary/5 to-secondary/5">
+    <section id="subscription-form" className="py-16 md:py-24">
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-6xl font-bold mb-4">

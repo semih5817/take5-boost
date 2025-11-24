@@ -59,9 +59,6 @@ export const CompetitiveAnalysisSection = () => {
 
   return (
     <section className="relative py-24 px-6 overflow-hidden" id="analyse-concurrentielle">
-      {/* Fond dégradé */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e] via-[#2d1b4e] to-[#1e1539]" />
-      <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent" />
       
       <div className="relative max-w-7xl mx-auto">
         {/* HEADER */}

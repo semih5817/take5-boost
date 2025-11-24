@@ -4,9 +4,6 @@ import { GamificationPhone } from '../animations/GamificationPhone';
 export const GamificationSection = () => {
   return (
     <section className="relative py-16 sm:py-24 px-4 sm:px-6 overflow-hidden" id="gamification">
-      {/* Fond dégradé identique à "Tout se passe sur WhatsApp" */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1a1a2e] via-[#2d1b4e] to-[#1e1539]" />
-      <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent" />
       
       <div className="relative max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 xl:gap-16 items-center">

@@ -38,7 +38,7 @@ export const TestimonialsNewSection = () => {
   ];
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-[#0A0E1A] to-[#1A1F35]">
+    <section className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-4">
           Rejoins les 237 restaurants et commerces{" "}

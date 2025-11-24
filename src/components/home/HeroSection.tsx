@@ -7,7 +7,7 @@ export const HeroSection = () => {
       behavior: 'smooth'
     });
   };
-  return <section className="relative min-h-screen bg-gradient-to-b from-[#0A0E1A] to-[#1A1F35] flex items-center justify-center px-4 py-20">
+  return <section className="relative min-h-screen flex items-center justify-center px-4 py-20">
       <div className="max-w-6xl mx-auto text-center">
         {/* Titre principal */}
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in leading-tight px-4">

@@ -46,7 +46,7 @@ export const LeadCaptureSection = () => {
   };
 
   return (
-    <section className="py-16 px-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+    <section className="py-16 px-6">
       <div className="max-w-4xl mx-auto">
         
         {!submitted ? (
