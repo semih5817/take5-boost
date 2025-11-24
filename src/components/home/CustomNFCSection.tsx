@@ -8,7 +8,7 @@ export const CustomNFCSection = () => {
   };
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-[#0A0E1A] to-[#1A1F35]">
+    <section className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Image */}

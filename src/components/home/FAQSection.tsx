@@ -54,7 +54,7 @@ export const FAQSection = () => {
   ];
 
   return (
-    <section className="py-20 px-4 bg-[#1A1F35]">
+    <section className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-4">
           Questions <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">fréquentes</span>

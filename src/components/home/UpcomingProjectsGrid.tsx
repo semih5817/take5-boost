@@ -87,7 +87,7 @@ export const UpcomingProjectsGrid = () => {
   };
 
   return (
-    <section className="py-24 px-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" id="projets-avenir">
+    <section className="py-24 px-6" id="projets-avenir">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">

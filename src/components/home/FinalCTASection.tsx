@@ -6,7 +6,7 @@ export const FinalCTASection = () => {
   };
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-[#1A1F35] to-[#0A0E1A]">
+    <section className="py-20 px-4">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
           Prêt à devenir le commerce{" "}
