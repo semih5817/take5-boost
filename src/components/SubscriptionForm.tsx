@@ -106,9 +106,7 @@ const pricingOffers = [
       "QR Code dynamique",
       "Collecte avis Google (2x/jour) + Facebook",
       "Réponses IA illimitées 24/7",
-      "Publication WhatsApp (Instagram + Google + FB)",
       "Alertes WhatsApp instantanées (avis négatifs en 2 min)",
-      "Support prioritaire",
       "Plaque NFC offerte (offre annuelle)"
     ],
   },
@@ -122,11 +120,16 @@ const pricingOffers = [
     isPopular: false,
     features: [
       "Tout Starter +",
+      "Publication WhatsApp (Instagram + Google + FB)",
       "Radar multi-plateformes (Google, Facebook, Trustpilot, Yelp)",
       "Analyse concurrentielle quotidienne",
       "Collecte avis 4x/jour (toutes les 6h)",
+      "SEO local optimisé avec IA",
+      "Gamification",
+      "Rapport mensuel sur WhatsApp",
       "Opportunités IA quotidiennes",
-      "Reporting hebdomadaire détaillé"
+      "Reporting hebdomadaire détaillé",
+      "Support prioritaire"
     ],
   }
 ];
