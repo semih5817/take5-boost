@@ -1545,4 +1545,571 @@ section + section {
 .gamif-notifications-container::-webkit-scrollbar {
   display: none;
 }
+
+/* ============================================================ */
+/* RADAR MULTI-PLATFORM ANIMATION */
+/* ============================================================ */
+
+/* iPhone Container */
+.radar-iphone-container {
+  position: relative;
+  width: 360px;
+  height: 720px;
+  background: #1e293b;
+  border-radius: 50px;
+  padding: 14px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6),
+              inset 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+.radar-iphone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 32px;
+  background: #0f172a;
+  border-radius: 0 0 20px 20px;
+  z-index: 100;
+}
+
+.radar-iphone-camera {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background: #1e293b;
+  border-radius: 50%;
+  border: 2px solid #334155;
+  z-index: 101;
+}
+
+.radar-iphone-screen {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, #0f1729 0%, #050911 100%);
+  border-radius: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Status bar */
+.radar-status-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  padding-top: 10px;
+  z-index: 50;
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.radar-time {
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.radar-status-icons {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+}
+
+/* App header */
+.radar-app-header {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  padding: 20px 24px;
+  background: rgba(139, 92, 246, 0.05);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+  z-index: 40;
+}
+
+.radar-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.radar-app-title {
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.radar-status-badge {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  animation: pulse 2s infinite;
+}
+
+/* Radar Container */
+.radar-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 320px;
+  margin-top: 20px;
+  overflow: visible;
+}
+
+/* Radar circles */
+.radar-circles {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.radar-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 50%;
+  animation: radarPulse 3s infinite;
+}
+
+.radar-circle:nth-child(1) {
+  width: 100%;
+  height: 100%;
+}
+
+.radar-circle:nth-child(2) {
+  width: 70%;
+  height: 70%;
+  animation-delay: 0.5s;
+}
+
+.radar-circle:nth-child(3) {
+  width: 40%;
+  height: 40%;
+  animation-delay: 1s;
+}
+
+@keyframes radarPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+/* Radar sweep line */
+.radar-sweep {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 160px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.8) 50%, transparent 100%);
+  transform-origin: left center;
+  animation: radarSweep 4s linear infinite;
+  filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.8));
+  z-index: 8;
+}
+
+@keyframes radarSweep {
+  0% {
+    transform: translate(0, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(0, -50%) rotate(360deg);
+  }
+}
+
+/* Center logo */
+.radar-center-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 900;
+  color: white;
+  line-height: 1.1;
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.6),
+              0 0 60px rgba(236, 72, 153, 0.4);
+  animation: centerPulse 2s infinite;
+  z-index: 10;
+}
+
+.radar-center-logo-text {
+  font-size: 22px;
+  letter-spacing: -1px;
+}
+
+@keyframes centerPulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.6),
+                0 0 60px rgba(236, 72, 153, 0.4);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.8),
+                0 0 80px rgba(236, 72, 153, 0.6);
+  }
+}
+
+/* Platform nodes */
+.radar-platform-node {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(30, 41, 59, 0.95);
+  border: 2px solid rgba(139, 92, 246, 0.4);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+  z-index: 20;
+  backdrop-filter: blur(10px);
+}
+
+.radar-platform-node.active {
+  border-color: rgba(16, 185, 129, 0.9);
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.6);
+  transform: scale(1.15);
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.radar-platform-node.alert {
+  border-color: rgba(239, 68, 68, 0.9);
+  box-shadow: 0 0 30px rgba(239, 68, 68, 0.6);
+  animation: alertPulse 0.5s infinite;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+@keyframes alertPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.radar-platform-icon {
+  font-size: 32px;
+  margin-bottom: 4px;
+}
+
+/* Logo Facebook */
+.radar-platform-node[data-platform="facebook"] .radar-platform-icon {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 900;
+  font-size: 42px;
+  color: white;
+  background: #1877f2;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 4px;
+  line-height: 1;
+}
+
+/* Logo Trustpilot */
+.radar-platform-node[data-platform="trustpilot"] .radar-platform-icon {
+  font-size: 36px;
+  color: #00b67a;
+  text-shadow: 0 2px 8px rgba(0, 182, 122, 0.5);
+}
+
+/* Logo Yelp */
+.radar-platform-node[data-platform="yelp"] .radar-platform-icon {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+  color: white;
+  background: #d32323;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 4px;
+  letter-spacing: -1px;
+}
+
+.radar-platform-name {
+  font-size: 10px;
+  color: #cbd5e1;
+  font-weight: 700;
+}
+
+/* Platform positions */
+.radar-platform-node[data-platform="google"] { 
+  top: 5px; 
+  left: 50%; 
+  transform: translateX(-50%);
+  z-index: 20;
+}
+
+.radar-platform-node[data-platform="facebook"] { 
+  top: 50%; 
+  right: 5px; 
+  transform: translateY(-50%);
+  z-index: 20;
+}
+
+.radar-platform-node[data-platform="trustpilot"] { 
+  bottom: 5px; 
+  left: 50%; 
+  transform: translateX(-50%);
+  z-index: 20;
+}
+
+.radar-platform-node[data-platform="yelp"] { 
+  top: 50%; 
+  left: 5px; 
+  transform: translateY(-50%);
+  z-index: 20;
+}
+
+/* Ping animation */
+.radar-ping {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  animation: pingExpand 1s ease-out forwards;
+  z-index: 15;
+}
+
+.radar-ping.positive {
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.8) 0%, transparent 70%);
+  border: 2px solid #10b981;
+}
+
+.radar-ping.negative {
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.8) 0%, transparent 70%);
+  border: 2px solid #ef4444;
+}
+
+@keyframes pingExpand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+  }
+}
+
+/* Notification card */
+.radar-notification-card {
+  position: absolute;
+  bottom: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  background: rgba(30, 41, 59, 0.95);
+  border: 2px solid;
+  border-radius: 16px;
+  padding: 16px;
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  animation: notificationSlide 0.5s ease forwards;
+  z-index: 30;
+}
+
+@keyframes notificationSlide {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.radar-notification-card.positive {
+  border-color: #10b981;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+.radar-notification-card.negative {
+  border-color: #ef4444;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+}
+
+.radar-notification-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.radar-notification-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 900;
+  color: white;
+}
+
+.radar-notification-icon.positive {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.radar-notification-icon.negative {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.radar-notification-title {
+  flex: 1;
+}
+
+.radar-notification-platform {
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.radar-notification-time {
+  color: #64748b;
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+.radar-notification-text {
+  color: #cbd5e1;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.radar-notification-action {
+  background: rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.radar-action-icon {
+  color: #a855f7;
+  font-size: 16px;
+}
+
+.radar-action-text {
+  color: #e9d5ff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Stats footer */
+.radar-stats-footer {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  padding: 0 24px;
+  z-index: 40;
+}
+
+.radar-stats-container {
+  background: rgba(30, 41, 59, 0.9);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 16px;
+  padding: 16px;
+  backdrop-filter: blur(10px);
+}
+
+.radar-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+.radar-stat-item {
+  text-align: center;
+}
+
+.radar-stat-value {
+  color: white;
+  font-size: 22px;
+  font-weight: 900;
+  margin-bottom: 4px;
+}
+
+.radar-stat-label {
+  color: #64748b;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.radar-zero-missed {
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.radar-fire-streak {
+  font-size: 14px;
+  animation: fireFlicker 1s infinite;
+}
+
+@keyframes fireFlicker {
+  0%, 100% { transform: scale(1) rotate(-5deg); }
+  50% { transform: scale(1.1) rotate(5deg); }
+}
 }
