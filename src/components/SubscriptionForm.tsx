@@ -4,7 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowRight, Lock, CreditCard, Package, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Lock, CreditCard, Package, CheckCircle2, Copy, Check as CheckIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -95,126 +95,38 @@ const SECTORS = [
 
 const pricingOffers = [
   {
-    id: "free",
-    name: "Gratuit",
-    badge: "POUR TESTER",
-    price: 0,
-    displayPrice: "0€",
-    period: "",
-    detail: "Fonctionnalités limitées",
-    isPopular: false,
-    hasAnnual: false,
-    features: [
-      { text: "1 QR Code dynamique", included: true },
-      { text: "Scans illimités", included: true },
-      { text: "Radar avis (lecture seule)", included: true },
-      { text: "Aperçu réponses IA", included: true },
-      { text: "Collecte avis automatique", included: false },
-      { text: "Réponses IA illimitées", included: false },
-      { text: "Publication WhatsApp", included: false },
-      { text: "Alertes WhatsApp", included: false },
-      { text: "Dashboard", included: false },
-      { text: "Support prioritaire", included: false }
-    ],
-  },
-  {
     id: "starter",
     name: "Starter",
-    badge: "POPULAIRE",
-    price: 14.90,
-    displayPrice: "14,90€",
-    period: "/ MOIS",
+    badge: "⚡ POPULAIRE",
+    monthlyPrice: 19.90,
+    annualPrice: 14.93,
     detail: "Essentiel pour petits commerces",
     isPopular: true,
-    hasAnnual: true,
-    annualOptions: [
-      {
-        duration: "1 an",
-        pricePerMonth: 14.90,
-        totalPrice: 178.80,
-        savings: 0,
-        nfcPlates: 1,
-        badge: "2 mois offerts"
-      }
-    ],
     features: [
-      { text: "Tout Gratuit +", included: true },
-      { text: "Collecte avis Google (2x/jour)", included: true },
-      { text: "Réponses IA illimitées", included: true },
-      { text: "Publication WhatsApp (Insta + Google + FB)", included: true },
-      { text: "Alertes WhatsApp", included: true },
-      { text: "Dashboard basique", included: true },
-      { text: "Support prioritaire", included: true },
-      { text: "Plaque NFC offerte (annuel)", included: true },
-      { text: "Radar multi-plateformes", included: false },
-      { text: "Alertes concurrents", included: false },
-      { text: "Générateur de flyers", included: false },
-      { text: "Jeux concours", included: false }
+      "QR Code dynamique",
+      "Collecte avis Google (2x/jour) + Facebook",
+      "Réponses IA illimitées 24/7",
+      "Publication WhatsApp (Instagram + Google + FB)",
+      "Alertes WhatsApp instantanées (avis négatifs en 2 min)",
+      "Support prioritaire",
+      "Plaque NFC offerte (offre annuelle)"
     ],
   },
   {
     id: "pro",
     name: "Pro",
-    badge: "RECOMMANDÉ",
-    price: 29.90,
-    displayPrice: "29,90€",
-    period: "/ MOIS",
+    badge: "🎯 RECOMMANDÉ",
+    monthlyPrice: 29.90,
+    annualPrice: 22.43,
     detail: "Pour dominer localement",
     isPopular: false,
-    hasAnnual: true,
-    annualOptions: [
-      {
-        duration: "1 an",
-        pricePerMonth: 29.90,
-        totalPrice: 358.80,
-        savings: 0,
-        nfcPlates: 2,
-        badge: "2 mois offerts"
-      }
-    ],
     features: [
-      { text: "Tout Starter +", included: true },
-      { text: "Radar multi-plateformes (Google, Facebook, Trustpilot)", included: true },
-      { text: "Alertes concurrents quotidiennes", included: true },
-      { text: "Collecte avis 4x/jour", included: true },
-      { text: "Publication multi-plateformes avancée", included: true },
-      { text: "Opportunités IA quotidiennes", included: true },
-      { text: "Dashboard Analytics", included: true },
-      { text: "Reporting hebdomadaire", included: true },
-      { text: "Générateur de flyers", included: false },
-      { text: "Jeux concours", included: false },
-      { text: "Campagnes SMS", included: false }
-    ],
-  },
-  {
-    id: "pro-plus",
-    name: "Pro Plus",
-    badge: "TOUT INCLUS",
-    price: 45,
-    displayPrice: "45€",
-    period: "/ MOIS",
-    detail: "Fonctionnalités avancées",
-    isPopular: false,
-    hasAnnual: true,
-    annualOptions: [
-      {
-        duration: "1 an",
-        pricePerMonth: 45,
-        totalPrice: 540,
-        savings: 0,
-        nfcPlates: 3,
-        badge: "2 mois offerts"
-      }
-    ],
-    features: [
-      { text: "Tout Pro +", included: true },
-      { text: "Générateur de flyers IA", included: true },
-      { text: "Jeux concours automatisés", included: true },
-      { text: "Campagnes SMS/Email", included: true },
-      { text: "Analytics avancés", included: true },
-      { text: "Templates personnalisés", included: true },
-      { text: "Support VIP 24/7", included: true },
-      { text: "Plaques NFC premium (annuel)", included: true }
+      "Tout Starter +",
+      "Radar multi-plateformes (Google, Facebook, Trustpilot, Yelp)",
+      "Analyse concurrentielle quotidienne",
+      "Collecte avis 4x/jour (toutes les 6h)",
+      "Opportunités IA quotidiennes",
+      "Reporting hebdomadaire détaillé"
     ],
   }
 ];
@@ -224,7 +136,7 @@ export const SubscriptionForm = () => {
   const [wantsPlaque, setWantsPlaque] = useState(false);
   const [selectedOffer, setSelectedOffer] = useState("");
   const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("monthly");
-  const [selectedAnnualOptions, setSelectedAnnualOptions] = useState<Record<string, any>>({});
+  const [copiedCode, setCopiedCode] = useState(false);
   
   const form = useForm<SubscriptionFormData>({
     resolver: zodResolver(subscriptionSchema),
@@ -247,10 +159,22 @@ export const SubscriptionForm = () => {
   const TVA_RATE = 0.20;
   
   const currentOffer = pricingOffers.find(o => o.id === selectedOffer);
-  const offerPriceHT = currentOffer?.price || 0;
+  const offerPriceHT = currentOffer 
+    ? (billingCycle === "monthly" ? currentOffer.monthlyPrice : currentOffer.annualPrice)
+    : 0;
   const subtotalHT = wantsPlaque ? offerPriceHT + plaquePriceHT : offerPriceHT;
   const tvaAmount = subtotalHT * TVA_RATE;
   const totalTTC = subtotalHT + tvaAmount;
+
+  const copyPromoCode = () => {
+    navigator.clipboard.writeText('DECOUVERTE');
+    setCopiedCode(true);
+    toast({
+      title: "Code copié !",
+      description: "Le code promo DECOUVERTE a été copié dans votre presse-papiers.",
+    });
+    setTimeout(() => setCopiedCode(false), 2000);
+  };
 
   const onSubmit = (data: SubscriptionFormData) => {
     console.log("Subscription submitted for offer:", data.offer);
@@ -272,10 +196,74 @@ export const SubscriptionForm = () => {
           <h2 className="text-4xl md:text-6xl font-bold mb-4">
             Choisissez votre <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">plan tarifaire</span>
           </h2>
-          <p className="text-lg text-muted-foreground/80">
-            Sélectionnez votre formule et rejoignez Take 5
+          <p className="text-lg text-muted-foreground/80 mb-8">
+            Propulsez votre visibilité locale et dominez Google Maps
           </p>
+          
+          {/* Toggle Mensuel/Annuel */}
+          <div className="inline-flex items-center gap-4 bg-card/60 p-2 rounded-full border border-primary/30 mb-8">
+            <button
+              type="button"
+              onClick={() => setBillingCycle("monthly")}
+              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
+                billingCycle === "monthly"
+                  ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg shadow-primary/40'
+                  : 'text-muted-foreground'
+              }`}
+            >
+              Mensuel
+            </button>
+            <button
+              type="button"
+              onClick={() => setBillingCycle("annual")}
+              className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 flex items-center gap-2 ${
+                billingCycle === "annual"
+                  ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg shadow-primary/40'
+                  : 'text-muted-foreground'
+              }`}
+            >
+              Annuel
+              <Badge className="bg-gradient-to-r from-green-500 to-green-600 text-white text-xs">
+                -25%
+              </Badge>
+            </button>
+          </div>
         </div>
+
+        {/* Bannière Promo */}
+        <Card className="mb-12 p-6 md:p-8 text-center bg-gradient-to-r from-primary to-secondary relative overflow-hidden animate-pulse-slow max-w-4xl mx-auto">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
+          <div className="relative z-10">
+            <div className="text-4xl mb-3">🎁</div>
+            <h3 className="text-2xl font-bold text-white mb-2">CODE PROMO : 1 MOIS GRATUIT</h3>
+            <p className="text-white/90 mb-4">Utilisez ce code sur l'offre Starter pour tester gratuitement</p>
+            <div className="inline-flex items-center gap-3 bg-white/20 backdrop-blur-lg px-6 py-3 rounded-xl">
+              <span className="text-xl font-bold text-white tracking-wider">DECOUVERTE</span>
+              <Button
+                onClick={copyPromoCode}
+                size="sm"
+                type="button"
+                className={`${
+                  copiedCode
+                    ? 'bg-green-500 hover:bg-green-600'
+                    : 'bg-white text-primary hover:bg-white/90'
+                } transition-all`}
+              >
+                {copiedCode ? (
+                  <>
+                    <CheckIcon className="w-4 h-4 mr-1" />
+                    Copié
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4 mr-1" />
+                    Copier
+                  </>
+                )}
+              </Button>
+            </div>
+          </div>
+        </Card>
 
         <div className="max-w-6xl mx-auto">
           <Card className="p-8 md:p-10 shadow-elegant">
@@ -283,36 +271,7 @@ export const SubscriptionForm = () => {
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-10">
                 {/* Section 1: Choix de l'offre */}
                 <div className="space-y-6">
-                  <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
-                    <h3 className="text-2xl font-bold">1. Choisissez votre offre</h3>
-                    
-                    {/* Toggle Mensuel/Annuel */}
-                    <div className="inline-flex items-center gap-3 bg-muted rounded-full p-1 border">
-                      <button
-                        type="button"
-                        onClick={() => setBillingCycle("monthly")}
-                        className={`px-6 py-2 rounded-full font-semibold transition-all ${
-                          billingCycle === "monthly"
-                            ? "bg-primary text-primary-foreground"
-                            : "text-muted-foreground hover:text-foreground"
-                        }`}
-                      >
-                        Mensuel
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setBillingCycle("annual")}
-                        className={`px-6 py-2 rounded-full font-semibold transition-all flex items-center gap-2 ${
-                          billingCycle === "annual"
-                            ? "bg-primary text-primary-foreground"
-                            : "text-muted-foreground hover:text-foreground"
-                        }`}
-                      >
-                        Annuel
-                        <Badge className="bg-green-600 text-white text-xs">-25%</Badge>
-                      </button>
-                    </div>
-                  </div>
+                  <h3 className="text-2xl font-bold">1. Choisissez votre offre</h3>
                   
                   <FormField
                     control={form.control}
@@ -320,138 +279,64 @@ export const SubscriptionForm = () => {
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
-                          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-                            {pricingOffers.map((offer) => (
-                              <div
-                                key={offer.id}
-                                onClick={() => {
-                                  field.onChange(offer.id);
-                                  setSelectedOffer(offer.id);
-                                }}
-                                className={`relative p-6 rounded-xl border-2 cursor-pointer transition-all duration-300 hover:shadow-lg ${
-                                  field.value === offer.id
-                                    ? "border-primary shadow-primary bg-primary/5"
-                                    : "border-border hover:border-primary/50"
-                                } ${offer.isPopular ? "ring-2 ring-primary/20" : ""}`}
-                              >
-                                {/* Badge */}
-                                {offer.badge && (
-                                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                                    <Badge
-                                      className={`px-3 py-1 text-xs font-bold ${
-                                        offer.isPopular
-                                          ? "bg-gradient-to-r from-primary to-secondary text-white"
-                                          : "bg-muted text-foreground"
-                                      }`}
-                                    >
-                                      {offer.badge}
-                                    </Badge>
-                                  </div>
-                                )}
+                          <div className="grid md:grid-cols-2 gap-8">
+                            {pricingOffers.map((offer) => {
+                              const price = billingCycle === "monthly" ? offer.monthlyPrice : offer.annualPrice;
+                              return (
+                                <div
+                                  key={offer.id}
+                                  onClick={() => {
+                                    field.onChange(offer.id);
+                                    setSelectedOffer(offer.id);
+                                  }}
+                                  className={`relative p-8 rounded-xl border-2 cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-2 ${
+                                    field.value === offer.id
+                                      ? "border-primary shadow-lg shadow-primary/20 bg-primary/5"
+                                      : "border-border hover:border-primary/50"
+                                  } ${offer.id === "starter" ? "border-primary/50 shadow-lg shadow-primary/20" : "border-secondary/50 shadow-lg shadow-secondary/20"}`}
+                                >
+                                  {/* Badge */}
+                                  <Badge className={`absolute -top-3 left-1/2 -translate-x-1/2 px-6 py-1.5 ${
+                                    offer.id === "starter"
+                                      ? "bg-gradient-to-r from-primary to-primary/80 text-white"
+                                      : "bg-gradient-to-r from-secondary to-secondary/80 text-white"
+                                  }`}>
+                                    {offer.badge}
+                                  </Badge>
 
-                                <div className="space-y-4">
-                                  {/* Header */}
-                                  <div className="text-center space-y-2">
-                                    <h4 className="text-xl font-bold">{offer.name}</h4>
-                                    
-                                    {/* Affichage prix mensuel */}
-                                    {(billingCycle === "monthly" || !offer.hasAnnual) && (
-                                      <>
-                                        <div>
-                                          <span className="text-3xl font-bold gradient-text">
-                                            {offer.displayPrice}
-                                          </span>
-                                          <span className="text-sm text-muted-foreground ml-1">
-                                            {offer.period}
-                                          </span>
+                                  <div className="text-center mb-8 mt-2">
+                                    <h3 className="text-2xl font-bold mb-4">{offer.name}</h3>
+                                    <div className="mb-2">
+                                      <span className="text-5xl font-bold gradient-text">
+                                        {price.toFixed(2)}€
+                                      </span>
+                                      <span className="text-lg text-muted-foreground"> / mois</span>
+                                    </div>
+                                    <p className="text-sm text-muted-foreground">{offer.detail}</p>
+                                  </div>
+                                  
+                                  <ul className="space-y-3 mb-8">
+                                    {offer.features.map((feature, index) => (
+                                      <li key={index} className="flex items-start gap-2">
+                                        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink-0 mt-0.5">
+                                          <CheckCircle2 className="w-3 h-3 text-white" />
                                         </div>
-                                        <p className="text-sm text-muted-foreground">{offer.detail}</p>
-                                      </>
-                                    )}
-
-                                    {/* Sélecteur annuel */}
-                                    {billingCycle === "annual" && offer.hasAnnual && offer.annualOptions && (
-                                      <div className="space-y-2">
-                                        {offer.annualOptions.map((option: any, idx: number) => (
-                                          <button
-                                            key={idx}
-                                            type="button"
-                                            onClick={(e) => {
-                                              e.stopPropagation();
-                                              setSelectedAnnualOptions({
-                                                ...selectedAnnualOptions,
-                                                [offer.id]: option
-                                              });
-                                            }}
-                                            className={`w-full text-left p-3 rounded-lg border transition-all ${
-                                              selectedAnnualOptions[offer.id] === option || (!selectedAnnualOptions[offer.id] && idx === 0)
-                                                ? "border-primary bg-primary/10"
-                                                : "border-border hover:border-primary/50"
-                                            }`}
-                                          >
-                                            <div className="flex justify-between items-center">
-                                              <div>
-                                                <div className="font-bold text-lg">
-                                                  {option.pricePerMonth}€/mois
-                                                </div>
-                                                <div className="text-sm text-muted-foreground">{option.duration}</div>
-                                              </div>
-                                              {option.badge && (
-                                                <Badge className="bg-red-600 text-white text-xs">
-                                                  {option.badge}
-                                                </Badge>
-                                              )}
-                                            </div>
-                                            {option.savings && (
-                                              <div className="mt-2 text-sm text-green-600 font-semibold">
-                                                💰 Économisez {option.savings}€
-                                              </div>
-                                            )}
-                                            {option.nfcPlates > 0 && (
-                                              <div className="mt-1 text-sm text-primary">
-                                                🎁 {option.nfcPlates} plaque{option.nfcPlates > 1 ? 's' : ''} NFC offerte{option.nfcPlates > 1 ? 's' : ''}
-                                                {option.nfcPremium && ' (dont 1 Premium)'}
-                                              </div>
-                                            )}
-                                          </button>
-                                        ))}
-                                      </div>
-                                    )}
-                                  </div>
-
-                                  {/* Ligne séparatrice */}
-                                  <div className="border-t border-border" />
-
-                                  {/* Liste des fonctionnalités */}
-                                  <ul className="space-y-2 text-left">
-                                    {offer.features
-                                      .filter((feature: any) => {
-                                        const isIncluded = typeof feature === 'string' ? true : feature.included;
-                                        return isIncluded;
-                                      })
-                                      .map((feature: any, idx: number) => {
-                                        const featureText = typeof feature === 'string' ? feature : feature.text;
-                                        
-                                        return (
-                                          <li key={idx} className="flex items-start gap-2 text-sm">
-                                            <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                                            <span className="text-muted-foreground">
-                                              {featureText}
-                                            </span>
-                                          </li>
-                                        );
-                                      })}
+                                        <span className="text-sm text-foreground">{feature}</span>
+                                      </li>
+                                    ))}
                                   </ul>
 
                                   {/* Checkmark de sélection */}
                                   {field.value === offer.id && (
-                                    <div className="flex justify-center pt-2">
-                                      <CheckCircle2 className="w-6 h-6 text-primary" />
+                                    <div className="flex justify-center pt-4">
+                                      <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                                        <CheckCircle2 className="w-5 h-5 text-white" />
+                                      </div>
                                     </div>
                                   )}
                                 </div>
-                              </div>
-                            ))}
+                              );
+                            })}
                           </div>
                         </FormControl>
                         <FormMessage />
