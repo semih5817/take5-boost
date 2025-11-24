@@ -14,6 +14,7 @@ import { LeadCaptureSection } from "@/components/LeadCaptureSection";
 import { TestimonialsNewSection } from "@/components/home/TestimonialsNewSection";
 import { FAQSection } from "@/components/home/FAQSection";
 import { FinalCTASection } from "@/components/home/FinalCTASection";
+import { Pricing } from "@/components/Pricing";
 import { SubscriptionForm } from "@/components/SubscriptionForm";
 import { Footer } from "@/components/Footer";
 
@@ -34,6 +35,7 @@ const Index = () => {
       <LeadCaptureSection />
       <TestimonialsNewSection />
       <FinalCTASection />
+      <Pricing />
       <SubscriptionForm />
       <FAQSection />
       <Footer />
