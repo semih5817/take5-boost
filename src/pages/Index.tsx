@@ -5,7 +5,6 @@ import { WhatsAppReportingSection } from "@/components/home/WhatsAppReportingSec
 import { GamificationSection } from "@/components/home/GamificationSection";
 import { CompetitiveAnalysisSection } from "@/components/home/CompetitiveAnalysisSection";
 import { RadarReviewsSection } from "@/components/home/RadarReviewsSection";
-import { ContestSection } from "@/components/home/ContestSection";
 import { AllInOneSection } from "@/components/home/AllInOneSection";
 import { SeoLocalAiSection } from "@/components/home/SeoLocalAiSection";
 import { CustomNFCSection } from "@/components/home/CustomNFCSection";
@@ -26,7 +25,6 @@ const Index = () => {
       <GamificationSection />
       <CompetitiveAnalysisSection />
       <RadarReviewsSection />
-      <ContestSection />
       <AllInOneSection />
       <SeoLocalAiSection />
       <CustomNFCSection />
