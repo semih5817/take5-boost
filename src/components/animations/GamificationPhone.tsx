@@ -105,32 +105,36 @@ export const GamificationPhone = () => {
     }
   }, [notifications]);
 
-  const renderNotification = (notif: any, index: number) => (
-    <div key={index} className="gamif-notification-card">
-      <div className={`gamif-notification-icon ${notif.iconClass}`}>
-        {notif.icon}
-      </div>
-      <div className="gamif-notification-content">
-        <div className="gamif-notification-title">
-          {notif.title}
-          {notif.badge && <span className="gamif-notification-badge">{notif.badge}</span>}
+  const renderNotification = (notif: any, index: number) => {
+    if (!notif) return null;
+    
+    return (
+      <div key={index} className="gamif-notification-card">
+        <div className={`gamif-notification-icon ${notif.iconClass || ''}`}>
+          {notif.icon}
         </div>
-        <div className="gamif-notification-text">{notif.text}</div>
-        <div className="gamif-notification-time">{notif.time}</div>
-        {notif.hasProgress && (
-          <div className="gamif-progress-container">
-            <div className="gamif-progress-label">
-              <span>Progression</span>
-              <span>{notif.progress}%</span>
-            </div>
-            <div className="gamif-progress-bar">
-              <div className="gamif-progress-fill" style={{ width: `${notif.progress}%` }}></div>
-            </div>
+        <div className="gamif-notification-content">
+          <div className="gamif-notification-title">
+            {notif.title}
+            {notif.badge && <span className="gamif-notification-badge">{notif.badge}</span>}
           </div>
-        )}
+          <div className="gamif-notification-text">{notif.text}</div>
+          <div className="gamif-notification-time">{notif.time}</div>
+          {notif.hasProgress && (
+            <div className="gamif-progress-container">
+              <div className="gamif-progress-label">
+                <span>Progression</span>
+                <span>{notif.progress}%</span>
+              </div>
+              <div className="gamif-progress-bar">
+                <div className="gamif-progress-fill" style={{ width: `${notif.progress}%` }}></div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div className="gamif-iphone-container">
