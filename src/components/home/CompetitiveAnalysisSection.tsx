@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { CompetitiveAnalysisPhone } from '../animations/CompetitiveAnalysisPhone';
+import { CompetitiveAnalysisWhatsAppPhone } from '../animations/CompetitiveAnalysisWhatsAppPhone';
 
 export const CompetitiveAnalysisSection = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -159,7 +159,7 @@ export const CompetitiveAnalysisSection = () => {
           <div className="relative order-1 lg:order-2">
             <div className="absolute inset-0 bg-gradient-to-r from-purple-500/30 to-pink-500/30 rounded-full blur-3xl animate-pulse-fast" />
             <div className="relative">
-              <CompetitiveAnalysisPhone />
+              <CompetitiveAnalysisWhatsAppPhone />
             </div>
           </div>
         </div>
