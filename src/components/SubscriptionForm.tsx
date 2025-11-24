@@ -128,7 +128,8 @@ const pricingOffers = [
       "SEO local optimisé avec IA",
       "Gamification",
       "Opportunités IA quotidiennes",
-      "Support prioritaire"
+      "Support prioritaire",
+      "Plaque NFC offerte (offre annuelle)"
     ],
   }
 ];
