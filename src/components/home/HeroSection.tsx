@@ -38,7 +38,7 @@ export const HeroSection = () => {
 
         {/* Sous-texte */}
         <p className="text-slate-400 text-sm mb-8 animate-fade-in">
-          ✓ Aucune carte bancaire requise • ✓ Annulation en 1 clic • ✓ 50+ commerces nous font confiance
+          ✓ Aucune carte bancaire requise • ✓ Annulation en 1 clic • ✓ 200+ commerces nous font confiance
         </p>
 
         {/* Badge avis */}
@@ -47,7 +47,7 @@ export const HeroSection = () => {
             {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />)}
           </div>
           <span className="text-white font-semibold">4.8/5</span>
-          <span className="text-slate-400">• 50+ commerces nous font confiance</span>
+          <span className="text-slate-400">• 200+ commerces nous font confiance</span>
         </div>
       </div>
     </section>;
