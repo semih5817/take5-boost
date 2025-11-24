@@ -46,13 +46,13 @@ export const LeadCaptureSection = () => {
   };
 
   return (
-    <section className="py-16 px-6">
+    <section className="py-8 px-6">
       <div className="max-w-4xl mx-auto">
         
         {!submitted ? (
           <>
             {/* Titre + sous-titre */}
-            <div className="text-center mb-8">
+            <div className="text-center mb-10">
               <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
                 Ces fonctionnalités vous intéressent ?
               </h2>
@@ -66,7 +66,7 @@ export const LeadCaptureSection = () => {
               <div className="flex justify-center">
                 <button
                   onClick={() => setShowForm(true)}
-                  className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-lg font-semibold rounded-xl hover:from-purple-600 hover:to-pink-600 transition-all hover:scale-105 shadow-lg"
+                  className="px-12 py-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-2xl font-bold rounded-2xl hover:from-purple-600 hover:to-pink-600 transition-all hover:scale-105 shadow-2xl hover:shadow-purple-500/50"
                 >
                   🔔 Prévenez-moi quand c'est disponible
                 </button>
