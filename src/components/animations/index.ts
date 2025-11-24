@@ -4,6 +4,7 @@ export { default as AIResponseAnimation } from './AIResponseAnimation';
 export { default as FlyerGeneratorAnimation } from './FlyerGeneratorAnimation';
 export { ContestAnimation } from './ContestAnimation';
 export { MissionsAnimation } from './MissionsAnimation';
+export { RadarMultiPlatformPhone } from './RadarMultiPlatformPhone';
 
 export { 
   MultiPublicationBenefits,
