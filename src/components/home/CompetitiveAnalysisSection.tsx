@@ -162,7 +162,6 @@ export const CompetitiveAnalysisSection = () => {
               <CompetitiveAnalysisPhone />
             </div>
           </div>
-          </div>
         </div>
       </div>
     </section>
