@@ -5,6 +5,7 @@ export { default as FlyerGeneratorAnimation } from './FlyerGeneratorAnimation';
 export { ContestAnimation } from './ContestAnimation';
 export { MissionsAnimation } from './MissionsAnimation';
 export { RadarMultiPlatformPhone } from './RadarMultiPlatformPhone';
+export { CompetitiveAnalysisWhatsAppPhone } from './CompetitiveAnalysisWhatsAppPhone';
 
 export { 
   MultiPublicationBenefits,
