@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer } from 'recharts';
-import { TrendingUp, Star, Phone, Globe } from "lucide-react";
+import { TrendingUp, Star, Globe, Gamepad2, BarChart3, Target, Zap } from "lucide-react";
 import take5Logo from "@/assets/take5-logo.png";
 
 export const WhatsAppReportingSection = () => {
@@ -380,9 +380,7 @@ export const WhatsAppReportingSection = () => {
             {/* Feature 2 - Gamification */}
             <div className="flex items-start gap-3 md:gap-4">
               <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
-                <svg className="w-6 h-6 md:w-7 md:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                </svg>
+                <Gamepad2 className="w-6 h-6 md:w-7 md:h-7 text-white" />
               </div>
               <div>
                 <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">Gamification</h3>
@@ -395,7 +393,7 @@ export const WhatsAppReportingSection = () => {
             {/* Feature 3 - Analyse concurrentielle */}
             <div className="flex items-start gap-3 md:gap-4">
               <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-pink-500 to-rose-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
-                <Phone className="w-6 h-6 md:w-7 md:h-7 text-white" />
+                <BarChart3 className="w-6 h-6 md:w-7 md:h-7 text-white" />
               </div>
               <div>
                 <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">Analyse concurrentielle</h3>
@@ -408,9 +406,7 @@ export const WhatsAppReportingSection = () => {
             {/* Feature 4 - Radar multiplateforme */}
             <div className="flex items-start gap-3 md:gap-4">
               <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
-                <svg className="w-6 h-6 md:w-7 md:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-                </svg>
+                <Target className="w-6 h-6 md:w-7 md:h-7 text-white" />
               </div>
               <div>
                 <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">Radar multiplateforme</h3>
@@ -436,9 +432,7 @@ export const WhatsAppReportingSection = () => {
             {/* Feature 6 - Optimisation SEO locale IA */}
             <div className="flex items-start gap-3 md:gap-4">
               <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
-                <svg className="w-6 h-6 md:w-7 md:h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
+                <Zap className="w-6 h-6 md:w-7 md:h-7 text-white" />
               </div>
               <div>
                 <h3 className="text-lg md:text-xl font-bold text-white mb-1 md:mb-2">Optimisation SEO locale IA</h3>
