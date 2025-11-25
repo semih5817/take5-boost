@@ -6,6 +6,7 @@ export { ContestAnimation } from './ContestAnimation';
 export { MissionsAnimation } from './MissionsAnimation';
 export { RadarMultiPlatformPhone } from './RadarMultiPlatformPhone';
 export { CompetitiveAnalysisWhatsAppPhone } from './CompetitiveAnalysisWhatsAppPhone';
+export { default as UnifiedWhatsAppAnimation } from './UnifiedWhatsAppAnimation';
 
 export { 
   MultiPublicationBenefits,
