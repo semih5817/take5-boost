@@ -130,7 +130,7 @@ export const Pricing = () => {
                 <span className="text-5xl font-bold gradient-text">
                   {prices[billingType].starter.toFixed(2)}€
                 </span>
-                <span className="text-lg text-muted-foreground"> / mois</span>
+                <span className="text-lg text-muted-foreground"> HT / mois</span>
               </div>
               <p className="text-sm text-muted-foreground">Essentiel pour petits commerces</p>
             </div>
@@ -165,7 +165,7 @@ export const Pricing = () => {
                 <span className="text-5xl font-bold gradient-text">
                   {prices[billingType].pro.toFixed(2)}€
                 </span>
-                <span className="text-lg text-muted-foreground"> / mois</span>
+                <span className="text-lg text-muted-foreground"> HT / mois</span>
               </div>
               <p className="text-sm text-muted-foreground">Pour dominer localement</p>
             </div>
