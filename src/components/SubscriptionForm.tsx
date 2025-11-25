@@ -313,7 +313,7 @@ export const SubscriptionForm = () => {
                                       <span className="text-5xl font-bold gradient-text">
                                         {price.toFixed(2)}€
                                       </span>
-                                      <span className="text-lg text-muted-foreground"> / mois</span>
+                                      <span className="text-lg text-muted-foreground"> HT / mois</span>
                                     </div>
                                     <p className="text-sm text-muted-foreground">{offer.detail}</p>
                                   </div>
