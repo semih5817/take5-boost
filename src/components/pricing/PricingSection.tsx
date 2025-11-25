@@ -80,7 +80,7 @@ const PackCard = ({
                   <div className="flex justify-between items-center">
                     <div>
                       <div className="font-bold text-white text-lg">
-                        {option.pricePerMonth}€/mois
+                        {option.pricePerMonth}€ HT/mois
                       </div>
                       <div className="text-sm text-slate-400">{option.duration}</div>
                     </div>
