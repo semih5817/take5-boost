@@ -73,7 +73,7 @@ export const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-slate-400 hover:text-purple-400 transition-all">
+                <a href="/nous-contacter" className="text-slate-400 hover:text-purple-400 transition-all">
                   Nous contacter
                 </a>
               </li>
