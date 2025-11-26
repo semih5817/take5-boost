@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { toast } from 'sonner';
-
 export default function NousContacter() {
   const [formData, setFormData] = useState({
     nom: '',
@@ -12,15 +11,16 @@ export default function NousContacter() {
   });
   const [showSuccess, setShowSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
+    const {
+      name,
+      value
+    } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -36,24 +36,18 @@ export default function NousContacter() {
         message: ''
       });
       toast.success('Message envoyé avec succès !');
-
       setTimeout(() => {
         setShowSuccess(false);
       }, 5000);
-
       console.log('Form submitted:', formData);
     }, 1500);
   };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0A0E1A] via-[#1a1a2e] to-[#0A0E1A]">
+  return <div className="min-h-screen bg-gradient-to-br from-[#0A0E1A] via-[#1a1a2e] to-[#0A0E1A]">
       <Header />
 
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-4 md:px-6 pt-32 pb-16 text-center">
-        <div className="inline-block bg-primary/15 border border-primary/30 text-primary px-5 py-2 rounded-full text-sm font-semibold mb-8">
-          💬 Nous sommes là pour vous
-        </div>
+        
         <h1 className="text-4xl md:text-6xl font-black mb-6 gradient-text">
           Contactez-Nous
         </h1>
@@ -75,23 +69,13 @@ export default function NousContacter() {
               Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais
             </p>
 
-            {!showSuccess ? (
-              <form onSubmit={handleSubmit} className="space-y-6">
+            {!showSuccess ? <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Nom */}
                 <div>
                   <label htmlFor="nom" className="block text-sm font-semibold text-white mb-2">
                     Nom complet *
                   </label>
-                  <input
-                    type="text"
-                    id="nom"
-                    name="nom"
-                    required
-                    value={formData.nom}
-                    onChange={handleChange}
-                    placeholder="Jean Dupont"
-                    className="w-full px-4 py-3 bg-slate-800/80 border-2 border-primary/30 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-colors"
-                  />
+                  <input type="text" id="nom" name="nom" required value={formData.nom} onChange={handleChange} placeholder="Jean Dupont" className="w-full px-4 py-3 bg-slate-800/80 border-2 border-primary/30 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-colors" />
                 </div>
 
                 {/* Email */}
@@ -99,16 +83,7 @@ export default function NousContacter() {
                   <label htmlFor="email" className="block text-sm font-semibold text-white mb-2">
                     Email *
                   </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="jean.dupont@example.com"
-                    className="w-full px-4 py-3 bg-slate-800/80 border-2 border-primary/30 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-colors"
-                  />
+                  <input type="email" id="email" name="email" required value={formData.email} onChange={handleChange} placeholder="jean.dupont@example.com" className="w-full px-4 py-3 bg-slate-800/80 border-2 border-primary/30 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-colors" />
                 </div>
 
                 {/* Sujet */}
@@ -116,14 +91,7 @@ export default function NousContacter() {
                   <label htmlFor="sujet" className="block text-sm font-semibold text-white mb-2">
                     Sujet *
                   </label>
-                  <select
-                    id="sujet"
-                    name="sujet"
-                    required
-                    value={formData.sujet}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-slate-800/80 border-2 border-primary/30 rounded-xl text-white focus:outline-none focus:border-primary transition-colors cursor-pointer"
-                  >
+                  <select id="sujet" name="sujet" required value={formData.sujet} onChange={handleChange} className="w-full px-4 py-3 bg-slate-800/80 border-2 border-primary/30 rounded-xl text-white focus:outline-none focus:border-primary transition-colors cursor-pointer">
                     <option value="question">Question générale</option>
                     <option value="demo">Demande de démo</option>
                     <option value="support">Support technique</option>
@@ -137,29 +105,14 @@ export default function NousContacter() {
                   <label htmlFor="message" className="block text-sm font-semibold text-white mb-2">
                     Message *
                   </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Décrivez votre demande en détail..."
-                    rows={6}
-                    className="w-full px-4 py-3 bg-slate-800/80 border-2 border-primary/30 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-colors resize-vertical"
-                  />
+                  <textarea id="message" name="message" required value={formData.message} onChange={handleChange} placeholder="Décrivez votre demande en détail..." rows={6} className="w-full px-4 py-3 bg-slate-800/80 border-2 border-primary/30 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-colors resize-vertical" />
                 </div>
 
                 {/* Submit Button */}
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:scale-[1.02] active:scale-[0.98]"
-                >
+                <button type="submit" disabled={isSubmitting} className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:scale-[1.02] active:scale-[0.98]">
                   {isSubmitting ? 'Envoi en cours...' : 'Envoyer le message'}
                 </button>
-              </form>
-            ) : (
-              <div className="text-center py-12">
+              </form> : <div className="text-center py-12">
                 <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -171,8 +124,7 @@ export default function NousContacter() {
                 <p className="text-slate-400">
                   Nous vous répondrons dans les plus brefs délais.
                 </p>
-              </div>
-            )}
+              </div>}
           </div>
 
           {/* Contact Info */}
@@ -184,38 +136,16 @@ export default function NousContacter() {
               <p className="text-slate-400 mb-3">
                 Envoyez-nous un email et nous vous répondrons rapidement
               </p>
-              <a 
-                href="mailto:contact@takefive.fr" 
-                className="text-primary hover:text-pink-500 font-semibold transition-colors"
-              >
+              <a href="mailto:contact@takefive.fr" className="text-primary hover:text-pink-500 font-semibold transition-colors">
                 contact@takefive.fr
               </a>
             </div>
 
             {/* Phone Card */}
-            <div className="bg-slate-900/60 backdrop-blur-xl border border-primary/20 rounded-3xl p-8 hover:border-primary/40 transition-all hover:-translate-y-1">
-              <div className="text-5xl mb-4">📞</div>
-              <h3 className="text-2xl font-bold text-white mb-3">Téléphone</h3>
-              <p className="text-slate-400 mb-3">
-                Appelez-nous du lundi au vendredi de 9h à 18h
-              </p>
-              <a 
-                href="tel:+33123456789" 
-                className="text-primary hover:text-pink-500 font-semibold transition-colors"
-              >
-                +33 1 23 45 67 89
-              </a>
-            </div>
+            
 
             {/* Location Card */}
-            <div className="bg-slate-900/60 backdrop-blur-xl border border-primary/20 rounded-3xl p-8 hover:border-primary/40 transition-all hover:-translate-y-1">
-              <div className="text-5xl mb-4">📍</div>
-              <h3 className="text-2xl font-bold text-white mb-3">Localisation</h3>
-              <p className="text-slate-400">
-                Paris, France<br />
-                Nous travaillons avec des clients dans toute la France
-              </p>
-            </div>
+            
           </div>
         </div>
       </section>
@@ -295,6 +225,5 @@ export default function NousContacter() {
       </section>
 
       <Footer />
-    </div>
-  );
+    </div>;
 }
