@@ -111,7 +111,7 @@ const DevenirPartenaire = () => {
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-4 md:px-6 pt-32 pb-16 text-center">
         <div className="inline-block bg-primary/15 border border-primary/30 text-primary px-5 py-2 rounded-full text-sm font-semibold mb-8 animate-pulse">
-          🚀 Programme Partenaires 2024
+          🚀 Programme Partenaires 2026
         </div>
         <h1 className="text-4xl md:text-6xl font-black mb-6 gradient-text">
           Devenez Partenaire<br />TakeFive
