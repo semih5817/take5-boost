@@ -26,6 +26,18 @@ export const Footer = () => {
                   <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
                 </svg>
               </a>
+              <a
+                href="#"
+                className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-purple-600 transition-all"
+              >
+                <img src="/logos/instagram.svg" alt="Instagram" className="w-5 h-5" />
+              </a>
+              <a
+                href="#"
+                className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-purple-600 transition-all"
+              >
+                <img src="/logos/tiktok.svg" alt="TikTok" className="w-5 h-5" />
+              </a>
             </div>
           </div>
 
@@ -41,19 +53,6 @@ export const Footer = () => {
               <li>
                 <a href="#" className="text-slate-400 hover:text-purple-400 transition-all">
                   Tarifs
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-slate-400 hover:text-purple-400 transition-all">
-                  Roadmap
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/dashboard"
-                  className="text-slate-400 hover:text-purple-400 transition-all"
-                >
-                  Dashboard (démo)
                 </a>
               </li>
             </ul>
@@ -79,7 +78,7 @@ export const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-slate-400 hover:text-purple-400 transition-all">
+                <a href="/devenir-partenaire" className="text-slate-400 hover:text-purple-400 transition-all">
                   Devenir partenaire
                 </a>
               </li>
