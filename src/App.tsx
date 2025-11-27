@@ -11,6 +11,11 @@ import CampagnesCiblees from "./pages/CampagnesCiblees";
 import Concours5Minutes from "./pages/Concours5Minutes";
 import DevenirPartenaire from "./pages/DevenirPartenaire";
 import NousContacter from "./pages/NousContacter";
+import Tarifs from "./pages/Tarifs";
+import Documentation from "./pages/Documentation";
+import CentreAide from "./pages/CentreAide";
+import CGV from "./pages/CGV";
+import Confidentialite from "./pages/Confidentialite";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,6 +36,11 @@ const App = () => (
           <Route path="/projets/campagnes-ciblees" element={<CampagnesCiblees />} />
           <Route path="/devenir-partenaire" element={<DevenirPartenaire />} />
           <Route path="/nous-contacter" element={<NousContacter />} />
+          <Route path="/tarifs" element={<Tarifs />} />
+          <Route path="/documentation" element={<Documentation />} />
+          <Route path="/centre-aide" element={<CentreAide />} />
+          <Route path="/cgv" element={<CGV />} />
+          <Route path="/confidentialite" element={<Confidentialite />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
