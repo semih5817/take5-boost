@@ -56,7 +56,7 @@ export const Header = () => {
             <Button 
               onClick={scrollToForm}
               size="default"
-              className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 transition-all duration-300 hover:-translate-y-1 text-xs md:text-sm px-3 md:px-6 rounded-xl"
+              className="bg-gradient-to-r from-[#4361ee] to-purple-600 hover:from-[#3651de] hover:to-purple-700 transition-all duration-300 hover:-translate-y-1 text-xs md:text-sm px-3 md:px-6 rounded-xl"
             >
               S'abonner
             </Button>
