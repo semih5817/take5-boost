@@ -46,12 +46,12 @@ export const Footer = () => {
             <h4 className="text-white font-bold mb-4">Produit</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="text-slate-400 hover:text-purple-400 transition-all">
+                <a href="/#fonctionnalites" className="text-slate-400 hover:text-purple-400 transition-all">
                   Fonctionnalités
                 </a>
               </li>
               <li>
-                <a href="#" className="text-slate-400 hover:text-purple-400 transition-all">
+                <a href="/tarifs" className="text-slate-400 hover:text-purple-400 transition-all">
                   Tarifs
                 </a>
               </li>
@@ -90,22 +90,22 @@ export const Footer = () => {
             <h4 className="text-white font-bold mb-4">Support</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="text-slate-400 hover:text-purple-400 transition-all">
+                <a href="/centre-aide" className="text-slate-400 hover:text-purple-400 transition-all">
                   Centre d'aide
                 </a>
               </li>
               <li>
-                <a href="#" className="text-slate-400 hover:text-purple-400 transition-all">
+                <a href="/documentation" className="text-slate-400 hover:text-purple-400 transition-all">
                   Documentation
                 </a>
               </li>
               <li>
-                <a href="#" className="text-slate-400 hover:text-purple-400 transition-all">
+                <a href="/cgv" className="text-slate-400 hover:text-purple-400 transition-all">
                   CGV
                 </a>
               </li>
               <li>
-                <a href="#" className="text-slate-400 hover:text-purple-400 transition-all">
+                <a href="/confidentialite" className="text-slate-400 hover:text-purple-400 transition-all">
                   Confidentialité
                 </a>
               </li>
