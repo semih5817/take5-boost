@@ -46,17 +46,17 @@ export const Header = () => {
 
             {/* Logo - Centre */}
             <Link to="/" className="flex items-center gap-2 absolute left-1/2 -translate-x-1/2" onClick={closeMenu}>
-              <div className="w-8 md:w-10 h-8 md:h-10 rounded-lg bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center shadow-glow">
+              <div className="w-8 md:w-10 h-8 md:h-10 rounded-xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center">
                 <Star className="w-5 md:w-6 h-5 md:h-6 text-white fill-white" />
               </div>
-              <span className="text-lg md:text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Take 5</span>
+              <span className="text-lg md:text-2xl font-bold text-white">Take 5</span>
             </Link>
 
             {/* Bouton S'abonner - Droite */}
             <Button 
               onClick={scrollToForm}
               size="default"
-              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow-glow hover:shadow-primary transition-all duration-300 hover:-translate-y-1 text-xs md:text-sm px-3 md:px-6"
+              className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 transition-all duration-300 hover:-translate-y-1 text-xs md:text-sm px-3 md:px-6 rounded-xl"
             >
               S'abonner
             </Button>
@@ -82,10 +82,10 @@ export const Header = () => {
           {/* Logo dans le menu */}
           <div className="px-6 pb-6 mb-6 border-b border-primary/20">
             <Link to="/" className="flex items-center gap-3" onClick={closeMenu}>
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center">
                 <Star className="w-6 h-6 text-white fill-white" />
               </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Take 5</span>
+              <span className="text-2xl font-bold text-white">Take 5</span>
             </Link>
           </div>
 

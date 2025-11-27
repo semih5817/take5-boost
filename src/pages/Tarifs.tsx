@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Link } from "react-router-dom";
-import { Check, Star } from "lucide-react";
+import { Check } from "lucide-react";
 
 const Tarifs = () => {
   const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'yearly'>('monthly');
@@ -26,48 +26,56 @@ const Tarifs = () => {
     {
       id: 'starter' as const,
       name: 'Starter',
-      description: 'Parfait pour démarrer',
+      description: 'Essentiel pour petits commerces',
       icon: '🚀',
+      badge: 'POPULAIRE',
+      badgeColor: 'from-blue-500 to-blue-600',
       price: {
         monthly: 19.90,
         yearly: 199
       },
       features: [
-        '1 établissement',
-        '50 réponses IA/mois',
-        'Google Business',
-        'Dashboard analytics',
-        'Support email',
-        'Notifications en temps réel'
+        'QR Code dynamique',
+        'Collecte avis Google (2x/jour) + Facebook',
+        'Réponses IA illimitées 24/7',
+        'Alertes WhatsApp instantanées (avis négatifs en 2 min)',
+        'Rapport mensuel sur WhatsApp',
+        'Reporting hebdomadaire détaillé',
+        'Plaque NFC offerte (offre annuelle)'
       ],
-      popular: false
+      popular: true
     },
     {
       id: 'pro' as const,
       name: 'Pro',
-      description: 'Pour les professionnels',
+      description: 'Pour dominer localement',
       icon: '⭐',
+      badge: 'RECOMMANDÉ',
+      badgeColor: 'from-purple-500 to-pink-500',
       price: {
         monthly: 29.90,
         yearly: 299
       },
       features: [
-        '3 établissements',
-        'Réponses IA illimitées',
-        'Multi-plateformes (Google, Facebook, Trustpilot)',
-        'Analytics avancés',
+        'Tout Starter +',
+        'Radar multi-plateformes (Google, Facebook, Trustpilot, Yelp)',
+        'Analyse concurrentielle quotidienne',
+        'Collecte avis 4x/jour (toutes les 6h)',
+        'SEO local optimisé avec IA',
+        'Gamification',
+        'Opportunités IA quotidiennes',
         'Support prioritaire',
-        'API Access',
-        'White-label',
-        'Formation personnalisée'
+        'Plaque NFC offerte (offre annuelle)'
       ],
-      popular: true
+      popular: false
     },
     {
       id: 'enterprise' as const,
       name: 'Enterprise',
       description: 'Solution sur mesure',
       icon: '🏢',
+      badge: null,
+      badgeColor: null,
       price: {
         monthly: 'Sur devis',
         yearly: 'Sur devis'
@@ -142,50 +150,50 @@ const Tarifs = () => {
             {plans.map((plan) => (
               <div
                 key={plan.id}
-                className={`relative bg-card/60 backdrop-blur-xl border-2 rounded-3xl p-10 transition-all hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/30 ${
-                  plan.popular 
-                    ? 'border-primary/60 md:scale-105' 
-                    : 'border-primary/20'
-                }`}
+                className="relative bg-[#0f172a] border border-purple-500/30 rounded-2xl p-8 transition-all hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/20"
               >
-                {plan.popular && (
-                  <div className="absolute -top-px left-0 right-0 h-12 bg-gradient-to-r from-purple-600 to-pink-600 rounded-t-3xl flex items-center justify-center gap-2 text-white font-bold text-sm">
-                    <Star className="w-4 h-4 fill-white" /> Plus Populaire
+                {plan.badge && (
+                  <div className="flex justify-center mb-6">
+                    <span className={`px-4 py-1.5 bg-gradient-to-r ${plan.badgeColor} rounded-full text-white text-xs font-bold flex items-center gap-1.5`}>
+                      {plan.id === 'starter' ? '⚡' : '👑'} {plan.badge}
+                    </span>
                   </div>
                 )}
                 
-                <div className={plan.popular ? 'pt-8' : ''}>
-                  <span className="text-5xl block mb-5">{plan.icon}</span>
-                  <h2 className="text-2xl font-bold mb-2 text-foreground">{plan.name}</h2>
-                  <p className="text-muted-foreground mb-8">{plan.description}</p>
+                <div className="text-center">
+                  <h2 className="text-2xl font-bold mb-2 text-white">{plan.name}</h2>
                   
-                  <div className="text-5xl font-black mb-2 bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
-                    {typeof plan.price[billingPeriod] === 'number' 
-                      ? `${plan.price[billingPeriod]}€`
-                      : plan.price[billingPeriod]
-                    }
+                  <div className="my-6">
+                    <span className="text-5xl font-black text-purple-400">
+                      {typeof plan.price[billingPeriod] === 'number' 
+                        ? `${plan.price[billingPeriod]}€`
+                        : plan.price[billingPeriod]
+                      }
+                    </span>
+                    {typeof plan.price[billingPeriod] === 'number' && (
+                      <span className="text-slate-400 ml-2">HT / mois</span>
+                    )}
                   </div>
-                  {typeof plan.price[billingPeriod] === 'number' && (
-                    <p className="text-muted-foreground mb-8">
-                      par {billingPeriod === 'monthly' ? 'mois' : 'an'}
-                    </p>
-                  )}
+                  
+                  <p className="text-slate-400 mb-8">{plan.description}</p>
 
                   <button
                     onClick={() => handleCheckout(plan.id)}
-                    className={`w-full py-4 rounded-xl font-bold text-base transition-all hover:-translate-y-0.5 hover:shadow-lg mb-8 ${
+                    className={`w-full py-3.5 rounded-xl font-bold text-sm transition-all hover:-translate-y-0.5 hover:shadow-lg mb-8 ${
                       plan.id === 'enterprise'
-                        ? 'bg-transparent border-2 border-primary/50 text-foreground hover:bg-primary/10'
-                        : 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:shadow-primary/40'
+                        ? 'bg-transparent border border-slate-600 text-white hover:bg-slate-800'
+                        : 'bg-gradient-to-r from-pink-500 to-purple-600 text-white hover:shadow-purple-500/40'
                     }`}
                   >
                     {plan.id === 'enterprise' ? 'Nous Contacter' : "Commencer l'Essai Gratuit"}
                   </button>
 
-                  <ul className="space-y-4">
+                  <ul className="space-y-3 text-left">
                     {plan.features.map((feature, index) => (
-                      <li key={index} className="flex items-start gap-3 text-muted-foreground">
-                        <Check className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
+                      <li key={index} className="flex items-start gap-3 text-slate-300 text-sm">
+                        <span className="w-5 h-5 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Check className="w-3 h-3 text-purple-400" />
+                        </span>
                         <span>{feature}</span>
                       </li>
                     ))}
