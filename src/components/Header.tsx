@@ -25,7 +25,8 @@ export const Header = () => {
       ]
     },
     { title: "Projets à venir", href: "/#projets-avenir" },
-    { title: "Tarifs", href: "/#pricing" },
+    { title: "À propos", href: "/a-propos" },
+    { title: "Tarifs", href: "/tarifs" },
   ];
 
   return (

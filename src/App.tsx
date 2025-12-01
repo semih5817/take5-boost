@@ -16,6 +16,7 @@ import Documentation from "./pages/Documentation";
 import CentreAide from "./pages/CentreAide";
 import CGV from "./pages/CGV";
 import Confidentialite from "./pages/Confidentialite";
+import APropos from "./pages/APropos";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -41,6 +42,7 @@ const App = () => (
           <Route path="/centre-aide" element={<CentreAide />} />
           <Route path="/cgv" element={<CGV />} />
           <Route path="/confidentialite" element={<Confidentialite />} />
+          <Route path="/a-propos" element={<APropos />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
