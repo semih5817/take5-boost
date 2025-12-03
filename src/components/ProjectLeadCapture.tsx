@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { z } from 'zod';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 interface ProjectLeadCaptureProps {
   projectName: 'generateur-flyers' | 'publication-multiplateforme' | 'concours' | 'campagnes-sms-email';
@@ -21,6 +23,7 @@ export const ProjectLeadCapture = ({ projectName }: ProjectLeadCaptureProps) => 
   const [errors, setErrors] = useState<{ email?: string; phone?: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,13 +44,36 @@ export const ProjectLeadCapture = ({ projectName }: ProjectLeadCaptureProps) => 
     
     setIsSubmitting(true);
     
-    // TODO: Connecter à Brevo/Google Sheets avec tag du projet
-    // validated data is in result.data
-    
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const { error } = await supabase
+        .from('email_captures')
+        .insert({
+          email: result.data.email,
+          type: 'waitlist',
+          source: `/${projectName}`
+        });
+
+      if (error) {
+        if (error.code === '23505') {
+          toast({
+            title: "Email déjà inscrit",
+            description: "Cet email est déjà sur la liste d'attente pour cette fonctionnalité.",
+          });
+        } else {
+          throw error;
+        }
+      }
       setSubmitted(true);
-    }, 1000);
+    } catch (error) {
+      console.error('Erreur:', error);
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue. Veuillez réessayer.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const subtitles = {

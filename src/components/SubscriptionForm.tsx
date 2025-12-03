@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
 import {
   Form,
   FormControl,
@@ -179,17 +180,41 @@ export const SubscriptionForm = () => {
     setTimeout(() => setCopiedCode(false), 2000);
   };
 
-  const onSubmit = (data: SubscriptionFormData) => {
+  const onSubmit = async (data: SubscriptionFormData) => {
     console.log("Subscription submitted for offer:", data.offer);
     
-    toast({
-      title: "🎉 Bienvenue chez Take 5 !",
-      description: "Votre demande a été envoyée. Nous vous contactons sous 24h pour finaliser votre abonnement.",
-    });
+    try {
+      // Save email to database with type 'trial'
+      const { error } = await supabase
+        .from('email_captures')
+        .insert({
+          email: data.email,
+          type: 'trial',
+          source: window.location.pathname
+        });
 
-    form.reset();
-    setWantsPlaque(false);
-    setSelectedOffer("");
+      if (error && error.code !== '23505') {
+        console.error('Error saving email:', error);
+      }
+      
+      toast({
+        title: "🎉 Bienvenue chez Take 5 !",
+        description: "Votre demande a été envoyée. Nous vous contactons sous 24h pour finaliser votre abonnement.",
+      });
+
+      form.reset();
+      setWantsPlaque(false);
+      setSelectedOffer("");
+    } catch (error) {
+      console.error('Error:', error);
+      toast({
+        title: "🎉 Bienvenue chez Take 5 !",
+        description: "Votre demande a été envoyée. Nous vous contactons sous 24h pour finaliser votre abonnement.",
+      });
+      form.reset();
+      setWantsPlaque(false);
+      setSelectedOffer("");
+    }
   };
 
   return (

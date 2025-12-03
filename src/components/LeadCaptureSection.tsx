@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { z } from 'zod';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 const leadSchema = z.object({
   email: z.string().trim().email({ message: "Email invalide" }).max(255, { message: "Email trop long" }),
@@ -15,6 +17,7 @@ export const LeadCaptureSection = () => {
   const [errors, setErrors] = useState<{ email?: string; phone?: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,14 +38,36 @@ export const LeadCaptureSection = () => {
     
     setIsSubmitting(true);
     
-    // TODO: Connecter à Brevo/Google Sheets/Autre
-    // validated data is in result.data
-    
-    // Simulation envoi
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const { error } = await supabase
+        .from('email_captures')
+        .insert({
+          email: result.data.email,
+          type: 'waitlist',
+          source: window.location.pathname
+        });
+
+      if (error) {
+        if (error.code === '23505') {
+          toast({
+            title: "Email déjà inscrit",
+            description: "Cet email est déjà sur la liste d'attente.",
+          });
+        } else {
+          throw error;
+        }
+      }
       setSubmitted(true);
-    }, 1000);
+    } catch (error) {
+      console.error('Erreur:', error);
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue. Veuillez réessayer.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
