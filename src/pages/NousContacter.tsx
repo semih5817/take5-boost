@@ -1,28 +1,58 @@
 import { useState } from 'react';
+import { z } from 'zod';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { toast } from 'sonner';
+
+const contactSchema = z.object({
+  nom: z.string().trim().min(1, { message: "Le nom est requis" }).max(100, { message: "Le nom est trop long" }),
+  email: z.string().trim().email({ message: "Email invalide" }).max(255, { message: "Email trop long" }),
+  sujet: z.enum(['question', 'demo', 'support', 'partenariat', 'autre'], { message: "Sujet invalide" }),
+  message: z.string().trim().min(10, { message: "Le message doit contenir au moins 10 caractères" }).max(2000, { message: "Le message est trop long (max 2000 caractères)" })
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
+
 export default function NousContacter() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     nom: '',
     email: '',
     sujet: 'question',
     message: ''
   });
+  const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
   const [showSuccess, setShowSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const {
-      name,
-      value
-    } = e.target;
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
+    // Clear error when user starts typing
+    if (errors[name as keyof ContactFormData]) {
+      setErrors(prev => ({ ...prev, [name]: undefined }));
+    }
   };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+
+    const result = contactSchema.safeParse(formData);
+    
+    if (!result.success) {
+      const fieldErrors: Partial<Record<keyof ContactFormData, string>> = {};
+      result.error.errors.forEach((err) => {
+        if (err.path[0]) {
+          fieldErrors[err.path[0] as keyof ContactFormData] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
+      return;
+    }
+
     setIsSubmitting(true);
 
     // TODO: Connecter à un service d'envoi d'emails
@@ -39,9 +69,9 @@ export default function NousContacter() {
       setTimeout(() => {
         setShowSuccess(false);
       }, 5000);
-      console.log('Form submitted:', formData);
     }, 1500);
   };
+
   return <div className="min-h-screen bg-gradient-to-br from-[#0A0E1A] via-[#1a1a2e] to-[#0A0E1A]">
       <Header />
 
@@ -75,7 +105,8 @@ export default function NousContacter() {
                   <label htmlFor="nom" className="block text-sm font-semibold text-white mb-2">
                     Nom complet *
                   </label>
-                  <input type="text" id="nom" name="nom" required value={formData.nom} onChange={handleChange} placeholder="Jean Dupont" className="w-full px-4 py-3 bg-slate-800/80 border-2 border-primary/30 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-colors" />
+                  <input type="text" id="nom" name="nom" value={formData.nom} onChange={handleChange} placeholder="Jean Dupont" className={`w-full px-4 py-3 bg-slate-800/80 border-2 rounded-xl text-white placeholder-slate-500 focus:outline-none transition-colors ${errors.nom ? 'border-red-500 focus:border-red-500' : 'border-primary/30 focus:border-primary'}`} />
+                  {errors.nom && <p className="mt-1 text-sm text-red-400">{errors.nom}</p>}
                 </div>
 
                 {/* Email */}
@@ -83,7 +114,8 @@ export default function NousContacter() {
                   <label htmlFor="email" className="block text-sm font-semibold text-white mb-2">
                     Email *
                   </label>
-                  <input type="email" id="email" name="email" required value={formData.email} onChange={handleChange} placeholder="jean.dupont@example.com" className="w-full px-4 py-3 bg-slate-800/80 border-2 border-primary/30 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-colors" />
+                  <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} placeholder="jean.dupont@example.com" className={`w-full px-4 py-3 bg-slate-800/80 border-2 rounded-xl text-white placeholder-slate-500 focus:outline-none transition-colors ${errors.email ? 'border-red-500 focus:border-red-500' : 'border-primary/30 focus:border-primary'}`} />
+                  {errors.email && <p className="mt-1 text-sm text-red-400">{errors.email}</p>}
                 </div>
 
                 {/* Sujet */}
@@ -91,13 +123,14 @@ export default function NousContacter() {
                   <label htmlFor="sujet" className="block text-sm font-semibold text-white mb-2">
                     Sujet *
                   </label>
-                  <select id="sujet" name="sujet" required value={formData.sujet} onChange={handleChange} className="w-full px-4 py-3 bg-slate-800/80 border-2 border-primary/30 rounded-xl text-white focus:outline-none focus:border-primary transition-colors cursor-pointer">
+                  <select id="sujet" name="sujet" value={formData.sujet} onChange={handleChange} className={`w-full px-4 py-3 bg-slate-800/80 border-2 rounded-xl text-white focus:outline-none transition-colors cursor-pointer ${errors.sujet ? 'border-red-500 focus:border-red-500' : 'border-primary/30 focus:border-primary'}`}>
                     <option value="question">Question générale</option>
                     <option value="demo">Demande de démo</option>
                     <option value="support">Support technique</option>
                     <option value="partenariat">Opportunité de partenariat</option>
                     <option value="autre">Autre</option>
                   </select>
+                  {errors.sujet && <p className="mt-1 text-sm text-red-400">{errors.sujet}</p>}
                 </div>
 
                 {/* Message */}
@@ -105,7 +138,8 @@ export default function NousContacter() {
                   <label htmlFor="message" className="block text-sm font-semibold text-white mb-2">
                     Message *
                   </label>
-                  <textarea id="message" name="message" required value={formData.message} onChange={handleChange} placeholder="Décrivez votre demande en détail..." rows={6} className="w-full px-4 py-3 bg-slate-800/80 border-2 border-primary/30 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-primary transition-colors resize-vertical" />
+                  <textarea id="message" name="message" value={formData.message} onChange={handleChange} placeholder="Décrivez votre demande en détail..." rows={6} className={`w-full px-4 py-3 bg-slate-800/80 border-2 rounded-xl text-white placeholder-slate-500 focus:outline-none transition-colors resize-vertical ${errors.message ? 'border-red-500 focus:border-red-500' : 'border-primary/30 focus:border-primary'}`} />
+                  {errors.message && <p className="mt-1 text-sm text-red-400">{errors.message}</p>}
                 </div>
 
                 {/* Submit Button */}
