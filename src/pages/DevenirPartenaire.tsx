@@ -2,29 +2,72 @@ import { useState, useEffect } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Button } from '@/components/ui/button';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
+import { z } from 'zod';
+
+const emailSchema = z.object({
+  email: z.string().trim().email("Adresse email invalide").max(255, "Email trop long")
+});
+
 const DevenirPartenaire = () => {
   const [email, setEmail] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    const result = emailSchema.safeParse({ email });
+    if (!result.success) {
+      toast({
+        title: "Erreur",
+        description: result.error.errors[0].message,
+        variant: "destructive"
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
-    // Simulate API call (replace with your actual endpoint)
-    setTimeout(() => {
-      setShowSuccess(true);
-      setIsSubmitting(false);
-      setEmail('');
+    try {
+      const { error } = await supabase
+        .from('email_captures')
+        .insert({
+          email: result.data.email,
+          type: 'partner',
+          source: '/devenir-partenaire'
+        });
 
-      // Hide success message after 5 seconds
-      setTimeout(() => {
-        setShowSuccess(false);
-      }, 5000);
-      console.log('Email submitted:', email);
-    }, 1500);
+      if (error) {
+        if (error.code === '23505') {
+          toast({
+            title: "Email déjà inscrit",
+            description: "Cet email est déjà enregistré pour le programme partenaire.",
+          });
+        } else {
+          throw error;
+        }
+      } else {
+        setShowSuccess(true);
+        setEmail('');
+        setTimeout(() => setShowSuccess(false), 5000);
+      }
+    } catch (error) {
+      console.error('Erreur:', error);
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue. Veuillez réessayer.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   const smoothScroll = (id: string) => {
     const element = document.getElementById(id);

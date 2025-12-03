@@ -12,7 +12,7 @@ interface EmailCaptureProps {
   subtitle?: string;
   buttonText?: string;
   placeholder?: string;
-  type?: 'partner' | 'newsletter' | 'waitlist' | 'contact';
+  type?: 'partner' | 'newsletter' | 'waitlist' | 'contact' | 'trial';
   onSuccess?: (email: string) => void;
 }
 
