@@ -120,11 +120,11 @@ export const Footer = () => {
             href="https://spydercom.fr" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="group flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-all duration-300"
+            className="group flex items-center gap-2 text-slate-400 hover:text-rose-400 transition-all duration-300"
           >
             <span className="text-sm">Propulsé par</span>
-            <span className="font-bold text-cyan-400 group-hover:text-cyan-300 transition-all duration-300 tracking-wider uppercase">
-              Spidercom
+            <span className="font-bold text-rose-500 group-hover:text-rose-400 transition-all duration-300 tracking-widest uppercase" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+              SPIDERCOM
             </span>
           </a>
 
