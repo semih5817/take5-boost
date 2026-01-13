@@ -13,7 +13,7 @@ import { LeadCaptureSection } from "@/components/LeadCaptureSection";
 import { TestimonialsNewSection } from "@/components/home/TestimonialsNewSection";
 import { FAQSection } from "@/components/home/FAQSection";
 import { FinalCTASection } from "@/components/home/FinalCTASection";
-import { SubscriptionForm } from "@/components/SubscriptionForm";
+import { HomePricingSection } from "@/components/home/HomePricingSection";
 import { Footer } from "@/components/Footer";
 
 const Index = () => {
@@ -32,7 +32,7 @@ const Index = () => {
       <LeadCaptureSection />
       <TestimonialsNewSection />
       <FinalCTASection />
-      <SubscriptionForm />
+      <HomePricingSection />
       <FAQSection />
       <Footer />
     </div>
