@@ -1,25 +1,24 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Link } from "react-router-dom";
-import { Check } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 
 const Tarifs = () => {
+  const navigate = useNavigate();
   const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'yearly'>('monthly');
+  const [copied, setCopied] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState<'starter' | 'pro' | null>(null);
 
-  // TODO: Remplacer par vos vrais IDs LemonSqueezy
-  const LEMONSQUEEZY_CHECKOUT_IDS = {
-    starter: {
-      monthly: 'https://takefive.lemonsqueezy.com/checkout/buy/STARTER_MONTHLY_ID',
-      yearly: 'https://takefive.lemonsqueezy.com/checkout/buy/STARTER_YEARLY_ID'
-    },
-    pro: {
-      monthly: 'https://takefive.lemonsqueezy.com/checkout/buy/PRO_MONTHLY_ID',
-      yearly: 'https://takefive.lemonsqueezy.com/checkout/buy/PRO_YEARLY_ID'
-    },
-    enterprise: {
-      contact: '/nous-contacter'
-    }
+  const copyPromoCode = () => {
+    navigator.clipboard.writeText('SEMIH');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleContinue = () => {
+    if (!selectedPlan) return;
+    navigate(`/checkout?offre=${selectedPlan}&periode=${billingPeriod}`);
   };
 
   const plans = [
@@ -27,9 +26,7 @@ const Tarifs = () => {
       id: 'starter' as const,
       name: 'Starter',
       description: 'Essentiel pour petits commerces',
-      icon: '🚀',
       badge: 'POPULAIRE',
-      badgeColor: 'from-blue-500 to-blue-600',
       price: {
         monthly: 19.90,
         yearly: 199
@@ -40,18 +37,14 @@ const Tarifs = () => {
         'Réponses IA illimitées 24/7',
         'Alertes WhatsApp instantanées (avis négatifs en 2 min)',
         'Rapport mensuel sur WhatsApp',
-        'Reporting hebdomadaire détaillé',
         'Plaque NFC offerte (offre annuelle)'
-      ],
-      popular: true
+      ]
     },
     {
       id: 'pro' as const,
       name: 'Pro',
       description: 'Pour dominer localement',
-      icon: '⭐',
       badge: 'RECOMMANDÉ',
-      badgeColor: 'from-purple-500 to-pink-500',
       price: {
         monthly: 29.90,
         yearly: 299
@@ -59,159 +52,188 @@ const Tarifs = () => {
       features: [
         'Tout Starter +',
         'Radar multi-plateformes (Google, Facebook, Trustpilot, Yelp)',
-        'Analyse concurrentielle quotidienne',
+        'Analyse concurrentielle géolocalisée',
         'Collecte avis 4x/jour (toutes les 6h)',
         'SEO local optimisé avec IA',
         'Gamification',
         'Opportunités IA quotidiennes',
         'Support prioritaire',
         'Plaque NFC offerte (offre annuelle)'
-      ],
-      popular: false
-    },
-    {
-      id: 'enterprise' as const,
-      name: 'Enterprise',
-      description: 'Solution sur mesure',
-      icon: '🏢',
-      badge: null,
-      badgeColor: null,
-      price: {
-        monthly: 'Sur devis',
-        yearly: 'Sur devis'
-      },
-      features: [
-        'Établissements illimités',
-        'Tout du plan Pro',
-        'Compte manager dédié',
-        'SLA garanti 99.9%',
-        'Onboarding personnalisé',
-        'Intégrations custom',
-        'Facturation annuelle',
-        'Support 24/7'
-      ],
-      popular: false
+      ]
     }
   ];
 
-  const handleCheckout = (planId: 'starter' | 'pro' | 'enterprise') => {
-    if (planId === 'enterprise') {
-      window.location.href = LEMONSQUEEZY_CHECKOUT_IDS.enterprise.contact;
-    } else {
-      window.location.href = LEMONSQUEEZY_CHECKOUT_IDS[planId][billingPeriod];
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-b from-[#0f0c29] via-[#302b63] to-[#24243e] text-white">
       <Header />
       
-      <main className="pt-20">
-        {/* Hero */}
-        <section className="max-w-5xl mx-auto py-20 px-5 text-center">
-          <h1 className="text-4xl md:text-6xl font-black mb-6 bg-gradient-to-r from-white to-purple-400 bg-clip-text text-transparent">
-            Tarifs Transparents
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground mb-10">
-            Choisissez le plan qui correspond à vos besoins. Essai gratuit 14 jours.
-          </p>
+      <main className="pt-24 pb-16 px-5">
+        <div className="max-w-[1100px] mx-auto">
+          
+          {/* Code Promo Banner */}
+          <div className="bg-gradient-to-r from-[#667eea] to-[#d946ef] rounded-2xl p-6 text-center mb-10">
+            <h2 className="text-xl font-semibold mb-4 flex items-center justify-center gap-2">
+              <span className="text-3xl">🎁</span> 
+              CODE PROMO : 1 MOIS GRATUIT
+            </h2>
+            <div className="inline-flex items-center gap-4 bg-white/25 px-5 py-2.5 rounded-xl mt-1">
+              <span className="text-2xl font-bold tracking-widest">SEMIH</span>
+              <button 
+                onClick={copyPromoCode}
+                className="bg-white/30 hover:bg-white/40 px-3 py-1.5 rounded-lg text-sm transition-all"
+              >
+                {copied ? '✓ Copié !' : '📋 Copier'}
+              </button>
+            </div>
+            <p className="mt-3 text-sm opacity-95">
+              Utilisez ce code sur l'offre Starter pour tester gratuitement
+            </p>
+          </div>
+
+          {/* Section Title */}
+          <h1 className="text-3xl font-semibold mb-4">1. Choisissez votre offre</h1>
           
           {/* Billing Toggle */}
-          <div className="inline-flex gap-2 bg-card/60 p-1.5 rounded-xl border border-primary/30">
-            <button
-              className={`px-8 py-3 rounded-lg font-semibold transition-all ${
-                billingPeriod === 'monthly' 
-                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white' 
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
-              onClick={() => setBillingPeriod('monthly')}
-            >
-              Mensuel
-            </button>
-            <button
-              className={`px-8 py-3 rounded-lg font-semibold transition-all flex items-center gap-2 ${
-                billingPeriod === 'yearly' 
-                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white' 
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
-              onClick={() => setBillingPeriod('yearly')}
-            >
-              Annuel
-              <span className="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-xs font-bold">
-                -17%
-              </span>
-            </button>
-          </div>
-        </section>
-
-        {/* Plans Grid */}
-        <div className="max-w-6xl mx-auto px-5 pb-20">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {plans.map((plan) => (
-              <div
-                key={plan.id}
-                className="relative bg-[#0f172a] border border-purple-500/30 rounded-2xl p-8 transition-all hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/20"
+          <div className="flex justify-center mb-8">
+            <div className="inline-flex gap-2 bg-[#161b34]/80 p-1.5 rounded-xl border border-[#4F5EFF]/30">
+              <button
+                className={`px-8 py-3 rounded-lg font-semibold transition-all ${
+                  billingPeriod === 'monthly' 
+                    ? 'bg-gradient-to-r from-[#667eea] to-[#4F5EFF] text-white' 
+                    : 'text-slate-400 hover:text-white'
+                }`}
+                onClick={() => setBillingPeriod('monthly')}
               >
-                {plan.badge && (
-                  <div className="flex justify-center mb-6">
-                    <span className={`px-4 py-1.5 bg-gradient-to-r ${plan.badgeColor} rounded-full text-white text-xs font-bold flex items-center gap-1.5`}>
-                      {plan.id === 'starter' ? '⚡' : '👑'} {plan.badge}
-                    </span>
-                  </div>
-                )}
+                Mensuel
+              </button>
+              <button
+                className={`px-8 py-3 rounded-lg font-semibold transition-all flex items-center gap-2 ${
+                  billingPeriod === 'yearly' 
+                    ? 'bg-gradient-to-r from-[#667eea] to-[#4F5EFF] text-white' 
+                    : 'text-slate-400 hover:text-white'
+                }`}
+                onClick={() => setBillingPeriod('yearly')}
+              >
+                Annuel
+                <span className="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-xs font-bold">
+                  -17%
+                </span>
+              </button>
+            </div>
+          </div>
+
+          {/* Pricing Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+            {plans.map((plan) => (
+              <button
+                key={plan.id}
+                onClick={() => setSelectedPlan(plan.id)}
+                className={`text-left bg-[#161b34]/80 border-2 rounded-2xl p-8 relative transition-all hover:-translate-y-1 ${
+                  selectedPlan === plan.id 
+                    ? 'border-[#667eea] shadow-lg shadow-[#667eea]/20' 
+                    : 'border-[#4F5EFF]/50 hover:border-[#4F5EFF]'
+                }`}
+              >
+                {/* Selection indicator */}
+                <div className={`absolute top-5 left-5 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
+                  selectedPlan === plan.id 
+                    ? 'border-[#667eea] bg-[#667eea]' 
+                    : 'border-slate-500'
+                }`}>
+                  {selectedPlan === plan.id && (
+                    <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                    </svg>
+                  )}
+                </div>
+
+                <span className="absolute top-5 right-5 bg-gradient-to-r from-[#667eea] to-[#d946ef] px-4 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-wide">
+                  {plan.id === 'starter' ? '⭐' : '👑'} {plan.badge}
+                </span>
                 
-                <div className="text-center">
-                  <h2 className="text-2xl font-bold mb-2 text-white">{plan.name}</h2>
-                  
-                  <div className="my-6">
-                    <span className="text-5xl font-black text-purple-400">
-                      {typeof plan.price[billingPeriod] === 'number' 
-                        ? `${plan.price[billingPeriod]}€`
-                        : plan.price[billingPeriod]
-                      }
-                    </span>
-                    {typeof plan.price[billingPeriod] === 'number' && (
-                      <span className="text-slate-400 ml-2">HT / mois</span>
-                    )}
+                <div className="mt-8">
+                  <h2 className="text-3xl font-semibold mb-4">{plan.name}</h2>
+                  <div className="text-5xl font-bold text-[#8B9EFF] mb-1">
+                    {plan.price[billingPeriod]}€
                   </div>
+                  <div className="text-[#8891A8] text-sm mb-2">HT / mois</div>
+                  <div className="text-[#9CA3AF] text-sm mb-6">{plan.description}</div>
                   
-                  <p className="text-slate-400 mb-8">{plan.description}</p>
-
-                  <button
-                    onClick={() => handleCheckout(plan.id)}
-                    className={`w-full py-3.5 rounded-xl font-bold text-sm transition-all hover:-translate-y-0.5 hover:shadow-lg mb-8 ${
-                      plan.id === 'enterprise'
-                        ? 'bg-transparent border border-slate-600 text-white hover:bg-slate-800'
-                        : 'bg-gradient-to-r from-pink-500 to-purple-600 text-white hover:shadow-purple-500/40'
-                    }`}
-                  >
-                    {plan.id === 'enterprise' ? 'Nous Contacter' : "Commencer l'Essai Gratuit"}
-                  </button>
-
-                  <ul className="space-y-3 text-left">
+                  <ul className="space-y-2.5">
                     {plan.features.map((feature, index) => (
-                      <li key={index} className="flex items-start gap-3 text-slate-300 text-sm">
-                        <span className="w-5 h-5 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Check className="w-3 h-3 text-purple-400" />
-                        </span>
-                        <span>{feature}</span>
+                      <li key={index} className="flex items-start gap-3 text-[#D1D5DB] text-sm">
+                        <span className="text-[#8B9EFF] text-xs mt-1">●</span>
+                        {feature}
                       </li>
                     ))}
                   </ul>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
 
-          {/* Guarantee Banner */}
-          <div className="mt-16 bg-card/40 border border-primary/20 rounded-2xl p-10 text-center">
-            <h3 className="text-2xl font-bold mb-4 text-foreground">
-              ✅ Garantie Satisfait ou Remboursé 30 Jours
-            </h3>
-            <p className="text-muted-foreground">
-              Essayez TakeFive sans risque. Si vous n'êtes pas satisfait, nous vous remboursons intégralement.
-            </p>
+          {/* Continue Button */}
+          <div className="text-center my-12">
+            <button 
+              onClick={handleContinue}
+              disabled={!selectedPlan}
+              className={`px-16 py-4 rounded-xl text-base font-semibold transition-all ${
+                selectedPlan
+                  ? 'bg-gradient-to-r from-[#667eea] to-[#4F5EFF] text-white shadow-lg shadow-[#4F5EFF]/30 hover:shadow-xl hover:shadow-[#4F5EFF]/40 hover:-translate-y-0.5'
+                  : 'bg-slate-700 text-slate-400 cursor-not-allowed'
+              }`}
+            >
+              Continuer →
+            </button>
+            {!selectedPlan && (
+              <p className="text-slate-500 text-sm mt-3">Sélectionnez une offre pour continuer</p>
+            )}
           </div>
+
+          {/* Divider */}
+          <div className="relative text-center my-12">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-white/15"></div>
+            </div>
+            <span className="relative px-6 text-[#8891A8] text-xs uppercase tracking-widest font-medium bg-gradient-to-b from-[#302b63] to-[#24243e]">
+              OU
+            </span>
+          </div>
+
+          {/* WhatsApp Section */}
+          <div className="bg-[#25D366]/10 border-2 border-[#25D366] rounded-2xl p-12 text-center max-w-[750px] mx-auto">
+            <h2 className="text-3xl font-semibold mb-4">
+              Ou faites tout directement sur WhatsApp
+            </h2>
+            
+            <p className="text-[#D1D5DB] text-base leading-relaxed mb-6">
+              <strong>Aucun formulaire à remplir ici.</strong> Envoyez-nous simplement un message, 
+              nous nous occupons de tout sur WhatsApp : choix de l'offre, connexion à votre fiche Google, 
+              activation du service.
+            </p>
+
+            <div className="bg-[#25D366]/15 border border-[#25D366]/30 text-[#25D366] px-6 py-3 rounded-xl text-2xl font-bold tracking-wide inline-block mb-6">
+              +33 9 39 03 76 44
+            </div>
+
+            <div>
+              <a 
+                href="https://wa.me/33939037644?text=Bonjour,%20je%20souhaite%20d%C3%A9marrer%20TakeFive%20et%20faire%20l%27onboarding%20via%20WhatsApp."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#1fb855] text-white px-12 py-4 rounded-full text-lg font-semibold shadow-lg shadow-[#25D366]/30 hover:shadow-xl hover:shadow-[#25D366]/40 hover:-translate-y-1 transition-all"
+              >
+                <MessageCircle className="w-6 h-6" />
+                Démarrer sur WhatsApp
+              </a>
+            </div>
+          </div>
+
+          {/* Footer Info */}
+          <div className="text-center pt-12 text-[#6B7280] text-xs">
+            <p>Paiement 100% sécurisé • Résiliable à tout moment</p>
+          </div>
+
         </div>
       </main>
 
