@@ -81,14 +81,8 @@ const Tarifs = () => {
               <span className="text-3xl">🎁</span> 
               CODE PROMO : 1 MOIS GRATUIT
             </h2>
-            <div className="inline-flex items-center gap-4 bg-white/25 px-5 py-2.5 rounded-xl mt-1">
+            <div className="inline-flex items-center bg-white/25 px-6 py-3 rounded-xl mt-1">
               <span className="text-2xl font-bold tracking-widest">SEMIH</span>
-              <button 
-                onClick={copyPromoCode}
-                className="bg-white/30 hover:bg-white/40 px-3 py-1.5 rounded-lg text-sm transition-all"
-              >
-                {copied ? '✓ Copié !' : '📋 Copier'}
-              </button>
             </div>
             <p className="mt-3 text-sm opacity-95">
               Utilisez ce code sur l'offre Starter pour tester gratuitement
