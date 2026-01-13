@@ -4,9 +4,9 @@ import { MessageCircle } from "lucide-react";
 
 export const HomePricingSection = () => {
   const navigate = useNavigate();
-  const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'yearly'>('monthly');
-  const [copied, setCopied] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<'starter' | 'pro' | null>(null);
+
+  const [copied, setCopied] = useState(false);
 
   const copyPromoCode = () => {
     navigator.clipboard.writeText('SEMIH');
@@ -16,7 +16,7 @@ export const HomePricingSection = () => {
 
   const handleContinue = () => {
     if (!selectedPlan) return;
-    navigate(`/checkout?offre=${selectedPlan}&periode=${billingPeriod}`);
+    navigate(`/checkout?offre=${selectedPlan}&periode=monthly`);
   };
 
   const plans = [
@@ -25,16 +25,16 @@ export const HomePricingSection = () => {
       name: 'Starter',
       description: 'Essentiel pour petits commerces',
       badge: 'POPULAIRE',
-      price: {
-        monthly: 19.90,
-        yearly: 199
-      },
+      badgeIcon: '⚡',
+      badgeColor: 'from-blue-500 to-blue-600',
+      price: 19.90,
       features: [
         'QR Code dynamique',
         'Collecte avis Google (2x/jour) + Facebook',
         'Réponses IA illimitées 24/7',
         'Alertes WhatsApp instantanées (avis négatifs en 2 min)',
         'Rapport mensuel sur WhatsApp',
+        'Reporting hebdomadaire détaillé',
         'Plaque NFC offerte (offre annuelle)'
       ]
     },
@@ -43,14 +43,13 @@ export const HomePricingSection = () => {
       name: 'Pro',
       description: 'Pour dominer localement',
       badge: 'RECOMMANDÉ',
-      price: {
-        monthly: 29.90,
-        yearly: 299
-      },
+      badgeIcon: '💎',
+      badgeColor: 'from-purple-500 to-pink-500',
+      price: 29.90,
       features: [
         'Tout Starter +',
         'Radar multi-plateformes (Google, Facebook, Trustpilot, Yelp)',
-        'Analyse concurrentielle géolocalisée',
+        'Analyse concurrentielle quotidienne',
         'Collecte avis 4x/jour (toutes les 6h)',
         'SEO local optimisé avec IA',
         'Gamification',
@@ -62,7 +61,7 @@ export const HomePricingSection = () => {
   ];
 
   return (
-    <section id="pricing" className="py-20 px-5 bg-gradient-to-b from-[#0f0c29] via-[#302b63] to-[#24243e]">
+    <section id="pricing" className="py-20 px-5 bg-[#0A0E1A]">
       <div className="max-w-[1100px] mx-auto">
         
         {/* Code Promo Banner */}
@@ -86,43 +85,7 @@ export const HomePricingSection = () => {
         </div>
 
         {/* Section Title */}
-        <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Choisissez votre offre
-          </h2>
-          <p className="text-slate-400 text-lg">
-            Tarifs simples et transparents, sans surprise
-          </p>
-        </div>
-        
-        {/* Billing Toggle */}
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex gap-2 bg-[#161b34]/80 p-1.5 rounded-xl border border-[#4F5EFF]/30">
-            <button
-              className={`px-8 py-3 rounded-lg font-semibold transition-all ${
-                billingPeriod === 'monthly' 
-                  ? 'bg-gradient-to-r from-[#667eea] to-[#4F5EFF] text-white' 
-                  : 'text-slate-400 hover:text-white'
-              }`}
-              onClick={() => setBillingPeriod('monthly')}
-            >
-              Mensuel
-            </button>
-            <button
-              className={`px-8 py-3 rounded-lg font-semibold transition-all flex items-center gap-2 ${
-                billingPeriod === 'yearly' 
-                  ? 'bg-gradient-to-r from-[#667eea] to-[#4F5EFF] text-white' 
-                  : 'text-slate-400 hover:text-white'
-              }`}
-              onClick={() => setBillingPeriod('yearly')}
-            >
-              Annuel
-              <span className="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-xs font-bold">
-                -17%
-              </span>
-            </button>
-          </div>
-        </div>
+        <h2 className="text-3xl font-bold mb-8 text-white">1. Choisissez votre offre</h2>
 
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
@@ -130,42 +93,40 @@ export const HomePricingSection = () => {
             <button
               key={plan.id}
               onClick={() => setSelectedPlan(plan.id)}
-              className={`text-left bg-[#161b34]/80 border-2 rounded-2xl p-8 relative transition-all hover:-translate-y-1 ${
+              className={`text-left bg-[#0f1629] border rounded-2xl p-8 pt-12 relative transition-all hover:-translate-y-1 ${
                 selectedPlan === plan.id 
-                  ? 'border-[#667eea] shadow-lg shadow-[#667eea]/20' 
-                  : 'border-[#4F5EFF]/50 hover:border-[#4F5EFF]'
+                  ? 'border-purple-500 shadow-lg shadow-purple-500/20' 
+                  : 'border-[#1e293b] hover:border-purple-500/50'
               }`}
             >
-              {/* Selection indicator */}
-              <div className={`absolute top-5 left-5 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${
-                selectedPlan === plan.id 
-                  ? 'border-[#667eea] bg-[#667eea]' 
-                  : 'border-slate-500'
-              }`}>
-                {selectedPlan === plan.id && (
-                  <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                  </svg>
-                )}
+              {/* Badge centered at top */}
+              <div className="absolute -top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                <span className={`inline-flex items-center gap-1.5 bg-gradient-to-r ${plan.badgeColor} px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wide shadow-lg text-white`}>
+                  {plan.badgeIcon} {plan.badge}
+                </span>
               </div>
-
-              <span className="absolute top-5 right-5 bg-gradient-to-r from-[#667eea] to-[#d946ef] px-4 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-wide text-white">
-                {plan.id === 'starter' ? '⭐' : '👑'} {plan.badge}
-              </span>
               
-              <div className="mt-8">
-                <h3 className="text-3xl font-semibold mb-4 text-white">{plan.name}</h3>
-                <div className="text-5xl font-bold text-[#8B9EFF] mb-1">
-                  {plan.price[billingPeriod]}€
-                </div>
-                <div className="text-[#8891A8] text-sm mb-2">HT / mois</div>
-                <div className="text-[#9CA3AF] text-sm mb-6">{plan.description}</div>
+              {/* Content centered */}
+              <div className="text-center">
+                <h3 className="text-2xl font-bold mb-6 text-white">{plan.name}</h3>
                 
-                <ul className="space-y-2.5">
+                <div className="mb-2">
+                  <span className="text-5xl font-bold text-purple-400">
+                    {plan.price.toFixed(2).replace('.', '.')}€
+                  </span>
+                  <span className="text-slate-400 ml-2">HT / mois</span>
+                </div>
+                
+                <p className="text-purple-300/70 text-sm mb-8">{plan.description}</p>
+                
+                {/* Features aligned left */}
+                <ul className="space-y-3 text-left">
                   {plan.features.map((feature, index) => (
-                    <li key={index} className="flex items-start gap-3 text-[#D1D5DB] text-sm">
-                      <span className="text-[#8B9EFF] text-xs mt-1">●</span>
-                      {feature}
+                    <li key={index} className="flex items-start gap-3">
+                      <span className="w-5 h-5 rounded-full bg-purple-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="text-purple-400 text-xs">✓</span>
+                      </span>
+                      <span className="text-slate-300 text-sm">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -181,7 +142,7 @@ export const HomePricingSection = () => {
             disabled={!selectedPlan}
             className={`px-16 py-4 rounded-xl text-base font-semibold transition-all ${
               selectedPlan
-                ? 'bg-gradient-to-r from-[#667eea] to-[#4F5EFF] text-white shadow-lg shadow-[#4F5EFF]/30 hover:shadow-xl hover:shadow-[#4F5EFF]/40 hover:-translate-y-0.5'
+                ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/40 hover:-translate-y-0.5'
                 : 'bg-slate-700 text-slate-400 cursor-not-allowed'
             }`}
           >
@@ -195,44 +156,48 @@ export const HomePricingSection = () => {
         {/* Divider */}
         <div className="relative text-center my-12">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-white/15"></div>
+            <div className="w-full border-t border-slate-700"></div>
           </div>
-          <span className="relative px-6 text-[#8891A8] text-xs uppercase tracking-widest font-medium bg-[#302b63]">
+          <span className="relative px-6 text-slate-500 text-xs uppercase tracking-widest font-medium bg-[#0A0E1A]">
             OU
           </span>
         </div>
 
-        {/* WhatsApp Section */}
-        <div className="bg-[#25D366]/10 border-2 border-[#25D366] rounded-2xl p-12 text-center max-w-[750px] mx-auto">
-          <h3 className="text-3xl font-semibold mb-4 text-white">
+        {/* WhatsApp Section - Redesigned */}
+        <div className="bg-[#0f1629] border border-[#25D366]/30 rounded-2xl p-8 md:p-10 max-w-[850px] mx-auto">
+          <h3 className="text-2xl md:text-3xl font-bold mb-4 text-center text-white">
             Ou faites tout directement sur WhatsApp
           </h3>
           
-          <p className="text-[#D1D5DB] text-base leading-relaxed mb-6">
-            <strong>Aucun formulaire à remplir ici.</strong> Envoyez-nous simplement un message, 
-            nous nous occupons de tout sur WhatsApp : choix de l'offre, connexion à votre fiche Google, 
-            activation du service.
+          <p className="text-slate-400 text-center mb-8 max-w-xl mx-auto">
+            <strong className="text-white">Aucun formulaire à remplir.</strong> Envoyez-nous un message, 
+            nous nous occupons de tout : choix de l'offre, connexion Google, activation.
           </p>
 
-          <div className="bg-[#25D366]/15 border border-[#25D366]/30 text-[#25D366] px-6 py-3 rounded-xl text-2xl font-bold tracking-wide inline-block mb-6">
-            +33 9 39 03 76 44
-          </div>
-
-          <div>
+          {/* WhatsApp CTA - Button left, Number right */}
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6">
             <a 
               href="https://wa.me/33939037644?text=Bonjour,%20je%20souhaite%20d%C3%A9marrer%20TakeFive%20et%20faire%20l%27onboarding%20via%20WhatsApp."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#1fb855] text-white px-12 py-4 rounded-full text-lg font-semibold shadow-lg shadow-[#25D366]/30 hover:shadow-xl hover:shadow-[#25D366]/40 hover:-translate-y-1 transition-all"
+              className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#1fb855] text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg shadow-[#25D366]/20 hover:shadow-xl hover:shadow-[#25D366]/30 hover:-translate-y-0.5 transition-all"
             >
               <MessageCircle className="w-6 h-6" />
               Démarrer sur WhatsApp
             </a>
+            
+            <div className="flex items-center gap-3">
+              <div className="w-px h-10 bg-slate-700 hidden md:block"></div>
+              <div className="text-center md:text-left">
+                <p className="text-slate-500 text-xs uppercase tracking-wide mb-1">Notre numéro</p>
+                <p className="text-[#25D366] text-xl font-bold tracking-wide">+33 9 39 03 76 44</p>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Footer Info */}
-        <div className="text-center pt-12 text-[#6B7280] text-xs">
+        <div className="text-center pt-12 text-slate-600 text-xs">
           <p>Paiement 100% sécurisé • Résiliable à tout moment</p>
         </div>
 
