@@ -12,6 +12,7 @@ import Concours5Minutes from "./pages/Concours5Minutes";
 import DevenirPartenaire from "./pages/DevenirPartenaire";
 import NousContacter from "./pages/NousContacter";
 import Tarifs from "./pages/Tarifs";
+import Checkout from "./pages/Checkout";
 import Documentation from "./pages/Documentation";
 import CentreAide from "./pages/CentreAide";
 import CGV from "./pages/CGV";
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/devenir-partenaire" element={<DevenirPartenaire />} />
           <Route path="/nous-contacter" element={<NousContacter />} />
           <Route path="/tarifs" element={<Tarifs />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/documentation" element={<Documentation />} />
           <Route path="/centre-aide" element={<CentreAide />} />
           <Route path="/cgv" element={<CGV />} />

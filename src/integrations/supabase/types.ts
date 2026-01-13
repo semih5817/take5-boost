@@ -38,6 +38,51 @@ export type Database = {
         }
         Relationships: []
       }
+      subscription_leads: {
+        Row: {
+          cgv_acceptees: boolean
+          created_at: string
+          email: string
+          id: string
+          lemon_squeezy_order_id: string | null
+          nom_etablissement: string
+          notes: string | null
+          offre: string
+          periode: string
+          statut: string
+          telephone_whatsapp: string
+          url_google_business: string | null
+        }
+        Insert: {
+          cgv_acceptees?: boolean
+          created_at?: string
+          email: string
+          id?: string
+          lemon_squeezy_order_id?: string | null
+          nom_etablissement: string
+          notes?: string | null
+          offre: string
+          periode: string
+          statut?: string
+          telephone_whatsapp: string
+          url_google_business?: string | null
+        }
+        Update: {
+          cgv_acceptees?: boolean
+          created_at?: string
+          email?: string
+          id?: string
+          lemon_squeezy_order_id?: string | null
+          nom_etablissement?: string
+          notes?: string | null
+          offre?: string
+          periode?: string
+          statut?: string
+          telephone_whatsapp?: string
+          url_google_business?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
