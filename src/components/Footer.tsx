@@ -120,20 +120,12 @@ export const Footer = () => {
             href="https://spydercom.fr" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="group flex items-center gap-2 text-slate-400 hover:text-purple-400 transition-all duration-300"
+            className="group flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-all duration-300"
           >
             <span className="text-sm">Propulsé par</span>
-            <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 group-hover:from-blue-300 group-hover:via-purple-300 group-hover:to-pink-300 transition-all duration-300">
+            <span className="font-bold text-cyan-400 group-hover:text-cyan-300 transition-all duration-300 tracking-wider uppercase">
               Spidercom
             </span>
-            <svg 
-              className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
           </a>
 
           <p className="text-slate-500 text-sm">Fait avec 💜 en France</p>
