@@ -5,6 +5,7 @@ import { MessageCircle } from "lucide-react";
 export const HomePricingSection = () => {
   const navigate = useNavigate();
   const [selectedPlan, setSelectedPlan] = useState<'starter' | 'pro' | null>(null);
+  const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'yearly'>('monthly');
 
   const [copied, setCopied] = useState(false);
 
@@ -16,7 +17,12 @@ export const HomePricingSection = () => {
 
   const handleContinue = () => {
     if (!selectedPlan) return;
-    navigate(`/checkout?offre=${selectedPlan}&periode=monthly`);
+    navigate(`/checkout?offre=${selectedPlan}&periode=${billingPeriod}`);
+  };
+
+  const prices = {
+    starter: { monthly: 19.90, yearly: 16.58 },
+    pro: { monthly: 29.90, yearly: 24.92 }
   };
 
   const plans = [
@@ -27,7 +33,6 @@ export const HomePricingSection = () => {
       badge: 'POPULAIRE',
       badgeIcon: '⚡',
       badgeColor: 'from-blue-500 to-blue-600',
-      price: 19.90,
       features: [
         'QR Code dynamique',
         'Collecte avis Google (2x/jour) + Facebook',
@@ -35,7 +40,7 @@ export const HomePricingSection = () => {
         'Alertes WhatsApp instantanées (avis négatifs en 2 min)',
         'Rapport mensuel sur WhatsApp',
         'Reporting hebdomadaire détaillé',
-        'Plaque NFC offerte (offre annuelle)'
+        billingPeriod === 'yearly' ? '🎁 Plaque NFC offerte' : 'Plaque NFC offerte (offre annuelle)'
       ]
     },
     {
@@ -45,7 +50,6 @@ export const HomePricingSection = () => {
       badge: 'RECOMMANDÉ',
       badgeIcon: '💎',
       badgeColor: 'from-purple-500 to-pink-500',
-      price: 29.90,
       features: [
         'Tout Starter +',
         'Radar multi-plateformes (Google, Facebook, Trustpilot, Yelp)',
@@ -55,7 +59,7 @@ export const HomePricingSection = () => {
         'Gamification',
         'Opportunités IA quotidiennes',
         'Support prioritaire',
-        'Plaque NFC offerte (offre annuelle)'
+        billingPeriod === 'yearly' ? '🎁 Plaque NFC offerte' : 'Plaque NFC offerte (offre annuelle)'
       ]
     }
   ];
@@ -79,7 +83,34 @@ export const HomePricingSection = () => {
         </div>
 
         {/* Section Title */}
-        <h2 className="text-3xl font-bold mb-8 text-white">1. Choisissez votre offre</h2>
+        <h2 className="text-3xl font-bold mb-6 text-white">1. Choisissez votre offre</h2>
+
+        {/* Billing Toggle */}
+        <div className="flex justify-center mb-8">
+          <div className="bg-[#0f1629] border border-[#1e293b] rounded-full p-1 inline-flex">
+            <button
+              onClick={() => setBillingPeriod('monthly')}
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
+                billingPeriod === 'monthly'
+                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              Mensuel
+            </button>
+            <button
+              onClick={() => setBillingPeriod('yearly')}
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all flex items-center gap-2 ${
+                billingPeriod === 'yearly'
+                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white'
+                  : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              Annuel
+              <span className="bg-green-500/20 text-green-400 text-xs px-2 py-0.5 rounded-full">-17%</span>
+            </button>
+          </div>
+        </div>
 
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
@@ -106,10 +137,15 @@ export const HomePricingSection = () => {
                 
                 <div className="mb-2">
                   <span className="text-5xl font-bold text-purple-400">
-                    {plan.price.toFixed(2).replace('.', '.')}€
+                    {prices[plan.id][billingPeriod].toFixed(2).replace('.', ',')}€
                   </span>
                   <span className="text-slate-400 ml-2">HT / mois</span>
                 </div>
+                {billingPeriod === 'yearly' && (
+                  <p className="text-green-400 text-xs mb-1">
+                    Facturé {(prices[plan.id].yearly * 12).toFixed(2).replace('.', ',')}€/an
+                  </p>
+                )}
                 
                 <p className="text-purple-300/70 text-sm mb-8">{plan.description}</p>
                 
