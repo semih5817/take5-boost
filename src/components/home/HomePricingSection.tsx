@@ -21,8 +21,8 @@ export const HomePricingSection = () => {
   };
 
   const prices = {
-    starter: { monthly: 19.90, yearly: 16.58 },
-    pro: { monthly: 29.90, yearly: 24.92 }
+    starter: { monthly: 19.90, yearly: 15.92 },
+    pro: { monthly: 29.90, yearly: 23.92 }
   };
 
   const plans = [
@@ -107,7 +107,7 @@ export const HomePricingSection = () => {
               }`}
             >
               Annuel
-              <span className="bg-green-500/20 text-green-400 text-xs px-2 py-0.5 rounded-full">-17%</span>
+              <span className="bg-green-500/20 text-green-400 text-xs px-2 py-0.5 rounded-full">-20%</span>
             </button>
           </div>
         </div>
