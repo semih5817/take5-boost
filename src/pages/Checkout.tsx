@@ -22,11 +22,11 @@ type CheckoutFormData = z.infer<typeof checkoutSchema>;
 const LEMONSQUEEZY_URLS = {
   starter: {
     monthly: 'https://takefive.lemonsqueezy.com/checkout/buy/STARTER_MONTHLY_ID',
-    yearly: 'https://takefive.lemonsqueezy.com/checkout/buy/STARTER_YEARLY_ID'
+    yearly: 'https://takefive.lemonsqueezy.com/checkout/buy/1fd4af53-9037-4ce7-a549-ea7eaf1d8462'
   },
   pro: {
     monthly: 'https://takefive.lemonsqueezy.com/checkout/buy/PRO_MONTHLY_ID',
-    yearly: 'https://takefive.lemonsqueezy.com/checkout/buy/PRO_YEARLY_ID'
+    yearly: 'https://takefive.lemonsqueezy.com/checkout/buy/91fd5799-35df-4d8f-b2bd-fdd2d53a29bc'
   }
 };
 
