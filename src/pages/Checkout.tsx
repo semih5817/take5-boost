@@ -9,14 +9,15 @@ import { ArrowLeft, Loader2 } from "lucide-react";
 
 const checkoutSchema = z.object({
   nom_etablissement: z.string().trim().min(2, "Nom trop court").max(150, "Nom trop long"),
-  url_google_business: z.string().trim().url("URL invalide").optional().or(z.literal("")),
-  email: z.string().trim().email("Email invalide").max(255, "Email trop long"),
+  url_google_business: z.string().trim().url("URL invalide"),
   telephone_whatsapp: z.string().trim().min(10, "Numéro trop court").max(20, "Numéro trop long")
     .regex(/^[\d\s+()-]+$/, "Format de téléphone invalide"),
-  cgv_acceptees: z.literal(true, { errorMap: () => ({ message: "Vous devez accepter les CGV" }) })
+  email: z.string().trim().email("Email invalide").max(255, "Email trop long").optional().or(z.literal(""))
 });
 
 type CheckoutFormData = z.infer<typeof checkoutSchema>;
+
+const WEBHOOK_URL = 'https://n8n.takefive.fr/webhook-test/9b9558e3-e91f-4bcc-9f7b-ba05af301a20';
 
 // TODO: Remplacer par vos vrais liens LemonSqueezy
 const LEMONSQUEEZY_URLS = {
@@ -41,9 +42,8 @@ const Checkout = () => {
   const [formData, setFormData] = useState({
     nom_etablissement: '',
     url_google_business: '',
-    email: '',
     telephone_whatsapp: '',
-    cgv_acceptees: false
+    email: ''
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -88,20 +88,21 @@ const Checkout = () => {
     setIsSubmitting(true);
 
     try {
-      // Save lead to Supabase
-      const { error } = await supabase
-        .from('subscription_leads')
-        .insert({
-          nom_etablissement: formData.nom_etablissement.trim(),
-          url_google_business: formData.url_google_business.trim() || null,
-          email: formData.email.trim(),
-          telephone_whatsapp: formData.telephone_whatsapp.trim(),
-          offre,
-          periode,
-          cgv_acceptees: formData.cgv_acceptees
-        });
+      // Send data to webhook
+      const webhookPayload = {
+        nom_etablissement: formData.nom_etablissement.trim(),
+        url_google_business: formData.url_google_business.trim(),
+        telephone_whatsapp: formData.telephone_whatsapp.trim(),
+        email: formData.email.trim() || null,
+        offre,
+        periode
+      };
 
-      if (error) throw error;
+      await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(webhookPayload)
+      });
 
       toast({
         title: "Informations enregistrées !",
@@ -109,12 +110,9 @@ const Checkout = () => {
       });
 
       // Redirect to LemonSqueezy
-      setTimeout(() => {
-        const checkoutUrl = LEMONSQUEEZY_URLS[offre][periode];
-        // Add email prefill to LemonSqueezy URL
-        const urlWithEmail = `${checkoutUrl}?checkout[email]=${encodeURIComponent(formData.email.trim())}`;
-        window.location.href = urlWithEmail;
-      }, 1000);
+      const checkoutUrl = LEMONSQUEEZY_URLS[offre][periode];
+      const emailParam = formData.email.trim() ? `?checkout[email]=${encodeURIComponent(formData.email.trim())}` : '';
+      window.location.href = `${checkoutUrl}${emailParam}`;
 
     } catch (error) {
       console.error('Checkout error');
@@ -200,8 +198,7 @@ const Checkout = () => {
               {/* URL Google Business */}
               <div>
                 <label htmlFor="url_google_business" className="block text-sm font-medium mb-2">
-                  URL de votre fiche Google Business
-                  <span className="text-slate-500 font-normal ml-2">(optionnel)</span>
+                  URL de votre fiche Google Business <span className="text-pink-500">*</span>
                 </label>
                 <input
                   type="url"
@@ -220,27 +217,6 @@ const Checkout = () => {
                 <p className="text-slate-500 text-xs mt-1">
                   Nous l'utiliserons pour connecter vos avis Google
                 </p>
-              </div>
-
-              {/* Email */}
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  Email de contact <span className="text-pink-500">*</span>
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="contact@votre-etablissement.fr"
-                  className={`w-full px-4 py-3 bg-[#0f0c29]/50 border rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#667eea] transition-all ${
-                    errors.email ? 'border-red-500' : 'border-slate-600'
-                  }`}
-                />
-                {errors.email && (
-                  <p className="text-red-400 text-sm mt-1">{errors.email}</p>
-                )}
               </div>
 
               {/* WhatsApp */}
@@ -267,30 +243,25 @@ const Checkout = () => {
                 </p>
               </div>
 
-              {/* CGV Checkbox */}
-              <div className="pt-4 border-t border-slate-700">
-                <label className="flex items-start gap-3 cursor-pointer group">
-                  <input
-                    type="checkbox"
-                    name="cgv_acceptees"
-                    checked={formData.cgv_acceptees}
-                    onChange={handleChange}
-                    className="mt-1 w-5 h-5 rounded border-slate-600 bg-[#0f0c29]/50 text-[#667eea] focus:ring-[#667eea] focus:ring-offset-0 cursor-pointer"
-                  />
-                  <span className="text-sm text-slate-300 group-hover:text-white transition-colors">
-                    J'accepte les{' '}
-                    <Link to="/cgv" target="_blank" className="text-[#8B9EFF] hover:underline">
-                      Conditions Générales de Vente
-                    </Link>
-                    {' '}et la{' '}
-                    <Link to="/confidentialite" target="_blank" className="text-[#8B9EFF] hover:underline">
-                      Politique de Confidentialité
-                    </Link>
-                    {' '}<span className="text-pink-500">*</span>
-                  </span>
+              {/* Email */}
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  Email de contact
+                  <span className="text-slate-500 font-normal ml-2">(facultatif)</span>
                 </label>
-                {errors.cgv_acceptees && (
-                  <p className="text-red-400 text-sm mt-2 ml-8">{errors.cgv_acceptees}</p>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="contact@votre-etablissement.fr"
+                  className={`w-full px-4 py-3 bg-[#0f0c29]/50 border rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#667eea] transition-all ${
+                    errors.email ? 'border-red-500' : 'border-slate-600'
+                  }`}
+                />
+                {errors.email && (
+                  <p className="text-red-400 text-sm mt-1">{errors.email}</p>
                 )}
               </div>
 
@@ -307,7 +278,7 @@ const Checkout = () => {
                   </>
                 ) : (
                   <>
-                    Procéder au paiement →
+                    Démarrer mon essai →
                   </>
                 )}
               </button>
