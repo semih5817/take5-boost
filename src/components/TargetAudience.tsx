@@ -2,10 +2,13 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, TrendingUp, Users, Star, Zap } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const TargetAudience = () => {
-  const scrollToForm = () => {
-    document.getElementById('subscription-form')?.scrollIntoView({ behavior: 'smooth' });
+  const navigate = useNavigate();
+  
+  const goToTarifs = () => {
+    navigate('/tarifs');
   };
 
   const sectors = [
@@ -116,7 +119,7 @@ export const TargetAudience = () => {
               </p>
               
               <Button 
-                onClick={scrollToForm}
+                onClick={goToTarifs}
                 variant={sector.featured ? "default" : "outline"}
                 className={`w-full text-sm md:text-base ${sector.featured ? "bg-gradient-to-r from-primary to-secondary hover:shadow-primary" : ""}`}
               >

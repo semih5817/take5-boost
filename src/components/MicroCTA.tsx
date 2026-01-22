@@ -1,9 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Quote, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const MicroCTA = () => {
-  const scrollToForm = () => {
-    document.getElementById('subscription-form')?.scrollIntoView({ behavior: 'smooth' });
+  const navigate = useNavigate();
+  
+  const goToTarifs = () => {
+    navigate('/tarifs');
   };
 
   return (
@@ -24,7 +27,7 @@ export const MicroCTA = () => {
               </cite>
               
               <Button 
-                onClick={scrollToForm}
+                onClick={goToTarifs}
                 size="lg"
                 className="bg-primary hover:bg-primary/90 shadow-glow hover:shadow-primary transition-all duration-300"
               >

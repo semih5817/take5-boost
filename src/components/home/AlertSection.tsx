@@ -1,9 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { AlertCircle, CheckCircle, X, Check } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const AlertSection = () => {
-  const scrollToForm = () => {
-    document.getElementById('subscription-form')?.scrollIntoView({ behavior: 'smooth' });
+  const navigate = useNavigate();
+  
+  const goToTarifs = () => {
+    navigate('/tarifs');
   };
 
   return (
@@ -129,7 +132,7 @@ export const AlertSection = () => {
         {/* CTA */}
         <div className="text-center">
           <Button
-            onClick={scrollToForm}
+            onClick={goToTarifs}
             size="lg"
             className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white font-bold py-4 px-10 text-lg transition-all transform hover:scale-105 shadow-lg shadow-red-500/50"
           >

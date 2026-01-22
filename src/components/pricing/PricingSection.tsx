@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
@@ -44,10 +45,10 @@ const PackCard = ({
   recommended?: boolean;
 }) => {
   const [selectedOption, setSelectedOption] = useState<PricingOption | null>(options ? options[0] : null);
-  const scrollToForm = () => {
-    document.getElementById("subscription-form")?.scrollIntoView({
-      behavior: "smooth"
-    });
+  const navigate = useNavigate();
+  
+  const goToTarifs = () => {
+    navigate('/tarifs');
   };
   const displayPrice = billing === "free" ? pack.monthly : billing === "monthly" ? pack.monthly : selectedOption;
   return <div className={`relative bg-slate-800/50 backdrop-blur border rounded-2xl p-6 transition-all hover:scale-105 ${recommended ? "border-purple-500 border-2 shadow-2xl shadow-purple-500/50" : "border-slate-700"}`}>
@@ -140,7 +141,7 @@ const PackCard = ({
       </ul>
 
       {/* CTA */}
-      <Button onClick={scrollToForm} className={`w-full py-4 rounded-lg font-bold text-white transition-all transform hover:scale-105 ${pack.ctaStyle}`}>
+      <Button onClick={goToTarifs} className={`w-full py-4 rounded-lg font-bold text-white transition-all transform hover:scale-105 ${pack.ctaStyle}`}>
         {pack.cta}
       </Button>
 

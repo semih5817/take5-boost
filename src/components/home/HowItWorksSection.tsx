@@ -1,9 +1,12 @@
 import { Settings, Zap, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 export const HowItWorksSection = () => {
-  const scrollToForm = () => {
-    document.getElementById('subscription-form')?.scrollIntoView({ behavior: 'smooth' });
+  const navigate = useNavigate();
+  
+  const goToTarifs = () => {
+    navigate('/tarifs');
   };
 
   const steps = [
@@ -88,7 +91,7 @@ export const HowItWorksSection = () => {
         {/* CTA */}
         <div className="text-center mt-12">
           <Button
-            onClick={scrollToForm}
+            onClick={goToTarifs}
             size="lg"
             className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 px-10 text-lg transition-all transform hover:scale-105"
           >

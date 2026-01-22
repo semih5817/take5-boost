@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import { MultiPublicationAnimation, AIResponseAnimation, MultiPublicationBenefits, AIResponseBenefits } from "@/components/animations";
+
 export const WaouwMomentsSection = () => {
-  const scrollToForm = () => {
-    document.getElementById('subscription-form')?.scrollIntoView({
-      behavior: 'smooth'
-    });
+  const navigate = useNavigate();
+  
+  const goToTarifs = () => {
+    navigate('/tarifs');
   };
   return <>
       {/* BLOC 1 – Publication Multi-Réseaux */}
