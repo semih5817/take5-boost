@@ -5,13 +5,14 @@ import { Footer } from "@/components/Footer";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
-import { ArrowLeft, Loader2 } from "lucide-react";
+import { ArrowLeft, Loader2, Plus, Minus } from "lucide-react";
+import plaqueNfcImage from "@/assets/plaque-personnalisee-take5.jpg";
 
 const checkoutSchema = z.object({
   nom_etablissement: z.string().trim().min(2, "Nom trop court").max(150, "Nom trop long"),
   url_google_business: z.string().trim().url("URL invalide"),
-  telephone_whatsapp: z.string().trim().min(10, "Numéro trop court").max(20, "Numéro trop long")
-    .regex(/^[\d\s+()-]+$/, "Format de téléphone invalide"),
+  telephone_whatsapp: z.string().trim()
+    .regex(/^\+33[0-9]{9}$/, "Format requis : +33XXXXXXXXX (ex: +33612345678)"),
   email: z.string().trim().email("Email invalide").max(255, "Email trop long").optional().or(z.literal(""))
 });
 
@@ -40,6 +41,7 @@ const Checkout = () => {
     email: ''
   });
   const [wantsPlaque, setWantsPlaque] = useState(false);
+  const [plaqueQuantity, setPlaqueQuantity] = useState(1);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -91,7 +93,8 @@ const Checkout = () => {
         email: formData.email.trim() || null,
         offre,
         periode,
-        plaque_nfc: wantsPlaque
+        plaque_nfc: wantsPlaque,
+        plaque_quantity: wantsPlaque ? plaqueQuantity : 0
       };
 
       await fetch(WEBHOOK_URL, {
@@ -227,7 +230,7 @@ const Checkout = () => {
                   name="telephone_whatsapp"
                   value={formData.telephone_whatsapp}
                   onChange={handleChange}
-                  placeholder="+33 6 12 34 56 78"
+                  placeholder="+33612345678"
                   className={`w-full px-4 py-3 bg-[#0f0c29]/50 border rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#667eea] transition-all ${
                     errors.telephone_whatsapp ? 'border-red-500' : 'border-slate-600'
                   }`}
@@ -236,7 +239,7 @@ const Checkout = () => {
                   <p className="text-red-400 text-sm mt-1">{errors.telephone_whatsapp}</p>
                 )}
                 <p className="text-slate-500 text-xs mt-1">
-                  Pour recevoir vos alertes et rapports TakeFive
+                  Format : +33XXXXXXXXX (ex: +33612345678)
                 </p>
               </div>
 
@@ -264,23 +267,64 @@ const Checkout = () => {
 
               {/* Option Plaque NFC */}
               <div className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/30 rounded-xl p-5">
-                <label className="flex items-start gap-4 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={wantsPlaque}
-                    onChange={(e) => setWantsPlaque(e.target.checked)}
-                    className="mt-1 w-5 h-5 rounded border-slate-600 bg-slate-800 text-amber-500 focus:ring-amber-500"
-                  />
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="font-semibold text-white">Ajouter une Plaque NFC Google</span>
-                      <span className="text-amber-400 font-bold">+39,90€</span>
-                    </div>
-                    <p className="text-slate-400 text-sm">
-                      Plaque personnalisée avec votre logo • Vos clients scannent, vous récoltez des avis 5★
-                    </p>
+                <div className="flex gap-4">
+                  {/* Image de la plaque */}
+                  <div className="flex-shrink-0 w-24 h-24 rounded-lg overflow-hidden">
+                    <img 
+                      src={plaqueNfcImage} 
+                      alt="Plaque NFC Google" 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                </label>
+                  
+                  {/* Contenu */}
+                  <div className="flex-1">
+                    <label className="flex items-start gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={wantsPlaque}
+                        onChange={(e) => setWantsPlaque(e.target.checked)}
+                        className="mt-1 w-5 h-5 rounded border-slate-600 bg-slate-800 text-amber-500 focus:ring-amber-500"
+                      />
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="font-semibold text-white">Ajouter une Plaque NFC Google</span>
+                          <span className="text-amber-400 font-bold">39,90€ / unité</span>
+                        </div>
+                        <p className="text-slate-400 text-sm">
+                          Plaque personnalisée avec votre logo • Vos clients scannent, vous récoltez des avis 5★
+                        </p>
+                      </div>
+                    </label>
+                    
+                    {/* Sélecteur de quantité */}
+                    {wantsPlaque && (
+                      <div className="mt-4 flex items-center gap-4">
+                        <span className="text-sm text-slate-300">Quantité :</span>
+                        <div className="flex items-center gap-2">
+                          <button
+                            type="button"
+                            onClick={() => setPlaqueQuantity(q => Math.max(1, q - 1))}
+                            className="w-8 h-8 rounded-lg bg-slate-700 hover:bg-slate-600 flex items-center justify-center transition-colors"
+                          >
+                            <Minus className="w-4 h-4" />
+                          </button>
+                          <span className="w-8 text-center font-semibold">{plaqueQuantity}</span>
+                          <button
+                            type="button"
+                            onClick={() => setPlaqueQuantity(q => Math.min(10, q + 1))}
+                            className="w-8 h-8 rounded-lg bg-slate-700 hover:bg-slate-600 flex items-center justify-center transition-colors"
+                          >
+                            <Plus className="w-4 h-4" />
+                          </button>
+                        </div>
+                        <span className="text-amber-400 font-bold ml-auto">
+                          +{(plaqueQuantity * 39.90).toFixed(2).replace('.', ',')}€
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
 
               {/* Submit Button */}
