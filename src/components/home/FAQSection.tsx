@@ -35,14 +35,12 @@ export const FAQSection = () => {
       question: "Combien ça coûte ?",
       answer: (
         <>
-          On a 4 formules :
+          On a 2 formules simples :
           <ul className="list-disc ml-6 mt-2 space-y-1">
-            <li><strong>Gratuit</strong> : pour tester les fonctionnalités (avec limitations)</li>
-            <li><strong>Starter (14,90€/mois)</strong> : essentiel pour les petits commerces</li>
-            <li><strong>Pro (29,90€/mois)</strong> : pour dominer localement</li>
-            <li><strong>Pro Plus (45€/mois)</strong> : tout inclus + fonctionnalités avancées</li>
+            <li><strong>Starter (19,90€/mois)</strong> : essentiel pour les petits commerces</li>
+            <li><strong>Pro (29,90€/mois)</strong> : pour dominer localement avec analyse concurrentielle</li>
           </ul>
-          <p className="mt-2">Essai gratuit de 7 jours sur toutes les formules. Sans carte bancaire.</p>
+          <p className="mt-2">Essai gratuit 1 mois avec le code SEMIH. Sans engagement.</p>
         </>
       ),
     },
