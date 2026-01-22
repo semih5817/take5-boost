@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Star } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
 export const HeroSection = () => {
-  const scrollToForm = () => {
-    document.getElementById('subscription-form')?.scrollIntoView({
-      behavior: 'smooth'
-    });
+  const navigate = useNavigate();
+  
+  const goToTarifs = () => {
+    navigate('/tarifs');
   };
   return <section className="relative min-h-screen flex items-center justify-center px-4 py-20">
       <div className="max-w-6xl mx-auto text-center">
@@ -27,7 +29,7 @@ export const HeroSection = () => {
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-fade-in">
-          <Button onClick={scrollToForm} size="lg" className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-4 px-8 text-lg transition-all transform hover:scale-105 shadow-2xl">
+          <Button onClick={goToTarifs} size="lg" className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-4 px-8 text-lg transition-all transform hover:scale-105 shadow-2xl">
             Essayer gratuitement 1 mois
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>

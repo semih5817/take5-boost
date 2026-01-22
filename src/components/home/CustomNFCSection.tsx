@@ -1,10 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Sparkles } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import plaquePersonnalisee from "@/assets/plaque-personnalisee-take5.jpg";
 
 export const CustomNFCSection = () => {
-  const scrollToForm = () => {
-    document.getElementById('subscription-form')?.scrollIntoView({ behavior: 'smooth' });
+  const navigate = useNavigate();
+  
+  const goToTarifs = () => {
+    navigate('/tarifs');
   };
 
   return (
@@ -59,13 +62,13 @@ export const CustomNFCSection = () => {
 
             <div className="flex flex-wrap gap-4">
               <Button 
-                onClick={scrollToForm}
+                onClick={goToTarifs}
                 className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold px-8 py-6 text-lg shadow-lg shadow-purple-500/50 hover:shadow-purple-500/70 transition-all duration-300 hover:-translate-y-1"
               >
                 Commander ma plaque
               </Button>
               <Button 
-                onClick={scrollToForm}
+                onClick={goToTarifs}
                 variant="outline"
                 className="border-purple-500/50 text-purple-400 hover:bg-purple-500/10 px-8 py-6 text-lg"
               >

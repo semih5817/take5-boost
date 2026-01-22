@@ -3,14 +3,16 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Check, ArrowRight, Copy, Check as CheckIcon } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 export const Pricing = () => {
   const [billingType, setBillingType] = useState<'monthly' | 'annual'>('monthly');
   const [copiedCode, setCopiedCode] = useState(false);
+  const navigate = useNavigate();
 
-  const scrollToForm = () => {
-    document.getElementById('subscription-form')?.scrollIntoView({ behavior: 'smooth' });
+  const goToTarifs = () => {
+    navigate('/tarifs');
   };
 
   const prices = {
@@ -145,7 +147,7 @@ export const Pricing = () => {
               ))}
             </ul>
             <Button
-              onClick={scrollToForm}
+              onClick={goToTarifs}
               size="lg"
               className="w-full bg-gradient-to-r from-primary to-secondary hover:shadow-lg transition-all duration-300"
             >
@@ -180,7 +182,7 @@ export const Pricing = () => {
               ))}
             </ul>
             <Button
-              onClick={scrollToForm}
+              onClick={goToTarifs}
               size="lg"
               className="w-full bg-gradient-to-r from-primary to-secondary hover:shadow-lg transition-all duration-300"
             >
@@ -220,7 +222,7 @@ export const Pricing = () => {
               <div className="text-4xl font-bold gradient-text mb-2">39,90€ HT</div>
               <p className="text-sm text-muted-foreground mb-4">47,88€ TTC<br />Paiement unique</p>
               <Button
-                onClick={scrollToForm}
+                onClick={goToTarifs}
                 variant="outline"
                 className="border-2 border-primary text-primary hover:bg-gradient-to-r hover:from-primary hover:to-secondary hover:text-white hover:border-transparent"
               >

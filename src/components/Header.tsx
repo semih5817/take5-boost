@@ -1,13 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Star, Menu, X } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const scrollToForm = () => {
-    document.getElementById('subscription-form')?.scrollIntoView({ behavior: 'smooth' });
+  const goToTarifs = () => {
+    navigate('/tarifs');
     setMenuOpen(false);
   };
 
@@ -55,7 +56,7 @@ export const Header = () => {
 
             {/* Bouton S'abonner - Droite */}
             <Button 
-              onClick={scrollToForm}
+              onClick={goToTarifs}
               size="default"
               className="bg-gradient-to-r from-[#4361ee] to-purple-600 hover:from-[#3651de] hover:to-purple-700 transition-all duration-300 hover:-translate-y-1 text-xs md:text-sm px-3 md:px-6 rounded-xl"
             >
@@ -126,7 +127,7 @@ export const Header = () => {
           {/* Bouton S'abonner dans le menu */}
           <div className="px-6 pt-6">
             <button
-              onClick={scrollToForm}
+              onClick={goToTarifs}
               className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg text-white font-semibold hover:from-purple-700 hover:to-pink-700 transition-all hover:-translate-y-1 shadow-lg"
             >
               S'abonner

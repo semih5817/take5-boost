@@ -1,13 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Sparkles, Zap, Award } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import nfcCardsGrid from "@/assets/nfc-cards-grid.png";
 import nfcCardDetail1 from "@/assets/nfc-card-detail-1.jpg";
 import nfcCardDetail2 from "@/assets/nfc-card-detail-2.jpg";
 import nfcCardDetail3 from "@/assets/nfc-card-detail-3.jpg";
 
 export const NFCGallery = () => {
-  const scrollToForm = () => {
-    document.getElementById('subscription-form')?.scrollIntoView({ behavior: 'smooth' });
+  const navigate = useNavigate();
+  
+  const goToTarifs = () => {
+    navigate('/tarifs');
   };
 
   return (
@@ -88,7 +91,7 @@ export const NFCGallery = () => {
         {/* CTA */}
         <div className="text-center">
           <Button
-            onClick={scrollToForm}
+            onClick={goToTarifs}
             size="lg"
             className="bg-gradient-to-r from-primary to-secondary hover:shadow-primary transition-all duration-300 hover:-translate-y-1 text-base md:text-lg px-6 md:px-8 py-4 md:py-6 h-auto w-full md:w-auto"
           >

@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 export const FinalCTASection = () => {
-  const scrollToForm = () => {
-    document.getElementById("subscription-form")?.scrollIntoView({ behavior: "smooth" });
+  const navigate = useNavigate();
+  
+  const goToTarifs = () => {
+    navigate('/tarifs');
   };
 
   return (
@@ -23,7 +26,7 @@ export const FinalCTASection = () => {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
           <Button
-            onClick={scrollToForm}
+            onClick={goToTarifs}
             size="lg"
             className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-5 px-12 text-xl transition-all transform hover:scale-105 shadow-2xl"
           >

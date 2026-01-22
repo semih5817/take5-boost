@@ -1,9 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Star, Zap, TrendingUp } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const Hero = () => {
-  const scrollToForm = () => {
-    document.getElementById('subscription-form')?.scrollIntoView({ behavior: 'smooth' });
+  const navigate = useNavigate();
+  
+  const goToTarifs = () => {
+    navigate('/tarifs');
   };
 
   return (
@@ -26,7 +29,7 @@ export const Hero = () => {
           
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center mb-8 md:mb-12">
             <Button 
-              onClick={scrollToForm}
+              onClick={goToTarifs}
               size="lg"
               className="bg-primary hover:bg-primary/90 shadow-glow transition-all duration-300 hover:-translate-y-1 hover:shadow-primary text-base md:text-lg px-6 md:px-8 py-5 md:py-6 h-auto w-full sm:w-auto"
             >
