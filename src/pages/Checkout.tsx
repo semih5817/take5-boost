@@ -19,16 +19,10 @@ type CheckoutFormData = z.infer<typeof checkoutSchema>;
 
 const WEBHOOK_URL = 'https://n8n.takefive.fr/webhook-test/9b9558e3-e91f-4bcc-9f7b-ba05af301a20';
 
-// TODO: Remplacer par vos vrais liens LemonSqueezy
-const LEMONSQUEEZY_URLS = {
-  starter: {
-    monthly: 'https://takefive.lemonsqueezy.com/checkout/buy/STARTER_MONTHLY_ID',
-    yearly: 'https://takefive.lemonsqueezy.com/checkout/buy/1fd4af53-9037-4ce7-a549-ea7eaf1d8462'
-  },
-  pro: {
-    monthly: 'https://takefive.lemonsqueezy.com/checkout/buy/PRO_MONTHLY_ID',
-    yearly: 'https://takefive.lemonsqueezy.com/checkout/buy/91fd5799-35df-4d8f-b2bd-fdd2d53a29bc'
-  }
+const STRIPE_URLS = {
+  starter: 'https://buy.stripe.com/00wdRb9hd6bP1gG0U89k406',
+  pro: 'https://buy.stripe.com/00waEZ6516bP5wWdGU9k405',
+  plaque: 'https://buy.stripe.com/14A14palh9o13oO46k9k403'
 };
 
 const Checkout = () => {
@@ -45,6 +39,7 @@ const Checkout = () => {
     telephone_whatsapp: '',
     email: ''
   });
+  const [wantsPlaque, setWantsPlaque] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -95,7 +90,8 @@ const Checkout = () => {
         telephone_whatsapp: formData.telephone_whatsapp.trim(),
         email: formData.email.trim() || null,
         offre,
-        periode
+        periode,
+        plaque_nfc: wantsPlaque
       };
 
       await fetch(WEBHOOK_URL, {
@@ -109,9 +105,10 @@ const Checkout = () => {
         description: "Redirection vers le paiement...",
       });
 
-      // Redirect to LemonSqueezy
-      const checkoutUrl = LEMONSQUEEZY_URLS[offre][periode];
-      const emailParam = formData.email.trim() ? `?checkout[email]=${encodeURIComponent(formData.email.trim())}` : '';
+      // Build Stripe URLs - if plaque is selected, we could redirect to both or handle differently
+      // For now, redirect to the plan checkout first
+      const checkoutUrl = STRIPE_URLS[offre];
+      const emailParam = formData.email.trim() ? `?prefilled_email=${encodeURIComponent(formData.email.trim())}` : '';
       window.location.href = `${checkoutUrl}${emailParam}`;
 
     } catch (error) {
@@ -265,6 +262,27 @@ const Checkout = () => {
                 )}
               </div>
 
+              {/* Option Plaque NFC */}
+              <div className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/30 rounded-xl p-5">
+                <label className="flex items-start gap-4 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={wantsPlaque}
+                    onChange={(e) => setWantsPlaque(e.target.checked)}
+                    className="mt-1 w-5 h-5 rounded border-slate-600 bg-slate-800 text-amber-500 focus:ring-amber-500"
+                  />
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-semibold text-white">Ajouter une Plaque NFC Google</span>
+                      <span className="text-amber-400 font-bold">+39,90€</span>
+                    </div>
+                    <p className="text-slate-400 text-sm">
+                      Plaque personnalisée avec votre logo • Vos clients scannent, vous récoltez des avis 5★
+                    </p>
+                  </div>
+                </label>
+              </div>
+
               {/* Submit Button */}
               <button
                 type="submit"
@@ -284,7 +302,7 @@ const Checkout = () => {
               </button>
 
               <p className="text-center text-slate-500 text-sm">
-                🔒 Paiement sécurisé par LemonSqueezy
+                🔒 Paiement sécurisé par Stripe
               </p>
             </form>
           </div>
