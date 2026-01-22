@@ -26,6 +26,17 @@ const STRIPE_URLS = {
   plaque: 'https://buy.stripe.com/14A14palh9o13oO46k9k403'
 };
 
+// Fonction de calcul de réduction selon la quantité
+const getDiscountPercent = (quantity: number): number => {
+  if (quantity >= 50) return 50;
+  if (quantity >= 30) return 35;
+  if (quantity >= 20) return 30;
+  if (quantity >= 10) return 25;
+  if (quantity >= 5) return 20;
+  if (quantity >= 3) return 10;
+  return 0;
+};
+
 const Checkout = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -299,28 +310,75 @@ const Checkout = () => {
                     
                     {/* Sélecteur de quantité */}
                     {wantsPlaque && (
-                      <div className="mt-4 flex items-center gap-4">
-                        <span className="text-sm text-slate-300">Quantité :</span>
-                        <div className="flex items-center gap-2">
-                          <button
-                            type="button"
-                            onClick={() => setPlaqueQuantity(q => Math.max(1, q - 1))}
-                            className="w-8 h-8 rounded-lg bg-slate-700 hover:bg-slate-600 flex items-center justify-center transition-colors"
-                          >
-                            <Minus className="w-4 h-4" />
-                          </button>
-                          <span className="w-8 text-center font-semibold">{plaqueQuantity}</span>
-                          <button
-                            type="button"
-                            onClick={() => setPlaqueQuantity(q => Math.min(10, q + 1))}
-                            className="w-8 h-8 rounded-lg bg-slate-700 hover:bg-slate-600 flex items-center justify-center transition-colors"
-                          >
-                            <Plus className="w-4 h-4" />
-                          </button>
+                      <div className="mt-4 space-y-3">
+                        <div className="flex items-center gap-4">
+                          <span className="text-sm text-slate-300">Quantité :</span>
+                          <div className="flex items-center gap-2">
+                            <button
+                              type="button"
+                              onClick={() => setPlaqueQuantity(q => Math.max(1, q - 1))}
+                              className="w-8 h-8 rounded-lg bg-slate-700 hover:bg-slate-600 flex items-center justify-center transition-colors"
+                            >
+                              <Minus className="w-4 h-4" />
+                            </button>
+                            <input
+                              type="number"
+                              min="1"
+                              max="99"
+                              value={plaqueQuantity}
+                              onChange={(e) => {
+                                const val = parseInt(e.target.value) || 1;
+                                setPlaqueQuantity(Math.min(99, Math.max(1, val)));
+                              }}
+                              className="w-14 text-center font-semibold bg-slate-800 border border-slate-600 rounded-lg py-1"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => setPlaqueQuantity(q => Math.min(99, q + 1))}
+                              className="w-8 h-8 rounded-lg bg-slate-700 hover:bg-slate-600 flex items-center justify-center transition-colors"
+                            >
+                              <Plus className="w-4 h-4" />
+                            </button>
+                          </div>
                         </div>
-                        <span className="text-amber-400 font-bold ml-auto">
-                          +{(plaqueQuantity * 39.90).toFixed(2).replace('.', ',')}€
-                        </span>
+                        
+                        {/* Affichage du prix avec réduction */}
+                        {(() => {
+                          const discount = getDiscountPercent(plaqueQuantity);
+                          const originalPrice = plaqueQuantity * 39.90;
+                          const discountedPrice = originalPrice * (1 - discount / 100);
+                          
+                          return (
+                            <div className="flex items-center justify-between bg-slate-800/50 rounded-lg px-3 py-2">
+                              <div className="flex items-center gap-2">
+                                {discount > 0 && (
+                                  <span className="bg-green-500/20 text-green-400 text-xs font-bold px-2 py-1 rounded">
+                                    -{discount}%
+                                  </span>
+                                )}
+                                {discount > 0 && (
+                                  <span className="text-slate-500 line-through text-sm">
+                                    {originalPrice.toFixed(2).replace('.', ',')}€
+                                  </span>
+                                )}
+                              </div>
+                              <span className="text-amber-400 font-bold text-lg">
+                                +{discountedPrice.toFixed(2).replace('.', ',')}€
+                              </span>
+                            </div>
+                          );
+                        })()}
+                        
+                        {/* Indicateur de palier */}
+                        <p className="text-xs text-slate-500">
+                          {plaqueQuantity < 3 && "💡 À partir de 3 unités : -10%"}
+                          {plaqueQuantity >= 3 && plaqueQuantity < 5 && "💡 À partir de 5 unités : -20%"}
+                          {plaqueQuantity >= 5 && plaqueQuantity < 10 && "💡 À partir de 10 unités : -25%"}
+                          {plaqueQuantity >= 10 && plaqueQuantity < 20 && "💡 À partir de 20 unités : -30%"}
+                          {plaqueQuantity >= 20 && plaqueQuantity < 30 && "💡 À partir de 30 unités : -35%"}
+                          {plaqueQuantity >= 30 && plaqueQuantity < 50 && "💡 À partir de 50 unités : -50%"}
+                          {plaqueQuantity >= 50 && "🎉 Réduction maximale atteinte !"}
+                        </p>
                       </div>
                     )}
                   </div>
