@@ -49,7 +49,8 @@ const Checkout = () => {
     nom_etablissement: '',
     url_google_business: '',
     telephone_whatsapp: '',
-    email: ''
+    email: '',
+    code_parrainage: ''
   });
   const [wantsPlaque, setWantsPlaque] = useState(false);
   const [plaqueQuantity, setPlaqueQuantity] = useState(1);
@@ -102,6 +103,7 @@ const Checkout = () => {
         url_google_business: formData.url_google_business.trim(),
         telephone_whatsapp: formData.telephone_whatsapp.trim(),
         email: formData.email.trim() || null,
+        code_parrainage: formData.code_parrainage.trim() || null,
         offre,
         periode,
         plaque_nfc: wantsPlaque,
@@ -274,6 +276,26 @@ const Checkout = () => {
                 {errors.email && (
                   <p className="text-red-400 text-sm mt-1">{errors.email}</p>
                 )}
+              </div>
+
+              {/* Code parrainage */}
+              <div>
+                <label htmlFor="code_parrainage" className="block text-sm font-medium mb-2">
+                  Code parrainage / promo
+                  <span className="text-slate-500 font-normal ml-2">(facultatif)</span>
+                </label>
+                <input
+                  type="text"
+                  id="code_parrainage"
+                  name="code_parrainage"
+                  value={formData.code_parrainage}
+                  onChange={handleChange}
+                  placeholder="Ex: SEMIH"
+                  className="w-full px-4 py-3 bg-[#0f0c29]/50 border border-slate-600 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#667eea] transition-all"
+                />
+                <p className="text-slate-500 text-xs mt-1">
+                  Entrez votre code pour bénéficier d'un mois offert
+                </p>
               </div>
 
               {/* Option Plaque NFC */}

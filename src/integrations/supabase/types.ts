@@ -41,6 +41,7 @@ export type Database = {
       subscription_leads: {
         Row: {
           cgv_acceptees: boolean
+          code_parrainage: string | null
           created_at: string
           email: string
           id: string
@@ -55,6 +56,7 @@ export type Database = {
         }
         Insert: {
           cgv_acceptees?: boolean
+          code_parrainage?: string | null
           created_at?: string
           email: string
           id?: string
@@ -69,6 +71,7 @@ export type Database = {
         }
         Update: {
           cgv_acceptees?: boolean
+          code_parrainage?: string | null
           created_at?: string
           email?: string
           id?: string
