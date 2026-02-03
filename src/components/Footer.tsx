@@ -35,7 +35,9 @@ export const Footer = () => {
                 <img src="/logos/instagram.svg" alt="Instagram" className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://www.tiktok.com/@takefive.fr"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-purple-600 transition-all"
               >
                 <img src="/logos/tiktok.svg" alt="TikTok" className="w-5 h-5" />
