@@ -27,7 +27,9 @@ export const Footer = () => {
                 </svg>
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/takefive.fr"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-purple-600 transition-all"
               >
                 <img src="/logos/instagram.svg" alt="Instagram" className="w-5 h-5" />
