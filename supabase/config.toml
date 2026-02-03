@@ -1,4 +1,4 @@
 project_id = "qkmanrdfpaledpztjxkf"
 
-[functions.lemonsqueezy-webhook]
+[functions.stripe-webhook]
 verify_jwt = false
