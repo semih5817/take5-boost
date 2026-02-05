@@ -117,15 +117,26 @@ const Checkout = () => {
       });
 
       toast({
-        title: "Informations enregistrées !",
-        description: "Redirection vers le paiement...",
+        title: "Demande envoyée avec succès ! 🎉",
+        description: "Nous vous contacterons très bientôt pour finaliser votre inscription.",
       });
 
-      // Build Stripe URLs - if plaque is selected, we could redirect to both or handle differently
-      // For now, redirect to the plan checkout first
-      const checkoutUrl = STRIPE_URLS[offre];
-      const emailParam = formData.email.trim() ? `?prefilled_email=${encodeURIComponent(formData.email.trim())}` : '';
-      window.location.href = `${checkoutUrl}${emailParam}`;
+      // Reset form after successful submission
+      setFormData({
+        nom_etablissement: '',
+        url_google_business: '',
+        telephone_whatsapp: '',
+        email: '',
+        code_parrainage: ''
+      });
+      setWantsPlaque(false);
+      setPlaqueQuantity(1);
+      setIsSubmitting(false);
+
+      // NOTE: Stripe redirection temporarily disabled
+      // const checkoutUrl = STRIPE_URLS[offre];
+      // const emailParam = formData.email.trim() ? `?prefilled_email=${encodeURIComponent(formData.email.trim())}` : '';
+      // window.location.href = `${checkoutUrl}${emailParam}`;
 
     } catch (error) {
       console.error('Checkout error');
