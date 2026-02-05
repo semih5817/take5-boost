@@ -239,7 +239,7 @@ const Checkout = () => {
                   <p className="text-red-400 text-sm mt-1">{errors.url_google_business}</p>
                 )}
                 <p className="text-slate-500 text-xs mt-1">
-                  Nous l'utiliserons pour connecter vos avis Google
+                  Utilisez le lien de partage Google Maps (ex: https://maps.app.goo.gl/abc123)
                 </p>
               </div>
 
