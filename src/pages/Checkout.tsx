@@ -230,7 +230,7 @@ const Checkout = () => {
                   name="url_google_business"
                   value={formData.url_google_business}
                   onChange={handleChange}
-                  placeholder="https://g.page/votre-etablissement"
+                  placeholder="https://maps.app.goo.gl/abc123"
                   className={`w-full px-4 py-3 bg-[#0f0c29]/50 border rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#667eea] transition-all ${
                     errors.url_google_business ? 'border-red-500' : 'border-slate-600'
                   }`}
