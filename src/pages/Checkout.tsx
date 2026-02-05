@@ -5,7 +5,12 @@ import { Footer } from "@/components/Footer";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
-import { ArrowLeft, Loader2, Plus, Minus } from "lucide-react";
+import { ArrowLeft, Loader2, Plus, Minus, HelpCircle, ExternalLink } from "lucide-react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import plaqueNfcImage from "@/assets/plaque-personnalisee-take5.jpg";
 
 const checkoutSchema = z.object({
@@ -221,9 +226,54 @@ const Checkout = () => {
 
               {/* URL Google Business */}
               <div>
-                <label htmlFor="url_google_business" className="block text-sm font-medium mb-2">
-                  URL de votre fiche Google Business <span className="text-pink-500">*</span>
-                </label>
+                <div className="flex items-center gap-2 mb-2">
+                  <label htmlFor="url_google_business" className="block text-sm font-medium">
+                    URL de votre fiche Google Business <span className="text-pink-500">*</span>
+                  </label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <button
+                        type="button"
+                        className="text-slate-400 hover:text-white transition-colors"
+                        aria-label="Comment trouver mon lien Google Maps ?"
+                      >
+                        <HelpCircle className="w-4 h-4" />
+                      </button>
+                    </PopoverTrigger>
+                    <PopoverContent 
+                      className="w-80 bg-[#1a1f3d] border-[#4F5EFF]/50 text-white p-4"
+                      side="right"
+                      align="start"
+                    >
+                      <div className="space-y-3">
+                        <h4 className="font-semibold text-sm flex items-center gap-2">
+                          📍 Comment trouver votre lien ?
+                        </h4>
+                        <ol className="text-sm text-slate-300 space-y-2 list-decimal list-inside">
+                          <li>
+                            Allez sur{" "}
+                            <a 
+                              href="https://maps.google.com" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="text-[#8B9EFF] hover:underline inline-flex items-center gap-1"
+                            >
+                              Google Maps <ExternalLink className="w-3 h-3" />
+                            </a>
+                          </li>
+                          <li>Recherchez le nom de votre établissement</li>
+                          <li>Cliquez sur votre fiche quand elle apparaît</li>
+                          <li>Cliquez sur le bouton <strong>"Partager"</strong></li>
+                          <li>Copiez le lien et collez-le ici</li>
+                        </ol>
+                        <p className="text-xs text-slate-400 pt-2 border-t border-slate-600">
+                          💡 Le lien doit ressembler à : <br />
+                          <code className="text-[#8B9EFF]">https://maps.app.goo.gl/...</code>
+                        </p>
+                      </div>
+                    </PopoverContent>
+                  </Popover>
+                </div>
                 <input
                   type="url"
                   id="url_google_business"
