@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Star, Menu, X } from "lucide-react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const goToTarifs = () => {
     navigate('/tarifs');
@@ -19,10 +20,10 @@ export const Header = () => {
     {
       title: "Automatisations",
       submenu: [
-        { title: "Gamification & Score de santé", href: "/#gamification" },
-        { title: "Analyse concurrentielle", href: "/#analyse-concurrentielle" },
-        { title: "Radar multi-plateformes", href: "/#radar-avis" },
-        { title: "SEO Local & IA", href: "/#seo-local" },
+        { title: "Gamification & Score de santé", href: "/gamification" },
+        { title: "Analyse concurrentielle", href: "/analyse-concurrentielle" },
+        { title: "Radar multi-plateformes", href: "/radar-multi-plateformes" },
+        { title: "SEO Local & IA", href: "/seo-local-ia" },
       ]
     },
     { title: "Projets à venir", href: "/#projets-avenir" },
@@ -101,14 +102,18 @@ export const Header = () => {
                   </div>
                   <div>
                     {item.submenu.map((subItem, subIndex) => (
-                      <a
+                      <Link
                         key={subIndex}
-                        href={subItem.href}
+                        to={subItem.href}
                         onClick={closeMenu}
-                        className="block px-6 pl-10 py-3 text-slate-400 text-sm hover:text-white hover:bg-primary/10 hover:pl-12 transition-all"
+                        className={`block px-6 pl-10 py-3 text-sm hover:text-white hover:bg-primary/10 hover:pl-12 transition-all ${
+                          location.pathname === subItem.href 
+                            ? 'text-white border-l-2 border-purple-500 bg-primary/5' 
+                            : 'text-slate-400'
+                        }`}
                       >
                         {subItem.title}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
