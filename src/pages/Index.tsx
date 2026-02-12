@@ -2,11 +2,7 @@ import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/home/HeroSection";
 import { WaouwMomentsSection } from "@/components/home/WaouwMomentsSection";
 import { WhatsAppReportingSection } from "@/components/home/WhatsAppReportingSection";
-import { GamificationSection } from "@/components/home/GamificationSection";
-import { CompetitiveAnalysisSection } from "@/components/home/CompetitiveAnalysisSection";
-import { RadarReviewsSection } from "@/components/home/RadarReviewsSection";
 import { AllInOneSection } from "@/components/home/AllInOneSection";
-import { SeoLocalAiSection } from "@/components/home/SeoLocalAiSection";
 import { CustomNFCSection } from "@/components/home/CustomNFCSection";
 import { UpcomingProjectsGrid } from "@/components/home/UpcomingProjectsGrid";
 import { LeadCaptureSection } from "@/components/LeadCaptureSection";
@@ -22,11 +18,7 @@ const Index = () => {
       <Header />
       <HeroSection />
       <WhatsAppReportingSection />
-      <GamificationSection />
-      <CompetitiveAnalysisSection />
-      <RadarReviewsSection />
       <AllInOneSection />
-      <SeoLocalAiSection />
       <CustomNFCSection />
       <UpcomingProjectsGrid />
       <LeadCaptureSection />

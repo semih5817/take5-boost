@@ -18,6 +18,10 @@ import CentreAide from "./pages/CentreAide";
 import CGV from "./pages/CGV";
 import Confidentialite from "./pages/Confidentialite";
 import APropos from "./pages/APropos";
+import Gamification from "./pages/Gamification";
+import AnalyseConcurrentielle from "./pages/AnalyseConcurrentielle";
+import RadarMultiPlateformes from "./pages/RadarMultiPlateformes";
+import SeoLocalIa from "./pages/SeoLocalIa";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -45,6 +49,10 @@ const App = () => (
           <Route path="/cgv" element={<CGV />} />
           <Route path="/confidentialite" element={<Confidentialite />} />
           <Route path="/a-propos" element={<APropos />} />
+          <Route path="/gamification" element={<Gamification />} />
+          <Route path="/analyse-concurrentielle" element={<AnalyseConcurrentielle />} />
+          <Route path="/radar-multi-plateformes" element={<RadarMultiPlateformes />} />
+          <Route path="/seo-local-ia" element={<SeoLocalIa />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
