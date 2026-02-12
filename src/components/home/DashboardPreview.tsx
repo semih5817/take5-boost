@@ -256,7 +256,7 @@ export const DashboardPreview = () => {
                   <div className="flex gap-3 flex-wrap">
                     <Button className="bg-green-500 hover:bg-green-600">
                       <CheckCircle size={20} className="mr-2" />
-                      Continuer pour 19,90€/mois
+                      Continuer pour 29,90€/mois
                     </Button>
                     <Button className="bg-slate-700 hover:bg-slate-600">
                       Répondre au questionnaire (2 min)
