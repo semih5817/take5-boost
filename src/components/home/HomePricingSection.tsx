@@ -192,49 +192,6 @@ export const HomePricingSection = () => {
           )}
         </div>
 
-        {/* Divider */}
-        <div className="relative text-center my-12">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-slate-700"></div>
-          </div>
-          <span className="relative px-6 text-slate-500 text-xs uppercase tracking-widest font-medium bg-[#0A0E1A]">
-            OU
-          </span>
-        </div>
-
-        {/* WhatsApp Section - Redesigned */}
-        <div className="bg-[#0f1629] border border-[#25D366]/30 rounded-2xl p-8 md:p-10 max-w-[850px] mx-auto">
-          <h3 className="text-2xl md:text-3xl font-bold mb-4 text-center text-white">
-            Ou faites tout directement sur WhatsApp
-          </h3>
-          
-          <p className="text-slate-400 text-center mb-8 max-w-xl mx-auto">
-            <strong className="text-white">Aucun formulaire à remplir.</strong> Envoyez-nous un message, 
-            nous nous occupons de tout : choix de l'offre, connexion Google, activation.
-          </p>
-
-          {/* WhatsApp CTA - Button left, Number right */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-            <a 
-              href="https://wa.me/33939037644?text=Bonjour,%20je%20souhaite%20d%C3%A9marrer%20TakeFive%20et%20faire%20l%27onboarding%20via%20WhatsApp."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#1fb855] text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg shadow-[#25D366]/20 hover:shadow-xl hover:shadow-[#25D366]/30 hover:-translate-y-0.5 transition-all"
-            >
-              <MessageCircle className="w-6 h-6" />
-              Démarrer sur WhatsApp
-            </a>
-            
-            <div className="flex items-center gap-3">
-              <div className="w-px h-10 bg-slate-700 hidden md:block"></div>
-              <div className="text-center md:text-left">
-                <p className="text-slate-500 text-xs uppercase tracking-wide mb-1">Notre numéro</p>
-                <p className="text-[#25D366] text-xl font-bold tracking-wide">+33 9 39 03 76 44</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Footer Info */}
         <div className="text-center pt-12 text-slate-600 text-xs">
           <p>Paiement 100% sécurisé • Résiliable à tout moment</p>
