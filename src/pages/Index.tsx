@@ -2,6 +2,8 @@ import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/home/HeroSection";
 import { HowItWorksNew } from "@/components/home/HowItWorksNew";
 import { BenefitsResults } from "@/components/home/BenefitsResults";
+import { AllInOneSection } from "@/components/home/AllInOneSection";
+import { CustomNFCSection } from "@/components/home/CustomNFCSection";
 import { TestimonialsNewSection } from "@/components/home/TestimonialsNewSection";
 import { MidCTASection } from "@/components/home/MidCTASection";
 import { HomePricingSection } from "@/components/home/HomePricingSection";
@@ -16,6 +18,8 @@ const Index = () => {
       <HeroSection />
       <HowItWorksNew />
       <BenefitsResults />
+      <AllInOneSection />
+      <CustomNFCSection />
       <TestimonialsNewSection />
       <MidCTASection />
       <HomePricingSection />
