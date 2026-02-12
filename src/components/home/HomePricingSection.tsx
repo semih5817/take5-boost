@@ -29,7 +29,7 @@ export const HomePricingSection = () => {
     {
       id: 'starter' as const,
       name: 'Starter',
-      description: 'Essentiel pour petits commerces',
+      description: 'Idéal pour : Restaurants, salons, commerces locaux',
       badge: 'POPULAIRE',
       badgeIcon: '⚡',
       badgeColor: 'from-blue-500 to-blue-600',
@@ -46,7 +46,7 @@ export const HomePricingSection = () => {
     {
       id: 'pro' as const,
       name: 'Pro',
-      description: 'Pour dominer localement',
+      description: 'Idéal pour : Franchises, multi-établissements, chaînes',
       badge: 'RECOMMANDÉ',
       badgeIcon: '💎',
       badgeColor: 'from-purple-500 to-pink-500',
@@ -80,6 +80,15 @@ export const HomePricingSection = () => {
           <p className="mt-3 text-sm opacity-95 text-white">
             Utilisez ce code sur l'offre Starter pour tester gratuitement
           </p>
+        </div>
+
+        {/* NFC Banner discret */}
+        <div className="bg-slate-900/50 border border-purple-500/20 rounded-xl p-4 md:p-5 mb-8 flex flex-col sm:flex-row items-center gap-4">
+          <span className="text-3xl">🎁</span>
+          <div className="text-center sm:text-left flex-1">
+            <strong className="text-white">Plaque NFC offerte</strong>
+            <p className="text-slate-400 text-sm">Avec tout abonnement annuel (valeur 49€)</p>
+          </div>
         </div>
 
         {/* Section Title */}

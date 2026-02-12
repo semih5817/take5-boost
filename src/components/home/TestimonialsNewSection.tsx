@@ -40,13 +40,13 @@ export const TestimonialsNewSection = () => {
   return (
     <section className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-4">
-          Rejoins les 237 restaurants et commerces{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">
-            qui automatisent leur visibilité
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white text-center mb-4">
+          Ce que nos clients{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+            obtiennent
           </span>
         </h2>
-        <p className="text-xl text-slate-300 text-center mb-16">
+        <p className="text-lg sm:text-xl text-slate-300 text-center mb-16">
           Ils ont retrouvé du temps, amélioré leur note Google, et explosé leur visibilité locale
         </p>
 

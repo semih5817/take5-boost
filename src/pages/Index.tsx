@@ -1,15 +1,12 @@
 import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/home/HeroSection";
-import { WaouwMomentsSection } from "@/components/home/WaouwMomentsSection";
-import { WhatsAppReportingSection } from "@/components/home/WhatsAppReportingSection";
-import { AllInOneSection } from "@/components/home/AllInOneSection";
-import { CustomNFCSection } from "@/components/home/CustomNFCSection";
-import { UpcomingProjectsGrid } from "@/components/home/UpcomingProjectsGrid";
-import { LeadCaptureSection } from "@/components/LeadCaptureSection";
+import { HowItWorksNew } from "@/components/home/HowItWorksNew";
+import { BenefitsResults } from "@/components/home/BenefitsResults";
 import { TestimonialsNewSection } from "@/components/home/TestimonialsNewSection";
+import { MidCTASection } from "@/components/home/MidCTASection";
+import { HomePricingSection } from "@/components/home/HomePricingSection";
 import { FAQSection } from "@/components/home/FAQSection";
 import { FinalCTASection } from "@/components/home/FinalCTASection";
-import { HomePricingSection } from "@/components/home/HomePricingSection";
 import { Footer } from "@/components/Footer";
 
 const Index = () => {
@@ -17,15 +14,13 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-b from-[#0A0E1A] to-[#1A1F35]">
       <Header />
       <HeroSection />
-      <WhatsAppReportingSection />
-      <AllInOneSection />
-      <CustomNFCSection />
-      <UpcomingProjectsGrid />
-      <LeadCaptureSection />
+      <HowItWorksNew />
+      <BenefitsResults />
       <TestimonialsNewSection />
-      <FinalCTASection />
+      <MidCTASection />
       <HomePricingSection />
       <FAQSection />
+      <FinalCTASection />
       <Footer />
     </div>
   );
