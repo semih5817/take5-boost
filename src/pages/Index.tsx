@@ -2,7 +2,7 @@ import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/home/HeroSection";
 import { HowItWorksNew } from "@/components/home/HowItWorksNew";
 import { BenefitsResults } from "@/components/home/BenefitsResults";
-import { AllInOneSection } from "@/components/home/AllInOneSection";
+import { WhatsAppReportingSection } from "@/components/home/WhatsAppReportingSection";
 import { CustomNFCSection } from "@/components/home/CustomNFCSection";
 import { TestimonialsNewSection } from "@/components/home/TestimonialsNewSection";
 import { MidCTASection } from "@/components/home/MidCTASection";
@@ -18,7 +18,7 @@ const Index = () => {
       <HeroSection />
       <HowItWorksNew />
       <BenefitsResults />
-      <AllInOneSection />
+      <WhatsAppReportingSection />
       <CustomNFCSection />
       <TestimonialsNewSection />
       <MidCTASection />
