@@ -114,14 +114,7 @@ export const Header = () => {
                             : 'text-slate-400'
                         }`}
                       >
-                        <span className="flex items-center gap-2">
-                          {subItem.title}
-                          {(subItem as any).isNew && (
-                            <span className="px-1.5 py-0.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-[10px] font-bold rounded-full leading-none">
-                              NEW
-                            </span>
-                          )}
-                        </span>
+                        {subItem.title}
                       </Link>
                     ))}
                   </div>
