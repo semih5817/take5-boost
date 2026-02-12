@@ -96,7 +96,7 @@ export const ProblemSolutionSection = () => {
             {
               number: "4",
               title: "ROI prouvé",
-              description: "Investissement de 19,90€/mois pour des milliers d'€ de CA supplémentaire"
+              description: "Investissement de 29,90€/mois pour des milliers d'€ de CA supplémentaire"
             }
           ].map((benefit, index) => (
             <div key={index} className="bg-slate-900/50 border border-slate-700 rounded-xl p-6 hover:border-purple-500/50 transition-all duration-300">

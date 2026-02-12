@@ -25,7 +25,7 @@ export const HeroSection = () => {
         <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto animate-fade-in px-4">
           TakeFive collecte et gère vos avis Google automatiquement.
           <br />
-          <strong className="text-purple-300">IA incluse • Alertes WhatsApp • 19,90€/mois</strong>
+          <strong className="text-purple-300">IA incluse • Alertes WhatsApp • 29,90€/mois</strong>
         </p>
 
         {/* CTAs - Hiérarchie renforcée */}

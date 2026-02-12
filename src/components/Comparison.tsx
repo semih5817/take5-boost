@@ -95,7 +95,7 @@ export const Comparison = () => {
             {
               number: "4",
               title: "ROI prouvé",
-              description: "Investissement de 19,90€/mois pour des milliers d'€ de CA supplémentaire"
+              description: "Investissement de 29,90€/mois pour des milliers d'€ de CA supplémentaire"
             }
           ].map((benefit, index) => (
             <Card key={index} className="p-4 md:p-6 bg-card/50 backdrop-blur-sm hover:shadow-glow transition-all duration-300 border-primary/20 hover:border-primary/50">
