@@ -22,6 +22,8 @@ import Gamification from "./pages/Gamification";
 import AnalyseConcurrentielle from "./pages/AnalyseConcurrentielle";
 import RadarMultiPlateformes from "./pages/RadarMultiPlateformes";
 import SeoLocalIa from "./pages/SeoLocalIa";
+import ReponsesIAAlertesAvis from "./pages/ReponsesIAAlertesAvis";
+import ScoreDeSante from "./pages/ScoreDeSante";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -53,6 +55,8 @@ const App = () => (
           <Route path="/analyse-concurrentielle" element={<AnalyseConcurrentielle />} />
           <Route path="/radar-multi-plateformes" element={<RadarMultiPlateformes />} />
           <Route path="/seo-local-ia" element={<SeoLocalIa />} />
+          <Route path="/reponses-ia-alertes-avis" element={<ReponsesIAAlertesAvis />} />
+          <Route path="/score-de-sante" element={<ScoreDeSante />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

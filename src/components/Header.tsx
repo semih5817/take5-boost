@@ -24,6 +24,8 @@ export const Header = () => {
         { title: "Analyse concurrentielle", href: "/analyse-concurrentielle" },
         { title: "Radar multi-plateformes", href: "/radar-multi-plateformes" },
         { title: "SEO Local & IA", href: "/seo-local-ia" },
+        { title: "Réponses IA + Alertes avis", href: "/reponses-ia-alertes-avis", isNew: true },
+        { title: "Score de santé", href: "/score-de-sante", isNew: true },
       ]
     },
     { title: "Projets à venir", href: "/#projets-avenir" },
@@ -112,7 +114,14 @@ export const Header = () => {
                             : 'text-slate-400'
                         }`}
                       >
-                        {subItem.title}
+                        <span className="flex items-center gap-2">
+                          {subItem.title}
+                          {(subItem as any).isNew && (
+                            <span className="px-1.5 py-0.5 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-[10px] font-bold rounded-full leading-none">
+                              NEW
+                            </span>
+                          )}
+                        </span>
                       </Link>
                     ))}
                   </div>
