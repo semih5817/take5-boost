@@ -274,73 +274,26 @@ const Partner = () => {
         <div className="max-w-2xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Rejoins le réseau</h2>
           <p className="text-slate-400 text-center mb-10">
-            Récupère ton code partenaire et commence à proposer TakeFive dès aujourd'hui.
+            Envoie-nous un message sur WhatsApp pour recevoir ton code partenaire.
           </p>
-          <Card className="bg-slate-800 border-slate-700 rounded-2xl p-8 shadow-xl">
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <label className="text-sm text-slate-300 mb-1 block">Nom complet *</label>
-                <Input
-                  value={form.nom}
-                  onChange={(e) => setForm({ ...form, nom: e.target.value })}
-                  placeholder="Jean Dupont"
-                  className="bg-slate-900 border-slate-600 text-white"
-                />
-              </div>
-              <div>
-                <label className="text-sm text-slate-300 mb-1 block">Téléphone *</label>
-                <Input
-                  type="tel"
-                  value={form.telephone}
-                  onChange={(e) => setForm({ ...form, telephone: e.target.value })}
-                  placeholder="06 12 34 56 78"
-                  className="bg-slate-900 border-slate-600 text-white"
-                />
-              </div>
-              <div>
-                <label className="text-sm text-slate-300 mb-1 block">Ville / Département</label>
-                <Input
-                  value={form.ville}
-                  onChange={(e) => setForm({ ...form, ville: e.target.value })}
-                  placeholder="Paris, 75"
-                  className="bg-slate-900 border-slate-600 text-white"
-                />
-              </div>
-              <div>
-                <label className="text-sm text-slate-300 mb-1 block">As-tu déjà fait du terrain ?</label>
-                <Select value={form.terrain} onValueChange={(v) => setForm({ ...form, terrain: v })}>
-                  <SelectTrigger className="bg-slate-900 border-slate-600 text-white">
-                    <SelectValue placeholder="Sélectionner" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="oui">Oui</SelectItem>
-                    <SelectItem value="non">Non</SelectItem>
-                    <SelectItem value="un-peu">Un peu</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div>
-                <label className="text-sm text-slate-300 mb-1 block">Disponibilité</label>
-                <Select value={form.disponibilite} onValueChange={(v) => setForm({ ...form, disponibilite: v })}>
-                  <SelectTrigger className="bg-slate-900 border-slate-600 text-white">
-                    <SelectValue placeholder="Sélectionner" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="1h">1h / jour</SelectItem>
-                    <SelectItem value="2h">2h / jour</SelectItem>
-                    <SelectItem value="weekend">Week-end uniquement</SelectItem>
-                    <SelectItem value="plein">Temps plein</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <Button
-                type="submit"
-                disabled={loading}
-                className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white py-6 text-lg rounded-xl"
-              >
-                {loading ? "Envoi en cours..." : "Recevoir mon code partenaire"}
+          <Card className="bg-slate-800 border-slate-700 rounded-2xl p-8 shadow-xl text-center">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <img src="/logos/tiktok.svg" alt="" className="hidden" />
+              <span className="text-4xl">💬</span>
+              <p className="text-2xl font-bold text-white">07 78 56 59 17</p>
+            </div>
+            <p className="text-slate-400 mb-6">
+              Clique sur le bouton ci-dessous, le message est déjà prêt !
+            </p>
+            <a
+              href="https://wa.me/33778565917?text=Bonjour%20%21%20Je%20souhaite%20devenir%20partenaire%20TakeFive%20et%20recevoir%20mon%20code%20partenaire.%20Merci%20%21"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button className="w-full bg-green-600 hover:bg-green-700 text-white py-6 text-lg rounded-xl">
+                Démarrer sur WhatsApp →
               </Button>
-            </form>
+            </a>
           </Card>
         </div>
       </section>
