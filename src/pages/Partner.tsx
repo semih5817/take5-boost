@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { CheckCircle, Star, Zap, Bell, MapPin, BarChart3, ArrowDown } from "lucide-react";
+import EarningsSimulator from "@/components/partner/EarningsSimulator";
+import RealisticScenarios from "@/components/partner/RealisticScenarios";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -233,6 +235,12 @@ const Partner = () => {
           </div>
         </div>
       </section>
+
+      {/* SIMULATEUR */}
+      <EarningsSimulator />
+
+      {/* SCÉNARIOS */}
+      <RealisticScenarios />
 
       {/* FAQ */}
       <section className="py-20 px-4">
