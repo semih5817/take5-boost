@@ -70,10 +70,10 @@ const Partner = () => {
   ];
 
   const tiers = [
-    { name: "STARTER", months: 3, highlight: false, gold: false },
-    { name: "ACTIVE", months: 4, highlight: false, gold: false },
-    { name: "PRO", months: 5, highlight: true, gold: false },
-    { name: "ELITE", months: 6, highlight: false, gold: true },
+    { name: "STARTER", months: 3, highlight: false, gold: false, emoji: "🥉" },
+    { name: "ACTIVE", months: 4, highlight: false, gold: false, emoji: "🥈" },
+    { name: "PRO", months: 5, highlight: true, gold: false, emoji: "🥇" },
+    { name: "ELITE", months: 6, highlight: false, gold: true, emoji: "💎" },
   ];
 
   const faqs = [
@@ -104,10 +104,10 @@ const Partner = () => {
             Devenez apporteur d'affaires et touchez jusqu'à 95% de commission
           </p>
           <p className="text-lg text-green-400 font-semibold mb-8 max-w-2xl mx-auto">
-            💰 Payé pendant 6 mois sur chaque client que vous amenez
+            💰 Payé de 3 à 6 mois par client selon votre palier
           </p>
           <div className="flex flex-col items-start gap-3 max-w-md mx-auto mb-10 text-left">
-            {["Code partenaire personnel", "Suivi & reporting sur WhatsApp", "Commission mensuelle pendant 6 mois"].map((t) => (
+            {["Code partenaire personnel", "Suivi & reporting sur WhatsApp", "Commission mensuelle de 3 à 6 mois"].map((t) => (
               <div key={t} className="flex items-center gap-3">
                 <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
                 <span className="text-slate-200">{t}</span>
@@ -188,7 +188,7 @@ const Partner = () => {
           <Card className="bg-slate-800/50 border-l-4 border-l-blue-500 border-slate-700 rounded-2xl p-8 md:p-10 max-w-3xl mx-auto">
             <ul className="space-y-5 text-lg text-slate-200">
               <li>💰 1 client signé = commission mensuelle récurrente</li>
-              <li>📆 Tu es payé pendant 6 mois</li>
+              <li>📆 Tu es payé de 3 à 6 mois selon ton palier</li>
               <li>🔁 Paiement mensuel tant que le client reste actif</li>
             </ul>
           </Card>
@@ -200,35 +200,43 @@ const Partner = () => {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Les paliers de commission</h2>
           <p className="text-slate-400 text-center mb-14 max-w-2xl mx-auto">
-            Commission versée pendant 6 mois par client apporté, tant que le client reste actif.
+            La seule différence entre les paliers : la durée pendant laquelle tu touches la commission par client apporté.
           </p>
-          <div className="flex gap-4 md:gap-6 overflow-x-auto pb-4 md:grid md:grid-cols-4 md:overflow-visible">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {tiers.map((t) => (
               <Card
                 key={t.name}
-                className={`min-w-[220px] md:min-w-0 rounded-2xl p-6 flex flex-col items-center text-center transition-transform hover:scale-[1.03] ${
+                className={`rounded-2xl p-6 flex flex-col items-center text-center transition-transform hover:scale-[1.03] ${
                   t.highlight
                     ? "bg-slate-800 border-2 border-blue-500/60 scale-[1.02]"
                     : "bg-slate-800/50 border-slate-700"
                 }`}
               >
+                <span className="text-3xl mb-2">{t.emoji}</span>
                 <span
                   className={`text-xs font-bold tracking-widest px-3 py-1 rounded-full mb-4 ${
                     t.gold
-                      ? "bg-gradient-to-r from-amber-500 to-yellow-400 text-slate-900"
-                      : "bg-gradient-to-r from-blue-500 to-purple-600 text-white"
+                      ? "bg-gradient-to-r from-amber-500 to-orange-500 text-white"
+                      : t.highlight
+                        ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white"
+                        : "bg-slate-700 text-slate-300"
                   }`}
                 >
                   {t.name}
                 </span>
-                <p className="text-4xl font-black text-white mb-1">{t.months} mois</p>
-                <p className="text-slate-400 text-sm">par client apporté</p>
-                <p className="text-slate-500 text-xs mt-2">tant que le client paie</p>
+                <p className="text-slate-400 text-sm mb-1">20€/mois × {t.months} mois</p>
+                <p className="text-4xl font-black text-white mb-1">{t.months * 20}€</p>
+                <p className="text-slate-500 text-xs">max par client</p>
+                <p className="text-slate-500 text-xs mt-2">tant que le client reste actif</p>
               </Card>
             ))}
           </div>
-          <p className="text-slate-400 text-center mt-10 max-w-2xl mx-auto text-sm">
-            Tu touches ta commission pendant 6 mois sur chaque client apporté, tant qu'il reste actif.
+          <p className="text-slate-300 text-center mt-10 max-w-2xl mx-auto text-sm italic">
+            Tu choisis ton palier. Plus ton palier est élevé, plus longtemps tu touches ta commission sur chaque client apporté.
+            <br />Exemple : Palier ELITE = jusqu'à 6 mois × 20€ = 120€ par client actif.
+          </p>
+          <p className="text-slate-400 text-center mt-4 max-w-2xl mx-auto text-xs">
+            ⚠️ Si le client annule avant la fin de son palier, la commission s'arrête avec lui.
           </p>
           <div className="text-center mt-8">
             <a href="#formulaire">
