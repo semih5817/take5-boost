@@ -15,47 +15,44 @@ const scenarios: Scenario[] = [
     emoji: "⏰",
     title: "Temps Partiel",
     badge: "~2h/semaine",
-    clientsDesc: "2 clients/semaine × 2 semaines = 4 clients/mois",
+    clientsDesc: "1 vente/jour • 15 jours/mois = 15 clients/mois",
     months: [
-      { label: "Mois 1", amount: 80, clients: 4 },
-      { label: "Mois 2", amount: 160, clients: 8 },
-      { label: "Mois 3", amount: 240, clients: 12 },
-      { label: "Mois 4", amount: 320, clients: 16 },
-      { label: "Mois 5", amount: 400, clients: 20 },
-      { label: "Mois 6", amount: 480, clients: 24 },
+      { label: "Mois 1", amount: 300, clients: 15 },
+      { label: "Mois 2", amount: 600, clients: 30 },
+      { label: "Mois 3", amount: 900, clients: 45 },
+      { label: "Mois 4", amount: 1200, clients: 60 },
+      { label: "Mois 5", amount: 1500, clients: 75 },
     ],
-    total: 1680,
+    total: 4500,
   },
   {
     emoji: "⚡",
     title: "Mi-Temps",
     badge: "~5h/semaine",
-    clientsDesc: "3 clients/semaine × 3 semaines = 9 clients/mois",
+    clientsDesc: "2 ventes/jour • 20 jours/mois = 40 clients/mois",
     months: [
-      { label: "Mois 1", amount: 180, clients: 9 },
-      { label: "Mois 2", amount: 360, clients: 18 },
-      { label: "Mois 3", amount: 540, clients: 27 },
-      { label: "Mois 4", amount: 720, clients: 36 },
-      { label: "Mois 5", amount: 900, clients: 45 },
-      { label: "Mois 6", amount: 1080, clients: 54 },
+      { label: "Mois 1", amount: 800, clients: 40 },
+      { label: "Mois 2", amount: 1600, clients: 80 },
+      { label: "Mois 3", amount: 2400, clients: 120 },
+      { label: "Mois 4", amount: 3200, clients: 160 },
+      { label: "Mois 5", amount: 4000, clients: 200 },
     ],
-    total: 3780,
+    total: 12000,
     highlight: true,
   },
   {
     emoji: "🚀",
     title: "Temps Plein",
     badge: "Temps plein",
-    clientsDesc: "5 clients/semaine × 4 semaines = 20 clients/mois",
+    clientsDesc: "3 ventes/jour • 22 jours/mois = 66 clients/mois",
     months: [
-      { label: "Mois 1", amount: 400, clients: 20 },
-      { label: "Mois 2", amount: 800, clients: 40 },
-      { label: "Mois 3", amount: 1200, clients: 60 },
-      { label: "Mois 4", amount: 1600, clients: 80 },
-      { label: "Mois 5", amount: 2000, clients: 100 },
-      { label: "Mois 6", amount: 2400, clients: 120 },
+      { label: "Mois 1", amount: 1320, clients: 66 },
+      { label: "Mois 2", amount: 2640, clients: 132 },
+      { label: "Mois 3", amount: 3960, clients: 198 },
+      { label: "Mois 4", amount: 5280, clients: 264 },
+      { label: "Mois 5", amount: 6600, clients: 330 },
     ],
-    total: 8400,
+    total: 19800,
   },
 ];
 
@@ -64,7 +61,7 @@ const RealisticScenarios = () => {
     <section className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-3">
-          📊 Scénarios réalistes — 6 mois de commission
+          📊 Scénarios réalistes — Palier PRO (5 mois)
         </h2>
         <p className="text-slate-400 text-center mb-14">
           Exemples concrets selon votre rythme de prospection
@@ -95,7 +92,9 @@ const RealisticScenarios = () => {
                 {s.months.map((m) => (
                   <div key={m.label} className="flex justify-between items-center">
                     <span className="text-slate-400 text-sm">{m.label}</span>
-                    <span className="text-green-400 font-bold">{m.amount}€</span>
+                    <span className="text-green-400 font-bold">
+                      {m.amount.toLocaleString("fr-FR")}€
+                    </span>
                   </div>
                 ))}
               </div>
@@ -113,7 +112,7 @@ const RealisticScenarios = () => {
         </div>
 
         <p className="text-slate-400 text-center mt-10 text-sm italic">
-          * Calcul basé sur 6 mois de commission à 20€/client/mois. Revenus conditionnés au maintien de l'abonnement client.
+          * Calcul basé sur Palier PRO (5 mois) à 20€/client/mois. Revenus conditionnés au maintien de l'abonnement client.
         </p>
       </div>
     </section>
