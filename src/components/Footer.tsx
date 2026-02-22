@@ -127,7 +127,7 @@ export const Footer = () => {
             className="group flex items-center gap-2 text-slate-400 hover:text-slate-200 transition-all duration-300"
           >
             <span className="text-sm">Propulsé par</span>
-            <span className="font-extrabold text-white group-hover:text-slate-300 transition-all duration-300 tracking-[0.15em] uppercase text-base">
+            <span className="text-white group-hover:text-slate-300 transition-all duration-300 text-lg tracking-wide" style={{ fontFamily: "'DM Serif Display', serif", fontWeight: 400 }}>
               TUNA
             </span>
           </a>
