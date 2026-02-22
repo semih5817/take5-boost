@@ -68,6 +68,7 @@ export const SubscriptionForm = () => {
     toast
   } = useToast();
   const [wantsPlaque, setWantsPlaque] = useState(false);
+  const [honeypot, setHoneypot] = useState('');
   const [selectedOffer, setSelectedOffer] = useState("");
   const [billingCycle, setBillingCycle] = useState<"monthly" | "annual">("monthly");
   const [copiedCode, setCopiedCode] = useState(false);
@@ -104,6 +105,7 @@ export const SubscriptionForm = () => {
     setTimeout(() => setCopiedCode(false), 2000);
   };
   const onSubmit = async (data: SubscriptionFormData) => {
+    if (honeypot) return;
     console.log("Subscription submitted for offer:", data.offer);
     try {
       // Save email to database with type 'trial'
@@ -185,6 +187,16 @@ export const SubscriptionForm = () => {
           <Card className="p-8 md:p-10 shadow-elegant">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-10">
+                <input
+                  type="text"
+                  name="website_url"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  className="absolute opacity-0 h-0 w-0 pointer-events-none"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
                 {/* Section 1: Choix de l'offre */}
                 <div className="space-y-6">
                   <h3 className="text-2xl font-bold">1. Choisissez votre offre</h3>

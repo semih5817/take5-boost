@@ -20,6 +20,7 @@ export const ProjectLeadCapture = ({ projectName }: ProjectLeadCaptureProps) => 
     phone: '',
     project: projectName
   });
+  const [honeypot, setHoneypot] = useState('');
   const [errors, setErrors] = useState<{ email?: string; phone?: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -42,6 +43,7 @@ export const ProjectLeadCapture = ({ projectName }: ProjectLeadCaptureProps) => 
       return;
     }
     
+    if (honeypot) return;
     setIsSubmitting(true);
     
     try {
@@ -117,6 +119,16 @@ export const ProjectLeadCapture = ({ projectName }: ProjectLeadCaptureProps) => 
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-4">
+                <input
+                  type="text"
+                  name="website_url"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  className="absolute opacity-0 h-0 w-0 pointer-events-none"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
                 {/* Email */}
                 <div>
                   <label htmlFor="project-email" className="block text-sm font-medium text-gray-300 mb-2">

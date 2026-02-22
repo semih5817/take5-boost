@@ -25,6 +25,7 @@ export const EmailCapture = ({
   onSuccess
 }: EmailCaptureProps) => {
   const [email, setEmail] = useState('');
+  const [honeypot, setHoneypot] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
@@ -42,6 +43,7 @@ export const EmailCapture = ({
       return;
     }
 
+    if (honeypot) return;
     setIsSubmitting(true);
 
     try {
@@ -94,6 +96,16 @@ export const EmailCapture = ({
         <p className="text-lg text-muted-foreground mb-8">{subtitle}</p>
         
         <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+          <input
+            type="text"
+            name="website_url"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+            className="absolute opacity-0 h-0 w-0 pointer-events-none"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
           <input 
             type="email" 
             className="flex-1 px-6 py-4 border-2 border-primary/30 rounded-xl bg-background/80 text-foreground text-base transition-all outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 placeholder:text-muted-foreground"

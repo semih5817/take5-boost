@@ -14,6 +14,7 @@ type OfferType = 'starter' | 'pro';
 
 const DevenirPartenaire = () => {
   const [email, setEmail] = useState('');
+  const [honeypot, setHoneypot] = useState('');
   const [showSuccess, setShowSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [currentOffer, setCurrentOffer] = useState<OfferType>('pro');
@@ -86,6 +87,7 @@ const DevenirPartenaire = () => {
       return;
     }
 
+    if (honeypot) return;
     setIsSubmitting(true);
 
     try {
@@ -463,6 +465,16 @@ const DevenirPartenaire = () => {
             <div className="p-6 md:p-8 bg-[#161b34]/80 border-2 border-[#4F5EFF]/30 rounded-2xl flex flex-col justify-center">
               <h3 className="text-xl font-bold mb-4 text-center">📧 Par Email</h3>
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                <input
+                  type="text"
+                  name="website_url"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  className="absolute opacity-0 h-0 w-0 pointer-events-none"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
                 <input
                   type="email"
                   className="w-full px-6 py-4 border-2 border-[#4F5EFF]/50 rounded-xl bg-[#161b34]/80 text-white text-base transition-all outline-none focus:border-[#4F5EFF] focus:ring-4 focus:ring-[#4F5EFF]/20 placeholder:text-gray-400"
