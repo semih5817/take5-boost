@@ -97,11 +97,17 @@ const Partner = () => {
             </span>{" "}
             via WhatsApp
           </h1>
-          <p className="text-lg md:text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-            Monétise tes passages en commerces. Tu proposes TakeFive. On s'occupe du reste.
+          <p className="text-lg md:text-xl text-slate-300 mb-4 max-w-2xl mx-auto">
+            Monétise tes passages en commerces en apportant TakeFive
+          </p>
+          <p className="text-base text-slate-400 mb-4 max-w-2xl mx-auto">
+            Devenez apporteur d'affaires et touchez jusqu'à 95% de commission
+          </p>
+          <p className="text-lg text-green-400 font-semibold mb-8 max-w-2xl mx-auto">
+            💰 Payé pendant 6 mois sur chaque client que vous amenez
           </p>
           <div className="flex flex-col items-start gap-3 max-w-md mx-auto mb-10 text-left">
-            {["Code partenaire personnel", "Suivi & reporting sur WhatsApp", "Commission mensuelle (jusqu'à 6 mois selon ton palier)"].map((t) => (
+            {["Code partenaire personnel", "Suivi & reporting sur WhatsApp", "Commission mensuelle pendant 6 mois"].map((t) => (
               <div key={t} className="flex items-center gap-3">
                 <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
                 <span className="text-slate-200">{t}</span>
@@ -111,7 +117,7 @@ const Partner = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#formulaire">
               <Button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white text-lg px-8 py-6 rounded-xl w-full sm:w-auto">
-                Recevoir mon code partenaire
+                Recevoir mon code partenaire →
               </Button>
             </a>
             <a href="#paliers">
@@ -182,7 +188,7 @@ const Partner = () => {
           <Card className="bg-slate-800/50 border-l-4 border-l-blue-500 border-slate-700 rounded-2xl p-8 md:p-10 max-w-3xl mx-auto">
             <ul className="space-y-5 text-lg text-slate-200">
               <li>💰 1 client signé = commission mensuelle récurrente</li>
-              <li>📆 Tu es payé pendant X mois selon ton palier (de 3 à 6 mois)</li>
+              <li>📆 Tu es payé pendant 6 mois</li>
               <li>🔁 Paiement mensuel tant que le client reste actif</li>
             </ul>
           </Card>
@@ -194,7 +200,7 @@ const Partner = () => {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Les paliers de commission</h2>
           <p className="text-slate-400 text-center mb-14 max-w-2xl mx-auto">
-            La seule différence entre les paliers : la durée pendant laquelle tu touches la commission par client.
+            Commission versée pendant 6 mois par client apporté, tant que le client reste actif.
           </p>
           <div className="flex gap-4 md:gap-6 overflow-x-auto pb-4 md:grid md:grid-cols-4 md:overflow-visible">
             {tiers.map((t) => (
@@ -222,9 +228,7 @@ const Partner = () => {
             ))}
           </div>
           <p className="text-slate-400 text-center mt-10 max-w-2xl mx-auto text-sm">
-            Tu choisis ton palier. Plus ton palier est élevé, plus longtemps tu touches ta commission sur chaque client apporté.
-            <br />
-            <strong className="text-slate-300">Exemple : Palier ELITE = jusqu'à 6 mois de commission par client actif.</strong>
+            Tu touches ta commission pendant 6 mois sur chaque client apporté, tant qu'il reste actif.
           </p>
           <div className="text-center mt-8">
             <a href="#formulaire">
