@@ -22,8 +22,9 @@ const scenarios: Scenario[] = [
       { label: "Mois 3", amount: 240, clients: 12 },
       { label: "Mois 4", amount: 320, clients: 16 },
       { label: "Mois 5", amount: 400, clients: 20 },
+      { label: "Mois 6", amount: 480, clients: 24 },
     ],
-    total: 1200,
+    total: 1680,
   },
   {
     emoji: "⚡",
@@ -36,8 +37,9 @@ const scenarios: Scenario[] = [
       { label: "Mois 3", amount: 540, clients: 27 },
       { label: "Mois 4", amount: 720, clients: 36 },
       { label: "Mois 5", amount: 900, clients: 45 },
+      { label: "Mois 6", amount: 1080, clients: 54 },
     ],
-    total: 2700,
+    total: 3780,
     highlight: true,
   },
   {
@@ -51,8 +53,9 @@ const scenarios: Scenario[] = [
       { label: "Mois 3", amount: 1200, clients: 60 },
       { label: "Mois 4", amount: 1600, clients: 80 },
       { label: "Mois 5", amount: 2000, clients: 100 },
+      { label: "Mois 6", amount: 2400, clients: 120 },
     ],
-    total: 6000,
+    total: 8400,
   },
 ];
 
@@ -61,7 +64,7 @@ const RealisticScenarios = () => {
     <section className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-3">
-          📊 Scénarios réalistes — Palier PRO (5 mois)
+          📊 Scénarios réalistes — 6 mois de commission
         </h2>
         <p className="text-slate-400 text-center mb-14">
           Exemples concrets selon votre rythme de prospection
@@ -110,7 +113,7 @@ const RealisticScenarios = () => {
         </div>
 
         <p className="text-slate-400 text-center mt-10 text-sm italic">
-          * Calcul basé sur Palier PRO (5 mois) à 20€/client/mois. Revenus conditionnés au maintien de l'abonnement client.
+          * Calcul basé sur 6 mois de commission à 20€/client/mois. Revenus conditionnés au maintien de l'abonnement client.
         </p>
       </div>
     </section>
