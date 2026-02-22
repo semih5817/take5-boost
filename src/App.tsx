@@ -9,7 +9,7 @@ import GenerateurFlyers from "./pages/GenerateurFlyers";
 import PublicationMultiplateforme from "./pages/PublicationMultiplateforme";
 import CampagnesCiblees from "./pages/CampagnesCiblees";
 import Concours5Minutes from "./pages/Concours5Minutes";
-import DevenirPartenaire from "./pages/DevenirPartenaire";
+import Partner from "./pages/Partner";
 import NousContacter from "./pages/NousContacter";
 import Tarifs from "./pages/Tarifs";
 import Checkout from "./pages/Checkout";
@@ -42,7 +42,7 @@ const App = () => (
           <Route path="/projets/concours-5-minutes" element={<Concours5Minutes />} />
           <Route path="/projets/campagnes-sms-email" element={<CampagnesCiblees />} />
           <Route path="/projets/campagnes-ciblees" element={<CampagnesCiblees />} />
-          <Route path="/devenir-partenaire" element={<DevenirPartenaire />} />
+          <Route path="/devenir-partenaire" element={<Partner />} />
           <Route path="/nous-contacter" element={<NousContacter />} />
           <Route path="/tarifs" element={<Tarifs />} />
           <Route path="/checkout" element={<Checkout />} />
