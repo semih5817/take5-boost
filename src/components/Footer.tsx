@@ -1,5 +1,3 @@
-import tunaLogo from "@/assets/tuna-logo.png";
-
 export const Footer = () => {
   return (
     <footer className="bg-[#0A0E1A] border-t border-slate-800 py-12 px-4">
@@ -129,7 +127,9 @@ export const Footer = () => {
             className="group flex items-center gap-2 text-slate-400 hover:text-slate-200 transition-all duration-300"
           >
             <span className="text-sm">Propulsé par</span>
-            <img src={tunaLogo} alt="Tuna" className="h-5 inline-block" />
+            <span className="font-extrabold text-white group-hover:text-slate-300 transition-all duration-300 tracking-[0.15em] uppercase text-base">
+              TUNA
+            </span>
           </a>
 
           <p className="text-slate-500 text-sm">Fait avec 💜 en France</p>
