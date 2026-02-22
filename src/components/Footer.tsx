@@ -1,3 +1,5 @@
+import tunaLogo from "@/assets/tuna-logo.png";
+
 export const Footer = () => {
   return (
     <footer className="bg-[#0A0E1A] border-t border-slate-800 py-12 px-4">
@@ -121,15 +123,13 @@ export const Footer = () => {
           <p className="text-slate-500 text-sm">© 2025 Take 5. Tous droits réservés.</p>
           
           <a 
-            href="https://spydercom.fr" 
+            href="https://tuna-agency.com" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="group flex items-center gap-2 text-slate-400 hover:text-rose-400 transition-all duration-300"
+            className="group flex items-center gap-2 text-slate-400 hover:text-slate-200 transition-all duration-300"
           >
             <span className="text-sm">Propulsé par</span>
-            <span className="font-bold text-rose-500 group-hover:text-rose-400 transition-all duration-300 tracking-widest uppercase" style={{ fontFamily: "'Orbitron', sans-serif" }}>
-              SPIDERCOM
-            </span>
+            <img src={tunaLogo} alt="Tuna" className="h-5 inline-block" />
           </a>
 
           <p className="text-slate-500 text-sm">Fait avec 💜 en France</p>
