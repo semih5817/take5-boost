@@ -23,7 +23,7 @@ const checkoutSchema = z.object({
 
 type CheckoutFormData = z.infer<typeof checkoutSchema>;
 
-const WEBHOOK_URL = 'https://n8n.takefive.fr/webhook/5e654866-2461-4e36-91d2-d8421fd6e36e';
+const WEBHOOK_URL = 'https://n8n.takefive.fr/webhook/onboarding-client';
 
 const STRIPE_URLS = {
   starter: 'https://buy.stripe.com/00wdRb9hd6bP1gG0U89k406',
