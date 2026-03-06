@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate, Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { supabase } from "@/integrations/supabase/client";
+import { externalSupabase } from "@/integrations/supabase/external-client";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { ArrowLeft, Loader2, Plus, Minus, HelpCircle, ExternalLink } from "lucide-react";
