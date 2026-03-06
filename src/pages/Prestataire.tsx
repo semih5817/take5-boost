@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
-import { externalSupabase } from "@/integrations/supabase/external-client";
+
 import { Loader2, Link2, Users, Banknote, CheckCircle } from "lucide-react";
 import { z } from "zod";
 
