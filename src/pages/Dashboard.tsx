@@ -1,245 +1,217 @@
-import { useState } from 'react';
-import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { externalSupabase } from '@/integrations/supabase/external-client';
 import { 
-  Trophy, Gift, Star, TrendingUp, Users, MessageSquare, Phone, Target, 
-  Calendar, Download, Play, Settings, Zap, Award, CheckCircle, Lock, 
-  Crown, Medal, Flame, ChevronRight, DollarSign, Lightbulb, Sparkles, 
-  AlertCircle, Clock, Share2 
+  Users, DollarSign, TrendingUp, Wallet, Trophy, Copy, Check, 
+  ExternalLink, Calendar, Clock, Award, Crown, Medal, Star
 } from 'lucide-react';
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useToast } from "@/hooks/use-toast";
 
-type TabType = 'overview' | 'gamification' | 'campaigns' | 'sms' | 'rewards' | 'pride' | 'conversion';
+type TabType = 'accueil' | 'ventes' | 'commissions' | 'wallet' | 'classement';
 
-interface UserData {
-  name: string;
-  score: number;
-  level: string;
-  totalReviews: number;
-  avgRating: number;
-  responseRate: number;
-  streak: number;
-  trialDaysLeft: number;
+interface Apporteur {
+  id: string;
+  nom: string;
+  code: string;
+  palier: string;
+  telephone: string;
+  email?: string;
+  ville?: string;
+  statut?: string;
+  created_at?: string;
+  [key: string]: any;
 }
 
-interface BadgeItem {
-  id: number;
-  name: string;
-  icon: any;
-  requirement: string;
-  earned: boolean;
-  progress: number;
-  current?: boolean;
-  locked?: boolean;
+interface Client {
+  id: string;
+  nom_etablissement?: string;
+  email?: string;
+  telephone?: string;
+  statut?: string;
+  offre?: string;
+  created_at?: string;
+  code_parrain?: string;
+  [key: string]: any;
 }
 
-interface Mission {
-  id: number;
-  title: string;
-  progress: number;
-  target: number;
-  points: number;
-  completed: boolean;
-  icon: any;
+interface Commission {
+  id: string;
+  apporteur_id: string;
+  montant: number;
+  mois?: string;
+  statut?: string;
+  created_at?: string;
+  client_id?: string;
+  [key: string]: any;
 }
 
 const Dashboard = () => {
-  const [activeTab, setActiveTab] = useState<TabType>('overview');
+  const [searchParams] = useSearchParams();
+  const code = searchParams.get('code');
+  const { toast } = useToast();
 
-  const userData: UserData = {
-    name: "Café Le Gourmet",
-    score: 78,
-    level: "Ambassadeur",
-    totalReviews: 47,
-    avgRating: 4.7,
-    responseRate: 89,
-    streak: 12,
-    trialDaysLeft: 7
-  };
+  const [activeTab, setActiveTab] = useState<TabType>('accueil');
+  const [apporteur, setApporteur] = useState<Apporteur | null>(null);
+  const [clients, setClients] = useState<Client[]>([]);
+  const [commissions, setCommissions] = useState<Commission[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
 
-  const statsData = {
-    totalScans: 1248,
-    totalPlays: 892,
-    conversionRate: 71.5,
-    googleReviews: 247,
-    smsCollected: 756,
-    activeCampaigns: 2
-  };
-
-  const badges: BadgeItem[] = [
-    { id: 1, name: "Débutant", icon: Medal, requirement: "0-10 avis", earned: true, progress: 100 },
-    { id: 2, name: "Proactif", icon: Star, requirement: "11-30 avis", earned: true, progress: 100 },
-    { id: 3, name: "Ambassadeur", icon: Award, requirement: "31-100 avis", earned: true, progress: 47, current: true },
-    { id: 4, name: "Légende Locale", icon: Crown, requirement: "+100 avis", earned: false, progress: 0, locked: true }
-  ];
-
-  const missions: Mission[] = [
-    { id: 1, title: "Répondre à 5 avis cette semaine", progress: 3, target: 5, points: 50, completed: false, icon: MessageSquare },
-    { id: 2, title: "Collecter 10 nouveaux avis ce mois", progress: 7, target: 10, points: 100, completed: false, icon: Star },
-    { id: 3, title: "Maintenir une note moyenne >4.5⭐", progress: 100, target: 100, points: 75, completed: true, icon: Trophy },
-    { id: 4, title: "Utiliser le jeu-concours 3 fois", progress: 2, target: 3, points: 80, completed: false, icon: Gift }
-  ];
-
-  const weeklyData = [
-    { jour: 'Lun', scans: 142, avis: 28, sms: 98 },
-    { jour: 'Mar', scans: 168, avis: 35, sms: 112 },
-    { jour: 'Mer', scans: 195, avis: 41, sms: 134 },
-    { jour: 'Jeu', scans: 223, avis: 52, sms: 167 },
-    { jour: 'Ven', scans: 289, avis: 58, sms: 201 },
-    { jour: 'Sam', scans: 178, avis: 24, sms: 28 },
-    { jour: 'Dim', scans: 53, avis: 9, sms: 16 }
-  ];
-
-  const rewardsData = [
-    { name: 'Café offert', value: 312, color: 'hsl(25, 50%, 40%)' },
-    { name: 'Dessert offert', value: 89, color: 'hsl(340, 100%, 70%)' },
-    { name: 'Réduction 10%', value: 156, color: 'hsl(175, 70%, 55%)' },
-    { name: 'Merci !', value: 335, color: 'hsl(165, 70%, 70%)' }
-  ];
-
-  const campaigns = [
-    { 
-      id: 1, 
-      name: 'Opération St-Valentin', 
-      status: 'active', 
-      dateDebut: '01/02/2025', 
-      dateFin: '14/02/2025', 
-      participants: 456, 
-      avis: 98, 
-      lotsOfferts: 312, 
-      smsCollectes: 389 
-    },
-    { 
-      id: 2, 
-      name: 'Happy Hour Hiver', 
-      status: 'active', 
-      dateDebut: '15/01/2025', 
-      dateFin: '28/02/2025', 
-      participants: 436, 
-      avis: 149, 
-      lotsOfferts: 380, 
-      smsCollectes: 367 
+  useEffect(() => {
+    if (!code) {
+      setError("Aucun code partenaire fourni. Ajoute ?code=TON_CODE dans l'URL.");
+      setLoading(false);
+      return;
     }
-  ];
+    loadData();
+  }, [code]);
 
-  const ScoreCircle = ({ score, size = 120 }: { score: number; size?: number }) => {
-    const radius = (size - 20) / 2;
-    const circumference = 2 * Math.PI * radius;
-    const offset = circumference - (score / 100) * circumference;
+  const loadData = async () => {
+    setLoading(true);
+    setError(null);
 
+    // 1. Load apporteur profile
+    const { data: apporteurData, error: apporteurError } = await externalSupabase
+      .from('apporteurs')
+      .select('*')
+      .eq('code', code)
+      .maybeSingle();
+
+    if (apporteurError) {
+      setError("Erreur de chargement du profil.");
+      setLoading(false);
+      return;
+    }
+    if (!apporteurData) {
+      setError(`Aucun apporteur trouvé avec le code "${code}".`);
+      setLoading(false);
+      return;
+    }
+
+    setApporteur(apporteurData);
+
+    // 2. Load clients and commissions in parallel
+    const [clientsRes, commissionsRes] = await Promise.all([
+      externalSupabase.from('users').select('*').eq('code_parrain', code),
+      externalSupabase.from('commissions').select('*').eq('apporteur_id', apporteurData.id),
+    ]);
+
+    if (clientsRes.data) setClients(clientsRes.data);
+    if (commissionsRes.data) setCommissions(commissionsRes.data);
+
+    setLoading(false);
+  };
+
+  const referralLink = `https://takefive.fr/inscription?ref=${code || ''}`;
+
+  const copyLink = () => {
+    navigator.clipboard.writeText(referralLink);
+    setCopied(true);
+    toast({ title: "Lien copié !", description: referralLink });
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const totalCommissions = commissions.reduce((sum, c) => sum + (Number(c.montant) || 0), 0);
+  const paidCommissions = commissions.filter(c => c.statut === 'payée' || c.statut === 'payee' || c.statut === 'paid');
+  const pendingCommissions = commissions.filter(c => c.statut === 'en_attente' || c.statut === 'pending' || c.statut === 'en attente');
+  const totalPaid = paidCommissions.reduce((sum, c) => sum + (Number(c.montant) || 0), 0);
+  const totalPending = pendingCommissions.reduce((sum, c) => sum + (Number(c.montant) || 0), 0);
+
+  const activeClients = clients.filter(c => c.statut === 'actif' || c.statut === 'active' || c.statut === 'confirmed');
+  const pendingClients = clients.filter(c => c.statut === 'pending' || c.statut === 'en_attente');
+
+  if (loading) {
     return (
-      <div className="relative" style={{ width: size, height: size }}>
-        <svg width={size} height={size} className="transform -rotate-90">
-          <circle 
-            cx={size / 2} 
-            cy={size / 2} 
-            r={radius} 
-            stroke="hsl(var(--muted))" 
-            strokeWidth="10" 
-            fill="none" 
-          />
-          <circle 
-            cx={size / 2} 
-            cy={size / 2} 
-            r={radius} 
-            stroke="hsl(var(--primary))" 
-            strokeWidth="10" 
-            fill="none" 
-            strokeDasharray={circumference} 
-            strokeDashoffset={offset} 
-            strokeLinecap="round" 
-            style={{ transition: 'stroke-dashoffset 1s ease' }} 
-          />
-        </svg>
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-4xl font-bold text-foreground">{score}</span>
-          <span className="text-xs text-muted-foreground">Score Take 5</span>
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4" />
+          <p className="text-muted-foreground">Chargement de ton dashboard...</p>
         </div>
       </div>
     );
-  };
+  }
 
-  const StatCard = ({ 
-    icon: Icon, 
-    title, 
-    value, 
-    subtitle 
-  }: { 
-    icon: any; 
-    title: string; 
-    value: string | number; 
-    subtitle?: string;
-  }) => (
-    <Card className="p-6 bg-card border-border hover:shadow-primary transition-all">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-muted-foreground text-sm font-medium">{title}</p>
-          <p className="text-4xl font-bold mt-2 text-primary">{value}</p>
-          {subtitle && <p className="text-sm text-muted-foreground mt-1">{subtitle}</p>}
-        </div>
-        <div className="p-3 rounded-full bg-primary/10">
-          <Icon size={28} className="text-primary" />
-        </div>
+  if (error) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center p-4">
+        <Card className="p-8 max-w-md text-center">
+          <p className="text-4xl mb-4">⚠️</p>
+          <h2 className="text-xl font-bold mb-2">Accès impossible</h2>
+          <p className="text-muted-foreground">{error}</p>
+        </Card>
       </div>
-    </Card>
-  );
+    );
+  }
 
   const tabs = [
-    { id: 'overview' as TabType, label: '📊 Vue d\'ensemble' },
-    { id: 'gamification' as TabType, label: '🎮 Gamification' },
-    { id: 'campaigns' as TabType, label: '🎡 Jeu-Concours' },
-    { id: 'sms' as TabType, label: '📱 SMS Marketing' },
-    { id: 'rewards' as TabType, label: '🎁 Récompenses' },
-    { id: 'pride' as TabType, label: '🏆 Moments de Fierté' },
-    { id: 'conversion' as TabType, label: '💰 Conversion' }
+    { id: 'accueil' as TabType, label: '🏠 Accueil' },
+    { id: 'ventes' as TabType, label: '📈 Ventes' },
+    { id: 'commissions' as TabType, label: '💰 Commissions' },
+    { id: 'wallet' as TabType, label: '👛 Wallet' },
+    { id: 'classement' as TabType, label: '🏆 Classement' },
   ];
+
+  const palierConfig: Record<string, { emoji: string; months: number; color: string }> = {
+    starter: { emoji: '🥉', months: 3, color: 'text-orange-400' },
+    active: { emoji: '🥈', months: 4, color: 'text-slate-300' },
+    pro: { emoji: '🥇', months: 5, color: 'text-yellow-400' },
+    elite: { emoji: '💎', months: 6, color: 'text-blue-400' },
+  };
+
+  const currentPalier = palierConfig[(apporteur?.palier || '').toLowerCase()] || palierConfig.starter;
 
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="gradient-hero text-white p-6 shadow-lg relative overflow-hidden">
-        <div className="absolute top-0 right-0 bg-yellow-500 text-black px-6 py-1 text-sm font-bold">
-          ⚡ {userData.trialDaysLeft} jours d'essai restants
-        </div>
-        <div className="max-w-7xl mx-auto pt-6">
+      <div className="gradient-hero text-white p-6 shadow-lg">
+        <div className="max-w-7xl mx-auto pt-2">
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center gap-4">
               <div className="bg-white rounded-full p-2">
                 <Star size={32} className="text-primary" fill="currentColor" />
               </div>
               <div>
-                <h1 className="text-3xl font-bold">{userData.name}</h1>
-                <div className="flex items-center gap-4 mt-2 flex-wrap">
+                <h1 className="text-2xl md:text-3xl font-bold">{apporteur?.nom || 'Partenaire'}</h1>
+                <div className="flex items-center gap-3 mt-2 flex-wrap">
                   <Badge variant="secondary" className="bg-white/20 hover:bg-white/30">
-                    <Crown size={16} className="mr-1 text-yellow-300" />
-                    <span className="font-medium">{userData.level}</span>
+                    <span className="mr-1">{currentPalier.emoji}</span>
+                    <span className="font-medium uppercase">{apporteur?.palier || 'Starter'}</span>
                   </Badge>
-                  <span className="flex items-center gap-2 text-sm">
-                    <Flame size={16} className="text-orange-400" />
-                    <span>{userData.streak} jours de suite</span>
-                  </span>
+                  <Badge variant="secondary" className="bg-white/20 hover:bg-white/30 font-mono">
+                    Code : {code}
+                  </Badge>
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-6">
-              <ScoreCircle score={userData.score} />
-              <div className="flex gap-3">
-                <Button variant="secondary" className="bg-white/20 hover:bg-white/30">
-                  <Download size={18} className="mr-2" />
-                  Exporter
-                </Button>
-                <Button className="bg-white text-primary hover:bg-white/90">
-                  <Settings size={18} className="mr-2" />
-                  Paramètres
-                </Button>
+            <div className="flex items-center gap-3">
+              <div className="bg-white/10 rounded-xl p-4 text-center">
+                <p className="text-3xl font-bold">{clients.length}</p>
+                <p className="text-xs opacity-80">Clients</p>
+              </div>
+              <div className="bg-white/10 rounded-xl p-4 text-center">
+                <p className="text-3xl font-bold">{totalCommissions.toFixed(0)}€</p>
+                <p className="text-xs opacity-80">Total gagné</p>
               </div>
             </div>
+          </div>
+
+          {/* Referral link */}
+          <div className="mt-4 flex items-center gap-2 bg-white/10 rounded-lg p-3 max-w-2xl">
+            <ExternalLink size={16} className="flex-shrink-0 opacity-70" />
+            <span className="text-sm truncate flex-1 font-mono opacity-90">{referralLink}</span>
+            <Button size="sm" variant="secondary" className="bg-white/20 hover:bg-white/30 flex-shrink-0" onClick={copyLink}>
+              {copied ? <Check size={16} /> : <Copy size={16} />}
+              <span className="ml-1">{copied ? 'Copié' : 'Copier'}</span>
+            </Button>
           </div>
         </div>
       </div>
 
-      {/* Navigation Tabs */}
+      {/* Tabs */}
       <div className="border-b border-border bg-card">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex gap-6 overflow-x-auto">
@@ -261,499 +233,338 @@ const Dashboard = () => {
       </div>
 
       <div className="max-w-7xl mx-auto p-6">
-        {/* Vue d'ensemble */}
-        {activeTab === 'overview' && (
+
+        {/* ACCUEIL */}
+        {activeTab === 'accueil' && (
           <>
-            {/* Alerte conversion */}
-            <Card className="mb-6 p-6 border-2 border-primary bg-gradient-to-r from-primary/10 to-secondary/10">
-              <div className="flex items-start gap-4">
-                <Trophy size={48} className="text-yellow-400 flex-shrink-0" />
-                <div className="flex-1">
-                  <h3 className="text-xl font-bold mb-2">
-                    🎉 Bravo ! Vous avez progressé de +22 points en 30 jours !
-                  </h3>
-                  <p className="text-muted-foreground mb-4">
-                    Vous avez gagné <strong>+15 avis</strong>, votre note a augmenté de <strong>+0.3⭐</strong>, 
-                    et votre visibilité a explosé de <strong>+127%</strong> !
-                  </p>
-                  <div className="flex gap-3 flex-wrap">
-                    <Button className="bg-green-500 hover:bg-green-600">
-                      <CheckCircle size={20} className="mr-2" />
-                      Continuer pour 29,90€/mois
-                    </Button>
-                    <Button variant="secondary">
-                      Répondre au questionnaire (2 min)
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </Card>
-
-            {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-              <StatCard 
-                icon={Users} 
-                title="Scans QR/NFC" 
-                value={statsData.totalScans} 
-                subtitle="Ce mois-ci" 
-              />
-              <StatCard 
-                icon={Play} 
-                title="Participants au jeu" 
-                value={statsData.totalPlays} 
-                subtitle={`Taux: ${statsData.conversionRate}%`} 
-              />
-              <StatCard 
-                icon={Star} 
-                title="Avis Google" 
-                value={`+${statsData.googleReviews}`} 
-                subtitle="Collectés via jeu" 
-              />
-              <StatCard 
-                icon={Phone} 
-                title="Numéros SMS" 
-                value={statsData.smsCollected} 
-                subtitle="Base qualifiée" 
-              />
-              <StatCard 
-                icon={Gift} 
-                title="Lots offerts" 
-                value="892" 
-                subtitle="Toutes campagnes" 
-              />
-              <StatCard 
-                icon={Target} 
-                title="Score Take 5" 
-                value={userData.score} 
-                subtitle={`Niveau ${userData.level}`} 
-              />
-            </div>
-
-            {/* Charts */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-              <Card className="p-6 bg-card">
-                <h3 className="text-lg font-bold mb-4">📈 Activité hebdomadaire</h3>
-                <ResponsiveContainer width="100%" height={300}>
-                  <LineChart data={weeklyData}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                    <XAxis dataKey="jour" stroke="hsl(var(--muted-foreground))" />
-                    <YAxis stroke="hsl(var(--muted-foreground))" />
-                    <Tooltip 
-                      contentStyle={{ 
-                        backgroundColor: 'hsl(var(--card))', 
-                        border: '1px solid hsl(var(--border))', 
-                        borderRadius: '8px' 
-                      }} 
-                    />
-                    <Legend />
-                    <Line type="monotone" dataKey="scans" stroke="hsl(var(--primary))" strokeWidth={3} name="Scans" />
-                    <Line type="monotone" dataKey="avis" stroke="hsl(var(--secondary))" strokeWidth={3} name="Avis" />
-                    <Line type="monotone" dataKey="sms" stroke="hsl(var(--accent))" strokeWidth={3} name="SMS" />
-                  </LineChart>
-                </ResponsiveContainer>
-              </Card>
-
-              <Card className="p-6 bg-card">
-                <h3 className="text-lg font-bold mb-4">🎁 Distribution des lots</h3>
-                <ResponsiveContainer width="100%" height={300}>
-                  <PieChart>
-                    <Pie 
-                      data={rewardsData} 
-                      cx="50%" 
-                      cy="50%" 
-                      labelLine={false} 
-                      label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`} 
-                      outerRadius={100} 
-                      fill="#8884d8" 
-                      dataKey="value"
-                    >
-                      {rewardsData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.color} />
-                      ))}
-                    </Pie>
-                    <Tooltip 
-                      contentStyle={{ 
-                        backgroundColor: 'hsl(var(--card))', 
-                        border: '1px solid hsl(var(--border))', 
-                        borderRadius: '8px' 
-                      }} 
-                    />
-                  </PieChart>
-                </ResponsiveContainer>
-              </Card>
-            </div>
-
-            {/* ROI */}
-            <Card className="p-6 border border-green-500/30 bg-gradient-to-r from-green-500/10 to-primary/10">
-              <div className="flex items-center gap-3 mb-4">
-                <TrendingUp className="text-green-400" size={32} />
-                <h3 className="text-xl font-bold">💰 Impact & ROI</h3>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div className="text-center">
-                  <p className="text-4xl font-bold text-green-400">+127%</p>
-                  <p className="text-sm text-muted-foreground mt-1">Avis Google vs mois précédent</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-4xl font-bold text-yellow-400">4.8★</p>
-                  <p className="text-sm text-muted-foreground mt-1">Note moyenne actuelle</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-4xl font-bold text-primary">756</p>
-                  <p className="text-sm text-muted-foreground mt-1">Contacts SMS qualifiés</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-4xl font-bold text-secondary">71.5%</p>
-                  <p className="text-sm text-muted-foreground mt-1">Taux de conversion scan→jeu</p>
-                </div>
-              </div>
-            </Card>
-          </>
-        )}
-
-        {/* Gamification */}
-        {activeTab === 'gamification' && (
-          <>
-            <h2 className="text-2xl font-bold mb-6">🎮 Système de Gamification</h2>
-            
-            {/* Badges */}
-            <div className="mb-8">
-              <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                <Award size={24} className="text-yellow-400" />
-                Vos badges
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                {badges.map((badge) => {
-                  const Icon = badge.icon;
-                  return (
-                    <Card 
-                      key={badge.id} 
-                      className={`p-6 border-2 transition-all ${
-                        badge.locked ? 'opacity-40' : 'hover:scale-105'
-                      } ${badge.current ? 'border-primary' : ''}`}
-                    >
-                      <div className="flex flex-col items-center text-center">
-                        <div className="w-16 h-16 rounded-full flex items-center justify-center mb-3 bg-primary/10">
-                          {badge.locked ? (
-                            <Lock size={32} className="text-muted-foreground" />
-                          ) : (
-                            <Icon size={32} className="text-primary" />
-                          )}
-                        </div>
-                        <h3 className="font-bold mb-1">{badge.name}</h3>
-                        <p className="text-xs text-muted-foreground mb-3">{badge.requirement}</p>
-                        {!badge.locked && (
-                          <div className="w-full">
-                            <div className="w-full bg-muted rounded-full h-2 mb-2">
-                              <div 
-                                className="h-2 rounded-full bg-primary transition-all" 
-                                style={{ width: `${badge.progress}%` }} 
-                              />
-                            </div>
-                            <p className="text-xs text-muted-foreground">
-                              {badge.earned ? '✅ Débloqué !' : `${badge.progress}%`}
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    </Card>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Missions */}
-            <div className="mb-8">
-              <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                <Target size={24} className="text-primary" />
-                Missions du mois
-                <span className="ml-auto text-sm font-normal text-muted-foreground">
-                  {missions.filter(m => m.completed).length}/{missions.length} complétées
-                </span>
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {missions.map((mission) => {
-                  const Icon = mission.icon;
-                  const percentage = (mission.progress / mission.target) * 100;
-                  return (
-                    <Card 
-                      key={mission.id} 
-                      className={`p-6 border transition-all ${
-                        mission.completed ? 'border-green-500 bg-green-500/5' : ''
-                      }`}
-                    >
-                      <div className="flex items-start gap-4">
-                        <div className="p-3 rounded-full flex-shrink-0 bg-primary/10">
-                          <Icon size={24} className="text-primary" />
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-start justify-between mb-2">
-                            <h3 className="font-bold">{mission.title}</h3>
-                            <Badge className="bg-primary/10 text-primary">
-                              +{mission.points} pts
-                            </Badge>
-                          </div>
-                          <div className="mb-2">
-                            <div className="flex items-center justify-between text-sm mb-1">
-                              <span className="text-muted-foreground">Progression</span>
-                              <span className="font-medium">{mission.progress}/{mission.target}</span>
-                            </div>
-                            <div className="w-full bg-muted rounded-full h-2">
-                              <div 
-                                className="h-2 rounded-full bg-primary transition-all" 
-                                style={{ width: `${Math.min(percentage, 100)}%` }} 
-                              />
-                            </div>
-                          </div>
-                          {mission.completed && (
-                            <div className="flex items-center gap-2 text-sm text-green-400">
-                              <CheckCircle size={16} />
-                              <span className="font-medium">Mission accomplie !</span>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </Card>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Classement */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card className="p-6">
-                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                  <TrendingUp size={24} className="text-green-400" />
-                  Votre classement
-                </h3>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Position locale</span>
-                    <span className="text-2xl font-bold text-green-400">#3</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Meilleur que</span>
-                    <span className="text-2xl font-bold text-yellow-400">90%</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">des cafés de Saint-Dié</span>
-                  </div>
-                </div>
-              </Card>
-
-              <Card className="p-6">
-                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-                  <Star size={24} className="text-yellow-400" />
-                  Prochaine étape
-                </h3>
-                <p className="text-muted-foreground mb-4">
-                  Plus que <strong className="text-foreground">53 avis</strong> pour atteindre le badge{' '}
-                  <strong className="text-pink-400">Légende Locale</strong> !
-                </p>
-                <div className="w-full bg-muted rounded-full h-3 mb-2">
-                  <div 
-                    className="h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500" 
-                    style={{ width: '47%' }} 
-                  />
-                </div>
-                <p className="text-sm text-muted-foreground">47/100 avis</p>
-              </Card>
-            </div>
-          </>
-        )}
-
-        {/* Campagnes */}
-        {activeTab === 'campaigns' && (
-          <>
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold">🎡 Campagnes de Jeu-Concours</h2>
-              <Button className="bg-primary hover:bg-primary/90">
-                <Play size={20} className="mr-2" />
-                Créer une campagne
-              </Button>
-            </div>
-            {campaigns.map((campaign) => (
-              <Card key={campaign.id} className="p-6 mb-4 border-l-4 border-l-secondary">
-                <div className="flex justify-between items-start mb-4 flex-wrap gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+              <Card className="p-6 bg-card border-border">
+                <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="text-xl font-bold">{campaign.name}</h3>
-                    <div className="flex items-center gap-4 mt-2 flex-wrap">
-                      <Badge className={campaign.status === 'active' ? 'bg-green-500/10 text-green-500' : ''}>
-                        {campaign.status === 'active' ? '🟢 Active' : 'Terminée'}
-                      </Badge>
-                      <span className="text-sm text-muted-foreground flex items-center gap-1">
-                        <Calendar size={16} />
-                        {campaign.dateDebut} → {campaign.dateFin}
-                      </span>
-                    </div>
+                    <p className="text-muted-foreground text-sm">Clients apportés</p>
+                    <p className="text-4xl font-bold mt-2 text-primary">{clients.length}</p>
+                    <p className="text-sm text-muted-foreground mt-1">{activeClients.length} actifs</p>
                   </div>
-                  <Button variant="link">Modifier →</Button>
-                </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-                  <Card className="p-4 bg-primary/5">
-                    <p className="text-2xl font-bold text-primary">{campaign.participants}</p>
-                    <p className="text-sm text-muted-foreground mt-1">Participants</p>
-                  </Card>
-                  <Card className="p-4 bg-secondary/5">
-                    <p className="text-2xl font-bold text-secondary">+{campaign.avis}</p>
-                    <p className="text-sm text-muted-foreground mt-1">Avis Google</p>
-                  </Card>
-                  <Card className="p-4 bg-destructive/5">
-                    <p className="text-2xl font-bold text-destructive">{campaign.lotsOfferts}</p>
-                    <p className="text-sm text-muted-foreground mt-1">Lots offerts</p>
-                  </Card>
-                  <Card className="p-4 bg-green-500/5">
-                    <p className="text-2xl font-bold text-green-500">{campaign.smsCollectes}</p>
-                    <p className="text-sm text-muted-foreground mt-1">SMS collectés</p>
-                  </Card>
+                  <div className="p-3 rounded-full bg-primary/10"><Users size={28} className="text-primary" /></div>
                 </div>
               </Card>
-            ))}
+              <Card className="p-6 bg-card border-border">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-muted-foreground text-sm">Total commissions</p>
+                    <p className="text-4xl font-bold mt-2 text-green-500">{totalCommissions.toFixed(0)}€</p>
+                    <p className="text-sm text-muted-foreground mt-1">{commissions.length} versements</p>
+                  </div>
+                  <div className="p-3 rounded-full bg-green-500/10"><DollarSign size={28} className="text-green-500" /></div>
+                </div>
+              </Card>
+              <Card className="p-6 bg-card border-border">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-muted-foreground text-sm">En attente</p>
+                    <p className="text-4xl font-bold mt-2 text-yellow-500">{totalPending.toFixed(0)}€</p>
+                    <p className="text-sm text-muted-foreground mt-1">{pendingCommissions.length} en cours</p>
+                  </div>
+                  <div className="p-3 rounded-full bg-yellow-500/10"><Clock size={28} className="text-yellow-500" /></div>
+                </div>
+              </Card>
+              <Card className="p-6 bg-card border-border">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-muted-foreground text-sm">Palier actuel</p>
+                    <p className={`text-4xl font-bold mt-2 uppercase ${currentPalier.color}`}>{apporteur?.palier || 'Starter'}</p>
+                    <p className="text-sm text-muted-foreground mt-1">{currentPalier.months} mois / client</p>
+                  </div>
+                  <div className="p-3 rounded-full bg-primary/10"><Award size={28} className="text-primary" /></div>
+                </div>
+              </Card>
+            </div>
+
+            {/* Recent clients */}
+            <Card className="p-6 mb-6">
+              <h3 className="text-lg font-bold mb-4">📋 Derniers clients apportés</h3>
+              {clients.length === 0 ? (
+                <p className="text-muted-foreground text-center py-8">Aucun client encore. Partage ton lien de parrainage !</p>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-border">
+                        <th className="text-left py-3 px-2 text-muted-foreground font-medium">Établissement</th>
+                        <th className="text-left py-3 px-2 text-muted-foreground font-medium">Statut</th>
+                        <th className="text-left py-3 px-2 text-muted-foreground font-medium">Offre</th>
+                        <th className="text-left py-3 px-2 text-muted-foreground font-medium">Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {clients.slice(0, 5).map((client) => (
+                        <tr key={client.id} className="border-b border-border/50">
+                          <td className="py-3 px-2 font-medium">{client.nom_etablissement || client.email || '—'}</td>
+                          <td className="py-3 px-2">
+                            <Badge className={
+                              client.statut === 'actif' || client.statut === 'active' || client.statut === 'confirmed'
+                                ? 'bg-green-500/10 text-green-500'
+                                : 'bg-yellow-500/10 text-yellow-500'
+                            }>
+                              {client.statut || 'pending'}
+                            </Badge>
+                          </td>
+                          <td className="py-3 px-2">{client.offre || '—'}</td>
+                          <td className="py-3 px-2 text-muted-foreground">
+                            {client.created_at ? new Date(client.created_at).toLocaleDateString('fr-FR') : '—'}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </Card>
+
+            {/* Referral CTA */}
+            <Card className="p-6 border-2 border-primary bg-gradient-to-r from-primary/10 to-secondary/10">
+              <div className="flex items-start gap-4">
+                <Trophy size={40} className="text-yellow-400 flex-shrink-0" />
+                <div>
+                  <h3 className="text-xl font-bold mb-2">Partage ton lien et gagne des commissions</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Chaque commerce inscrit via ton lien te rapporte <strong>20€/mois pendant {currentPalier.months} mois</strong> (palier {apporteur?.palier || 'Starter'}).
+                  </p>
+                  <Button onClick={copyLink}>
+                    {copied ? <Check size={18} className="mr-2" /> : <Copy size={18} className="mr-2" />}
+                    {copied ? 'Lien copié !' : 'Copier mon lien de parrainage'}
+                  </Button>
+                </div>
+              </div>
+            </Card>
           </>
         )}
 
-        {/* SMS Marketing */}
-        {activeTab === 'sms' && (
+        {/* VENTES */}
+        {activeTab === 'ventes' && (
           <>
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold">📱 SMS Marketing</h2>
-              <Button className="bg-green-500 hover:bg-green-600">
-                <MessageSquare size={20} className="mr-2" />
-                Nouvelle campagne SMS
-              </Button>
-            </div>
+            <h2 className="text-2xl font-bold mb-6">📈 Mes ventes</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <StatCard icon={Phone} title="Base contacts" value="756" subtitle="Numéros collectés" />
-              <StatCard icon={MessageSquare} title="Campagnes envoyées" value="12" subtitle="Ce mois-ci" />
-              <StatCard icon={TrendingUp} title="Conversions SMS" value="34%" subtitle="Taux retour magasin" />
+              <Card className="p-6 text-center">
+                <p className="text-muted-foreground text-sm">Total clients</p>
+                <p className="text-5xl font-bold text-primary mt-2">{clients.length}</p>
+              </Card>
+              <Card className="p-6 text-center">
+                <p className="text-muted-foreground text-sm">Clients actifs</p>
+                <p className="text-5xl font-bold text-green-500 mt-2">{activeClients.length}</p>
+              </Card>
+              <Card className="p-6 text-center">
+                <p className="text-muted-foreground text-sm">En attente</p>
+                <p className="text-5xl font-bold text-yellow-500 mt-2">{pendingClients.length}</p>
+              </Card>
             </div>
+
             <Card className="p-6">
-              <h3 className="text-lg font-bold mb-4">✉️ Créer une campagne SMS</h3>
-              <div className="space-y-4">
-                <input 
-                  type="text" 
-                  placeholder="Nom de la campagne" 
-                  className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground" 
-                />
-                <textarea 
-                  placeholder="Message SMS..." 
-                  className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground h-24"
-                />
-                <Button className="w-full bg-green-500 hover:bg-green-600">
-                  Envoyer maintenant
-                </Button>
-              </div>
+              <h3 className="text-lg font-bold mb-4">Liste complète des clients</h3>
+              {clients.length === 0 ? (
+                <p className="text-muted-foreground text-center py-8">Aucun client pour le moment.</p>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-border">
+                        <th className="text-left py-3 px-2 text-muted-foreground font-medium">Établissement</th>
+                        <th className="text-left py-3 px-2 text-muted-foreground font-medium">Email</th>
+                        <th className="text-left py-3 px-2 text-muted-foreground font-medium">Téléphone</th>
+                        <th className="text-left py-3 px-2 text-muted-foreground font-medium">Statut</th>
+                        <th className="text-left py-3 px-2 text-muted-foreground font-medium">Offre</th>
+                        <th className="text-left py-3 px-2 text-muted-foreground font-medium">Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {clients.map((client) => (
+                        <tr key={client.id} className="border-b border-border/50 hover:bg-muted/50">
+                          <td className="py-3 px-2 font-medium">{client.nom_etablissement || '—'}</td>
+                          <td className="py-3 px-2">{client.email || '—'}</td>
+                          <td className="py-3 px-2">{client.telephone || '—'}</td>
+                          <td className="py-3 px-2">
+                            <Badge className={
+                              client.statut === 'actif' || client.statut === 'active' || client.statut === 'confirmed'
+                                ? 'bg-green-500/10 text-green-500'
+                                : 'bg-yellow-500/10 text-yellow-500'
+                            }>
+                              {client.statut || 'pending'}
+                            </Badge>
+                          </td>
+                          <td className="py-3 px-2">{client.offre || '—'}</td>
+                          <td className="py-3 px-2 text-muted-foreground">
+                            {client.created_at ? new Date(client.created_at).toLocaleDateString('fr-FR') : '—'}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </Card>
           </>
         )}
 
-        {/* Rewards */}
-        {activeTab === 'rewards' && (
+        {/* COMMISSIONS */}
+        {activeTab === 'commissions' && (
           <>
-            <h2 className="text-2xl font-bold mb-6">🎁 Gestion des récompenses</h2>
+            <h2 className="text-2xl font-bold mb-6">💰 Mes commissions</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <Card className="p-6 text-center border-green-500/30">
+                <p className="text-muted-foreground text-sm">Total gagné</p>
+                <p className="text-5xl font-bold text-green-500 mt-2">{totalCommissions.toFixed(0)}€</p>
+              </Card>
+              <Card className="p-6 text-center border-blue-500/30">
+                <p className="text-muted-foreground text-sm">Déjà versé</p>
+                <p className="text-5xl font-bold text-blue-500 mt-2">{totalPaid.toFixed(0)}€</p>
+              </Card>
+              <Card className="p-6 text-center border-yellow-500/30">
+                <p className="text-muted-foreground text-sm">En attente</p>
+                <p className="text-5xl font-bold text-yellow-500 mt-2">{totalPending.toFixed(0)}€</p>
+              </Card>
+            </div>
+
             <Card className="p-6">
-              <h3 className="text-lg font-bold mb-4">Configuration des lots</h3>
-              <div className="space-y-3">
-                {rewardsData.map((reward, index) => (
-                  <Card key={index} className="flex items-center gap-4 p-4 bg-card border border-border">
-                    <div 
-                      className="w-12 h-12 rounded-full flex items-center justify-center"
-                      style={{ backgroundColor: `${reward.color}20` }}
-                    >
-                      <Gift style={{ color: reward.color }} size={24} />
-                    </div>
-                    <div className="flex-1">
-                      <p className="font-medium">{reward.name}</p>
-                      <p className="text-sm text-muted-foreground">{reward.value} fois distribué</p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-2xl font-bold" style={{ color: reward.color }}>
-                        {((reward.value / rewardsData.reduce((a, b) => a + b.value, 0)) * 100).toFixed(0)}%
-                      </p>
-                      <p className="text-xs text-muted-foreground">Probabilité</p>
-                    </div>
-                  </Card>
-                ))}
-              </div>
+              <h3 className="text-lg font-bold mb-4">Historique des commissions</h3>
+              {commissions.length === 0 ? (
+                <p className="text-muted-foreground text-center py-8">Aucune commission pour le moment.</p>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="border-b border-border">
+                        <th className="text-left py-3 px-2 text-muted-foreground font-medium">Montant</th>
+                        <th className="text-left py-3 px-2 text-muted-foreground font-medium">Mois</th>
+                        <th className="text-left py-3 px-2 text-muted-foreground font-medium">Statut</th>
+                        <th className="text-left py-3 px-2 text-muted-foreground font-medium">Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {commissions.map((com) => (
+                        <tr key={com.id} className="border-b border-border/50 hover:bg-muted/50">
+                          <td className="py-3 px-2 font-bold text-green-500">{Number(com.montant).toFixed(0)}€</td>
+                          <td className="py-3 px-2">{com.mois || '—'}</td>
+                          <td className="py-3 px-2">
+                            <Badge className={
+                              com.statut === 'payée' || com.statut === 'payee' || com.statut === 'paid'
+                                ? 'bg-green-500/10 text-green-500'
+                                : 'bg-yellow-500/10 text-yellow-500'
+                            }>
+                              {com.statut || 'en attente'}
+                            </Badge>
+                          </td>
+                          <td className="py-3 px-2 text-muted-foreground">
+                            {com.created_at ? new Date(com.created_at).toLocaleDateString('fr-FR') : '—'}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </Card>
           </>
         )}
 
-        {/* Pride Moments */}
-        {activeTab === 'pride' && (
+        {/* WALLET */}
+        {activeTab === 'wallet' && (
           <>
-            <h2 className="text-2xl font-bold mb-6">🏆 Vos Moments de Gloire</h2>
+            <h2 className="text-2xl font-bold mb-6">👛 Mon Wallet</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <Card className="p-8 border-2 border-muted">
-                <h3 className="text-2xl font-bold text-muted-foreground mb-6 text-center">
-                  📅 Avant Take 5
-                </h3>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Nombre d'avis</span>
-                    <span className="text-3xl font-bold text-muted-foreground">32</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">Note moyenne</span>
-                    <span className="text-3xl font-bold text-muted-foreground">4.4⭐</span>
-                  </div>
-                </div>
+              <Card className="p-8 bg-gradient-to-br from-green-500/10 to-primary/10 border-green-500/30">
+                <Wallet size={40} className="text-green-500 mb-4" />
+                <p className="text-muted-foreground text-sm mb-1">Solde disponible</p>
+                <p className="text-5xl font-bold text-green-500">{totalPaid.toFixed(0)}€</p>
+                <p className="text-sm text-muted-foreground mt-2">Commissions déjà versées</p>
               </Card>
-              <Card className="p-8 border-2 border-green-500 bg-green-500/5">
-                <h3 className="text-2xl font-bold mb-6 text-center">✨ Après 30 jours</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span>Nombre d'avis</span>
-                    <span className="text-3xl font-bold text-green-400">
-                      47 <span className="text-lg ml-2">(+15)</span>
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span>Note moyenne</span>
-                    <span className="text-3xl font-bold text-yellow-400">
-                      4.7⭐ <span className="text-lg ml-2 text-green-400">(+0.3)</span>
-                    </span>
-                  </div>
-                </div>
+              <Card className="p-8 bg-gradient-to-br from-yellow-500/10 to-orange-500/10 border-yellow-500/30">
+                <Clock size={40} className="text-yellow-500 mb-4" />
+                <p className="text-muted-foreground text-sm mb-1">En attente de versement</p>
+                <p className="text-5xl font-bold text-yellow-500">{totalPending.toFixed(0)}€</p>
+                <p className="text-sm text-muted-foreground mt-2">{pendingCommissions.length} commission(s) en cours</p>
               </Card>
             </div>
+
+            <Card className="p-6">
+              <h3 className="text-lg font-bold mb-4">Résumé financier</h3>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between py-3 border-b border-border">
+                  <span className="text-muted-foreground">Total commissions générées</span>
+                  <span className="text-xl font-bold">{totalCommissions.toFixed(0)}€</span>
+                </div>
+                <div className="flex items-center justify-between py-3 border-b border-border">
+                  <span className="text-muted-foreground">Commissions versées</span>
+                  <span className="text-xl font-bold text-green-500">{totalPaid.toFixed(0)}€</span>
+                </div>
+                <div className="flex items-center justify-between py-3 border-b border-border">
+                  <span className="text-muted-foreground">Commissions en attente</span>
+                  <span className="text-xl font-bold text-yellow-500">{totalPending.toFixed(0)}€</span>
+                </div>
+                <div className="flex items-center justify-between py-3">
+                  <span className="text-muted-foreground">Palier actuel</span>
+                  <span className={`text-xl font-bold uppercase ${currentPalier.color}`}>
+                    {currentPalier.emoji} {apporteur?.palier || 'Starter'}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between py-3">
+                  <span className="text-muted-foreground">Potentiel max / client</span>
+                  <span className="text-xl font-bold">{currentPalier.months * 20}€</span>
+                </div>
+              </div>
+            </Card>
           </>
         )}
 
-        {/* Conversion */}
-        {activeTab === 'conversion' && (
+        {/* CLASSEMENT */}
+        {activeTab === 'classement' && (
           <>
-            <h2 className="text-2xl font-bold mb-6">💰 Timeline de Conversion</h2>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-              <StatCard 
-                icon={Target} 
-                title="Taux conversion total" 
-                value="68%" 
-                subtitle="vs 30% sans gamification" 
-              />
-              <StatCard 
-                icon={MessageSquare} 
-                title="Messages envoyés" 
-                value="6" 
-                subtitle="Séquence automatisée" 
-              />
-              <StatCard 
-                icon={Clock} 
-                title="Durée séquence" 
-                value="8 jours" 
-                subtitle="J23 à J31" 
-              />
-              <StatCard 
-                icon={Zap} 
-                title="Automatisation" 
-                value="100%" 
-                subtitle="Via n8n + WhatsApp" 
-              />
-            </div>
+            <h2 className="text-2xl font-bold mb-6">🏆 Classement</h2>
+            <Card className="p-8 text-center mb-8">
+              <div className="inline-flex items-center gap-3 mb-4">
+                <span className="text-5xl">{currentPalier.emoji}</span>
+                <div>
+                  <p className={`text-3xl font-bold uppercase ${currentPalier.color}`}>{apporteur?.palier || 'Starter'}</p>
+                  <p className="text-muted-foreground">Ton palier actuel</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                <div>
+                  <p className="text-4xl font-bold text-primary">{clients.length}</p>
+                  <p className="text-sm text-muted-foreground mt-1">Clients apportés</p>
+                </div>
+                <div>
+                  <p className="text-4xl font-bold text-green-500">{totalCommissions.toFixed(0)}€</p>
+                  <p className="text-sm text-muted-foreground mt-1">Gains totaux</p>
+                </div>
+                <div>
+                  <p className="text-4xl font-bold text-yellow-500">{currentPalier.months}</p>
+                  <p className="text-sm text-muted-foreground mt-1">Mois de commission / client</p>
+                </div>
+              </div>
+            </Card>
+
+            {/* Progression paliers */}
             <Card className="p-6">
-              <p className="text-center text-muted-foreground">
-                Détails de conversion à venir...
-              </p>
+              <h3 className="text-lg font-bold mb-6">Progression des paliers</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {[
+                  { name: 'STARTER', emoji: '🥉', months: 3 },
+                  { name: 'ACTIVE', emoji: '🥈', months: 4 },
+                  { name: 'PRO', emoji: '🥇', months: 5 },
+                  { name: 'ELITE', emoji: '💎', months: 6 },
+                ].map((tier) => {
+                  const isActive = (apporteur?.palier || '').toLowerCase() === tier.name.toLowerCase();
+                  return (
+                    <Card key={tier.name} className={`p-6 text-center transition-all ${isActive ? 'border-2 border-primary scale-105' : 'opacity-60'}`}>
+                      <span className="text-3xl">{tier.emoji}</span>
+                      <p className="font-bold mt-2">{tier.name}</p>
+                      <p className="text-sm text-muted-foreground">{tier.months} mois × 20€</p>
+                      <p className="text-lg font-bold mt-1">{tier.months * 20}€/client</p>
+                      {isActive && <Badge className="mt-2 bg-primary/10 text-primary">Actuel</Badge>}
+                    </Card>
+                  );
+                })}
+              </div>
             </Card>
           </>
         )}
