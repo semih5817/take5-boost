@@ -24,6 +24,7 @@ import RadarMultiPlateformes from "./pages/RadarMultiPlateformes";
 import SeoLocalIa from "./pages/SeoLocalIa";
 import ReponsesIAAlertesAvis from "./pages/ReponsesIAAlertesAvis";
 import ScoreDeSante from "./pages/ScoreDeSante";
+import Prestataire from "./pages/Prestataire";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
