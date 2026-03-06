@@ -24,6 +24,7 @@ import RadarMultiPlateformes from "./pages/RadarMultiPlateformes";
 import SeoLocalIa from "./pages/SeoLocalIa";
 import ReponsesIAAlertesAvis from "./pages/ReponsesIAAlertesAvis";
 import ScoreDeSante from "./pages/ScoreDeSante";
+import Prestataire from "./pages/Prestataire";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -57,6 +58,7 @@ const App = () => (
           <Route path="/seo-local-ia" element={<SeoLocalIa />} />
           <Route path="/reponses-ia-alertes-avis" element={<ReponsesIAAlertesAvis />} />
           <Route path="/score-de-sante" element={<ScoreDeSante />} />
+          <Route path="/prestataire" element={<Prestataire />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

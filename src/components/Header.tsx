@@ -31,6 +31,7 @@ export const Header = () => {
     { title: "Projets à venir", href: "/#projets-avenir" },
     { title: "À propos", href: "/a-propos" },
     { title: "Tarifs", href: "/tarifs" },
+    { title: "Devenir partenaire", href: "/prestataire" },
   ];
 
   return (

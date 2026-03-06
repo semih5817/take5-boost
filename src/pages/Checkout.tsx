@@ -3,6 +3,7 @@ import { useSearchParams, useNavigate, Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { supabase } from "@/integrations/supabase/client";
+import { externalSupabase } from "@/integrations/supabase/external-client";
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { ArrowLeft, Loader2, Plus, Minus, HelpCircle, ExternalLink } from "lucide-react";
@@ -50,12 +51,16 @@ const Checkout = () => {
   const offre = searchParams.get('offre') as 'starter' | 'pro' | null;
   const periode = searchParams.get('periode') as 'monthly' | 'yearly' | null;
 
+  const refCode = searchParams.get('ref') || '';
+  const promoCode = searchParams.get('promo') || '';
+
   const [formData, setFormData] = useState({
     nom_etablissement: '',
     url_google_business: '',
     telephone_whatsapp: '',
     email: '',
-    code_parrainage: ''
+    code_parrainage: refCode,
+    code_promo: promoCode
   });
   const [wantsPlaque, setWantsPlaque] = useState(false);
   const [plaqueQuantity, setPlaqueQuantity] = useState(1);
@@ -121,18 +126,34 @@ const Checkout = () => {
         body: JSON.stringify(webhookPayload)
       });
 
+      // Save to externalSupabase users table if code_parrain present
+      if (formData.code_parrainage.trim()) {
+        try {
+          await externalSupabase.from("users").insert({
+            nom_etablissement: formData.nom_etablissement.trim(),
+            telephone: formData.telephone_whatsapp.trim(),
+            email: formData.email.trim() || null,
+            code_parrain: formData.code_parrainage.trim(),
+            offre,
+            statut: "pending",
+          });
+        } catch (err) {
+          console.error("External save error");
+        }
+      }
+
       toast({
         title: "Demande envoyée avec succès ! 🎉",
         description: "Nous vous contacterons très bientôt pour finaliser votre inscription.",
       });
 
-      // Reset form after successful submission
       setFormData({
         nom_etablissement: '',
         url_google_business: '',
         telephone_whatsapp: '',
         email: '',
-        code_parrainage: ''
+        code_parrainage: '',
+        code_promo: ''
       });
       setWantsPlaque(false);
       setPlaqueQuantity(1);
@@ -342,7 +363,7 @@ const Checkout = () => {
               {/* Code parrainage */}
               <div>
                 <label htmlFor="code_parrainage" className="block text-sm font-medium mb-2">
-                  Code parrainage / promo
+                  Code parrain
                   <span className="text-slate-500 font-normal ml-2">(facultatif)</span>
                 </label>
                 <input
@@ -352,11 +373,42 @@ const Checkout = () => {
                   value={formData.code_parrainage}
                   onChange={handleChange}
                   placeholder="Ex: SEMIH"
-                  className="w-full px-4 py-3 bg-[#0f0c29]/50 border border-slate-600 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#667eea] transition-all"
+                  readOnly={!!refCode}
+                  className={`w-full px-4 py-3 bg-[#0f0c29]/50 border border-slate-600 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#667eea] transition-all ${refCode ? 'bg-purple-500/10 border-purple-500/50' : ''}`}
                 />
-                <p className="text-slate-500 text-xs mt-1">
-                  Entrez votre code pour bénéficier d'un mois offert
-                </p>
+                {refCode && (
+                  <p className="text-purple-400 text-xs mt-1">
+                    ✅ Code parrain détecté automatiquement
+                  </p>
+                )}
+                {!refCode && (
+                  <p className="text-slate-500 text-xs mt-1">
+                    Entrez votre code pour bénéficier d'un mois offert
+                  </p>
+                )}
+              </div>
+
+              {/* Code promo */}
+              <div>
+                <label htmlFor="code_promo" className="block text-sm font-medium mb-2">
+                  Code promo
+                  <span className="text-slate-500 font-normal ml-2">(facultatif)</span>
+                </label>
+                <input
+                  type="text"
+                  id="code_promo"
+                  name="code_promo"
+                  value={formData.code_promo}
+                  onChange={handleChange}
+                  placeholder="Ex: PROMO20"
+                  readOnly={!!promoCode}
+                  className={`w-full px-4 py-3 bg-[#0f0c29]/50 border border-slate-600 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#667eea] transition-all ${promoCode ? 'bg-green-500/10 border-green-500/50' : ''}`}
+                />
+                {promoCode && (
+                  <p className="text-green-400 text-xs mt-1">
+                    ✅ Code promo appliqué automatiquement
+                  </p>
+                )}
               </div>
 
               {/* Option Plaque NFC */}

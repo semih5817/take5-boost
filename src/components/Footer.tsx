@@ -86,6 +86,11 @@ export const Footer = () => {
                   Devenir partenaire
                 </a>
               </li>
+              <li>
+                <a href="/prestataire" className="text-slate-400 hover:text-purple-400 transition-all">
+                  Devenir apporteur
+                </a>
+              </li>
             </ul>
           </div>
 
