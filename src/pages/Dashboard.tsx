@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { externalSupabase } from '@/integrations/supabase/external-client';
+
 import { 
   Users, DollarSign, TrendingUp, Wallet, Trophy, Copy, Check, 
   ExternalLink, Calendar, Clock, Award, Crown, Medal, Star

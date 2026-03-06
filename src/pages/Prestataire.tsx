@@ -65,15 +65,17 @@ const Prestataire = () => {
 
     setIsSubmitting(true);
     try {
-      const { error } = await externalSupabase.from("apporteurs").insert({
-        prenom: formData.prenom.trim(),
-        nom: formData.nom.trim(),
-        email: formData.email.trim(),
-        whatsapp: formData.whatsapp.trim(),
-        statut: "en_attente",
+      const response = await fetch("https://n8n.takefive.fr/webhook/nouveau-apporteur", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nom: formData.nom.trim(),
+          email: formData.email.trim(),
+          whatsapp: formData.whatsapp.trim(),
+        }),
       });
 
-      if (error) throw error;
+      if (!response.ok) throw new Error("Webhook error");
 
       setSubmitted(true);
       toast({

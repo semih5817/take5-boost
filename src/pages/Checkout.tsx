@@ -126,21 +126,6 @@ const Checkout = () => {
         body: JSON.stringify(webhookPayload)
       });
 
-      // Save to externalSupabase users table if code_parrain present
-      if (formData.code_parrainage.trim()) {
-        try {
-          await externalSupabase.from("users").insert({
-            nom_etablissement: formData.nom_etablissement.trim(),
-            telephone: formData.telephone_whatsapp.trim(),
-            email: formData.email.trim() || null,
-            code_parrain: formData.code_parrainage.trim(),
-            offre,
-            statut: "pending",
-          });
-        } catch (err) {
-          console.error("External save error");
-        }
-      }
 
       toast({
         title: "Demande envoyée avec succès ! 🎉",
