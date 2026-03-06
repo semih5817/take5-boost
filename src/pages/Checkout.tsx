@@ -51,12 +51,16 @@ const Checkout = () => {
   const offre = searchParams.get('offre') as 'starter' | 'pro' | null;
   const periode = searchParams.get('periode') as 'monthly' | 'yearly' | null;
 
+  const refCode = searchParams.get('ref') || '';
+  const promoCode = searchParams.get('promo') || '';
+
   const [formData, setFormData] = useState({
     nom_etablissement: '',
     url_google_business: '',
     telephone_whatsapp: '',
     email: '',
-    code_parrainage: ''
+    code_parrainage: refCode,
+    code_promo: promoCode
   });
   const [wantsPlaque, setWantsPlaque] = useState(false);
   const [plaqueQuantity, setPlaqueQuantity] = useState(1);
