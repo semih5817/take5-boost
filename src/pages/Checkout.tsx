@@ -3,7 +3,7 @@ import { useSearchParams, useNavigate, Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { supabase } from "@/integrations/supabase/client";
-import { externalSupabase } from "@/integrations/supabase/external-client";
+
 import { useToast } from "@/hooks/use-toast";
 import { z } from "zod";
 import { ArrowLeft, Loader2, Plus, Minus, HelpCircle, ExternalLink } from "lucide-react";
@@ -126,21 +126,6 @@ const Checkout = () => {
         body: JSON.stringify(webhookPayload)
       });
 
-      // Save to externalSupabase users table if code_parrain present
-      if (formData.code_parrainage.trim()) {
-        try {
-          await externalSupabase.from("users").insert({
-            nom_etablissement: formData.nom_etablissement.trim(),
-            telephone: formData.telephone_whatsapp.trim(),
-            email: formData.email.trim() || null,
-            code_parrain: formData.code_parrainage.trim(),
-            offre,
-            statut: "pending",
-          });
-        } catch (err) {
-          console.error("External save error");
-        }
-      }
 
       toast({
         title: "Demande envoyée avec succès ! 🎉",

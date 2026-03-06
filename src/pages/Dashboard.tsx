@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { externalSupabase } from '@/integrations/supabase/external-client';
+
 import { 
   Users, DollarSign, TrendingUp, Wallet, Trophy, Copy, Check, 
   ExternalLink, Calendar, Clock, Award, Crown, Medal, Star
@@ -74,35 +74,8 @@ const Dashboard = () => {
     setLoading(true);
     setError(null);
 
-    // 1. Load apporteur profile
-    const { data: apporteurData, error: apporteurError } = await externalSupabase
-      .from('apporteurs')
-      .select('*')
-      .eq('code', code)
-      .maybeSingle();
-
-    if (apporteurError) {
-      setError("Erreur de chargement du profil.");
-      setLoading(false);
-      return;
-    }
-    if (!apporteurData) {
-      setError(`Aucun apporteur trouvé avec le code "${code}".`);
-      setLoading(false);
-      return;
-    }
-
-    setApporteur(apporteurData);
-
-    // 2. Load clients and commissions in parallel
-    const [clientsRes, commissionsRes] = await Promise.all([
-      externalSupabase.from('users').select('*').eq('code_parrain', code),
-      externalSupabase.from('commissions').select('*').eq('apporteur_id', apporteurData.id),
-    ]);
-
-    if (clientsRes.data) setClients(clientsRes.data);
-    if (commissionsRes.data) setCommissions(commissionsRes.data);
-
+    // Dashboard externe désactivé — les données partenaires ne sont plus disponibles ici
+    setError("Le dashboard partenaire est en cours de migration. Veuillez nous contacter pour accéder à vos données.");
     setLoading(false);
   };
 
