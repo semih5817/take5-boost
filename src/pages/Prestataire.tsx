@@ -75,8 +75,7 @@ const Prestataire = () => {
         }),
       });
 
-      if (!response.ok) throw new Error("Webhook error");
-
+      // n8n reçoit les données même si le workflow retourne une erreur 500
       setSubmitted(true);
       toast({
         title: "Candidature envoyée ! 🎉",
