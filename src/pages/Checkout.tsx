@@ -363,7 +363,7 @@ const Checkout = () => {
               {/* Code parrainage */}
               <div>
                 <label htmlFor="code_parrainage" className="block text-sm font-medium mb-2">
-                  Code parrainage / promo
+                  Code parrain
                   <span className="text-slate-500 font-normal ml-2">(facultatif)</span>
                 </label>
                 <input
@@ -373,11 +373,42 @@ const Checkout = () => {
                   value={formData.code_parrainage}
                   onChange={handleChange}
                   placeholder="Ex: SEMIH"
-                  className="w-full px-4 py-3 bg-[#0f0c29]/50 border border-slate-600 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#667eea] transition-all"
+                  readOnly={!!refCode}
+                  className={`w-full px-4 py-3 bg-[#0f0c29]/50 border border-slate-600 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#667eea] transition-all ${refCode ? 'bg-purple-500/10 border-purple-500/50' : ''}`}
                 />
-                <p className="text-slate-500 text-xs mt-1">
-                  Entrez votre code pour bénéficier d'un mois offert
-                </p>
+                {refCode && (
+                  <p className="text-purple-400 text-xs mt-1">
+                    ✅ Code parrain détecté automatiquement
+                  </p>
+                )}
+                {!refCode && (
+                  <p className="text-slate-500 text-xs mt-1">
+                    Entrez votre code pour bénéficier d'un mois offert
+                  </p>
+                )}
+              </div>
+
+              {/* Code promo */}
+              <div>
+                <label htmlFor="code_promo" className="block text-sm font-medium mb-2">
+                  Code promo
+                  <span className="text-slate-500 font-normal ml-2">(facultatif)</span>
+                </label>
+                <input
+                  type="text"
+                  id="code_promo"
+                  name="code_promo"
+                  value={formData.code_promo}
+                  onChange={handleChange}
+                  placeholder="Ex: PROMO20"
+                  readOnly={!!promoCode}
+                  className={`w-full px-4 py-3 bg-[#0f0c29]/50 border border-slate-600 rounded-xl text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#667eea] transition-all ${promoCode ? 'bg-green-500/10 border-green-500/50' : ''}`}
+                />
+                {promoCode && (
+                  <p className="text-green-400 text-xs mt-1">
+                    ✅ Code promo appliqué automatiquement
+                  </p>
+                )}
               </div>
 
               {/* Option Plaque NFC */}
