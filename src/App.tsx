@@ -58,6 +58,7 @@ const App = () => (
           <Route path="/seo-local-ia" element={<SeoLocalIa />} />
           <Route path="/reponses-ia-alertes-avis" element={<ReponsesIAAlertesAvis />} />
           <Route path="/score-de-sante" element={<ScoreDeSante />} />
+          <Route path="/prestataire" element={<Prestataire />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
