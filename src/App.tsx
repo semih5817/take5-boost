@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
+import PartenaireDashboard from "./pages/PartenaireDashboard";
 import GenerateurFlyers from "./pages/GenerateurFlyers";
 import PublicationMultiplateforme from "./pages/PublicationMultiplateforme";
 import CampagnesCiblees from "./pages/CampagnesCiblees";
