@@ -8,7 +8,7 @@ export const Testimonials = () => {
       business: "Restaurateur",
       location: "Lyon",
       rating: 5,
-      quote: "Take 5 a transformé mon restaurant. En 3 mois, je suis passé de 18 à 96 avis avec une note de 4,8/5. Les réservations ont explosé et je n'ai rien eu à faire !",
+      quote: "TakeFive a transformé mon restaurant. En 3 mois, je suis passé de 18 à 96 avis avec une note de 4,8/5. Les réservations ont explosé et je n'ai rien eu à faire !",
       avatar: "M"
     },
     {
