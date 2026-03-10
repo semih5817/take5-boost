@@ -48,7 +48,7 @@ export const WhatsAppReports = () => {
                     <span className="font-bold">1 247 (+34%)</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Score Take 5</span>
+                    <span>Score TakeFive</span>
                     <span className="font-bold text-green-500">67/100 (+5)</span>
                   </div>
                 </div>
