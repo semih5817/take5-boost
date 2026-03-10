@@ -161,8 +161,8 @@ const Checkout = () => {
   };
 
   const planDetails = {
-    starter: { name: 'Starter', price: { monthly: '19,90€', yearly: '199€' } },
-    pro: { name: 'Pro', price: { monthly: '29,90€', yearly: '299€' } }
+    starter: { name: 'Pro', price: { monthly: '19,90€', yearly: '199€' } },
+    pro: { name: 'Pro', price: { monthly: '19,90€', yearly: '199€' } }
   };
 
   if (!offre || !periode) return null;

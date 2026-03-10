@@ -17,7 +17,7 @@ export const MidCTASection = () => {
             Essayer gratuitement 1 mois
           </button>
           <p className="text-slate-400 text-sm mt-4">
-            Sans carte bancaire • Sans engagement
+            19,90€ TTC/mois • Sans carte bancaire • Sans engagement
           </p>
         </div>
       </div>
