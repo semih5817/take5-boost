@@ -587,7 +587,7 @@ export const DashboardPreview = () => {
                     </p>
                     <div className="flex gap-2">
                       <Badge className="bg-blue-500/20 text-blue-400 border border-blue-500">
-                        +20 points Take 5
+                        +20 points TakeFive
                       </Badge>
                       <Badge className="bg-pink-500/20 text-pink-400 border border-pink-500">
                         Visibilité maximale
