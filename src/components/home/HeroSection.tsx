@@ -1,73 +1,167 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Star } from "lucide-react";
+import { ArrowRight, Star, Play, MessageSquare, Bell } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
+
+const AnimatedCounter = ({ end, label, suffix = "" }: { end: number; label: string; suffix?: string }) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        let start = 0;
+        const duration = 2000;
+        const step = (timestamp: number) => {
+          if (!start) start = timestamp;
+          const progress = Math.min((timestamp - start) / duration, 1);
+          setCount(Math.floor(progress * end));
+          if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+        observer.disconnect();
+      }
+    });
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [end]);
+
+  return (
+    <div ref={ref} className="text-center">
+      <div className="text-2xl md:text-3xl font-extrabold text-foreground">{count}{suffix}</div>
+      <div className="text-sm text-muted-foreground">{label}</div>
+    </div>
+  );
+};
+
+const WhatsAppNotification = () => {
+  const [show, setShow] = useState(false);
+  const [step, setStep] = useState(0);
+
+  useEffect(() => {
+    const t1 = setTimeout(() => setShow(true), 1500);
+    const t2 = setTimeout(() => setStep(1), 3000);
+    const t3 = setTimeout(() => setStep(2), 5000);
+    const t4 = setTimeout(() => {
+      setShow(false);
+      setStep(0);
+      setTimeout(() => setShow(true), 1000);
+      setTimeout(() => setStep(1), 2500);
+      setTimeout(() => setStep(2), 4500);
+    }, 8000);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); };
+  }, []);
+
+  return (
+    <div className="relative w-full max-w-xs mx-auto lg:mx-0">
+      {/* Phone frame */}
+      <div className="bg-card rounded-[2rem] p-3 border border-border shadow-2xl">
+        <div className="bg-muted rounded-[1.5rem] overflow-hidden">
+          {/* WhatsApp header */}
+          <div className="bg-secondary/20 px-4 py-3 flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
+              <MessageSquare className="w-4 h-4 text-secondary-foreground" />
+            </div>
+            <div>
+              <p className="text-foreground text-sm font-bold">TakeFive Bot</p>
+              <p className="text-muted-foreground text-xs">En ligne</p>
+            </div>
+          </div>
+          {/* Messages */}
+          <div className="p-4 space-y-3 min-h-[220px]">
+            {show && (
+              <div className="animate-whatsapp-notif bg-primary/10 border border-primary/20 rounded-xl p-3">
+                <div className="flex items-center gap-2 mb-2">
+                  <Bell className="w-4 h-4 text-primary" />
+                  <span className="text-xs font-bold text-primary">Nouvel avis !</span>
+                </div>
+                <p className="text-foreground text-sm">⭐⭐⭐⭐⭐ "Excellent service, je recommande !"</p>
+                <p className="text-muted-foreground text-xs mt-1">— Marie L. • Il y a 2 min</p>
+              </div>
+            )}
+            {step >= 1 && (
+              <div className="animate-whatsapp-notif bg-secondary/10 border border-secondary/20 rounded-xl p-3">
+                <div className="flex items-center gap-2 mb-1">
+                  <Star className="w-4 h-4 text-secondary fill-secondary" />
+                  <span className="text-xs font-bold text-secondary">Réponse IA envoyée</span>
+                </div>
+                <p className="text-muted-foreground text-sm">"Merci Marie pour votre retour..."</p>
+              </div>
+            )}
+            {step >= 2 && (
+              <div className="animate-whatsapp-notif bg-card border border-border rounded-xl p-3">
+                <p className="text-foreground text-sm font-medium">📊 Score TakeFive : 87/100</p>
+                <p className="text-muted-foreground text-xs">+3 points cette semaine</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export const HeroSection = () => {
   const navigate = useNavigate();
-  
-  const goToTarifs = () => {
-    navigate('/tarifs');
-  };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 py-20">
-      <div className="max-w-6xl mx-auto text-center">
-        {/* Titre principal */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-6 animate-fade-in leading-tight px-4">
-          Devenez le commerce{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-            #1 sur Google
-          </span>
-          {" "}dans votre ville
-        </h1>
+    <section className="relative min-h-screen flex items-center px-4 pt-20 pb-10 overflow-hidden">
+      {/* Background glow */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] pointer-events-none" />
+      
+      <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
+        {/* Left: Content */}
+        <div className="text-center lg:text-left">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-foreground mb-6 leading-[1.1] scroll-fade-in visible" style={{ fontFamily: "'Syne', sans-serif" }}>
+            Devenez le{" "}
+            <span className="gradient-text">#1 sur Google</span>
+            {" "}dans votre ville
+          </h1>
 
-        {/* Sous-titre */}
-        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto animate-fade-in px-4">
-          TakeFive collecte et gère vos avis Google automatiquement.
-          <br />
-          <strong className="text-purple-300">IA incluse • Alertes WhatsApp • 19,90€/mois</strong>
-        </p>
+          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto lg:mx-0">
+            TakeFive collecte et gère vos avis Google automatiquement.
+            <br />
+            <strong className="text-foreground">IA incluse • Alertes WhatsApp • 19,90€/mois</strong>
+          </p>
 
-        {/* CTAs - Hiérarchie renforcée */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6 animate-fade-in">
-          <Button
-            onClick={goToTarifs}
-            size="lg"
-            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-5 px-10 text-lg transition-all transform hover:scale-105 shadow-[0_10px_40px_rgba(139,92,246,0.5)] hover:shadow-[0_10px_50px_rgba(139,92,246,0.7)]"
-          >
-            Essayer gratuitement 1 mois
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            className="border-purple-500/30 text-purple-300 hover:bg-purple-500/10 font-medium py-4 px-6 text-base transition-all"
-          >
-            Voir la démo
-          </Button>
-        </div>
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
+            <Button
+              onClick={() => navigate('/tarifs')}
+              size="lg"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-6 px-10 text-lg transition-all transform hover:scale-105 shadow-primary"
+            >
+              Essayer 1 mois gratuit
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-primary/30 text-primary hover:bg-primary/10 font-medium py-6 px-8 text-base transition-all"
+            >
+              <Play className="mr-2 w-5 h-5" />
+              Voir la démo
+            </Button>
+          </div>
 
-        {/* Micro-réassurances */}
-        <div className="flex flex-wrap gap-x-4 gap-y-2 justify-center mb-8 animate-fade-in">
-          {[
-            "✓ Sans carte bancaire",
-            "✓ Sans engagement",
-            "✓ Annulation en 1 clic",
-            "✓ Activation en 2 min"
-          ].map((item, i) => (
-            <span key={i} className="text-slate-400 text-sm">{item}</span>
-          ))}
-        </div>
-
-        {/* Badge avis */}
-        <div className="mt-4 inline-flex items-center gap-2 bg-slate-800/50 backdrop-blur border border-slate-700 rounded-lg px-4 py-2 animate-fade-in">
-          <div className="flex">
-            {[...Array(5)].map((_, i) => (
-              <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+          {/* Micro-réassurances */}
+          <div className="flex flex-wrap gap-x-4 gap-y-2 justify-center lg:justify-start mb-8">
+            {["✓ Sans carte bancaire", "✓ Sans engagement", "✓ Activation en 2 min"].map((item, i) => (
+              <span key={i} className="text-muted-foreground text-sm">{item}</span>
             ))}
           </div>
-          <span className="text-white font-semibold">4.8/5</span>
-          <span className="text-slate-400">• 200+ commerces nous font confiance</span>
+
+          {/* Animated counters */}
+          <div className="flex gap-8 justify-center lg:justify-start">
+            <AnimatedCounter end={200} label="commerces" suffix="+" />
+            <AnimatedCounter end={48} label="sur 5" suffix="/5" />
+            <AnimatedCounter end={2} label="min d'activation" suffix=" min" />
+          </div>
+        </div>
+
+        {/* Right: WhatsApp Demo */}
+        <div className="hidden lg:flex justify-center">
+          <WhatsAppNotification />
         </div>
       </div>
     </section>
