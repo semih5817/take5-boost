@@ -45,23 +45,14 @@ const subscriptionSchema = z.object({
 type SubscriptionFormData = z.infer<typeof subscriptionSchema>;
 const SECTORS = ["Restaurant", "Café / Bar", "Salon de coiffure / Beauté", "Commerce de proximité", "Artisan (plomberie, électricité, etc.)", "Salle de sport / Bien-être", "Hôtel / Hébergement", "Service B2B", "Autre"];
 const pricingOffers = [{
-  id: "starter",
-  name: "Starter",
-  badge: "⚡ POPULAIRE",
-  monthlyPrice: 19.90,
-  annualPrice: 14.93,
-  detail: "Essentiel pour petits commerces",
-  isPopular: true,
-  features: ["QR Code dynamique", "Collecte avis Google (2x/jour) + Facebook", "Réponses IA illimitées 24/7", "Alertes WhatsApp instantanées (avis négatifs en 2 min)", "Rapport mensuel sur WhatsApp", "Reporting hebdomadaire détaillé", "Plaque NFC offerte (offre annuelle)"]
-}, {
   id: "pro",
   name: "Pro",
-  badge: "🎯 RECOMMANDÉ",
-  monthlyPrice: 29.90,
-  annualPrice: 22.43,
-  detail: "Pour dominer localement",
-  isPopular: false,
-  features: ["Tout Starter +", "Radar multi-plateformes (Google, Facebook, Trustpilot, Yelp)", "Analyse concurrentielle quotidienne", "Collecte avis 4x/jour (toutes les 6h)", "SEO local optimisé avec IA", "Gamification", "Opportunités IA quotidiennes", "Support prioritaire", "Plaque NFC offerte (offre annuelle)"]
+  badge: "💎 TOUT INCLUS",
+  monthlyPrice: 19.90,
+  annualPrice: 15.92,
+  detail: "Tout ce qu'il faut pour dominer localement",
+  isPopular: true,
+  features: ["QR Code dynamique", "Collecte avis Google (4x/jour) + Facebook", "Réponses IA illimitées 24/7", "Alertes WhatsApp instantanées (avis négatifs en 2 min)", "Rapport mensuel sur WhatsApp", "Reporting hebdomadaire détaillé", "Radar multi-plateformes (Google, Facebook, Trustpilot, Yelp)", "Analyse concurrentielle quotidienne", "SEO local optimisé avec IA", "Gamification", "Opportunités IA quotidiennes", "Support prioritaire", "Plaque NFC offerte (offre annuelle)"]
 }];
 export const SubscriptionForm = () => {
   const {
