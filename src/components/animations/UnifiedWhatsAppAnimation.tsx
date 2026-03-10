@@ -479,7 +479,7 @@ const UnifiedWhatsAppAnimation = () => {
             <div className="wa-back">‹</div>
             <div className="wa-avatar">T5</div>
             <div className="wa-header-info">
-              <div className="wa-name">Take 5 Assistant</div>
+              <div className="wa-name">TakeFive Assistant</div>
               <div className="wa-status">en ligne</div>
             </div>
           </div>
