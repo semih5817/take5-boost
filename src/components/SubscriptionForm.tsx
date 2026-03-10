@@ -158,7 +158,7 @@ export const SubscriptionForm = () => {
           <div className="relative z-10">
             <div className="text-4xl mb-3">🎁</div>
             <h3 className="text-2xl font-bold text-white mb-2">CODE PROMO : 1 MOIS GRATUIT</h3>
-            <p className="text-white/90 mb-4">Utilisez ce code sur l'offre Starter pour tester gratuitement</p>
+            <p className="text-white/90 mb-4">Utilisez ce code pour tester gratuitement pendant 1 mois</p>
             <div className="inline-flex items-center gap-3 bg-white/20 backdrop-blur-lg px-6 py-3 rounded-xl">
               <span className="text-xl font-bold text-white tracking-wider">SEMIH</span>
               <Button onClick={copyPromoCode} size="sm" type="button" className={`${copiedCode ? 'bg-green-500 hover:bg-green-600' : 'bg-white text-primary hover:bg-white/90'} transition-all`}>
