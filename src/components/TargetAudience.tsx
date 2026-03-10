@@ -78,7 +78,7 @@ export const TargetAudience = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="gradient-text">Quels commerces locaux</span>
             <br />
-            utilisent Take 5 ?
+            utilisent TakeFive ?
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Des résultats concrets pour tous les types d'activités locales

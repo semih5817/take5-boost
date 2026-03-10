@@ -105,7 +105,7 @@ export const TestimonialsSection = () => {
 
         <div className="bg-gradient-to-r from-slate-800 to-slate-900 border border-slate-700 rounded-2xl p-12 text-center">
           <p className="text-5xl md:text-6xl font-bold text-transparent bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text mb-4">
-            "En 2 mois, je suis passé de 15 avis à 87 avis, et ma note est montée de 3,9 à 4,7. Take 5 a complètement transformé ma présence en ligne !"
+            "En 2 mois, je suis passé de 15 avis à 87 avis, et ma note est montée de 3,9 à 4,7. TakeFive a complètement transformé ma présence en ligne !"
           </p>
           <div className="flex items-center justify-center gap-4 mt-8">
             <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-3xl shadow-xl">

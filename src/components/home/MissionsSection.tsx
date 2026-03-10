@@ -51,7 +51,7 @@ export const MissionsSection = () => {
                 Score de santé 0-100
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-                Take 5 calcule automatiquement la santé de votre présence locale : 
+                TakeFive calcule automatiquement la santé de votre présence locale : 
                 photos récentes, posts actifs, horaires à jour, taux de réponse aux avis.
               </p>
             </div>

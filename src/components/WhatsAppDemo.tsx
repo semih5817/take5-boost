@@ -29,7 +29,7 @@ export const WhatsAppDemo = () => {
                     <img src={take5Logo} alt="TakeFive" className="w-full h-full object-contain" />
                   </div>
                   <div>
-                    <p className="font-semibold">Take 5</p>
+                    <p className="font-semibold">TakeFive</p>
                     <p className="text-xs text-white/60">en ligne</p>
                   </div>
                 </div>

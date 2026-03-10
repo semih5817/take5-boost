@@ -39,7 +39,7 @@ export const FeaturesSection = () => {
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            <span className="gradient-text">Pourquoi choisir Take 5 ?</span>
+            <span className="gradient-text">Pourquoi choisir TakeFive ?</span>
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
             Une solution complète qui transforme votre présence locale en machine à clients
