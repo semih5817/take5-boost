@@ -134,7 +134,7 @@ export const DashboardPreview = () => {
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <span className="text-4xl font-bold text-white">{score}</span>
-          <span className="text-xs text-slate-400">Score Take 5</span>
+          <span className="text-xs text-slate-400">Score TakeFive</span>
         </div>
       </div>
     );
