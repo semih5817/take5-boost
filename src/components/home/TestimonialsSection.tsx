@@ -15,7 +15,7 @@ export const TestimonialsSection = () => {
       name: "Sophie Martin",
       business: "Coiffeuse, Paris",
       rating: 5,
-      text: "Avant Take 5, je répondais manuellement aux avis le soir. Maintenant tout est automatique et mes clientes adorent la plaque NFC à l'accueil. Je recommande à 100% !",
+      text: "Avant TakeFive, je répondais manuellement aux avis le soir. Maintenant tout est automatique et mes clientes adorent la plaque NFC à l'accueil. Je recommande à 100% !",
       highlight: false,
       image: "💇"
     },
