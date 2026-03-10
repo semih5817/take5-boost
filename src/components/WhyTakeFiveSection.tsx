@@ -46,7 +46,7 @@ const WhyTakeFiveSection = () => {
       bgGradient: "from-purple-900/20 to-purple-800/20",
       borderColor: "border-purple-600",
       title: "Économisez du temps",
-      description: "Plus besoin de gérer manuellement votre fiche Google. Concentrez-vous sur votre cœur de métier pendant que Take 5 s'occupe du reste.",
+      description: "Plus besoin de gérer manuellement votre fiche Google. Concentrez-vous sur votre cœur de métier pendant que TakeFive s'occupe du reste.",
       highlight: false
     },
     {
