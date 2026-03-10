@@ -1,16 +1,14 @@
-import { Star } from "lucide-react";
+import takefiveLogo from "@/assets/takefive-logo.png";
 
 export const Footer = () => {
   return (
-    <footer className="bg-background border-t border-border py-12 px-4 mb-16 lg:mb-0">
+    <footer className="bg-background border-t border-border py-12 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                <Star className="w-5 h-5 text-primary-foreground fill-primary-foreground" />
-              </div>
-              <span className="text-xl font-extrabold text-foreground" style={{ fontFamily: "'Syne', sans-serif" }}>TakeFive</span>
+              <img src={takefiveLogo} alt="TakeFive" className="w-8 h-8 rounded-lg object-cover" />
+              <span className="text-xl font-bold text-foreground" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>TakeFive</span>
             </div>
             <p className="text-muted-foreground text-sm mb-4">
               La plateforme #1 pour gérer vos avis Google avec l'IA

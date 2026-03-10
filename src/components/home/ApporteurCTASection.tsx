@@ -45,7 +45,7 @@ export const ApporteurCTASection = () => {
               <span className="text-secondary text-sm font-bold">Programme Apporteur</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground mb-4" style={{ fontFamily: "'Syne', sans-serif" }}>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
               Devenez Apporteur{" "}
               <span className="gradient-text">TakeFive</span>
             </h2>
