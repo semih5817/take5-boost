@@ -26,7 +26,7 @@ export const WhatsAppReports = () => {
                   <MessageSquare className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-bold">Take 5 - Rapport Hebdo</p>
+                  <p className="font-bold">TakeFive - Rapport Hebdo</p>
                   <p className="text-xs text-muted-foreground">Aujourd'hui, 09:00</p>
                 </div>
               </div>
@@ -48,7 +48,7 @@ export const WhatsAppReports = () => {
                     <span className="font-bold">1 247 (+34%)</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Score Take 5</span>
+                    <span>Score TakeFive</span>
                     <span className="font-bold text-green-500">67/100 (+5)</span>
                   </div>
                 </div>
@@ -91,7 +91,7 @@ export const WhatsAppReports = () => {
                     <li>• Avis collectés vs semaine dernière</li>
                     <li>• Évolution de votre note moyenne</li>
                     <li>• Statistiques de visibilité</li>
-                    <li>• Score Take 5 et progression</li>
+                    <li>• Score TakeFive et progression</li>
                     <li>• 3 actions prioritaires pour la semaine</li>
                   </ul>
                 </div>

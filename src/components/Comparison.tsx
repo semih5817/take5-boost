@@ -43,7 +43,7 @@ export const Comparison = () => {
               <div className="w-12 md:w-16 h-12 md:h-16 rounded-full bg-primary mx-auto mb-3 md:mb-4 flex items-center justify-center shadow-glow animate-pulse">
                 <ArrowRight className="w-6 md:w-8 h-6 md:h-8 text-white" />
               </div>
-              <p className="font-bold text-base md:text-lg text-primary">Avec Take 5</p>
+              <p className="font-bold text-base md:text-lg text-primary">Avec TakeFive</p>
             </div>
           </div>
 

@@ -134,7 +134,7 @@ export const DashboardPreview = () => {
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <span className="text-4xl font-bold text-white">{score}</span>
-          <span className="text-xs text-slate-400">Score Take 5</span>
+          <span className="text-xs text-slate-400">Score TakeFive</span>
         </div>
       </div>
     );
@@ -300,7 +300,7 @@ export const DashboardPreview = () => {
               />
               <StatCard 
                 icon={Target} 
-                title="Score Take 5" 
+                title="Score TakeFive" 
                 value={userData.score} 
                 subtitle={`Niveau ${userData.level}`} 
               />
@@ -537,7 +537,7 @@ export const DashboardPreview = () => {
                     </p>
                     <div className="flex gap-2">
                       <Badge className="bg-yellow-500/20 text-yellow-400 border border-yellow-500">
-                        +15 points Take 5
+                        +15 points TakeFive
                       </Badge>
                       <Badge className="bg-purple-500/20 text-purple-400 border border-purple-500">
                         Badge débloqué: Excellence
@@ -562,7 +562,7 @@ export const DashboardPreview = () => {
                     </p>
                     <div className="flex gap-2">
                       <Badge className="bg-green-500/20 text-green-400 border border-green-500">
-                        +25 points Take 5
+                        +25 points TakeFive
                       </Badge>
                       <Badge className="bg-orange-500/20 text-orange-400 border border-orange-500">
                         Série de 12 jours 🔥
@@ -587,7 +587,7 @@ export const DashboardPreview = () => {
                     </p>
                     <div className="flex gap-2">
                       <Badge className="bg-blue-500/20 text-blue-400 border border-blue-500">
-                        +20 points Take 5
+                        +20 points TakeFive
                       </Badge>
                       <Badge className="bg-pink-500/20 text-pink-400 border border-pink-500">
                         Visibilité maximale
@@ -612,7 +612,7 @@ export const DashboardPreview = () => {
                     </p>
                     <div className="flex gap-2">
                       <Badge className="bg-purple-500/20 text-purple-400 border border-purple-500">
-                        +30 points Take 5
+                        +30 points TakeFive
                       </Badge>
                       <Badge className="bg-red-500/20 text-red-400 border border-red-500">
                         Engagement maximum

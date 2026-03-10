@@ -7,7 +7,7 @@ export const TestimonialsSection = () => {
       name: "Marc Dubois",
       business: "Restaurateur, Lyon",
       rating: 5,
-      text: "Take 5 a transformé mon restaurant. En 3 mois, je suis passé de 18 à 96 avis avec une note de 4,8/5. Les réservations ont explosé et je n'ai rien eu à faire !",
+      text: "TakeFive a transformé mon restaurant. En 3 mois, je suis passé de 18 à 96 avis avec une note de 4,8/5. Les réservations ont explosé et je n'ai rien eu à faire !",
       highlight: false,
       image: "🍽️"
     },
@@ -15,7 +15,7 @@ export const TestimonialsSection = () => {
       name: "Sophie Martin",
       business: "Coiffeuse, Paris",
       rating: 5,
-      text: "Avant Take 5, je répondais manuellement aux avis le soir. Maintenant tout est automatique et mes clientes adorent la plaque NFC à l'accueil. Je recommande à 100% !",
+      text: "Avant TakeFive, je répondais manuellement aux avis le soir. Maintenant tout est automatique et mes clientes adorent la plaque NFC à l'accueil. Je recommande à 100% !",
       highlight: false,
       image: "💇"
     },
@@ -31,7 +31,7 @@ export const TestimonialsSection = () => {
       name: "Julie Bernard",
       business: "Propriétaire Salon de beauté, Toulouse",
       rating: 5,
-      text: "La notification instantanée sur WhatsApp m'a permis de contacter une cliente mécontente en 10 minutes, elle a modifié son avis 1★ en 5★. Sans Take 5, je n'aurais jamais su.",
+      text: "La notification instantanée sur WhatsApp m'a permis de contacter une cliente mécontente en 10 minutes, elle a modifié son avis 1★ en 5★. Sans TakeFive, je n'aurais jamais su.",
       highlight: false,
       image: "💅",
       badge: "NOUVEAU"
@@ -105,7 +105,7 @@ export const TestimonialsSection = () => {
 
         <div className="bg-gradient-to-r from-slate-800 to-slate-900 border border-slate-700 rounded-2xl p-12 text-center">
           <p className="text-5xl md:text-6xl font-bold text-transparent bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text mb-4">
-            "En 2 mois, je suis passé de 15 avis à 87 avis, et ma note est montée de 3,9 à 4,7. Take 5 a complètement transformé ma présence en ligne !"
+            "En 2 mois, je suis passé de 15 avis à 87 avis, et ma note est montée de 3,9 à 4,7. TakeFive a complètement transformé ma présence en ligne !"
           </p>
           <div className="flex items-center justify-center gap-4 mt-8">
             <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-3xl shadow-xl">

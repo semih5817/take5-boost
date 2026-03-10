@@ -14,7 +14,7 @@ const UnifiedWhatsAppAnimation = () => {
         { type: 'text', text: '📊 Hey ! Ton rapport du mois est prêt', delay: 500 },
         { type: 'text', text: '👁️ Vues : 2847 (+42%)\n💬 Avis : 42 (+14)\n⭐ Note : 4.8/5', delay: 1000 },
         { type: 'text', text: '📈 Évolution : +45% ce mois\n🔥 Tu cartonne !', delay: 1000 },
-        { type: 'text', text: '🎯 Score Take 5 : 85/100\nContinue comme ça ! 💪', delay: 1000 }
+        { type: 'text', text: '🎯 Score TakeFive : 85/100\nContinue comme ça ! 💪', delay: 1000 }
       ]
     },
     {
@@ -76,7 +76,7 @@ const UnifiedWhatsAppAnimation = () => {
 
   useEffect(() => {
     let messageIndex = 0;
-    let timeoutIds: NodeJS.Timeout[] = [];
+    let timeoutIds: ReturnType<typeof setTimeout>[] = [];
     const currentMessages = sequences[currentSequence].messages;
 
     // Show notification at the start of each sequence
@@ -466,7 +466,7 @@ const UnifiedWhatsAppAnimation = () => {
               <div className="notif-app">WhatsApp</div>
               <div className="notif-time">maintenant</div>
             </div>
-            <div className="notif-title">Take 5 Assistant</div>
+            <div className="notif-title">TakeFive Assistant</div>
             <div className="notif-message">Nouveau rapport disponible</div>
           </div>
 
@@ -479,7 +479,7 @@ const UnifiedWhatsAppAnimation = () => {
             <div className="wa-back">‹</div>
             <div className="wa-avatar">T5</div>
             <div className="wa-header-info">
-              <div className="wa-name">Take 5 Assistant</div>
+              <div className="wa-name">TakeFive Assistant</div>
               <div className="wa-status">en ligne</div>
             </div>
           </div>

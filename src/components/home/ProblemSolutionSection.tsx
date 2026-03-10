@@ -44,7 +44,7 @@ export const ProblemSolutionSection = () => {
               <div className="w-16 h-16 rounded-full bg-blue-600 mx-auto mb-4 flex items-center justify-center shadow-lg">
                 <ArrowRight className="w-8 h-8 text-white" />
               </div>
-              <p className="font-bold text-lg text-white">Avec Take 5</p>
+              <p className="font-bold text-lg text-white">Avec TakeFive</p>
             </div>
           </div>
 
