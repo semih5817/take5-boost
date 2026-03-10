@@ -72,7 +72,7 @@ export const AlertSection = () => {
               <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
                 <Check className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-white">Avec Take 5</h3>
+              <h3 className="text-2xl font-bold text-white">Avec TakeFive</h3>
             </div>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
