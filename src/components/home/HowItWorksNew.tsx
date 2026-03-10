@@ -39,7 +39,7 @@ export const HowItWorksNew = () => {
     <section id="fonctionnalites" className="py-20 sm:py-28 px-4" ref={ref}>
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground mb-4" style={{ fontFamily: "'Syne', sans-serif" }}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
             Comment ça marche ?
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

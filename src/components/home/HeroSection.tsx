@@ -112,7 +112,7 @@ export const HeroSection = () => {
       <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
         {/* Left: Content */}
         <div className="text-center lg:text-left">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-foreground mb-6 leading-[1.1] scroll-fade-in visible" style={{ fontFamily: "'Syne', sans-serif" }}>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-[1.1] scroll-fade-in visible" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
             Devenez le{" "}
             <span className="gradient-text">#1 sur Google</span>
             {" "}dans votre ville

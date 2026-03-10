@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
-import { Star, Menu, Zap, Users, CreditCard } from "lucide-react";
+import { Menu, Zap, Users, CreditCard } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import takefiveLogo from "@/assets/takefive-logo.png";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -52,10 +53,8 @@ export const Header = () => {
 
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2" onClick={closeMenu}>
-              <div className="w-8 md:w-9 h-8 md:h-9 rounded-lg bg-primary flex items-center justify-center">
-                <Star className="w-5 md:w-5 h-5 md:h-5 text-primary-foreground fill-primary-foreground" />
-              </div>
-              <span className="text-lg md:text-xl font-extrabold text-foreground tracking-tight" style={{ fontFamily: "'Syne', sans-serif" }}>
+              <img src={takefiveLogo} alt="TakeFive" className="w-8 md:w-9 h-8 md:h-9 rounded-lg object-cover" />
+              <span className="text-lg md:text-xl font-bold text-foreground tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                 TakeFive
               </span>
             </Link>
@@ -115,10 +114,8 @@ export const Header = () => {
         <div className="pt-20 pb-8">
           <div className="px-6 pb-6 mb-6 border-b border-border">
             <Link to="/" className="flex items-center gap-3" onClick={closeMenu}>
-              <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-                <Star className="w-6 h-6 text-primary-foreground fill-primary-foreground" />
-              </div>
-              <span className="text-2xl font-extrabold text-foreground" style={{ fontFamily: "'Syne', sans-serif" }}>TakeFive</span>
+              <img src={takefiveLogo} alt="TakeFive" className="w-10 h-10 rounded-lg object-cover" />
+              <span className="text-2xl font-bold text-foreground" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>TakeFive</span>
             </Link>
           </div>
 
@@ -174,16 +171,6 @@ export const Header = () => {
           </div>
         </div>
       </nav>
-
-      {/* Mobile Sticky Bottom Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 lg:hidden bg-background/95 backdrop-blur-xl border-t border-border p-3">
-        <button
-          onClick={goToTarifs}
-          className="w-full py-3.5 bg-primary text-primary-foreground font-bold rounded-xl text-base hover:bg-primary/90 transition-all shadow-primary"
-        >
-          Essayer gratuitement
-        </button>
-      </div>
     </>
   );
 };

@@ -10,7 +10,7 @@ export const Footer = () => {
               <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
                 <Star className="w-5 h-5 text-primary-foreground fill-primary-foreground" />
               </div>
-              <span className="text-xl font-extrabold text-foreground" style={{ fontFamily: "'Syne', sans-serif" }}>TakeFive</span>
+              <span className="text-xl font-bold text-foreground" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>TakeFive</span>
             </div>
             <p className="text-muted-foreground text-sm mb-4">
               La plateforme #1 pour gérer vos avis Google avec l'IA
