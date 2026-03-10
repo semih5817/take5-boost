@@ -466,7 +466,7 @@ const UnifiedWhatsAppAnimation = () => {
               <div className="notif-app">WhatsApp</div>
               <div className="notif-time">maintenant</div>
             </div>
-            <div className="notif-title">Take 5 Assistant</div>
+            <div className="notif-title">TakeFive Assistant</div>
             <div className="notif-message">Nouveau rapport disponible</div>
           </div>
 
