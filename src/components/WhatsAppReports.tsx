@@ -26,7 +26,7 @@ export const WhatsAppReports = () => {
                   <MessageSquare className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-bold">Take 5 - Rapport Hebdo</p>
+                  <p className="font-bold">TakeFive - Rapport Hebdo</p>
                   <p className="text-xs text-muted-foreground">Aujourd'hui, 09:00</p>
                 </div>
               </div>
