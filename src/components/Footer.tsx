@@ -1,4 +1,4 @@
-import { Star } from "lucide-react";
+import takefiveLogo from "@/assets/takefive-logo.png";
 
 export const Footer = () => {
   return (
