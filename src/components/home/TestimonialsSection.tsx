@@ -31,7 +31,7 @@ export const TestimonialsSection = () => {
       name: "Julie Bernard",
       business: "Propriétaire Salon de beauté, Toulouse",
       rating: 5,
-      text: "La notification instantanée sur WhatsApp m'a permis de contacter une cliente mécontente en 10 minutes, elle a modifié son avis 1★ en 5★. Sans Take 5, je n'aurais jamais su.",
+      text: "La notification instantanée sur WhatsApp m'a permis de contacter une cliente mécontente en 10 minutes, elle a modifié son avis 1★ en 5★. Sans TakeFive, je n'aurais jamais su.",
       highlight: false,
       image: "💅",
       badge: "NOUVEAU"
