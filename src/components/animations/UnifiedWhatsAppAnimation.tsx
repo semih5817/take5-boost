@@ -76,7 +76,7 @@ const UnifiedWhatsAppAnimation = () => {
 
   useEffect(() => {
     let messageIndex = 0;
-    let timeoutIds: NodeJS.Timeout[] = [];
+    let timeoutIds: ReturnType<typeof setTimeout>[] = [];
     const currentMessages = sequences[currentSequence].messages;
 
     // Show notification at the start of each sequence
