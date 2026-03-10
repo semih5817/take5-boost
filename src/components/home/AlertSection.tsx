@@ -36,7 +36,7 @@ export const AlertSection = () => {
               <div className="w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center">
                 <X className="w-6 h-6 text-red-400" />
               </div>
-              <h3 className="text-2xl font-bold text-white">Sans Take 5</h3>
+              <h3 className="text-2xl font-bold text-white">Sans TakeFive</h3>
             </div>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
