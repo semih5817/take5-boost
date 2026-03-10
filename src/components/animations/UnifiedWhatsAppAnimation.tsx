@@ -14,7 +14,7 @@ const UnifiedWhatsAppAnimation = () => {
         { type: 'text', text: '📊 Hey ! Ton rapport du mois est prêt', delay: 500 },
         { type: 'text', text: '👁️ Vues : 2847 (+42%)\n💬 Avis : 42 (+14)\n⭐ Note : 4.8/5', delay: 1000 },
         { type: 'text', text: '📈 Évolution : +45% ce mois\n🔥 Tu cartonne !', delay: 1000 },
-        { type: 'text', text: '🎯 Score Take 5 : 85/100\nContinue comme ça ! 💪', delay: 1000 }
+        { type: 'text', text: '🎯 Score TakeFive : 85/100\nContinue comme ça ! 💪', delay: 1000 }
       ]
     },
     {
