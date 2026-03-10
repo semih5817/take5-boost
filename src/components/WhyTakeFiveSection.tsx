@@ -68,7 +68,7 @@ const WhyTakeFiveSection = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Pourquoi choisir{" "}
             <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">
-              Take 5
+              TakeFive
             </span>
             {" "}?
           </h2>

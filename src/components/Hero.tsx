@@ -24,7 +24,7 @@ export const Hero = () => {
           </h1>
           
           <p className="text-base md:text-xl text-muted-foreground mb-6 md:mb-8 max-w-2xl mx-auto">
-            Take 5 collecte et gère vos avis Google automatiquement. IA incluse.
+            TakeFive collecte et gère vos avis Google automatiquement. IA incluse.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center mb-8 md:mb-12">

@@ -16,7 +16,7 @@ export const Testimonials = () => {
       business: "Coiffeuse",
       location: "Paris",
       rating: 5,
-      quote: "Avant Take 5, je répondais manuellement aux avis le soir. Maintenant tout est automatique et mes clientes adorent la plaque NFC à l'accueil. Je recommande à 100% !",
+      quote: "Avant TakeFive, je répondais manuellement aux avis le soir. Maintenant tout est automatique et mes clientes adorent la plaque NFC à l'accueil. Je recommande à 100% !",
       avatar: "S"
     },
     {
