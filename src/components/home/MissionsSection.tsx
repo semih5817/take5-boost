@@ -29,7 +29,7 @@ export const MissionsSection = () => {
             <span className="gradient-text">🎮 Score de Santé Locale : Restez Toujours Visible</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Take 5 surveille votre présence en ligne et vous envoie des missions intelligentes 
+            TakeFive surveille votre présence en ligne et vous envoie des missions intelligentes 
             sur WhatsApp pour maintenir vos fiches Google et réseaux sociaux toujours actifs.
           </p>
         </div>
