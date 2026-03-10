@@ -20,7 +20,7 @@ export const CustomNFCSection = () => {
             <div className="relative overflow-hidden rounded-2xl border-2 border-purple-500/30 shadow-2xl">
               <img 
                 src={plaquePersonnalisee} 
-                alt="Plaque NFC TakeFive personnalisée"
+                alt="Plaque NFC Take 5 personnalisée"
                 className="w-full h-auto transform group-hover:scale-105 transition-transform duration-500"
               />
             </div>

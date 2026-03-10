@@ -62,7 +62,7 @@ export const GamificationPhone = () => {
 
   useEffect(() => {
     let currentIndex = 0;
-    let timeoutId: ReturnType<typeof setTimeout>;
+    let timeoutId: NodeJS.Timeout;
     const interval = 2000;
 
     const addNotification = () => {

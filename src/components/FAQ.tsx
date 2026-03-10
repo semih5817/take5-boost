@@ -44,7 +44,7 @@ export const FAQ = () => {
             <span className="gradient-text">Questions fréquentes</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            Tout ce que vous devez savoir sur TakeFive
+            Tout ce que vous devez savoir sur Take 5
           </p>
         </div>
 

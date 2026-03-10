@@ -26,10 +26,10 @@ export const WhatsAppDemo = () => {
               <div className="bg-[#1F2C34] text-white p-4 rounded-xl mb-4">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 rounded-full bg-white p-2">
-                    <img src={take5Logo} alt="TakeFive" className="w-full h-full object-contain" />
+                    <img src={take5Logo} alt="Take 5" className="w-full h-full object-contain" />
                   </div>
                   <div>
-                    <p className="font-semibold">TakeFive</p>
+                    <p className="font-semibold">Take 5</p>
                     <p className="text-xs text-white/60">en ligne</p>
                   </div>
                 </div>

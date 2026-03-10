@@ -68,7 +68,7 @@ export const RadarMultiPlatformPhone = () => {
 
   useEffect(() => {
     let currentIndex = 0;
-    let timeoutId: ReturnType<typeof setTimeout>;
+    let timeoutId: NodeJS.Timeout;
 
     const runScenario = () => {
       if (currentIndex >= scenarios.length) {

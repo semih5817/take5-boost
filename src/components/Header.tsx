@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { Menu, Zap, Users, CreditCard } from "lucide-react";
+import { Star, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import takefiveLogo from "@/assets/takefive-logo.png";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -32,64 +31,38 @@ export const Header = () => {
     { title: "Projets à venir", href: "/#projets-avenir" },
     { title: "À propos", href: "/a-propos" },
     { title: "Tarifs", href: "/tarifs" },
-    { title: "Devenir apporteur", href: "/prestataire" },
+    { title: "Devenir partenaire", href: "/prestataire" },
   ];
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b border-primary/10">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-xl border-b border-primary/20">
         <div className="container mx-auto px-4 md:px-6 max-w-7xl">
           <div className="flex items-center justify-between h-14 md:h-16">
-            {/* Burger Icon */}
+            {/* Burger Icon - Gauche */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="w-10 h-10 flex flex-col justify-center items-center gap-1.5 z-[101] group lg:hidden"
+              className="w-10 h-10 flex flex-col justify-center items-center gap-1.5 z-[101] group"
               aria-label="Menu"
             >
-              <span className={`w-6 h-0.5 bg-primary rounded-full transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-              <span className={`w-6 h-0.5 bg-primary rounded-full transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
-              <span className={`w-6 h-0.5 bg-primary rounded-full transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+              <span className={`w-6 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+              <span className={`w-6 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
+              <span className={`w-6 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
             </button>
 
-            {/* Logo */}
-            <Link to="/" className="flex items-center gap-2" onClick={closeMenu}>
-              <img src={takefiveLogo} alt="TakeFive" className="w-8 md:w-9 h-8 md:h-9 rounded-lg object-cover" />
-              <span className="text-lg md:text-xl font-bold text-foreground tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                TakeFive
-              </span>
+            {/* Logo - Centre */}
+            <Link to="/" className="flex items-center gap-2 absolute left-1/2 -translate-x-1/2" onClick={closeMenu}>
+              <div className="w-8 md:w-10 h-8 md:h-10 rounded-xl bg-[#4361ee] flex items-center justify-center">
+                <Star className="w-5 md:w-6 h-5 md:h-6 text-white fill-white" />
+              </div>
+              <span className="text-lg md:text-2xl font-bold text-white">Take 5</span>
             </Link>
 
-            {/* Desktop Nav Buttons */}
-            <div className="hidden lg:flex items-center gap-3">
-              <Button 
-                variant="ghost"
-                onClick={() => { document.getElementById('fonctionnalites')?.scrollIntoView({ behavior: 'smooth' }); }}
-                className="text-muted-foreground hover:text-foreground font-medium"
-              >
-                <Zap className="w-4 h-4 mr-1.5" />
-                Fonctionnalités
-              </Button>
-              <Button 
-                onClick={() => navigate('/prestataire')}
-                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold px-5"
-              >
-                <Users className="w-4 h-4 mr-1.5" />
-                Devenir Apporteur
-              </Button>
-              <Button 
-                onClick={goToTarifs}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold px-5"
-              >
-                <CreditCard className="w-4 h-4 mr-1.5" />
-                S'abonner
-              </Button>
-            </div>
-
-            {/* Mobile S'abonner */}
+            {/* Bouton S'abonner - Droite */}
             <Button 
               onClick={goToTarifs}
-              size="sm"
-              className="lg:hidden bg-primary hover:bg-primary/90 text-primary-foreground text-xs px-4 rounded-lg font-bold"
+              size="default"
+              className="bg-gradient-to-r from-[#4361ee] to-purple-600 hover:from-[#3651de] hover:to-purple-700 transition-all duration-300 hover:-translate-y-1 text-xs md:text-sm px-3 md:px-6 rounded-xl"
             >
               S'abonner
             </Button>
@@ -100,30 +73,34 @@ export const Header = () => {
       {/* Overlay */}
       {menuOpen && (
         <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
           onClick={closeMenu}
         />
       )}
 
-      {/* Mobile Menu */}
+      {/* Menu Déroulant */}
       <nav 
-        className={`fixed top-0 left-0 w-[85%] max-w-[400px] h-screen bg-background border-r border-border z-50 transition-transform duration-300 overflow-y-auto lg:hidden ${
+        className={`fixed top-0 left-0 w-[85%] max-w-[400px] h-screen bg-gradient-to-b from-[#0f172a] to-[#1e1b4b] border-r border-primary/30 z-50 transition-transform duration-300 overflow-y-auto ${
           menuOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
         <div className="pt-20 pb-8">
-          <div className="px-6 pb-6 mb-6 border-b border-border">
+          {/* Logo dans le menu */}
+          <div className="px-6 pb-6 mb-6 border-b border-primary/20">
             <Link to="/" className="flex items-center gap-3" onClick={closeMenu}>
-              <img src={takefiveLogo} alt="TakeFive" className="w-10 h-10 rounded-lg object-cover" />
-              <span className="text-2xl font-bold text-foreground" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>TakeFive</span>
+              <div className="w-10 h-10 rounded-xl bg-[#4361ee] flex items-center justify-center">
+                <Star className="w-6 h-6 text-white fill-white" />
+              </div>
+              <span className="text-2xl font-bold text-white">Take 5</span>
             </Link>
           </div>
 
+          {/* Menu Items */}
           {menuItems.map((item, index) => (
             <div key={index}>
               {item.submenu ? (
                 <div>
-                  <div className="px-6 py-2 text-primary text-xs font-bold uppercase tracking-wider">
+                  <div className="px-6 py-2 text-purple-500 text-xs font-bold uppercase tracking-wider">
                     {item.title}
                   </div>
                   <div>
@@ -132,10 +109,10 @@ export const Header = () => {
                         key={subIndex}
                         to={subItem.href}
                         onClick={closeMenu}
-                        className={`block px-6 pl-10 py-3 text-sm hover:text-foreground hover:bg-primary/10 hover:pl-12 transition-all ${
+                        className={`block px-6 pl-10 py-3 text-sm hover:text-white hover:bg-primary/10 hover:pl-12 transition-all ${
                           location.pathname === subItem.href 
-                            ? 'text-foreground border-l-2 border-primary bg-primary/5' 
-                            : 'text-muted-foreground'
+                            ? 'text-white border-l-2 border-purple-500 bg-primary/5' 
+                            : 'text-slate-400'
                         }`}
                       >
                         {subItem.title}
@@ -147,7 +124,7 @@ export const Header = () => {
                 <a
                   href={item.href}
                   onClick={closeMenu}
-                  className="block px-6 py-4 text-muted-foreground font-medium hover:text-foreground hover:bg-primary/10 hover:pl-8 transition-all border-b border-border"
+                  className="block px-6 py-4 text-slate-300 font-medium hover:text-white hover:bg-primary/10 hover:pl-8 transition-all border-b border-primary/10"
                 >
                   {item.title}
                 </a>
@@ -155,16 +132,11 @@ export const Header = () => {
             </div>
           ))}
 
-          <div className="px-6 pt-6 space-y-3">
-            <button
-              onClick={() => { navigate('/prestataire'); closeMenu(); }}
-              className="w-full py-3 bg-secondary rounded-lg text-secondary-foreground font-bold hover:bg-secondary/90 transition-all"
-            >
-              Devenir Apporteur
-            </button>
+          {/* Bouton S'abonner dans le menu */}
+          <div className="px-6 pt-6">
             <button
               onClick={goToTarifs}
-              className="w-full py-3 bg-primary rounded-lg text-primary-foreground font-bold hover:bg-primary/90 transition-all"
+              className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg text-white font-semibold hover:from-purple-700 hover:to-pink-700 transition-all hover:-translate-y-1 shadow-lg"
             >
               S'abonner
             </button>

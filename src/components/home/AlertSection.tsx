@@ -24,7 +24,7 @@ export const AlertSection = () => {
             <span className="text-red-400">ruiner votre réputation</span>
           </h2>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-            Avec TakeFive, soyez alerté instantanément et répondez en 2 minutes grâce à l'IA
+            Avec Take 5, soyez alerté instantanément et répondez en 2 minutes grâce à l'IA
           </p>
         </div>
 
@@ -36,7 +36,7 @@ export const AlertSection = () => {
               <div className="w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center">
                 <X className="w-6 h-6 text-red-400" />
               </div>
-              <h3 className="text-2xl font-bold text-white">Sans TakeFive</h3>
+              <h3 className="text-2xl font-bold text-white">Sans Take 5</h3>
             </div>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
@@ -72,7 +72,7 @@ export const AlertSection = () => {
               <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
                 <Check className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-white">Avec TakeFive</h3>
+              <h3 className="text-2xl font-bold text-white">Avec Take 5</h3>
             </div>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">

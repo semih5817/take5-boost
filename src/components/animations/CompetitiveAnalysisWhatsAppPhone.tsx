@@ -25,7 +25,7 @@ export const CompetitiveAnalysisWhatsAppPhone = () => {
 
   useEffect(() => {
     let currentIndex = 0;
-    let timeoutId: ReturnType<typeof setTimeout>;
+    let timeoutId: NodeJS.Timeout;
 
     const showNextMessage = () => {
       if (currentIndex >= messages.length) {
