@@ -24,7 +24,7 @@ export const AlertSection = () => {
             <span className="text-red-400">ruiner votre réputation</span>
           </h2>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-            Avec Take 5, soyez alerté instantanément et répondez en 2 minutes grâce à l'IA
+            Avec TakeFive, soyez alerté instantanément et répondez en 2 minutes grâce à l'IA
           </p>
         </div>
 
