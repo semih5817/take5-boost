@@ -300,7 +300,7 @@ export const DashboardPreview = () => {
               />
               <StatCard 
                 icon={Target} 
-                title="Score Take 5" 
+                title="Score TakeFive" 
                 value={userData.score} 
                 subtitle={`Niveau ${userData.level}`} 
               />
