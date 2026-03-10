@@ -153,32 +153,17 @@ const DevenirPartenaire = () => {
         {/* Commission Section */}
         <section className="bg-[#161b34]/80 border-2 border-[#4F5EFF] rounded-3xl p-8 md:p-12 mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">💸 Vos Commissions</h2>
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
-            {/* Starter */}
+          <div className="max-w-md mx-auto mb-8">
             <div className="bg-[#4F5EFF]/10 border-2 border-[#8B9EFF] rounded-2xl p-8 text-center">
-              <h3 className="text-2xl md:text-3xl font-semibold mb-4">Offre Starter</h3>
+              <h3 className="text-2xl md:text-3xl font-semibold mb-4">Offre Pro</h3>
               <div className="text-4xl md:text-5xl font-bold text-[#8B9EFF] mb-2">19,90€</div>
-              <p className="text-gray-400 mb-4">HT / mois</p>
+              <p className="text-gray-400 mb-4">TTC / mois</p>
               <div className="text-gray-400 text-sm mb-4">
                 Commission : 90-95%<br />
                 18,91€/mois × 3 mois
               </div>
               <div className="bg-[#25D366]/15 text-[#25D366] text-xl md:text-2xl font-bold py-4 px-6 rounded-xl">
                 = 56,73€ total
-              </div>
-            </div>
-
-            {/* Pro */}
-            <div className="bg-[#4F5EFF]/10 border-2 border-[#8B9EFF] rounded-2xl p-8 text-center">
-              <h3 className="text-2xl md:text-3xl font-semibold mb-4">Offre Pro</h3>
-              <div className="text-4xl md:text-5xl font-bold text-[#8B9EFF] mb-2">29,90€</div>
-              <p className="text-gray-400 mb-4">HT / mois</p>
-              <div className="text-gray-400 text-sm mb-4">
-                Commission : 90-95%<br />
-                28,41€/mois × 3 mois
-              </div>
-              <div className="bg-[#25D366]/15 text-[#25D366] text-xl md:text-2xl font-bold py-4 px-6 rounded-xl">
-                = 85,23€ total
               </div>
             </div>
           </div>
