@@ -2,7 +2,7 @@ import takefiveLogo from "@/assets/takefive-logo.png";
 
 export const Footer = () => {
   return (
-    <footer className="bg-background border-t border-border py-12 px-4 mb-16 lg:mb-0">
+    <footer className="bg-background border-t border-border py-12 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
