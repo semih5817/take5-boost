@@ -537,7 +537,7 @@ export const DashboardPreview = () => {
                     </p>
                     <div className="flex gap-2">
                       <Badge className="bg-yellow-500/20 text-yellow-400 border border-yellow-500">
-                        +15 points Take 5
+                        +15 points TakeFive
                       </Badge>
                       <Badge className="bg-purple-500/20 text-purple-400 border border-purple-500">
                         Badge débloqué: Excellence
