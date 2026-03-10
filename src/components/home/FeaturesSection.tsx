@@ -25,7 +25,7 @@ export const FeaturesSection = () => {
     {
       emoji: "💰",
       title: "Économisez du temps",
-      description: "Plus besoin de gérer manuellement votre fiche Google. Concentrez-vous sur votre cœur de métier pendant que Take 5 s'occupe du reste."
+      description: "Plus besoin de gérer manuellement votre fiche Google. Concentrez-vous sur votre cœur de métier pendant que TakeFive s'occupe du reste."
     },
     {
       emoji: "📈",
