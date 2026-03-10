@@ -215,10 +215,10 @@ export default function NousContacter() {
               <div className="text-2xl flex-shrink-0">❓</div>
               <div>
                 <h3 className="text-xl font-bold text-white mb-3">
-                  Comment fonctionne Take 5 ?
+                  Comment fonctionne TakeFive ?
                 </h3>
                 <p className="text-slate-400 leading-relaxed">
-                  Take 5 est une plateforme tout-en-un qui vous aide à gérer vos avis Google grâce à l'intelligence artificielle. 
+                  TakeFive est une plateforme tout-en-un qui vous aide à gérer vos avis Google grâce à l'intelligence artificielle. 
                   Nous automatisons la gestion des avis, générons des réponses personnalisées et vous aidons à améliorer votre réputation en ligne.
                 </p>
               </div>
