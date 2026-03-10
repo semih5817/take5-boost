@@ -28,15 +28,10 @@ const DevenirPartenaire = () => {
 
   // Configuration des commissions
   const commissions = {
-    starter: {
+    pro: {
       price: 19.90,
       perMonth: 18.91, // 95% de 19.90
       total3Months: 56.73
-    },
-    pro: {
-      price: 29.90,
-      perMonth: 28.41, // 95% de 29.90
-      total3Months: 85.23
     }
   };
 
