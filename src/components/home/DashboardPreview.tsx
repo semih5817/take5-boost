@@ -562,7 +562,7 @@ export const DashboardPreview = () => {
                     </p>
                     <div className="flex gap-2">
                       <Badge className="bg-green-500/20 text-green-400 border border-green-500">
-                        +25 points Take 5
+                        +25 points TakeFive
                       </Badge>
                       <Badge className="bg-orange-500/20 text-orange-400 border border-orange-500">
                         Série de 12 jours 🔥
