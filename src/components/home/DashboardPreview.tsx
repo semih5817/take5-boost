@@ -612,7 +612,7 @@ export const DashboardPreview = () => {
                     </p>
                     <div className="flex gap-2">
                       <Badge className="bg-purple-500/20 text-purple-400 border border-purple-500">
-                        +30 points Take 5
+                        +30 points TakeFive
                       </Badge>
                       <Badge className="bg-red-500/20 text-red-400 border border-red-500">
                         Engagement maximum

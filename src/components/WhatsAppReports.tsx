@@ -91,7 +91,7 @@ export const WhatsAppReports = () => {
                     <li>• Avis collectés vs semaine dernière</li>
                     <li>• Évolution de votre note moyenne</li>
                     <li>• Statistiques de visibilité</li>
-                    <li>• Score Take 5 et progression</li>
+                    <li>• Score TakeFive et progression</li>
                     <li>• 3 actions prioritaires pour la semaine</li>
                   </ul>
                 </div>
